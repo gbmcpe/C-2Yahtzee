@@ -8,7 +8,7 @@ namespace YahtzeeGame
 {
     internal class Player
     {
-
+        int DummyChange;
 
     }
 }
