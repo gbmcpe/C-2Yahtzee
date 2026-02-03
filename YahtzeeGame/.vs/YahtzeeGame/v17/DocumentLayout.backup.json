@@ -7,7 +7,7 @@
       "RelativeMoniker": "D:0:0:{098AFE05-7675-4E9B-82D0-09CDDF405B95}|YahtzeeGame\\YahtzeeGame.csproj|solutionrelative:yahtzeegame\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{098AFE05-7675-4E9B-82D0-09CDDF405B95}|YahtzeeGame\\YahtzeeGame.csproj|c:\\users\\gbmcp\\documents\\github\\c-2yahtzee\\yahtzeegame\\yahtzeegame\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{098AFE05-7675-4E9B-82D0-09CDDF405B95}|YahtzeeGame\\YahtzeeGame.csproj|C:\\Users\\gbmcp\\Documents\\GitHub\\C-2Yahtzee\\YahtzeeGame\\yahtzeegame\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{098AFE05-7675-4E9B-82D0-09CDDF405B95}|YahtzeeGame\\YahtzeeGame.csproj|solutionrelative:yahtzeegame\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
@@ -32,7 +32,7 @@
               "RelativeDocumentMoniker": "YahtzeeGame\\Player.cs",
               "ToolTip": "C:\\Users\\gbmcp\\Documents\\GitHub\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\Player.cs",
               "RelativeToolTip": "YahtzeeGame\\Player.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-03T22:51:46.861Z",
               "EditorCaption": ""
@@ -46,8 +46,7 @@
               "ToolTip": "C:\\Users\\gbmcp\\Documents\\GitHub\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\MainWindow.xaml",
               "RelativeToolTip": "YahtzeeGame\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-02-03T22:48:05.02Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-03T22:48:05.02Z"
             },
             {
               "$type": "Document",
