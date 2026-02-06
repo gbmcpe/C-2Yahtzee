@@ -9,9 +9,14 @@
     <Grid>
         <Label x:Name="LblCurrentPlayerTurn" Content="Turn" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" Width="128"/>
         <Label x:Name="LblYahtzee" Content="Yahtzee" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="106" Height="30"/>
-        <Button x:Name="BtnClose" Content="Close" HorizontalAlignment="Left" Margin="16,229,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="BtnReset" Content="Reset" HorizontalAlignment="Left" Margin="76,229,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="BtnRollDice" Content="Roll Dice!" HorizontalAlignment="Left" Margin="135,229,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="BtnClose" Content="Close" HorizontalAlignment="Left" Margin="10,371,0,0" VerticalAlignment="Top" Click="BtnClose_Click"/>
+        <Button x:Name="BtnReset" Content="Reset" HorizontalAlignment="Left" Margin="70,371,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="BtnRollDice" Content="Roll Dice!" HorizontalAlignment="Left" Margin="129,371,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="LblUpperSectionTitle" Content="Upper Section" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="LblGame1Title" Content="Game #1" HorizontalAlignment="Left" Margin="187,72,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="LblOnesTitle" Content="Ones" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="LblTwosTitle" Content="Two's" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="LblTwosTitle_Copy" Content="Two's" HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

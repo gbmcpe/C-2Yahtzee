@@ -24,5 +24,15 @@ namespace YahtzeeGame
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// Closes Program.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

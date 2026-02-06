@@ -13,6 +13,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{098AFE05-7675-4E9B-82D0-09CDDF405B95}|YahtzeeGame\\YahtzeeGame.csproj|C:\\Users\\brady\\OneDrive\\Desktop\\C-2Yahtzee\\YahtzeeGame\\yahtzeegame\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{098AFE05-7675-4E9B-82D0-09CDDF405B95}|YahtzeeGame\\YahtzeeGame.csproj|solutionrelative:yahtzeegame\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{098AFE05-7675-4E9B-82D0-09CDDF405B95}|YahtzeeGame\\YahtzeeGame.csproj|c:\\users\\beau\\documents\\github\\c-2yahtzee\\yahtzeegame\\yahtzeegame\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{098AFE05-7675-4E9B-82D0-09CDDF405B95}|YahtzeeGame\\YahtzeeGame.csproj|solutionrelative:yahtzeegame\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,6 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
+<<<<<<< Updated upstream
           "SelectedChildIndex": 0,
           "Children": [
             {
@@ -35,11 +40,30 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-06T21:44:33.16Z",
+=======
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\beau\\Documents\\GitHub\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "YahtzeeGame\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\beau\\Documents\\GitHub\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\MainWindow.xaml.cs",
+              "RelativeToolTip": "YahtzeeGame\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-06T21:40:56.459Z",
+>>>>>>> Stashed changes
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 2,
+=======
+              "DocumentIndex": 1,
+>>>>>>> Stashed changes
               "Title": "Player.cs",
               "DocumentMoniker": "C:\\Users\\brady\\OneDrive\\Desktop\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\Player.cs",
               "RelativeDocumentMoniker": "YahtzeeGame\\Player.cs",
@@ -47,7 +71,8 @@
               "RelativeToolTip": "YahtzeeGame\\Player.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-03T22:51:46.861Z"
+              "WhenOpened": "2026-02-03T22:51:46.861Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
