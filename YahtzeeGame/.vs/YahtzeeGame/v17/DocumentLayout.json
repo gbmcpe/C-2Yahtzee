@@ -1,13 +1,17 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\beau\\Documents\\GitHub\\C-2Yahtzee\\YahtzeeGame\\",
+  "WorkspaceRootPath": "C:\\Users\\brady\\OneDrive\\Desktop\\C-2Yahtzee\\YahtzeeGame\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{098AFE05-7675-4E9B-82D0-09CDDF405B95}|YahtzeeGame\\YahtzeeGame.csproj|c:\\users\\beau\\documents\\github\\c-2yahtzee\\yahtzeegame\\yahtzeegame\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{098AFE05-7675-4E9B-82D0-09CDDF405B95}|YahtzeeGame\\YahtzeeGame.csproj|c:\\users\\brady\\onedrive\\desktop\\c-2yahtzee\\yahtzeegame\\yahtzeegame\\dice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{098AFE05-7675-4E9B-82D0-09CDDF405B95}|YahtzeeGame\\YahtzeeGame.csproj|solutionrelative:yahtzeegame\\dice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{098AFE05-7675-4E9B-82D0-09CDDF405B95}|YahtzeeGame\\YahtzeeGame.csproj|C:\\Users\\brady\\OneDrive\\Desktop\\C-2Yahtzee\\YahtzeeGame\\yahtzeegame\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{098AFE05-7675-4E9B-82D0-09CDDF405B95}|YahtzeeGame\\YahtzeeGame.csproj|solutionrelative:yahtzeegame\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{098AFE05-7675-4E9B-82D0-09CDDF405B95}|YahtzeeGame\\YahtzeeGame.csproj|C:\\Users\\beau\\Documents\\GitHub\\C-2Yahtzee\\YahtzeeGame\\yahtzeegame\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{098AFE05-7675-4E9B-82D0-09CDDF405B95}|YahtzeeGame\\YahtzeeGame.csproj|C:\\Users\\brady\\OneDrive\\Desktop\\C-2Yahtzee\\YahtzeeGame\\yahtzeegame\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{098AFE05-7675-4E9B-82D0-09CDDF405B95}|YahtzeeGame\\YahtzeeGame.csproj|solutionrelative:yahtzeegame\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -18,15 +22,28 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "Dice.cs",
+              "DocumentMoniker": "C:\\Users\\brady\\OneDrive\\Desktop\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\Dice.cs",
+              "RelativeDocumentMoniker": "YahtzeeGame\\Dice.cs",
+              "ToolTip": "C:\\Users\\brady\\OneDrive\\Desktop\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\Dice.cs",
+              "RelativeToolTip": "YahtzeeGame\\Dice.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-06T21:44:33.16Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Player.cs",
-              "DocumentMoniker": "C:\\Users\\beau\\Documents\\GitHub\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\Player.cs",
+              "DocumentMoniker": "C:\\Users\\brady\\OneDrive\\Desktop\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\Player.cs",
               "RelativeDocumentMoniker": "YahtzeeGame\\Player.cs",
-              "ToolTip": "C:\\Users\\beau\\Documents\\GitHub\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\Player.cs",
+              "ToolTip": "C:\\Users\\brady\\OneDrive\\Desktop\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\Player.cs",
               "RelativeToolTip": "YahtzeeGame\\Player.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -34,15 +51,14 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\beau\\Documents\\GitHub\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\brady\\OneDrive\\Desktop\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\MainWindow.xaml",
               "RelativeDocumentMoniker": "YahtzeeGame\\MainWindow.xaml",
-              "ToolTip": "C:\\Users\\beau\\Documents\\GitHub\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\brady\\OneDrive\\Desktop\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\MainWindow.xaml",
               "RelativeToolTip": "YahtzeeGame\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-02-03T22:48:05.02Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-03T22:48:05.02Z"
             }
           ]
         }
