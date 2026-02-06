@@ -16,7 +16,7 @@ namespace YahtzeeGame
         // private ScoreColumn PlayerScores;
         public int SelectedScore;
 
-
+        //yadda yadda
         //constructors
         public Player(int Pos) 
         { 
