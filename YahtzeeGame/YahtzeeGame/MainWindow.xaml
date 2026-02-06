@@ -23,6 +23,62 @@
         <Label x:Name="LblFoursTitle" Content="Fours" HorizontalAlignment="Left" Margin="10,196,0,0" VerticalAlignment="Top"/>
         <Label x:Name="LblSixesTitle" Content="Sixes" HorizontalAlignment="Left" Margin="10,258,0,0" VerticalAlignment="Top"/>
         <Label x:Name="LblFivesTitle" Content="Fives" HorizontalAlignment="Left" Margin="10,227,0,0" VerticalAlignment="Top"/>
+        <Image x:Name="Die1" Grid.Column="1" HorizontalAlignment="Left" Height="54" Margin="335,61,0,0" VerticalAlignment="Top" Width="52" Source="/1Die.bmp"/>
+        <Image x:Name="Die2" Grid.Column="1" HorizontalAlignment="Left" Height="54" Margin="494,61,0,0" VerticalAlignment="Top" Width="52" Source="/2Die.bmp"/>
+        <Image x:Name="Die3" Grid.Column="1" HorizontalAlignment="Left" Height="54" Margin="335,152,0,0" VerticalAlignment="Top" Width="52" Source="/3Die.bmp"/>
+        <Image x:Name="Die4" Grid.Column="1" HorizontalAlignment="Left" Height="54" Margin="494,144,0,0" VerticalAlignment="Top" Width="52" Source="/4Die.bmp"/>
+        <Image x:Name="Die5" Grid.Column="1" HorizontalAlignment="Left" Height="54" Margin="418,226,0,0" VerticalAlignment="Top" Width="52" Source="/5Die.bmp"/>
+        <CheckBox Grid.Column="1" Content="" HorizontalAlignment="Left" Margin="418,227,0,0" VerticalAlignment="Top" Height="40" Width="52" Opacity="0"/>
+        <CheckBox x:Name="cbDie2" Grid.Column="1" Content="" HorizontalAlignment="Left" Margin="512,85,0,0" VerticalAlignment="Top" Height="17" Width="16" RenderTransformOrigin="0.5,0.5" Opacity="0.01">
+            <CheckBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="4.5" ScaleY="4.5"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </CheckBox.RenderTransform>
+        </CheckBox>
+        <CheckBox x:Name="cbDie1" Grid.Column="1" Content="" HorizontalAlignment="Left" Margin="353,85,0,0" VerticalAlignment="Top" Height="17" Width="16" RenderTransformOrigin="0.5,0.5" Opacity="0.01">
+            <CheckBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="4.5" ScaleY="4.5"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </CheckBox.RenderTransform>
+        </CheckBox>
+        <CheckBox x:Name="cbDie3" Grid.Column="1" Content="" HorizontalAlignment="Left" Margin="353,172,0,0" VerticalAlignment="Top" Height="17" Width="16" RenderTransformOrigin="0.5,0.5" Opacity="0.01">
+            <CheckBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="4.5" ScaleY="4.5"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </CheckBox.RenderTransform>
+        </CheckBox>
+        <CheckBox x:Name="cbDie4" Grid.Column="1" Content="" HorizontalAlignment="Left" Margin="512,166,0,0" VerticalAlignment="Top" Height="18" Width="16" RenderTransformOrigin="0.5,0.5" Opacity="0.01">
+            <CheckBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="4.5" ScaleY="4.5"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </CheckBox.RenderTransform>
+        </CheckBox>
+        <CheckBox x:Name="cbDie5" Grid.Column="1" Content="" HorizontalAlignment="Left" Margin="436,252,0,0" VerticalAlignment="Top" Height="17" Width="16" RenderTransformOrigin="0.5,0.5" Opacity="0.01">
+            <CheckBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="4.5" ScaleY="4.5"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </CheckBox.RenderTransform>
+        </CheckBox>
 
     </Grid>
 </Window>

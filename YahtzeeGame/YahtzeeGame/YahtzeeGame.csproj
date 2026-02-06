@@ -98,5 +98,20 @@
   <ItemGroup>
     <Folder Include="Classes\" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="1Die.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="2Die.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="3Die.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="4Die.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="5Die.bmp" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
