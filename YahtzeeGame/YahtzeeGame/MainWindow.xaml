@@ -15,7 +15,7 @@
         <Label x:Name="LblYahtzee" Content="Yahtzee" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="106" Height="30"/>
         <Button x:Name="BtnClose" Content="Close" HorizontalAlignment="Left" Margin="10,371,0,0" VerticalAlignment="Top" Click="BtnClose_Click"/>
         <Button x:Name="BtnReset" Content="Reset" HorizontalAlignment="Left" Margin="70,371,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="BtnRollDice" Content="Roll Dice!" HorizontalAlignment="Left" Margin="129,371,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <Button x:Name="BtnRollDice" Content="Roll Dice!" HorizontalAlignment="Left" Margin="129,371,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Click="BtnRollDice_Click"/>
         <Label x:Name="LblUpperSectionTitle" Content="Upper Section" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
         <Label x:Name="LblOnesTitle" Content="Ones" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top"/>
         <Label x:Name="LblTwosTitle" Content="Twos" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top"/>
@@ -59,13 +59,13 @@
                 </TransformGroup>
             </CheckBox.RenderTransform>
         </CheckBox>
-        <CheckBox x:Name="cbDie4" Grid.Column="1" Content="" HorizontalAlignment="Left" Margin="512,166,0,0" VerticalAlignment="Top" Height="18" Width="16" RenderTransformOrigin="0.5,0.5" Opacity="0.01">
+        <CheckBox x:Name="cbDie4" Grid.Column="1" Content="" HorizontalAlignment="Left" Margin="548,233,0,0" VerticalAlignment="Top" Height="18" Width="16" RenderTransformOrigin="-0.47,-0.567" Opacity="0.01">
             <CheckBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="4.5" ScaleY="4.5"/>
                     <SkewTransform/>
                     <RotateTransform/>
-                    <TranslateTransform/>
+                    <TranslateTransform X="-54.32" Y="-67.221"/>
                 </TransformGroup>
             </CheckBox.RenderTransform>
         </CheckBox>
@@ -79,6 +79,8 @@
                 </TransformGroup>
             </CheckBox.RenderTransform>
         </CheckBox>
+        <Label x:Name="lblTimesRolled" Grid.Column="1" HorizontalAlignment="Left" Margin="432,353,0,0" VerticalAlignment="Top" ContentStringFormat="0"/>
+        <Label x:Name="lblRollCount" Grid.Column="1" Content="Times Rolled:" HorizontalAlignment="Left" Margin="335,353,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
