@@ -79,7 +79,7 @@
             </CheckBox.RenderTransform>
         </CheckBox>
         <Label x:Name="lblTimesRolled" Grid.Column="1" HorizontalAlignment="Left" Margin="300,67,0,0" VerticalAlignment="Top" ContentStringFormat="3" Content="3"/>
-        <Label x:Name="lblRollCount" Grid.Column="1" Content="Rolls Left:" HorizontalAlignment="Left" Margin="211,67,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblRollCountText" Grid.Column="1" Content="Rolls Left:" HorizontalAlignment="Left" Margin="211,67,0,0" VerticalAlignment="Top"/>
         <Button x:Name="btnStart" Content="Start Game" HorizontalAlignment="Left" Margin="8,296,0,0" VerticalAlignment="Top" Click="btnStart_Click"/>
         <Button x:Name="btnAbout" Content="About" HorizontalAlignment="Left" Margin="16,384,0,0" VerticalAlignment="Top" Click="btnAbout_Click"/>
         <Label x:Name="lblInstructions" Grid.Column="1" Content="Click the dice you want to keep." HorizontalAlignment="Left" Margin="201,103,0,0" VerticalAlignment="Top"/>
