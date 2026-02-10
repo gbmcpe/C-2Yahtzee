@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:YahtzeeGame"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="YahtzeeGame" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="153*"/>
@@ -13,9 +13,9 @@
         </Grid.ColumnDefinitions>
         <Label x:Name="LblCurrentPlayerTurn" Content="Turn" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" Width="128"/>
         <Label x:Name="LblYahtzee" Content="Yahtzee" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="106" Height="30"/>
-        <Button x:Name="BtnClose" Content="Close" HorizontalAlignment="Left" Margin="10,371,0,0" VerticalAlignment="Top" Click="BtnClose_Click"/>
-        <Button x:Name="BtnReset" Content="Reset" HorizontalAlignment="Left" Margin="70,371,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="BtnRollDice" Content="Roll Dice!" HorizontalAlignment="Left" Margin="129,371,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Click="BtnRollDice_Click"/>
+        <Button x:Name="BtnClose" Content="Close" HorizontalAlignment="Left" Margin="17,359,0,0" VerticalAlignment="Top" Click="BtnClose_Click"/>
+        <Button x:Name="BtnReset" Content="Reset" HorizontalAlignment="Left" Margin="17,334,0,0" VerticalAlignment="Top" Click="BtnReset_Click"/>
+        <Button x:Name="BtnRollDice" Content="Roll Dice!" HorizontalAlignment="Left" Margin="300,264,0,0" VerticalAlignment="Top" Click="BtnRollDice_Click" Grid.Column="1" IsEnabled="False"/>
         <Label x:Name="LblUpperSectionTitle" Content="Upper Section" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
         <Label x:Name="LblOnesTitle" Content="Ones" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top"/>
         <Label x:Name="LblTwosTitle" Content="Twos" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top"/>
@@ -23,13 +23,12 @@
         <Label x:Name="LblFoursTitle" Content="Fours" HorizontalAlignment="Left" Margin="10,196,0,0" VerticalAlignment="Top"/>
         <Label x:Name="LblSixesTitle" Content="Sixes" HorizontalAlignment="Left" Margin="10,258,0,0" VerticalAlignment="Top"/>
         <Label x:Name="LblFivesTitle" Content="Fives" HorizontalAlignment="Left" Margin="10,227,0,0" VerticalAlignment="Top"/>
-        <Image x:Name="Die1" Grid.Column="1" HorizontalAlignment="Left" Height="54" Margin="335,61,0,0" VerticalAlignment="Top" Width="52" Source="/1Die.bmp"/>
-        <Image x:Name="Die2" Grid.Column="1" HorizontalAlignment="Left" Height="54" Margin="494,61,0,0" VerticalAlignment="Top" Width="52" Source="/2Die.bmp"/>
-        <Image x:Name="Die3" Grid.Column="1" HorizontalAlignment="Left" Height="54" Margin="335,152,0,0" VerticalAlignment="Top" Width="52" Source="/3Die.bmp"/>
-        <Image x:Name="Die4" Grid.Column="1" HorizontalAlignment="Left" Height="54" Margin="494,144,0,0" VerticalAlignment="Top" Width="52" Source="/4Die.bmp"/>
-        <Image x:Name="Die5" Grid.Column="1" HorizontalAlignment="Left" Height="54" Margin="418,226,0,0" VerticalAlignment="Top" Width="52" Source="/5Die.bmp"/>
-        <CheckBox Grid.Column="1" Content="" HorizontalAlignment="Left" Margin="418,227,0,0" VerticalAlignment="Top" Height="40" Width="52" Opacity="0"/>
-        <CheckBox x:Name="cbDie2" Grid.Column="1" Content="" HorizontalAlignment="Left" Margin="512,85,0,0" VerticalAlignment="Top" Height="17" Width="16" RenderTransformOrigin="0.5,0.5" Opacity="0.01">
+        <Image x:Name="Die1" Grid.Column="1" HorizontalAlignment="Left" Height="54" Margin="123,142,0,0" VerticalAlignment="Top" Width="52" Source="/1Die.bmp"/>
+        <Image x:Name="Die2" Grid.Column="1" HorizontalAlignment="Left" Height="54" Margin="211,142,0,0" VerticalAlignment="Top" Width="52" Source="/2Die.bmp"/>
+        <Image x:Name="Die3" Grid.Column="1" HorizontalAlignment="Left" Height="54" Margin="300,146,0,0" VerticalAlignment="Top" Width="52" Source="/3Die.bmp"/>
+        <Image x:Name="Die4" Grid.Column="1" HorizontalAlignment="Left" Height="54" Margin="392,149,0,0" VerticalAlignment="Top" Width="52" Source="/4Die.bmp"/>
+        <Image x:Name="Die5" Grid.Column="1" HorizontalAlignment="Left" Height="54" Margin="474,144,0,0" VerticalAlignment="Top" Width="52" Source="/5Die.bmp"/>
+        <CheckBox x:Name="cbDie2" Grid.Column="1" Content="" HorizontalAlignment="Left" Margin="229,166,0,0" VerticalAlignment="Top" Height="17" Width="16" RenderTransformOrigin="0.5,0.5" Opacity="0.5" IsEnabled="False">
             <CheckBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="4.5" ScaleY="4.5"/>
@@ -39,7 +38,7 @@
                 </TransformGroup>
             </CheckBox.RenderTransform>
         </CheckBox>
-        <CheckBox x:Name="cbDie1" Grid.Column="1" Content="" HorizontalAlignment="Left" Margin="353,85,0,0" VerticalAlignment="Top" Height="17" Width="16" RenderTransformOrigin="0.5,0.5" Opacity="0.01">
+        <CheckBox x:Name="cbDie1" Grid.Column="1" Content="" HorizontalAlignment="Left" Margin="141,166,0,0" VerticalAlignment="Top" Height="17" Width="16" RenderTransformOrigin="0.5,0.5" Opacity="0.5" IsEnabled="False">
             <CheckBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="4.5" ScaleY="4.5"/>
@@ -49,7 +48,7 @@
                 </TransformGroup>
             </CheckBox.RenderTransform>
         </CheckBox>
-        <CheckBox x:Name="cbDie3" Grid.Column="1" Content="" HorizontalAlignment="Left" Margin="353,172,0,0" VerticalAlignment="Top" Height="17" Width="16" RenderTransformOrigin="0.5,0.5" Opacity="0.01">
+        <CheckBox x:Name="cbDie3" Grid.Column="1" Content="" HorizontalAlignment="Left" Margin="318,166,0,0" VerticalAlignment="Top" Height="17" Width="16" RenderTransformOrigin="0.5,0.5" Opacity="0.5" IsEnabled="False">
             <CheckBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="4.5" ScaleY="4.5"/>
@@ -59,7 +58,7 @@
                 </TransformGroup>
             </CheckBox.RenderTransform>
         </CheckBox>
-        <CheckBox x:Name="cbDie4" Grid.Column="1" Content="" HorizontalAlignment="Left" Margin="548,233,0,0" VerticalAlignment="Top" Height="18" Width="16" RenderTransformOrigin="-0.47,-0.567" Opacity="0.01">
+        <CheckBox x:Name="cbDie4" Grid.Column="1" Content="" HorizontalAlignment="Left" Margin="410,168,0,0" VerticalAlignment="Top" Height="18" Width="16" RenderTransformOrigin="-0.47,-0.567" Opacity="0.5" IsEnabled="False">
             <CheckBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="4.5" ScaleY="4.5"/>
@@ -69,7 +68,7 @@
                 </TransformGroup>
             </CheckBox.RenderTransform>
         </CheckBox>
-        <CheckBox x:Name="cbDie5" Grid.Column="1" Content="" HorizontalAlignment="Left" Margin="436,252,0,0" VerticalAlignment="Top" Height="17" Width="16" RenderTransformOrigin="0.5,0.5" Opacity="0.01">
+        <CheckBox x:Name="cbDie5" Grid.Column="1" Content="" HorizontalAlignment="Left" Margin="492,168,0,0" VerticalAlignment="Top" Height="18" Width="16" RenderTransformOrigin="0.5,0.5" Opacity="0.5" IsEnabled="False">
             <CheckBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="4.5" ScaleY="4.5"/>
@@ -79,8 +78,11 @@
                 </TransformGroup>
             </CheckBox.RenderTransform>
         </CheckBox>
-        <Label x:Name="lblTimesRolled" Grid.Column="1" HorizontalAlignment="Left" Margin="432,353,0,0" VerticalAlignment="Top" ContentStringFormat="0"/>
-        <Label x:Name="lblRollCount" Grid.Column="1" Content="Times Rolled:" HorizontalAlignment="Left" Margin="335,353,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblTimesRolled" Grid.Column="1" HorizontalAlignment="Left" Margin="300,67,0,0" VerticalAlignment="Top" ContentStringFormat="3" Content="3"/>
+        <Label x:Name="lblRollCount" Grid.Column="1" Content="Rolls Left:" HorizontalAlignment="Left" Margin="211,67,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnStart" Content="Start Game" HorizontalAlignment="Left" Margin="8,296,0,0" VerticalAlignment="Top" Click="btnStart_Click"/>
+        <Button x:Name="btnAbout" Content="About" HorizontalAlignment="Left" Margin="16,384,0,0" VerticalAlignment="Top" Click="btnAbout_Click"/>
+        <Label x:Name="lblInstructions" Grid.Column="1" Content="Click the dice you want to keep." HorizontalAlignment="Left" Margin="201,103,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

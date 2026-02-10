@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("5die.bmp")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("6die.bmp")]
 
 

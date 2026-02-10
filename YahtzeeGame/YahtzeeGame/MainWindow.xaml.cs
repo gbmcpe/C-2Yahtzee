@@ -47,49 +47,120 @@ namespace YahtzeeGame
 
         private void BtnRollDice_Click(object sender, RoutedEventArgs e)
         {
+
+
+
+
+
+            int counter = int.Parse(lblTimesRolled.ContentStringFormat);
+
+            lblTimesRolled.ContentStringFormat = (counter-1).ToString();
+            lblTimesRolled.Content = (counter - 1).ToString();
+
             bool[] DiceState = CheckDice();
 
-            for(int c = 0; c <5; c++)
+            Random random = new Random();
+
+            for (int c = 0; c <5; c++)
             {
-                if (!DiceState[c])
+                if (DiceState[c]==false)
                 {
-                    if (int.Parse(lblTimesRolled.ContentStringFormat) >3)
-                    {
 
-                        Random random = new Random();
                         
-                        int DieValue = random.Next(1, 7);
 
-                        if(c == 0) 
-                        {
-                            cbDie1.ContentStringFormat = DieValue.ToString();
-                            Die1.Source = new BitmapImage(new Uri($@"Die{DieValue}.bmp", UriKind.Relative));
-                            Die1.IsEnabled = false;
-                        }
+                    int DieValue = random.Next(1, 7);
+
+                    if (c == 0)
+                    {
+                        cbDie1.ContentStringFormat = DieValue.ToString();
+
+                        Die1.Source = new BitmapImage(new Uri($@"{DieValue}Die.bmp", UriKind.Relative));
+
+                    }
                         else if (c == 1)
                         {
                             cbDie2.ContentStringFormat = DieValue.ToString();
-                            Die2.Source = new BitmapImage(new Uri($@"Die{DieValue}.bmp", UriKind.Relative));
+                            Die2.Source = new BitmapImage(new Uri($@"{DieValue}Die.bmp", UriKind.Relative));
                         }
                         else if (c == 2)
                         {
                             cbDie3.ContentStringFormat = DieValue.ToString();
-                            Die3.Source = new BitmapImage(new Uri($@"Die{DieValue}.bmp", UriKind.Relative));
-                        }
+                            Die3.Source = new BitmapImage(new Uri($@"{DieValue}Die.bmp", UriKind.Relative));
+                    }
                         else if (c == 3)
                         {
                             cbDie4.ContentStringFormat = DieValue.ToString();
-                            Die4.Source = new BitmapImage(new Uri($@"Die{DieValue}.bmp", UriKind.Relative));
-                        }
+                            Die4.Source = new BitmapImage(new Uri($@"{DieValue}Die.bmp", UriKind.Relative));
+                    }
                         else if (c == 4)
                         {
                             cbDie5.ContentStringFormat = DieValue.ToString();
-                            Die5.Source = new BitmapImage(new Uri($@"Die{DieValue}.bmp", UriKind.Relative));
-                        }
+                            Die5.Source = new BitmapImage(new Uri($@"{DieValue}Die.bmp", UriKind.Relative));
                     }
 
                 }
             }
+
+            if (int.Parse(lblTimesRolled.ContentStringFormat) == 0)
+            {
+
+                TurnActivation(false);
+
+            }
+
+
+        }
+
+        private void btnStart_Click(object sender, RoutedEventArgs e)
+        {
+            TurnActivation(true);
+            btnStart.IsEnabled = false;
+        }
+
+        private void TurnActivation(bool b)
+        {
+            cbDie1.IsEnabled = b;
+            cbDie2.IsEnabled = b;
+            cbDie3.IsEnabled = b;
+            cbDie4.IsEnabled = b;
+            cbDie5.IsEnabled = b;
+            BtnRollDice.IsEnabled = b;
+
+            cbDie1.IsChecked = false;
+            cbDie2.IsChecked = false;
+            cbDie3.IsChecked = false;
+            cbDie4.IsChecked = false;
+            cbDie5.IsChecked = false;
+
+
+        }
+
+        private void Reset()
+        {
+
+
+            Die1.Source = new BitmapImage(new Uri($@"1Die.bmp", UriKind.Relative));
+            Die2.Source = new BitmapImage(new Uri($@"2Die.bmp", UriKind.Relative));
+            Die3.Source = new BitmapImage(new Uri($@"3Die.bmp", UriKind.Relative));
+            Die4.Source = new BitmapImage(new Uri($@"4Die.bmp", UriKind.Relative));
+            Die5.Source = new BitmapImage(new Uri($@"5Die.bmp", UriKind.Relative));
+
+            lblRollCount.Content = "3";
+            lblRollCount.ContentStringFormat = "3";
+            btnStart.IsEnabled = true;
+
+        }
+
+        private void BtnReset_Click(object sender, RoutedEventArgs e)
+        {
+            Reset();
+            TurnActivation(false);
+
+        }
+
+        private void btnAbout_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Yahtzee Version 0.1. Made By Marcus Cantrall, Bradye Vanderheyden,Connor Orton, Nicole Gonzalez Rodriguez and Beau Baker. ");
         }
     }
 }
