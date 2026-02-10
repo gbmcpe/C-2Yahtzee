@@ -7,7 +7,7 @@
       "RelativeMoniker": "D:0:0:{098AFE05-7675-4E9B-82D0-09CDDF405B95}|YahtzeeGame\\YahtzeeGame.csproj|solutionrelative:yahtzeegame\\mainwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{098AFE05-7675-4E9B-82D0-09CDDF405B95}|YahtzeeGame\\YahtzeeGame.csproj|c:\\users\\brady\\onedrive\\desktop\\c-2yahtzee\\yahtzeegame\\yahtzeegame\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{098AFE05-7675-4E9B-82D0-09CDDF405B95}|YahtzeeGame\\YahtzeeGame.csproj|C:\\Users\\brady\\OneDrive\\Desktop\\C-2Yahtzee\\YahtzeeGame\\yahtzeegame\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{098AFE05-7675-4E9B-82D0-09CDDF405B95}|YahtzeeGame\\YahtzeeGame.csproj|solutionrelative:yahtzeegame\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
@@ -19,7 +19,7 @@
       "RelativeMoniker": "D:0:0:{098AFE05-7675-4E9B-82D0-09CDDF405B95}|YahtzeeGame\\YahtzeeGame.csproj|solutionrelative:yahtzeegame\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{098AFE05-7675-4E9B-82D0-09CDDF405B95}|YahtzeeGame\\YahtzeeGame.csproj|c:\\users\\brady\\onedrive\\desktop\\c-2yahtzee\\yahtzeegame\\yahtzeegame\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{098AFE05-7675-4E9B-82D0-09CDDF405B95}|YahtzeeGame\\YahtzeeGame.csproj|C:\\Users\\brady\\OneDrive\\Desktop\\C-2Yahtzee\\YahtzeeGame\\yahtzeegame\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{098AFE05-7675-4E9B-82D0-09CDDF405B95}|YahtzeeGame\\YahtzeeGame.csproj|solutionrelative:yahtzeegame\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
@@ -43,8 +43,7 @@
               "ViewState": "AgIAABEAAAAAAAAAAAAQwC0AAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-06T22:04:28.542Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -55,8 +54,7 @@
               "ToolTip": "C:\\Users\\brady\\OneDrive\\Desktop\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\App.xaml",
               "RelativeToolTip": "YahtzeeGame\\App.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-02-09T23:21:22.969Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-09T23:21:22.969Z"
             },
             {
               "$type": "Document",
@@ -66,7 +64,7 @@
               "RelativeDocumentMoniker": "YahtzeeGame\\MainWindow.xaml.cs",
               "ToolTip": "C:\\Users\\brady\\OneDrive\\Desktop\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\MainWindow.xaml.cs",
               "RelativeToolTip": "YahtzeeGame\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAC4AAAAAAAAAAAAYwFkAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAwwEIAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-09T22:23:39.804Z",
               "EditorCaption": ""
@@ -81,8 +79,7 @@
               "RelativeToolTip": "YahtzeeGame\\Dice.cs",
               "ViewState": "AgIAABIAAAAAAAAAAAAAACQAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-06T22:04:28.429Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-06T22:04:28.429Z"
             },
             {
               "$type": "Document",
@@ -93,8 +90,7 @@
               "ToolTip": "C:\\Users\\brady\\OneDrive\\Desktop\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\MainWindow.xaml",
               "RelativeToolTip": "YahtzeeGame\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-02-06T22:04:28.543Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-06T22:04:28.543Z"
             }
           ]
         }

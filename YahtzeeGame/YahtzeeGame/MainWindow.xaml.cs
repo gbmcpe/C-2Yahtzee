@@ -26,7 +26,7 @@ namespace YahtzeeGame
         }
         private bool[] CheckDice()
         {
-            bool[] dice = new bool[4];
+            bool[] dice = new bool[5];
             dice[0] = cbDie1.IsChecked ?? false;
             dice[1] = cbDie2.IsChecked ?? false;
             dice[2] = cbDie3.IsChecked ?? false;
@@ -64,6 +64,7 @@ namespace YahtzeeGame
                         {
                             cbDie1.ContentStringFormat = DieValue.ToString();
                             Die1.Source = new BitmapImage(new Uri($@"Die{DieValue}.bmp", UriKind.Relative));
+                            Die1.IsEnabled = false;
                         }
                         else if (c == 1)
                         {
