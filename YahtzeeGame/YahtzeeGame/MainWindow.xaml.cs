@@ -110,11 +110,11 @@ namespace YahtzeeGame
         {
             //Resets the dice images and Turn Roll Counter
 
-            Die1.Source = new BitmapImage(new Uri($@"1Die.bmp", UriKind.Relative));
-            Die2.Source = new BitmapImage(new Uri($@"2Die.bmp", UriKind.Relative));
-            Die3.Source = new BitmapImage(new Uri($@"3Die.bmp", UriKind.Relative));
-            Die4.Source = new BitmapImage(new Uri($@"4Die.bmp", UriKind.Relative));
-            Die5.Source = new BitmapImage(new Uri($@"5Die.bmp", UriKind.Relative));
+            DisplayDice(0, 1);
+            DisplayDice(1, 2);
+            DisplayDice(2, 3);
+            DisplayDice(3, 4);
+            DisplayDice(4, 5);
 
             lblTimesRolled.Content = "3";
             lblTimesRolled.ContentStringFormat = "3";

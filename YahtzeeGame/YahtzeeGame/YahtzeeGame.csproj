@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Dice.cs" />
+    <Compile Include="Game.cs" />
+    <Compile Include="GameBoard.cs" />
     <Compile Include="ScoreCard.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -96,9 +99,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Classes\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="1Die.bmp" />
   </ItemGroup>

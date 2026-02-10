@@ -6,17 +6,16 @@ using System.Threading.Tasks;
 
 namespace YahtzeeGame
 {
-    internal class Player
+    public class Player
     {
 
-
+        //PlayerPos will start at 0.
         private int PlayerPos;
         private string PlayerName;
         private bool ComputerPlayer;
-        // private ScoreColumn PlayerScores;
+        private ScoreCard PlayerScores;
         public int SelectedScore;
 
-        //yadda yadda
         //constructors
         public Player(int Pos) 
         { 
