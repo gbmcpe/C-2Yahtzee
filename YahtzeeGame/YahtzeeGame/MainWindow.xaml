@@ -5,24 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:YahtzeeGame"
         mc:Ignorable="d"
-        Title="YahtzeeGame" Height="450" Width="800">
+        Title="YahtzeeGame" Height="655" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="153*"/>
             <ColumnDefinition Width="647*"/>
         </Grid.ColumnDefinitions>
-        <Label x:Name="LblCurrentPlayerTurn" Content="Turn" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" Width="128"/>
+        <Label x:Name="LblCurrentPlayerTurn" Content="Turn" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" Width="128"/>
         <Label x:Name="LblYahtzee" Content="Yahtzee" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="106" Height="30"/>
-        <Button x:Name="BtnClose" Content="Close" HorizontalAlignment="Left" Margin="17,359,0,0" VerticalAlignment="Top" Click="BtnClose_Click"/>
-        <Button x:Name="BtnReset" Content="Reset" HorizontalAlignment="Left" Margin="17,334,0,0" VerticalAlignment="Top" Click="BtnReset_Click"/>
+        <Button x:Name="BtnClose" Content="Close" HorizontalAlignment="Left" Margin="41,145,0,0" VerticalAlignment="Top" Click="BtnClose_Click"/>
+        <Button x:Name="BtnReset" Content="Reset" HorizontalAlignment="Left" Margin="41,120,0,0" VerticalAlignment="Top" Click="BtnReset_Click"/>
         <Button x:Name="BtnRollDice" Content="Roll Dice!" HorizontalAlignment="Left" Margin="300,264,0,0" VerticalAlignment="Top" Click="BtnRollDice_Click" Grid.Column="1" IsEnabled="False"/>
-        <Label x:Name="LblUpperSectionTitle" Content="Upper Section" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="LblOnesTitle" Content="Ones" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="LblTwosTitle" Content="Twos" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="LblThreesTitle" Content="Threes" HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="LblFoursTitle" Content="Fours" HorizontalAlignment="Left" Margin="10,196,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="LblSixesTitle" Content="Sixes" HorizontalAlignment="Left" Margin="10,258,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="LblFivesTitle" Content="Fives" HorizontalAlignment="Left" Margin="10,227,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="LblUpperSectionTitle" Content="Upper Section" HorizontalAlignment="Left" Margin="94,320,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label x:Name="LblOnesTitle" Content="Ones" HorizontalAlignment="Left" Margin="94,344,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label x:Name="LblTwosTitle" Content="Twos" HorizontalAlignment="Left" Margin="94,374,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label x:Name="LblThreesTitle" Content="Threes" HorizontalAlignment="Left" Margin="94,405,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label x:Name="LblFoursTitle" Content="Fours" HorizontalAlignment="Left" Margin="94,436,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label x:Name="LblSixesTitle" Content="Sixes" HorizontalAlignment="Left" Margin="94,498,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label x:Name="LblFivesTitle" Content="Fives" HorizontalAlignment="Left" Margin="94,467,0,0" VerticalAlignment="Top" Grid.Column="1"/>
         <Image x:Name="Die1" Grid.Column="1" HorizontalAlignment="Left" Height="54" Margin="123,142,0,0" VerticalAlignment="Top" Width="52" Source="/1Die.bmp"/>
         <Image x:Name="Die2" Grid.Column="1" HorizontalAlignment="Left" Height="54" Margin="211,142,0,0" VerticalAlignment="Top" Width="52" Source="/2Die.bmp"/>
         <Image x:Name="Die3" Grid.Column="1" HorizontalAlignment="Left" Height="54" Margin="300,146,0,0" VerticalAlignment="Top" Width="52" Source="/3Die.bmp"/>
@@ -80,9 +80,17 @@
         </CheckBox>
         <Label x:Name="lblTimesRolled" Grid.Column="1" HorizontalAlignment="Left" Margin="300,67,0,0" VerticalAlignment="Top" ContentStringFormat="3" Content="3"/>
         <Label x:Name="lblRollCountText" Grid.Column="1" Content="Rolls Left:" HorizontalAlignment="Left" Margin="211,67,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btnStart" Content="Start Game" HorizontalAlignment="Left" Margin="8,296,0,0" VerticalAlignment="Top" Click="btnStart_Click"/>
-        <Button x:Name="btnAbout" Content="About" HorizontalAlignment="Left" Margin="16,384,0,0" VerticalAlignment="Top" Click="btnAbout_Click"/>
+        <Button x:Name="btnStart" Content="Start Game" HorizontalAlignment="Left" Margin="32,83,0,0" VerticalAlignment="Top" Click="btnStart_Click"/>
+        <Button x:Name="btnAbout" Content="About" HorizontalAlignment="Left" Margin="40,170,0,0" VerticalAlignment="Top" Click="btnAbout_Click"/>
         <Label x:Name="lblInstructions" Grid.Column="1" Content="Click the dice you want to keep." HorizontalAlignment="Left" Margin="201,103,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="LblSumTitle" Content="Sum" HorizontalAlignment="Left" Margin="404,316,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label x:Name="LblBonusTitle" Content="Bonus" HorizontalAlignment="Left" Margin="405,347,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label x:Name="LblThrreOfKind" Content="Three of a Kind" HorizontalAlignment="Left" Margin="405,378,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label x:Name="LblFourOfKindTitle" Content="Four of a Kind" HorizontalAlignment="Left" Margin="405,409,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label x:Name="LblFullHouseTitle" Content="Full House" HorizontalAlignment="Left" Margin="404,435,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label x:Name="LblSmallStraightTitle" Content="Small Straight" HorizontalAlignment="Left" Margin="404,466,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label x:Name="LblLargeStraight" Content="Large Straight" HorizontalAlignment="Left" Margin="405,497,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label x:Name="LblChanceTitle" Content="Chance" HorizontalAlignment="Left" Margin="405,523,0,0" VerticalAlignment="Top" Grid.Column="1"/>
 
     </Grid>
 </Window>

@@ -16,4 +16,9 @@ public class Class1
 	{
 
 	}
+
+    #region Methods
+    #endregion
+    #region Controls
+    #endregion
 }
