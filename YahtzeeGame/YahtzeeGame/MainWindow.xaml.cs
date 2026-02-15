@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static YahtzeeGame.ScoreRow;
 
 namespace YahtzeeGame
 {
@@ -19,10 +20,17 @@ namespace YahtzeeGame
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {
+    {   ///public class for scoreboard and it wanted read only could be a problem later will fix if so.
+        readonly ScoreBoard scoreBoard;
+
+
         public MainWindow()
         {
             InitializeComponent();
+
+            // Create scoreboard in memory and bind it
+            scoreBoard = new ScoreBoard();
+            DGScoreBoard.ItemsSource = scoreBoard.Rows;
         }
 
         #region Click Events
@@ -178,6 +186,8 @@ namespace YahtzeeGame
             dice[4] = cbDie5.IsChecked ?? false;
             return dice;
         }
+
+
 
 
 

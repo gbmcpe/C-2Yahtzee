@@ -7,16 +7,8 @@
       "RelativeMoniker": "D:0:0:{098AFE05-7675-4E9B-82D0-09CDDF405B95}|YahtzeeGame\\YahtzeeGame.csproj|solutionrelative:yahtzeegame\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{098AFE05-7675-4E9B-82D0-09CDDF405B95}|YahtzeeGame\\YahtzeeGame.csproj|c:\\users\\beau\\documents\\github\\c-2yahtzee\\yahtzeegame\\yahtzeegame\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{098AFE05-7675-4E9B-82D0-09CDDF405B95}|YahtzeeGame\\YahtzeeGame.csproj|C:\\Users\\beau\\Documents\\GitHub\\C-2Yahtzee\\YahtzeeGame\\yahtzeegame\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{098AFE05-7675-4E9B-82D0-09CDDF405B95}|YahtzeeGame\\YahtzeeGame.csproj|solutionrelative:yahtzeegame\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{098AFE05-7675-4E9B-82D0-09CDDF405B95}|YahtzeeGame\\YahtzeeGame.csproj|c:\\users\\beau\\documents\\github\\c-2yahtzee\\yahtzeegame\\yahtzeegame\\playerscoreboardcolumn.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{098AFE05-7675-4E9B-82D0-09CDDF405B95}|YahtzeeGame\\YahtzeeGame.csproj|solutionrelative:yahtzeegame\\playerscoreboardcolumn.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{098AFE05-7675-4E9B-82D0-09CDDF405B95}|YahtzeeGame\\YahtzeeGame.csproj|c:\\users\\beau\\documents\\github\\c-2yahtzee\\yahtzeegame\\yahtzeegame\\playerscoreboardcolumn.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{098AFE05-7675-4E9B-82D0-09CDDF405B95}|YahtzeeGame\\YahtzeeGame.csproj|solutionrelative:yahtzeegame\\playerscoreboardcolumn.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{098AFE05-7675-4E9B-82D0-09CDDF405B95}|YahtzeeGame\\YahtzeeGame.csproj|c:\\users\\beau\\documents\\github\\c-2yahtzee\\yahtzeegame\\yahtzeegame\\gameboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -30,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -47,26 +39,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "PlayerScoreBoardColumn.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\beau\\Documents\\GitHub\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\PlayerScoreBoardColumn.xaml.cs",
-              "RelativeDocumentMoniker": "YahtzeeGame\\PlayerScoreBoardColumn.xaml.cs",
-              "ToolTip": "C:\\Users\\beau\\Documents\\GitHub\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\PlayerScoreBoardColumn.xaml.cs*",
-              "RelativeToolTip": "YahtzeeGame\\PlayerScoreBoardColumn.xaml.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "GameBoard.cs",
+              "DocumentMoniker": "C:\\Users\\beau\\Documents\\GitHub\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\GameBoard.cs",
+              "RelativeDocumentMoniker": "YahtzeeGame\\GameBoard.cs",
+              "ToolTip": "C:\\Users\\beau\\Documents\\GitHub\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\GameBoard.cs",
+              "RelativeToolTip": "YahtzeeGame\\GameBoard.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-15T01:21:59.898Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "PlayerScoreBoardColumn.xaml",
-              "DocumentMoniker": "C:\\Users\\beau\\Documents\\GitHub\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\PlayerScoreBoardColumn.xaml",
-              "RelativeDocumentMoniker": "YahtzeeGame\\PlayerScoreBoardColumn.xaml",
-              "ToolTip": "C:\\Users\\beau\\Documents\\GitHub\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\PlayerScoreBoardColumn.xaml*",
-              "RelativeToolTip": "YahtzeeGame\\PlayerScoreBoardColumn.xaml*",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-02-15T01:01:22.133Z",
+              "WhenOpened": "2026-02-15T04:46:35.169Z",
               "EditorCaption": ""
             },
             {
@@ -77,7 +57,7 @@
               "RelativeDocumentMoniker": "YahtzeeGame\\MainWindow.xaml.cs",
               "ToolTip": "C:\\Users\\beau\\Documents\\GitHub\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\MainWindow.xaml.cs",
               "RelativeToolTip": "YahtzeeGame\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABYAAABnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-15T00:40:34.753Z",
               "EditorCaption": ""
@@ -88,23 +68,10 @@
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\beau\\Documents\\GitHub\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\MainWindow.xaml",
               "RelativeDocumentMoniker": "YahtzeeGame\\MainWindow.xaml",
-              "ToolTip": "C:\\Users\\beau\\Documents\\GitHub\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\MainWindow.xaml*",
-              "RelativeToolTip": "YahtzeeGame\\MainWindow.xaml*",
+              "ToolTip": "C:\\Users\\beau\\Documents\\GitHub\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\MainWindow.xaml",
+              "RelativeToolTip": "YahtzeeGame\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-02-10T07:32:57.728Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "GameBoard.cs",
-              "DocumentMoniker": "C:\\Users\\beau\\Documents\\GitHub\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\GameBoard.cs",
-              "RelativeDocumentMoniker": "YahtzeeGame\\GameBoard.cs",
-              "ToolTip": "C:\\Users\\beau\\Documents\\GitHub\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\GameBoard.cs",
-              "RelativeToolTip": "YahtzeeGame\\GameBoard.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-14T21:54:18.76Z",
+              "WhenOpened": "2026-02-15T06:09:24.614Z",
               "EditorCaption": ""
             }
           ]

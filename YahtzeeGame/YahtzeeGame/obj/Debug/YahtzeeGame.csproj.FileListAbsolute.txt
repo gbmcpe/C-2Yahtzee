@@ -61,5 +61,3 @@ C:\Users\corto\OneDrive\Documents\GitHub\C-2Yahtzee\YahtzeeGame\YahtzeeGame\obj\
 C:\Users\corto\OneDrive\Documents\GitHub\C-2Yahtzee\YahtzeeGame\YahtzeeGame\obj\Debug\YahtzeeGame.csproj.CoreCompileInputs.cache
 C:\Users\corto\OneDrive\Documents\GitHub\C-2Yahtzee\YahtzeeGame\YahtzeeGame\obj\Debug\YahtzeeGame.exe
 C:\Users\corto\OneDrive\Documents\GitHub\C-2Yahtzee\YahtzeeGame\YahtzeeGame\obj\Debug\YahtzeeGame.pdb
-C:\Users\beau\Documents\GitHub\C-2Yahtzee\YahtzeeGame\YahtzeeGame\obj\Debug\PlayerScoreBoardColumn.baml
-C:\Users\beau\Documents\GitHub\C-2Yahtzee\YahtzeeGame\YahtzeeGame\obj\Debug\PlayerScoreBoardColumn.g.cs
