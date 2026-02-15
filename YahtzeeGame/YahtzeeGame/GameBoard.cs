@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Controls;
 /// <summary>
 /// Class Obejct Beau Is responsible for coding
 /// </summary>
@@ -12,10 +13,10 @@
  */
 public class Class1
 {
-	public Class1()
-	{
+    private void DGScoreCard_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
 
-	}
+    }
 
     #region Methods
     #endregion

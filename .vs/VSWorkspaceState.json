@@ -2,8 +2,14 @@
   "ExpandedNodes": [
     "",
     "\\YahtzeeGame",
-    "\\YahtzeeGame\\YahtzeeGame"
+    "\\YahtzeeGame\\Images",
+    "\\YahtzeeGame\\YahtzeeGame",
+    "\\YahtzeeGame\\YahtzeeGame\\bin",
+    "\\YahtzeeGame\\YahtzeeGame\\bin\\Debug",
+    "\\YahtzeeGame\\YahtzeeGame\\Classes",
+    "\\YahtzeeGame\\YahtzeeGame\\obj",
+    "\\YahtzeeGame\\YahtzeeGame\\Properties"
   ],
-  "SelectedNode": "\\YahtzeeGame\\YahtzeeGame\\Game.cs",
+  "SelectedNode": "\\YahtzeeGame\\YahtzeeGame.sln",
   "PreviewInSolutionExplorer": false
 }
