@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:YahtzeeGame"
         mc:Ignorable="d"
-        Title="YahtzeeGame" Height="579" Width="800">
+        Title="YahtzeeGame" Height="663" Width="800">
     <Grid Margin="0,0,0,10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="153*"/>
@@ -75,7 +75,7 @@
         <Button x:Name="btnStart" Content="Start Game" HorizontalAlignment="Left" Margin="32,83,0,0" VerticalAlignment="Top" Click="btnStart_Click"/>
         <Button x:Name="btnAbout" Content="About" HorizontalAlignment="Left" Margin="40,170,0,0" VerticalAlignment="Top" Click="btnAbout_Click"/>
         <Label x:Name="lblInstructions" Grid.Column="1" Content="Click the dice you want to keep." HorizontalAlignment="Left" Margin="201,103,0,0" VerticalAlignment="Top"/>
-        <DataGrid x:Name="DGScoreBoard" Margin="3,223,-2,0" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="False" AlternatingRowBackground="#FFF1F1F1" FontSize="11" Grid.Column="1">
+        <DataGrid x:Name="DGScoreBoard" Margin="0,289,1,0" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="False" AlternatingRowBackground="#FFF1F1F1" FontSize="11" Grid.Column="1">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Score" Binding="{Binding Score}" />
                 <DataGridTextColumn Header="Player" Binding="{Binding Player}" />
