@@ -8,7 +8,8 @@ using System.Windows.Controls;
 
 namespace YahtzeeGame
 {
-
+    ///Storage space for classes
+    #region Classes
     /// <summary>
     /// class for score rows
     /// </summary>
@@ -73,6 +74,7 @@ namespace YahtzeeGame
             };
         }
     }
+    #endregion
 }
 
 
