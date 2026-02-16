@@ -26,6 +26,7 @@ namespace YahtzeeGame
 
         readonly ScoreBoard scoreBoard;
 
+        GameManager YahtzeeGame = new GameManager();
 
 
         public MainWindow()
