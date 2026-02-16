@@ -434,5 +434,7 @@ namespace YahtzeeGame
     #endregion
 }
 /*need to fix score card counting already kept dice and dice rolls in background of the already checked die.
- * make player header change to inputed player name but need player initilization.
- */
+* make player header change to inputed player name but need player initilization.
+* unlock grid
+* lock in scores till reset
+*/
