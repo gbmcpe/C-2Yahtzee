@@ -16,11 +16,8 @@ using static YahtzeeGame.ScoreRow;
 
 namespace YahtzeeGame
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
-    {   ///public class for scoreboard and it wanted read only could be a problem later will fix if so.
+    {   ///public class for scoreboard and it wanted read only could be a problem later will fix if so. - Beau
         readonly ScoreBoard scoreBoard;
 
 
