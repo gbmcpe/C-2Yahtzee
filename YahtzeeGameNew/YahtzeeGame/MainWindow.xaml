@@ -1,0 +1,166 @@
+﻿<Window x:Class="YahtzeeGame.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:YahtzeeGame"
+        mc:Ignorable="d"
+        Title="YahtzeeGame" Height="450" Width="800">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF1A1A1A"/>
+            <GradientStop Color="#FF1A1A1A" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Grid Margin="0,0,0,-218">
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FFFF8686"/>
+                <GradientStop Color="#FF235882" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="287*"/>
+            <ColumnDefinition Width="513*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid x:Name="DGScoreBoard" Margin="146,21,508,286" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="False" AlternatingRowBackground="#FFF1F1F1" FontSize="11" Grid.ColumnSpan="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Score" Binding="{Binding Score}" />
+                <DataGridTextColumn Header="Player" Binding="{Binding Player}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <RadioButton x:Name="onesRdBtt" Content="" HorizontalAlignment="Left" Margin="102,131,0,0" VerticalAlignment="Top" FontFamily="Berlin Sans FB" Height="14" Width="19"/>
+        <RadioButton x:Name="TwosRdBtt" Content="" HorizontalAlignment="Left" Margin="102,166,0,0" VerticalAlignment="Top" FontFamily="Berlin Sans FB" RenderTransformOrigin="0.238,2.614" Height="14" Width="19"/>
+        <RadioButton x:Name="threesRdBtt" Content="" HorizontalAlignment="Left" Margin="102,203,0,0" VerticalAlignment="Top" FontFamily="Berlin Sans FB" RenderTransformOrigin="0.222,5.492" Height="14" Width="19"/>
+        <RadioButton x:Name="foursRdBtt" Content="" HorizontalAlignment="Left" Margin="101,237,0,0" VerticalAlignment="Top" FontFamily="Berlin Sans FB" RenderTransformOrigin="0.222,5.492" Height="14" Width="19"/>
+        <RadioButton x:Name="fivesRdBtt" Content="" HorizontalAlignment="Left" Margin="101,271,0,0" VerticalAlignment="Top" FontFamily="Berlin Sans FB" RenderTransformOrigin="0.222,5.492" Height="14" Width="19"/>
+        <RadioButton x:Name="sixesRdBtt" Content="" HorizontalAlignment="Left" Margin="101,307,0,0" VerticalAlignment="Top" FontFamily="Berlin Sans FB" RenderTransformOrigin="0.222,5.492" Height="14" Width="19"/>
+
+        <Label x:Name="LblCurrentPlayerTurn" Content="Turn" HorizontalAlignment="Left" Margin="8,51,0,0" VerticalAlignment="Top" Width="164" Height="30" FontFamily="Berlin Sans FB" FontSize="20"/>
+        <Label x:Name="LblYahtzee" Content="Yahtzee" HorizontalAlignment="Left" Margin="12,10,0,0" VerticalAlignment="Top" Width="199" Height="35" FontFamily="Berlin Sans FB" FontSize="20"/>
+        <Button x:Name="BtnClose" Content="Close" HorizontalAlignment="Left" Margin="410,367,0,0" VerticalAlignment="Top" Click="BtnClose_Click" Height="32" Width="72" Grid.Column="1" FontFamily="Berlin Sans FB" FontSize="20"/>
+        <Button x:Name="BtnReset" Content="Reset" HorizontalAlignment="Left" Margin="323,367,0,0" VerticalAlignment="Top" Click="BtnReset_Click" Height="32" Width="82" Grid.Column="1" FontFamily="Berlin Sans FB" FontSize="20" RenderTransformOrigin="0.591,-0.11"/>
+        <Button x:Name="BtnRollDice" Content="Roll Dice!" HorizontalAlignment="Center" Margin="0,261,0,0" VerticalAlignment="Top" Click="BtnRollDice_Click" Grid.Column="1" IsEnabled="False" Height="34" Width="108" FontFamily="Berlin Sans FB" FontSize="20"/>
+        <Label x:Name="LblUpperSectionTitle" Content="Upper Section" HorizontalAlignment="Left" Margin="12,82,0,0" VerticalAlignment="Top" Height="30" Width="160" FontFamily="Berlin Sans FB" FontSize="20"/>
+        <Label x:Name="LblOnesTitle" Content="Ones" HorizontalAlignment="Left" Margin="12,118,0,0" VerticalAlignment="Top" Height="31" Width="69" FontFamily="Berlin Sans FB" FontSize="20"/>
+        <Label x:Name="LblTwosTitle" Content="Twos" HorizontalAlignment="Left" Margin="12,154,0,0" VerticalAlignment="Top" Height="31" Width="68" FontFamily="Berlin Sans FB" FontSize="20"/>
+        <Label x:Name="LblThreesTitle" Content="Threes" HorizontalAlignment="Left" Margin="12,190,0,0" VerticalAlignment="Top" Height="31" Width="84" FontFamily="Berlin Sans FB" FontSize="20"/>
+        <Label x:Name="LblFoursTitle" Content="Fours" HorizontalAlignment="Left" Margin="12,227,0,0" VerticalAlignment="Top" Height="30" Width="73" FontFamily="Berlin Sans FB" FontSize="20"/>
+        <Label x:Name="LblSixesTitle" Content="Sixes" HorizontalAlignment="Left" Margin="12,299,0,0" VerticalAlignment="Top" Height="30" Width="68" FontFamily="Berlin Sans FB" FontSize="20"/>
+        <Label x:Name="LblFivesTitle" Content="Fives" HorizontalAlignment="Left" Margin="12,263,0,0" VerticalAlignment="Top" Height="30" Width="68" FontFamily="Berlin Sans FB" FontSize="20"/>
+        <Image x:Name="Die1" Grid.Column="1" HorizontalAlignment="Left" Height="54" Margin="54,148,0,0" VerticalAlignment="Top" Width="52" Source="/1Die.bmp"/>
+        <Image x:Name="Die2" Grid.Column="1" HorizontalAlignment="Left" Height="54" Margin="142,148,0,0" VerticalAlignment="Top" Width="52" Source="/2Die.bmp"/>
+        <Image x:Name="Die3" Grid.Column="1" HorizontalAlignment="Center" Height="54" Margin="0,148,0,0" VerticalAlignment="Top" Width="52" Source="/3Die.bmp"/>
+        <Image x:Name="Die4" Grid.Column="1" HorizontalAlignment="Left" Height="54" Margin="323,155,0,0" VerticalAlignment="Top" Width="52" Source="/4Die.bmp"/>
+        <Image x:Name="Die5" Grid.Column="1" HorizontalAlignment="Left" Height="54" Margin="405,150,0,0" VerticalAlignment="Top" Width="52" Source="/5Die.bmp"/>
+        <CheckBox x:Name="cbDie2" Grid.Column="1" Content="" HorizontalAlignment="Left" Margin="160,172,0,0" VerticalAlignment="Top" Height="17" Width="16" RenderTransformOrigin="0.5,0.5" Opacity="0.5" IsEnabled="False">
+            <CheckBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="4.5" ScaleY="4.5"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </CheckBox.RenderTransform>
+        </CheckBox>
+        <CheckBox x:Name="cbDie1" Grid.Column="1" Content="" HorizontalAlignment="Left" Margin="72,172,0,0" VerticalAlignment="Top" Height="17" Width="16" RenderTransformOrigin="0.5,0.5" Opacity="0.5" IsEnabled="False">
+            <CheckBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="4.5" ScaleY="4.5"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </CheckBox.RenderTransform>
+        </CheckBox>
+        <CheckBox x:Name="cbDie3" Grid.Column="1" Content="" HorizontalAlignment="Center" Margin="0,172,0,0" VerticalAlignment="Top" Height="18" Width="16" RenderTransformOrigin="0.5,0.5" Opacity="0.5" IsEnabled="False">
+            <CheckBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="4.5" ScaleY="4.5"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </CheckBox.RenderTransform>
+        </CheckBox>
+        <CheckBox x:Name="cbDie4" Grid.Column="1" Content="" HorizontalAlignment="Left" Margin="341,174,0,0" VerticalAlignment="Top" Height="18" Width="16" RenderTransformOrigin="-0.47,-0.567" Opacity="0.5" IsEnabled="False">
+            <CheckBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="4.5" ScaleY="4.5"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform X="-54.32" Y="-67.221"/>
+                </TransformGroup>
+            </CheckBox.RenderTransform>
+        </CheckBox>
+        <CheckBox x:Name="cbDie5" Grid.Column="1" Content="" HorizontalAlignment="Left" Margin="423,174,0,0" VerticalAlignment="Top" Height="18" Width="16" RenderTransformOrigin="0.5,0.5" Opacity="0.5" IsEnabled="False">
+            <CheckBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="4.5" ScaleY="4.5"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </CheckBox.RenderTransform>
+        </CheckBox>
+        <Label x:Name="lblTimesRolled" Grid.Column="1" HorizontalAlignment="Left" Margin="99,14,0,0" VerticalAlignment="Top" ContentStringFormat="3" Content="3" Height="31" Width="28" FontFamily="Berlin Sans FB" FontSize="20"/>
+        <Label x:Name="lblRollCountText" Grid.Column="1" Content="Rolls Left:" HorizontalAlignment="Left" Margin="10,14,0,0" VerticalAlignment="Top" Height="31" Width="108" FontFamily="Berlin Sans FB" FontSize="20" Background="#FFDEACAC"/>
+        <Button x:Name="btnStart" Content="Start Game" HorizontalAlignment="Left" Margin="10,369,0,0" VerticalAlignment="Top" Click="btnStart_Click" Height="28" Width="118" Grid.Column="1" FontFamily="Berlin Sans FB" FontSize="20"/>
+        <Button x:Name="btnAbout" Content="About" HorizontalAlignment="Left" Margin="10,374,0,0" VerticalAlignment="Top" Click="btnAbout_Click" Height="32" Width="107" FontFamily="Berlin Sans FB" FontSize="20"/>
+        <Label x:Name="lblInstructions" Grid.Column="1" Content="Click the dice you want to keep." HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Height="31" Width="320" FontFamily="Berlin Sans FB" FontSize="15" Background="{x:Null}"/>
+        <Grid x:Name="getNameScreen" Margin="0,1,0,-1" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="377*"/>
+                <ColumnDefinition Width="74*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF225882" Offset="0.926"/>
+                    <GradientStop Color="#FFFF8686" Offset="0.077"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <TextBox x:Name="nameTxtBx" HorizontalAlignment="Left" Margin="243,217,0,0" TextWrapping="Wrap" Text="Player 1" VerticalAlignment="Top" Width="264" Height="40" FontFamily="Berlin Sans FB" FontSize="30" TextAlignment="Center"/>
+            <Label x:Name="namelabel" Content="Your Yahtzee name:" HorizontalAlignment="Left" Margin="178,89,0,0" VerticalAlignment="Top" FontSize="50" FontFamily="Berlin Sans FB" Padding="10,10,10,10" Background="{x:Null}" HorizontalContentAlignment="Center" Foreground="#FFD4FDCE">
+                <Label.Style>
+                    <Style/>
+                </Label.Style>
+                <Label.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </Label.BorderBrush>
+            </Label>
+            <Button x:Name="getNameBtt" Content="-&gt;" HorizontalAlignment="Left" Margin="512,217,0,0" VerticalAlignment="Top" Height="40" Width="47" FontSize="30" FontFamily="Berlin Sans FB" Background="#FFEFF665" Foreground="#FF630A0A" Click="getNameBtt_Click" IsDefault="True"/>
+            <Grid x:Name="startScreenGr" Margin="10,0,-10,-2" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="377*"/>
+                    <ColumnDefinition Width="74*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF225882" Offset="0.926"/>
+                        <GradientStop Color="#FFFF8686" Offset="0.077"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
+                <Label x:Name="tittleLb" Content="Welcome to Yahtzee!" HorizontalAlignment="Left" Margin="170,91,0,0" VerticalAlignment="Top" FontSize="50" FontFamily="Berlin Sans FB" Padding="10,10,10,10" Background="{x:Null}" Foreground="#FFD4FDCE">
+                    <Label.Style>
+                        <Style/>
+                    </Label.Style>
+                    <Label.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Label.BorderBrush>
+                </Label>
+                <Button x:Name="singlePlayerbtt" Content="Single-player" HorizontalAlignment="Left" Margin="30,233,0,0" VerticalAlignment="Top" Height="70" Width="210" FontSize="30" FontFamily="Berlin Sans FB" Background="#FFEFF665" Foreground="#FF630A0A" Click="singlePlayerbtt_Click"/>
+                <Button x:Name="multiPlayerBtt" Content="Multi-player" HorizontalAlignment="Left" Margin="295,233,0,0" VerticalAlignment="Top" Height="70" Width="210" FontSize="30" FontFamily="Berlin Sans FB" Background="#FFEFF665" Foreground="#FF630A0A"/>
+                <Button x:Name="howToplayBtt" Content="How to play" HorizontalAlignment="Left" Margin="556,233,0,0" VerticalAlignment="Top" Height="70" Width="210" FontSize="30" FontFamily="Berlin Sans FB" Background="#FFEFF665" Foreground="#FF630A0A" Grid.ColumnSpan="2"/>
+            </Grid>
+        </Grid>
+        <Label x:Name="playerName1lb" Content="" HorizontalAlignment="Left" Margin="112,16,0,0" VerticalAlignment="Top" Width="165" FontFamily="Berlin Sans FB" Height="35" FontSize="20" Focusable="True"/>
+
+    </Grid>
+</Window>
