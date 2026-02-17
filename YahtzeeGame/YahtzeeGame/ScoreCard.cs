@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -9,9 +10,6 @@ namespace YahtzeeGame
 {
     public class ScoreCard
     {
-        //TODO: Add logic to the lower section boxes that will check if it's valid to score in those boxes with the dice the player has.
-        //TODO: Put Try-Catches into the scoring methods
-
         //Fields Notes
         /*
          * Quick note about the fields, each variable is public and can be changed without affecting totalScore. So you can call scores 
@@ -34,6 +32,9 @@ namespace YahtzeeGame
         public bool largeStraightScored;
         public bool yahtzeeScored;
         public bool chanceScored;
+
+        //This flag triggers when the entire scorecard is finished. Further attempts to flip one of the other flags will fire off ScoreCardFilledWarning()
+        public bool isScoreCardFinished;
 
         //These hold the actual values that will be added to totalScore when locked in. These are all separate values so that they can be called later for
         //displaying on the game card. If we find a better way of doing it, these can be erased.
@@ -71,6 +72,7 @@ namespace YahtzeeGame
             largeStraightScored = false;
             yahtzeeScored = false;
             chanceScored = false;
+            isScoreCardFinished = false;
             aces = 0;
             twos = 0;
             threes = 0;
@@ -87,6 +89,55 @@ namespace YahtzeeGame
             totalScore = 0;
         }
 
+        //Card Checking Methods
+        /*
+         * These checks are run at the start and end of every Scoring Method. First an If statement runs ScoreCardNotFinished. By default, it returns True.
+         * It loads all the current flags into a list for a convenient foreach Loop that increments a variable if that flag is true. If all 13 are true,
+         * the method returns a false instead, which prevents the Scoring Method from being run.
+         *
+         * If the Scoring Method is not run, an Else statement fires off ScoreCardFilled. This current holds a generic popup message, but can be filled
+         * with code to throw a flag or something else later. 
+         */
+
+        #region Checking Methods
+
+        public bool ScoreCardNotFinished()
+        {
+            bool result = true;
+            int x = 0;
+
+            List<bool> scores = new List<bool>()
+            {
+                acesScored, twosScored, threesScored,
+                foursScored, fivesScored, sixesScored,
+                threeOfAKindScored, fourOfAKindScored, fullHouseScored,
+                smallStraightScored, largeStraightScored, yahtzeeScored,
+                chanceScored
+            };
+
+            foreach (bool s in scores)
+            {
+                if (s == true)
+                {
+                    x++;
+                }
+            }
+
+            if (x == 13)
+            {
+                result = false;
+            }
+
+            return result;
+        }
+
+        public void ScoreCardFilled()
+        {
+            MessageBox.Show("The card has already been filled. Your game is over. You scored " + totalScore + "points");
+        }
+
+        #endregion
+        
         //Scoring Methods Notes
         /* 
          * These are all really similar, so I'm documenting them as a region because I'm lazy.
@@ -101,253 +152,388 @@ namespace YahtzeeGame
          
          * Note that when you call any method besides the ones for Full House, Small Straight, Large Straight, or Yahtzee, 
          * you'll need to feed it an array with all five dice. It won't throw an error, but the logic won't work right.
+         *
+         * Update 2: Each Scoring Method now checks if the Score Card has been filled. If not, it fires off ScoreCardFilled()
          */
+
         #region Scoring Methods
         public void AcesSelected(int[] Dice)
         {
-            if (acesScored == false)
+            if (ScoreCardNotFinished())
             {
-                foreach (int Die in Dice)
+                if (acesScored == false)
                 {
-                    if (Die == 1) { aces += Die; }
+                    foreach (int Die in Dice)
+                    {
+                        if (Die == 1)
+                        {
+                            aces += Die;
+                        }
+                    }
+
+                    MessageBoxResult choice =
+                        MessageBox.Show("Do you want to score Aces? You will gain " + aces + " points.", "Confirmation",
+                            MessageBoxButton.YesNo);
+
+                    if (choice == MessageBoxResult.Yes)
+                    {
+                        acesScored = true;
+                        totalScore += aces;
+                    }
                 }
-
-                MessageBoxResult choice = MessageBox.Show("Do you want to score Aces? You will gain " + aces + " points.", "Confirmation", MessageBoxButton.YesNo);
-
-                if (choice == MessageBoxResult.Yes)
+                else
                 {
-                    acesScored = true;
-                    totalScore += aces;
+                    MessageBox.Show("This box has already been scored. It contains " + aces + " points.");
                 }
             }
-            else { MessageBox.Show("This box has already been scored. It contains " + aces + " points."); }
+            else
+            {
+                ScoreCardFilled();
+            }
         }
 
         public void TwosSelected(int[] Dice)
         {
-            if (twosScored == false)
+            if (ScoreCardNotFinished())
             {
-                foreach (int Die in Dice)
+                if (twosScored == false)
                 {
-                    if (Die == 2) { twos += Die; }
+                    foreach (int Die in Dice)
+                    {
+                        if (Die == 2)
+                        {
+                            twos += Die;
+                        }
+                    }
+
+                    MessageBoxResult choice =
+                        MessageBox.Show("Do you want to score Twos? You will gain " + twos + " points.", "Confirmation",
+                            MessageBoxButton.YesNo);
+
+                    if (choice == MessageBoxResult.Yes)
+                    {
+                        twosScored = true;
+                        totalScore += twos;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("This box has already been scored. It contains " + twos + " points.");
                 }
 
-                MessageBoxResult choice = MessageBox.Show("Do you want to score Twos? You will gain " + twos + " points.", "Confirmation", MessageBoxButton.YesNo);
-
-                if (choice == MessageBoxResult.Yes)
-                {
-                    twosScored = true;
-                    totalScore += twos;
-                }
             }
-            else { MessageBox.Show("This box has already been scored. It contains " + twos + " points."); }
-        }
+            else { ScoreCardFilled(); }
+}
 
         public void ThreesSelected(int[] Dice)
         {
-            if (threesScored == false)
+            if (ScoreCardNotFinished())
             {
-                foreach (int Die in Dice)
+                if (threesScored == false)
                 {
-                    if (Die == 3) { threes += Die; }
+                    foreach (int Die in Dice)
+                    {
+                        if (Die == 3)
+                        {
+                            threes += Die;
+                        }
+                    }
+
+                    MessageBoxResult choice =
+                        MessageBox.Show("Do you want to score Threes? You will gain " + threes + " points.",
+                            "Confirmation", MessageBoxButton.YesNo);
+
+                    if (choice == MessageBoxResult.Yes)
+                    {
+                        threesScored = true;
+                        totalScore += threes;
+                    }
                 }
-
-                MessageBoxResult choice = MessageBox.Show("Do you want to score Threes? You will gain " + threes + " points.", "Confirmation", MessageBoxButton.YesNo);
-
-                if (choice == MessageBoxResult.Yes)
+                else
                 {
-                    threesScored = true;
-                    totalScore += threes;
+                    MessageBox.Show("This box has already been scored. It contains " + threes + " points.");
                 }
             }
-            else { MessageBox.Show("This box has already been scored. It contains " + threes + " points."); }
+            else { ScoreCardFilled(); }
         }
 
         public void FoursSelected(int[] Dice)
         {
-            if (foursScored == false)
+            if (ScoreCardNotFinished())
             {
-                foreach (int Die in Dice)
+                if (foursScored == false)
                 {
-                    if (Die == 4) { fours += Die; }
+                    foreach (int Die in Dice)
+                    {
+                        if (Die == 4)
+                        {
+                            fours += Die;
+                        }
+                    }
+
+                    MessageBoxResult choice =
+                        MessageBox.Show("Do you want to score Fours? You will gain " + fours + " points.",
+                            "Confirmation", MessageBoxButton.YesNo);
+
+                    if (choice == MessageBoxResult.Yes)
+                    {
+                        foursScored = true;
+                        totalScore += fours;
+                    }
                 }
-
-                MessageBoxResult choice = MessageBox.Show("Do you want to score Fours? You will gain " + fours + " points.", "Confirmation", MessageBoxButton.YesNo);
-
-                if (choice == MessageBoxResult.Yes)
+                else
                 {
-                    foursScored = true;
-                    totalScore += fours;
+                    MessageBox.Show("This box has already been scored. It contains " + fours + " points.");
                 }
             }
-            else { MessageBox.Show("This box has already been scored. It contains " + fours + " points."); }
+            else { ScoreCardFilled(); }
         }
 
         public void FivesSelected(int[] Dice)
         {
-            if (fivesScored == false)
+            if (ScoreCardNotFinished())
             {
-                foreach (int Die in Dice)
+                if (fivesScored == false)
                 {
-                    if (Die == 5) { fives += Die; }
+                    foreach (int Die in Dice)
+                    {
+                        if (Die == 5)
+                        {
+                            fives += Die;
+                        }
+                    }
+
+                    MessageBoxResult choice =
+                        MessageBox.Show("Do you want to score Fives? You will gain " + fives + " points.",
+                            "Confirmation", MessageBoxButton.YesNo);
+
+                    if (choice == MessageBoxResult.Yes)
+                    {
+                        fivesScored = true;
+                        totalScore += fives;
+                    }
                 }
-
-                MessageBoxResult choice = MessageBox.Show("Do you want to score Fives? You will gain " + fives + " points.", "Confirmation", MessageBoxButton.YesNo);
-
-                if (choice == MessageBoxResult.Yes)
+                else
                 {
-                    fivesScored = true;
-                    totalScore += fives;
+                    MessageBox.Show("This box has already been scored. It contains " + fives + " points.");
                 }
             }
-            else { MessageBox.Show("This box has already been scored. It contains " + fives + " points."); }
+            else { ScoreCardFilled(); }
         }
 
         public void SixesSelected(int[] Dice)
         {
-            if (sixesScored == false)
+            if (ScoreCardNotFinished())
             {
-                foreach (int Die in Dice)
+                if (sixesScored == false)
                 {
-                    if (Die == 6) { sixes += Die; }
+                    foreach (int Die in Dice)
+                    {
+                        if (Die == 6)
+                        {
+                            sixes += Die;
+                        }
+                    }
+
+                    MessageBoxResult choice =
+                        MessageBox.Show("Do you want to score Sixes? You will gain " + sixes + " points.",
+                            "Confirmation", MessageBoxButton.YesNo);
+
+                    if (choice == MessageBoxResult.Yes)
+                    {
+                        sixesScored = true;
+                        totalScore += sixes;
+                    }
                 }
-
-                MessageBoxResult choice = MessageBox.Show("Do you want to score Sixes? You will gain " + sixes + " points.", "Confirmation", MessageBoxButton.YesNo);
-
-                if (choice == MessageBoxResult.Yes)
+                else
                 {
-                    sixesScored = true;
-                    totalScore += sixes;
+                    MessageBox.Show("This box has already been scored. It contains " + sixes + " points.");
                 }
             }
-            else { MessageBox.Show("This box has already been scored. It contains " + sixes + " points."); }
+            else { ScoreCardFilled(); }
         }
 
         public void ThreeOfAKindSelected(int[] Dice)
         {
-            if (threeOfAKindScored == false)
+            if (ScoreCardNotFinished())
             {
-                foreach (int Die in Dice)
+                if (threeOfAKindScored == false)
                 {
-                    threeOfAKind += Die;
+                    foreach (int Die in Dice)
+                    {
+                        threeOfAKind += Die;
+                    }
+
+                    MessageBoxResult choice = MessageBox.Show("Do you want to score Three of a Kind? You will gain "
+                                                              + threeOfAKind + " points.", "Confirmation",
+                        MessageBoxButton.YesNo);
+
+                    if (choice == MessageBoxResult.Yes)
+                    {
+                        threeOfAKindScored = true;
+                        totalScore += threeOfAKind;
+                    }
                 }
-
-                MessageBoxResult choice = MessageBox.Show("Do you want to score Three of a Kind? You will gain "
-                    + threeOfAKind + " points.", "Confirmation", MessageBoxButton.YesNo);
-
-                if (choice == MessageBoxResult.Yes)
+                else
                 {
-                    threeOfAKindScored = true;
-                    totalScore += threeOfAKind;
+                    MessageBox.Show("This box has already been scored. It contains " + threeOfAKind + " points.");
                 }
             }
-            else { MessageBox.Show("This box has already been scored. It contains " + threeOfAKind + " points."); }
+            else { ScoreCardFilled(); }
         }
 
         public void FourOfAKindSelected(int[] Dice)
         {
-            if (fourOfAKindScored == false)
+            if (ScoreCardNotFinished())
             {
-                foreach (int Die in Dice)
+                if (fourOfAKindScored == false)
                 {
-                    fourOfAKind += Die;
+                    foreach (int Die in Dice)
+                    {
+                        fourOfAKind += Die;
+                    }
+
+                    MessageBoxResult choice = MessageBox.Show("Do you want to score Four of a Kind? You will gain "
+                                                              + fourOfAKind + " points.", "Confirmation",
+                        MessageBoxButton.YesNo);
+
+                    if (choice == MessageBoxResult.Yes)
+                    {
+                        fourOfAKindScored = true;
+                        totalScore += fourOfAKind;
+                    }
                 }
-
-                MessageBoxResult choice = MessageBox.Show("Do you want to score Four of a Kind? You will gain "
-                    + fourOfAKind + " points.", "Confirmation", MessageBoxButton.YesNo);
-
-                if (choice == MessageBoxResult.Yes)
+                else
                 {
-                    fourOfAKindScored = true;
-                    totalScore += fourOfAKind;
+                    MessageBox.Show("This box has already been scored. It contains " + fourOfAKind + " points.");
                 }
             }
-            else { MessageBox.Show("This box has already been scored. It contains " + fourOfAKind + " points."); }
+            else { ScoreCardFilled(); }
         }
 
         public void FullHouseSelected()
         {
-            if (fullHouseScored == false)
+            if (ScoreCardNotFinished())
             {
-                MessageBoxResult choice = MessageBox.Show("Do you want to score Full House? You will gain "
-                    + fullHouse + " points.", "Confirmation", MessageBoxButton.YesNo);
-
-                if (choice == MessageBoxResult.Yes)
+                if (fullHouseScored == false)
                 {
-                    fullHouseScored = true;
-                    totalScore += fullHouse;
+                    MessageBoxResult choice = MessageBox.Show("Do you want to score Full House? You will gain "
+                                                              + fullHouse + " points.", "Confirmation",
+                        MessageBoxButton.YesNo);
+
+                    if (choice == MessageBoxResult.Yes)
+                    {
+                        fullHouseScored = true;
+                        totalScore += fullHouse;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("This box has already been scored. It contains " + fullHouse + " points.");
                 }
             }
-            else { MessageBox.Show("This box has already been scored. It contains " + fullHouse + " points."); }
+            else { ScoreCardFilled(); }
         }
 
         public void SmallStraightSelected()
         {
-            if (smallStraightScored == false)
+            if (ScoreCardNotFinished())
             {
-                MessageBoxResult choice = MessageBox.Show("Do you want to score Small Straight? You will gain "
-                    + smallStraight + " points.", "Confirmation", MessageBoxButton.YesNo);
-
-                if (choice == MessageBoxResult.Yes)
+                if (smallStraightScored == false)
                 {
-                    smallStraightScored = true;
-                    totalScore += smallStraight;
+                    MessageBoxResult choice = MessageBox.Show("Do you want to score Small Straight? You will gain "
+                                                              + smallStraight + " points.", "Confirmation",
+                        MessageBoxButton.YesNo);
+
+                    if (choice == MessageBoxResult.Yes)
+                    {
+                        smallStraightScored = true;
+                        totalScore += smallStraight;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("This box has already been scored. It contains " + smallStraight + " points.");
                 }
             }
-            else { MessageBox.Show("This box has already been scored. It contains " + smallStraight + " points."); }
+            else { ScoreCardFilled(); }
         }
 
         public void LargeStraightSelected()
         {
-            if (largeStraightScored == false)
+            if (ScoreCardNotFinished())
             {
-                MessageBoxResult choice = MessageBox.Show("Do you want to score Large Straight? You will gain "
-                    + largeStraight + " points.", "Confirmation", MessageBoxButton.YesNo);
-
-                if (choice == MessageBoxResult.Yes)
+                if (largeStraightScored == false)
                 {
-                    largeStraightScored = true;
-                    totalScore += largeStraight;
+                    MessageBoxResult choice = MessageBox.Show("Do you want to score Large Straight? You will gain "
+                                                              + largeStraight + " points.", "Confirmation",
+                        MessageBoxButton.YesNo);
+
+                    if (choice == MessageBoxResult.Yes)
+                    {
+                        largeStraightScored = true;
+                        totalScore += largeStraight;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("This box has already been scored. It contains " + largeStraight + " points.");
                 }
             }
-            else { MessageBox.Show("This box has already been scored. It contains " + largeStraight + " points."); }
+            else { ScoreCardFilled(); }
         }
 
         public void YahtzeeSelected()
         {
-            if (yahtzeeScored == false)
+            if (ScoreCardNotFinished())
             {
-                MessageBoxResult choice = MessageBox.Show("Do you want to score Yahtzee? You will gain "
-                    + yahtzee + " points.", "Confirmation", MessageBoxButton.YesNo);
-
-                if (choice == MessageBoxResult.Yes)
+                if (yahtzeeScored == false)
                 {
-                    yahtzeeScored = true;
-                    totalScore += yahtzee;
+                    MessageBoxResult choice = MessageBox.Show("Do you want to score Yahtzee? You will gain "
+                                                              + yahtzee + " points.", "Confirmation",
+                        MessageBoxButton.YesNo);
+
+                    if (choice == MessageBoxResult.Yes)
+                    {
+                        yahtzeeScored = true;
+                        totalScore += yahtzee;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("This box has already been scored. It contains " + yahtzee + " points.");
                 }
             }
-            else { MessageBox.Show("This box has already been scored. It contains " + yahtzee + " points."); }
+            else { ScoreCardFilled(); }
         }
 
         public void ChanceSelected(int[] Dice)
         {
-            if (chanceScored == false)
+            if (ScoreCardNotFinished())
             {
-                foreach (int Die in Dice)
+                if (chanceScored == false)
                 {
-                    chance += Die;
+                    foreach (int Die in Dice)
+                    {
+                        chance += Die;
+                    }
+
+                    MessageBoxResult choice = MessageBox.Show("Do you want to score Chance? You will gain "
+                                                              + chance + " points.", "Confirmation",
+                        MessageBoxButton.YesNo);
+
+                    if (choice == MessageBoxResult.Yes)
+                    {
+                        chanceScored = true;
+                        totalScore += chance;
+                    }
                 }
-
-                MessageBoxResult choice = MessageBox.Show("Do you want to score Chance? You will gain "
-                    + chance + " points.", "Confirmation", MessageBoxButton.YesNo);
-
-                if (choice == MessageBoxResult.Yes)
+                else
                 {
-                    chanceScored = true;
-                    totalScore += chance;
+                    MessageBox.Show("This box has already been scored. It contains " + chance + " points.");
                 }
             }
-            else { MessageBox.Show("This box has already been scored. It contains " + chance + " points."); }
+            else { ScoreCardFilled(); }
         }
         #endregion
     }
