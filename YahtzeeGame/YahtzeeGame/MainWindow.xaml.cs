@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -156,6 +157,45 @@ namespace YahtzeeGame
 
         #region Voids
 
+
+
+        private void LoadScores()
+        {
+            Dictionary<int, string> Scores = new Dictionary<int, string>();
+
+            List<int> ScoreNum = new List<int>();
+
+            String[] LineSplit = new string[2];
+
+            StreamReader Input = File.OpenText("HighScores.txt");
+
+            while (!Input.EndOfStream)
+            {
+                LineSplit = Input.ReadLine().Split(' ');
+
+
+                Scores.Add(int.Parse(LineSplit[0]), LineSplit[1]);
+
+                ScoreNum.Add(int.Parse(LineSplit[0]));
+
+            }
+
+                ScoreNum.OrderByDescending(score => score);
+
+            int[] topFive = new int[5];
+
+            for (int i = 0; i < 5; i++)
+            {
+                topFive[i] = ScoreNum[i];
+            }
+
+            MessageBox.Show($"1. {topFive[0]}, {Scores[topFive[0]]} \n2.  {topFive[1]}, {Scores[topFive[1]]} \n3. {topFive[2]}, {Scores[topFive[2]]}\n4. {topFive[3]}, {Scores[topFive[3]]}\n5. {topFive[4]}, {Scores[topFive[4]]}  ");
+
+
+
+
+        }
+
         private void Reset()
         {
             //Resets the dice images and Turn Roll Counter
@@ -231,6 +271,10 @@ namespace YahtzeeGame
 
         #endregion
 
+        private void btnHighScore_Click(object sender, RoutedEventArgs e)
+        {
+            LoadScores();
+        }
     }
 }
        
