@@ -23,10 +23,52 @@
             <ColumnDefinition Width="287*"/>
             <ColumnDefinition Width="513*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="DGScoreBoard" Margin="146,21,508,286" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="False" AlternatingRowBackground="#FFF1F1F1" FontSize="11" Grid.ColumnSpan="2">
+        <DataGrid x:Name="DGScoreBoard" Margin="151,88,0,234" AutoGenerateColumns="False"
+          CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False"
+          CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="False"
+          AlternatingRowBackground="#FFF1F1F1" FontSize="11" Grid.ColumnSpan="2"
+          HorizontalAlignment="Left" Width="146">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Score" Binding="{Binding Score}" />
-                <DataGridTextColumn Header="Player" Binding="{Binding Player}" />
+                <DataGridTextColumn Header="Score" Binding="{Binding Score}" IsReadOnly="True"/>
+                <DataGridTemplateColumn Header="Player">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ToggleButton IsChecked="{Binding IsUsed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          Background="Transparent"
+                          BorderThickness="0"
+                          Padding="0"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          Focusable="False">
+                                <ToggleButton.Style>
+                                    <Style TargetType="ToggleButton">
+                                        <Setter Property="Foreground" Value="Black"/>
+                                        <Setter Property="FontWeight" Value="Normal"/>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsChecked" Value="True">
+                                                <Setter Property="Foreground" Value="Red"/>
+                                                <Setter Property="FontWeight" Value="Bold"/>
+                                            </Trigger>
+                                            <DataTrigger Binding="{Binding Player}" Value="{x:Null}">
+                                                <Setter Property="IsEnabled" Value="False"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ToggleButton.Style>
+                                <ToggleButton.Template>
+                                    <ControlTemplate TargetType="ToggleButton">
+                                        <TextBlock Text="{Binding Player}"
+                                   Foreground="{TemplateBinding Foreground}"
+                                   FontWeight="{TemplateBinding FontWeight}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+                                    </ControlTemplate>
+                                </ToggleButton.Template>
+
+                            </ToggleButton>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
 
@@ -104,12 +146,12 @@
                 </TransformGroup>
             </CheckBox.RenderTransform>
         </CheckBox>
-        <Label x:Name="lblTimesRolled" Grid.Column="1" HorizontalAlignment="Left" Margin="99,14,0,0" VerticalAlignment="Top" ContentStringFormat="3" Content="3" Height="31" Width="28" FontFamily="Berlin Sans FB" FontSize="20"/>
-        <Label x:Name="lblRollCountText" Grid.Column="1" Content="Rolls Left:" HorizontalAlignment="Left" Margin="10,14,0,0" VerticalAlignment="Top" Height="31" Width="108" FontFamily="Berlin Sans FB" FontSize="20" Background="#FFDEACAC"/>
+        <Label x:Name="lblTimesRolled" HorizontalAlignment="Left" Margin="293,89,0,0" VerticalAlignment="Top" ContentStringFormat="3" Content="3" Height="31" Width="28" FontFamily="Berlin Sans FB" FontSize="20" Grid.Column="1"/>
+        <Label x:Name="lblRollCountText" Content="Rolls Left:" HorizontalAlignment="Left" Margin="185,89,0,0" VerticalAlignment="Top" Height="31" Width="108" FontFamily="Berlin Sans FB" FontSize="20" Background="#FFDEACAC" Grid.Column="1"/>
         <Button x:Name="btnStart" Content="Start Game" HorizontalAlignment="Left" Margin="10,369,0,0" VerticalAlignment="Top" Click="btnStart_Click" Height="28" Width="118" Grid.Column="1" FontFamily="Berlin Sans FB" FontSize="20"/>
         <Button x:Name="btnAbout" Content="About" HorizontalAlignment="Left" Margin="10,374,0,0" VerticalAlignment="Top" Click="btnAbout_Click" Height="32" Width="107" FontFamily="Berlin Sans FB" FontSize="20"/>
         <Label x:Name="lblInstructions" Grid.Column="1" Content="Click the dice you want to keep." HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Height="31" Width="320" FontFamily="Berlin Sans FB" FontSize="15" Background="{x:Null}"/>
-        <Grid x:Name="getNameScreen" Margin="0,1,0,-1" Grid.ColumnSpan="2">
+        <Grid x:Name="getNameScreen" Margin="0,0,0,-1" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="377*"/>
                 <ColumnDefinition Width="74*"/>
@@ -133,7 +175,7 @@
                 </Label.BorderBrush>
             </Label>
             <Button x:Name="getNameBtt" Content="-&gt;" HorizontalAlignment="Left" Margin="512,217,0,0" VerticalAlignment="Top" Height="40" Width="47" FontSize="30" FontFamily="Berlin Sans FB" Background="#FFEFF665" Foreground="#FF630A0A" Click="getNameBtt_Click" IsDefault="True"/>
-            <Grid x:Name="startScreenGr" Margin="10,0,-10,-2" Grid.ColumnSpan="2">
+            <Grid x:Name="startScreenGr" Margin="0,0,0,-2" Grid.ColumnSpan="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="377*"/>
                     <ColumnDefinition Width="74*"/>

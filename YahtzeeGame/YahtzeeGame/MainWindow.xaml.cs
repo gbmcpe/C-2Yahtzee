@@ -36,6 +36,7 @@ namespace YahtzeeGame
             // Create scoreboard in memory and bind it
             scoreBoard = new ScoreBoard();
             DGScoreBoard.ItemsSource = scoreBoard.Rows;
+            DGScoreBoard.DataContext = scoreBoard;
 
 
         }
@@ -141,6 +142,9 @@ namespace YahtzeeGame
             Reset();
             TurnActivation(false);
 
+            ///Clear unlocked scores on button press. - Beau
+            scoreBoard.ClearNonLockedScores();
+
         }
 
         private void btnAbout_Click(object sender, RoutedEventArgs e)
@@ -226,6 +230,7 @@ namespace YahtzeeGame
         }
 
         #endregion
+
     }
 }
        

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
@@ -20,7 +21,7 @@ namespace YahtzeeGame
     /// <summary>
     /// Represents one row on the scoreboard, and defines a type used to hold the data for a single scoreboard row.
     /// </summary>
-    public class ScoreRow 
+    public class ScoreRow
     {
         /// <summary>
         /// The category name shown in the first column.
@@ -43,9 +44,9 @@ namespace YahtzeeGame
         /// <param name="score"></param>
         public ScoreRow(string score)
         {
-            Score = score;   ///stores category name.
-            Player = null;   ///starts blank.
-            IsUsed = false;  ///category not used yet.
+            Score = score;   
+            Player = null;   
+            IsUsed = false;  
         }
     }
 
@@ -57,7 +58,7 @@ namespace YahtzeeGame
         /// <summary>
         /// List of score rows and bind the grid.
         /// </summary>
-        public List<ScoreRow> Rows { get; set; }
+        public ObservableCollection<ScoreRow> Rows { get; set; }
 
         /// <summary>
         /// store current players name.
@@ -75,6 +76,21 @@ namespace YahtzeeGame
         private bool appliedThisTurn;
 
         /// <summary>
+        /// snapshot of row lock states at the moment the turn ended.
+        /// </summary>
+        private Dictionary<string, bool> isUsedSnapshotAtTurnEnd;
+
+        /// <summary>
+        /// tracks if the player has already locked ONE category this turn.
+        /// </summary>
+        private bool lockedOneThisTurn;
+
+        /// <summary>
+        /// stores which category was locked this turn.
+        /// </summary>
+        private string lockedCategoryThisTurn;
+
+        /// <summary>
         /// builds the scoreboard
         /// </summary>
         public ScoreBoard()
@@ -87,7 +103,7 @@ namespace YahtzeeGame
 
             /// set how often ui is checked.
             uiTimer.Interval = System.TimeSpan.FromMilliseconds(250);
-            
+
             /// attach tick event so code runs each interval.
             uiTimer.Tick += UiTimer_Tick;
 
@@ -96,16 +112,23 @@ namespace YahtzeeGame
 
             /// allow first scoring apply once roll counter reaches 0.
             appliedThisTurn = false;
+
+            /// create snapshot storage so we can enforce one selection per turn.
+            isUsedSnapshotAtTurnEnd = new Dictionary<string, bool>();
+
+            /// reset per-turn lock tracking.
+            lockedOneThisTurn = false;
+            lockedCategoryThisTurn = null;
         }
 
         /// <summary>
-        /// creates and returns the standard scoreboard layout
+        /// creates and returns the standard scoreboard.
         /// </summary>
         /// <returns></returns>
-        private List<ScoreRow> CreateDefaultRows()
+        private ObservableCollection<ScoreRow> CreateDefaultRows()
         {
-            /// Creates a new list that will contain all scoreboard rows in order.
-            return new List<ScoreRow>
+            /// Creates a new collection that will contain all scoreboard rows in order.
+            return new ObservableCollection<ScoreRow>
             {
                 new ScoreRow("Ones"),
                 new ScoreRow("Twos"),
@@ -135,7 +158,7 @@ namespace YahtzeeGame
         /// <param name="playerName"></param>
         public void InitializePlayer(string playerName)
         {
-            ///stores player name so we know whos playing.
+            ///stores player name.
             PlayerName = playerName;
 
             foreach (ScoreRow row in Rows)
@@ -149,6 +172,13 @@ namespace YahtzeeGame
 
             /// reset apply flag so the next turn can apply again.
             appliedThisTurn = false;
+
+            /// reset per-turn selection rule.
+            lockedOneThisTurn = false;
+            lockedCategoryThisTurn = null;
+
+            /// clear snapshot so it will be rebuilt at end of turn.
+            isUsedSnapshotAtTurnEnd.Clear();
         }
 
         /// <summary>
@@ -156,33 +186,42 @@ namespace YahtzeeGame
         /// </summary>
         private void UiTimer_Tick(object sender, System.EventArgs e)
         {
-            /// get the current MainWindow (this is your window where controls exist).
+            /// get the current mainwindow.
             Window window = Application.Current?.MainWindow;
 
             /// if window not ready yet, do nothing.
             if (window == null) return;
 
-            /// find the rolls left label by its x:Name in MainWindow.xaml.
+            /// find the rolls left label.
             Label rollLabel = window.FindName("lblTimesRolled") as Label;
 
             /// if label not found, do nothing.
             if (rollLabel == null) return;
 
-            /// read roll counter from ContentStringFormat because MainWindow sets that too.
+            /// read roll counter from ContentStringFormat.
             string rollsLeft = rollLabel.ContentStringFormat;
 
-            /// if rollsLeft is not "0", then turn is not finished yet.
             if (rollsLeft != "0")
             {
-                /// allow apply again when it eventually reaches 0.
                 appliedThisTurn = false;
+
+                lockedOneThisTurn = false;
+                lockedCategoryThisTurn = null;
+
+                isUsedSnapshotAtTurnEnd.Clear();
+
                 return;
             }
 
-            /// if already applied while rollsLeft is 0, do nothing.
-            if (appliedThisTurn) return;
-
-            /// read the 5 dice values.
+            /// if already applied while rollsLeft is 0 only choose one score.
+            if (appliedThisTurn)
+            {
+                /// only one category can be selected this turn.
+                EnforceOneSelectionPerTurn();
+                
+                return;
+            }
+            /// read the dice values.
             int[] dice = ReadDiceValuesFromUI(window);
 
             /// if dice failed to read, do nothing.
@@ -194,12 +233,18 @@ namespace YahtzeeGame
             /// mark applied only once per turn end.
             appliedThisTurn = true;
 
+            /// take snapshot of lock states at end-of-turn.
+            BuildIsUsedSnapshot();
+
+            /// enforce only one category can be selected this turn.
+            EnforceOneSelectionPerTurn();
+
             /// refresh the bound view so DataGrid updates.
             CollectionViewSource.GetDefaultView(Rows)?.Refresh();
         }
 
         /// <summary>
-        /// Reads dice values from the UI where DisplayDice stores the values.
+        /// Reads dice values from the UI.
         /// </summary>
         /// <param name="window"></param>
         /// <returns></returns>
@@ -247,7 +292,7 @@ namespace YahtzeeGame
                 row.Player = CalculateCategoryScore(row.Score, dice);
             }
 
-            /// calculate upper section sum.
+            /// calculate upper section.
             int upperSum =
                 GetRowValue("Ones") +
                 GetRowValue("Twos") +
@@ -255,8 +300,8 @@ namespace YahtzeeGame
                 GetRowValue("Fours") +
                 GetRowValue("Fives") +
                 GetRowValue("Sixes");
-            
-            /// calculate bonus based on Yahtzee rule.
+
+            /// calculate bonus.
             int bonus = upperSum >= 63 ? 35 : 0;
 
             /// calculate lower section sum.
@@ -276,7 +321,70 @@ namespace YahtzeeGame
         }
 
         /// <summary>
-        /// Calculates score for category using the dice values.
+        /// Takes a snapshot of IsUsed states at the moment the turn ended.
+        /// </summary>
+        private void BuildIsUsedSnapshot()
+        {
+            /// clear old data.
+            isUsedSnapshotAtTurnEnd.Clear();
+
+            /// store each row's IsUsed state by category.
+            foreach (ScoreRow row in Rows)
+            {
+                isUsedSnapshotAtTurnEnd[row.Score] = row.IsUsed;
+            }
+        }
+
+        /// <summary>
+        /// player may keep one category per turn.
+        /// If player checks a second one undo it.
+        /// </summary>
+        private void EnforceOneSelectionPerTurn()
+        {
+            /// loop through all rows to detect new checked rows.
+            foreach (ScoreRow row in Rows)
+            {
+                if (row.Score == "Sum" || row.Score == "Bonus" || row.Score == "Total Score")
+                {
+                   
+                    if (row.IsUsed) row.IsUsed = false;
+                    continue;
+                }
+
+                if (!isUsedSnapshotAtTurnEnd.ContainsKey(row.Score)) continue;
+
+                /// detect newly checked row (false -> true).
+                bool wasUsed = isUsedSnapshotAtTurnEnd[row.Score];
+                bool isNowUsed = row.IsUsed;
+
+                /// only keep about new selections made after turn end.
+                if (!wasUsed && isNowUsed)
+                {
+                   
+                    if (!lockedOneThisTurn)
+                    {
+                        lockedOneThisTurn = true;          
+                        lockedCategoryThisTurn = row.Score;
+
+                        /// update snapshot so it won't keep triggering.
+                        isUsedSnapshotAtTurnEnd[row.Score] = true;
+                        
+                        /// stop after accepting the first selection.
+                        return; 
+                    }
+                    else
+                    {
+                        /// stop player from choosing two scores.
+                        row.IsUsed = false;
+
+                        return;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Calculates score for category using the dice.
         /// </summary>
         /// <param name="category"></param>
         /// <param name="dice"></param>
@@ -304,23 +412,23 @@ namespace YahtzeeGame
                 return dice.GroupBy(d => d).Any(g => g.Count() >= n);
             }
 
-            ///checks for full house pattern.
+            ///checks for full house.
             bool IsFullHouse()
             {
                 var groups = dice.GroupBy(d => d).Select(g => g.Count()).OrderBy(x => x).ToArray();
                 return groups.Length == 2 && groups[0] == 2 && groups[1] == 3;
             }
 
-            ///checks for any valid small straight.
+            ///checks for small straight.
             bool IsSmallStraight()
             {
                 var set = dice.Distinct().OrderBy(x => x).ToArray();
                 int[][] straights =
                 {
-            new int[] { 1, 2, 3, 4 },
-            new int[] { 2, 3, 4, 5 },
-            new int[] { 3, 4, 5, 6 }
-        };
+                    new int[] { 1, 2, 3, 4 },
+                    new int[] { 2, 3, 4, 5 },
+                    new int[] { 3, 4, 5, 6 }
+                };
 
                 foreach (var straight in straights)
                 {
@@ -409,12 +517,12 @@ namespace YahtzeeGame
             /// find row by its Score name.
             ScoreRow row = Rows.FirstOrDefault(r => r.Score == category);
 
-            /// return 0 if row missing or Player is null.
+            /// return 0 if row missing.
             return row?.Player ?? 0;
         }
 
         /// <summary>
-        /// Sets a row Player value directly.
+        /// Sets a row Player value.
         /// </summary>
         /// <param name="category"></param>
         /// <param name="value"></param>
@@ -429,12 +537,33 @@ namespace YahtzeeGame
             /// set the player value.
             row.Player = value;
         }
+
+        /// <summary>
+        /// Clears only the non-locked scores.
+        /// </summary>
+        public void ClearNonLockedScores()
+        {
+            foreach (ScoreRow row in Rows)
+            {
+                /// keep locked scores.
+                if (row.IsUsed) continue;
+
+                /// clear score so it becomes blank.
+                row.Player = null;
+            }
+
+            SetRowDirect("Sum", 0);
+            SetRowDirect("Bonus", 0);
+            SetRowDirect("Total Score", 0);
+        }
+
+        
     }
 
     #endregion
 }
-/*need to fix score card counting already kept dice and dice rolls in background of the already checked die.
-* make player header change to inputed player name but need player initilization.
-* unlock grid
-* lock in scores till reset
+/*
+* make player header change to inputed player name but need player initilization. - Getting late will do next time for now scores can lock.
+* make score card actually clear on reset for some reason its not listening.
+* orginize this mess...
 */
