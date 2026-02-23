@@ -271,6 +271,15 @@ namespace YahtzeeGame
 
         #endregion
 
+        private void DiceState(bool state)
+        {
+            Die1.IsEnabled = state;
+            Die2.IsEnabled = state;
+            Die3.IsEnabled = state;
+            Die4.IsEnabled = state;
+            Die5.IsEnabled = state;
+        }
+
         private void btnHighScore_Click(object sender, RoutedEventArgs e)
         {
             LoadScores();
