@@ -2,6 +2,7 @@
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,7 +17,7 @@ namespace YahtzeeGame
         // public int Initiative;
         public List<Player> players;
         public int Rolls;
-        public Dice[] Dicepool = new Dice[5];
+        public Dice Pool;
 
         public GameManager()
         {
@@ -34,6 +35,9 @@ namespace YahtzeeGame
                 Round++;
                 Turn = 1;
             }
+
+      
+
             //If this statement is true, the current round should continue and move to the next player in order.
             else if (this.Turn <= players.Count())
             {
@@ -42,6 +46,12 @@ namespace YahtzeeGame
 
         }
 
+        public void RollUsed(bool[]dicestate)
+        {
+            Rolls--;
+            Pool.RollDice(dicestate);
+
+        }
 
     }
 }

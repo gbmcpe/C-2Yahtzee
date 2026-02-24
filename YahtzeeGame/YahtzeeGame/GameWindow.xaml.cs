@@ -57,42 +57,55 @@ namespace YahtzeeGame
         private void BtnRollDice_Click(object sender, RoutedEventArgs e)
         {
 
-            //Function that handles rolling the dice pool and displaying matching visuals.
 
-            //Counter for times rolled in one Turn. Starts at 3, and decreases by 1 every time the dice are rerolled.
-            int counter = int.Parse(lblTimesRolled.ContentStringFormat);
+            game.RollUsed(CheckDice());
 
-            lblTimesRolled.ContentStringFormat = (counter - 1).ToString();
-            lblTimesRolled.Content = (counter - 1).ToString();
+            DisplayDiceSet();
 
-            //Gets the current input state.
-            bool[] DiceState = CheckDice();
 
-            //RNG for dice.
-            Random random = new Random();
+            lblRollsLeft.Content = (game.Rolls).ToString();
 
-            //For loop to take us through each of the 5 dice sequentially.
 
-            for (int c = 0; c < 5; c++)
+            ////Function that handles rolling the dice pool and displaying matching visuals.
+
+            ////Counter for times rolled in one Turn. Starts at 3, and decreases by 1 every time the dice are rerolled.
+            //int counter = int.Parse(lblTimesRolled.ContentStringFormat);
+
+            //lblTimesRolled.ContentStringFormat = (counter - 1).ToString();
+            //lblTimesRolled.Content = (counter - 1).ToString();
+
+            ////Gets the current input state.
+            //bool[] DiceState = CheckDice();
+
+            ////RNG for dice.
+            //Random random = new Random();
+
+            ////For loop to take us through each of the 5 dice sequentially.
+
+            //for (int c = 0; c < 5; c++)
+            //{
+            //    //If Statement Triggers if a die is unchecked. Checked Dice do not reroll.
+
+            //    if (DiceState[c] == false)
+            //    {
+            //        int DieValue = random.Next(1, 7);
+
+            //        //Displays rolled die face. c = die face.
+
+            //        DisplayDice(c, DieValue);
+
+            //    }
+            //}
+
+            //// If Statement fires once the roll counter hits 0, marking the end of a turn. 
+
+            //if (int.Parse(lblTimesRolled.ContentStringFormat) == 0)
+            //{
+            //    TurnActivation(false);
+            //}
+            if (game.Rolls == 0)
             {
-                //If Statement Triggers if a die is unchecked. Checked Dice do not reroll.
-
-                if (DiceState[c] == false)
-                {
-                    int DieValue = random.Next(1, 7);
-
-                    //Displays rolled die face. c = die face.
-
-                    DisplayDice(c, DieValue);
-
-                }
-            }
-
-            // If Statement fires once the roll counter hits 0, marking the end of a turn. 
-
-            if (int.Parse(lblTimesRolled.ContentStringFormat) == 0)
-            {
-                TurnActivation(false);
+                DiceActivation(false);
             }
 
         }
@@ -100,7 +113,7 @@ namespace YahtzeeGame
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
             //Upon starting, the start button is disabled, and the turn controls are activated.
-            TurnActivation(true);
+           DiceActivation(true);
             btnStart.IsEnabled = false;
         }
 
@@ -109,7 +122,7 @@ namespace YahtzeeGame
         {
             //Resets the Turn Space and Deactivates the Turn
             Reset();
-            TurnActivation(false);
+            DiceActivation(false);
 
             ///Clear unlocked scores on button press. - Beau
             scoreBoard.ClearNonLockedScores();
@@ -122,6 +135,14 @@ namespace YahtzeeGame
             MessageBox.Show("Yahtzee Version 0.1. Made By Marcus Cantrall, Bradye Vanderheyden,Connor Orton, Nicole Gonzalez Rodriguez and Beau Baker. ");
         }
         #endregion
+
+        private void DisplayDiceSet()
+        {
+            for (int c = 0; c < 5; c++)
+            {
+                DisplayDice(c, game.Pool.diceValue[c]);
+            }
+        }
 
         #region Voids
 
@@ -173,9 +194,8 @@ namespace YahtzeeGame
             DisplayDice(2, 3);
             DisplayDice(3, 4);
             DisplayDice(4, 5);
-
-            lblTimesRolled.Content = "3";
-            lblTimesRolled.ContentStringFormat = "3";
+         
+    
             btnStart.IsEnabled = true;
 
         }
@@ -197,7 +217,7 @@ namespace YahtzeeGame
             DieImage.Source = new BitmapImage(new Uri($@"{DiceValue}Die.bmp", UriKind.Relative));
         }
 
-        private void TurnActivation(bool b)
+        private void DiceActivation(bool b)
         {
 
             // Taking in a Bool Argument b, this method enables the turn controls
