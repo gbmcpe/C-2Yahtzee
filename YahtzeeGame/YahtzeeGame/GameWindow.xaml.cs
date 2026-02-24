@@ -53,7 +53,7 @@ namespace YahtzeeGame
             DisplayDiceSet();
 
 
-            lblRollsLeft.Content = (game.Rolls).ToString();
+            lblTimesRolled.Content = (game.Rolls).ToString();
 
 
             ////Function that handles rolling the dice pool and displaying matching visuals.
@@ -100,13 +100,10 @@ namespace YahtzeeGame
 
         }
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
             //Upon starting, the start button is disabled, and the turn controls are activated.
            DiceActivation(true);
-            btnStart.IsEnabled = false;
         }
 
 
@@ -116,28 +113,16 @@ namespace YahtzeeGame
             Reset();
             DiceActivation(false);
 
-            ///Clear unlocked scores on button press. - Beau
-            scoreBoard.ClearNonLockedScores();
-
         }
 
         private void btnAbout_Click(object sender, RoutedEventArgs e)
         {
             //Program Information
             MessageBox.Show("Yahtzee Version 0.1. Made By Marcus Cantrall, Bradye Vanderheyden,Connor Orton, Nicole Gonzalez Rodriguez and Beau Baker. ");
-=======
-
-        private void BtnReset_Click(object sender, RoutedEventArgs e)
-        {
-            
->>>>>>> Stashed changes
-=======
-
-        private void BtnReset_Click(object sender, RoutedEventArgs e)
-        {
-            
->>>>>>> Stashed changes
         }
+
+
+
         #endregion
 
         private void DisplayDiceSet()
@@ -195,19 +180,6 @@ namespace YahtzeeGame
             DisplayDice(2, 3);
             DisplayDice(3, 4);
             DisplayDice(4, 5);
-<<<<<<< Updated upstream
-         
-    
-            btnStart.IsEnabled = true;
-
-=======
-
-            lblTimesRolled.Content = "3";
-            lblTimesRolled.ContentStringFormat = "3";
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
         }
 
         private void DisplayDice(int DicePos, int DiceValue)
