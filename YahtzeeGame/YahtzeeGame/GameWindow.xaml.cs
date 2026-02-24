@@ -101,6 +101,7 @@ namespace YahtzeeGame
         }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
             //Upon starting, the start button is disabled, and the turn controls are activated.
@@ -124,6 +125,12 @@ namespace YahtzeeGame
         {
             //Program Information
             MessageBox.Show("Yahtzee Version 0.1. Made By Marcus Cantrall, Bradye Vanderheyden,Connor Orton, Nicole Gonzalez Rodriguez and Beau Baker. ");
+=======
+
+        private void BtnReset_Click(object sender, RoutedEventArgs e)
+        {
+            
+>>>>>>> Stashed changes
 =======
 
         private void BtnReset_Click(object sender, RoutedEventArgs e)
@@ -197,6 +204,9 @@ namespace YahtzeeGame
 
             lblTimesRolled.Content = "3";
             lblTimesRolled.ContentStringFormat = "3";
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         }
 

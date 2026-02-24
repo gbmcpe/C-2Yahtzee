@@ -1,5 +1,9 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 // Updated by XamlIntelliSenseFileGenerator 2/23/2026 8:19:10 PM
+=======
+// Updated by XamlIntelliSenseFileGenerator 2/23/2026 8:24:13 PM
+>>>>>>> Stashed changes
 =======
 // Updated by XamlIntelliSenseFileGenerator 2/23/2026 8:24:13 PM
 >>>>>>> Stashed changes
@@ -47,6 +51,7 @@ namespace YahtzeeGame
     public partial class GameWindow : System.Windows.Window, System.Windows.Markup.IComponentConnector
     {
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 
 #line 10 "..\..\GameWindow.xaml"
@@ -119,6 +124,8 @@ namespace YahtzeeGame
 
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 #line default
 #line hidden
 
@@ -147,6 +154,7 @@ namespace YahtzeeGame
 #line hidden
 
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 #line 71 "..\..\GameWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
@@ -204,6 +212,8 @@ namespace YahtzeeGame
 #line hidden
 
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 #line 78 "..\..\GameWindow.xaml"
@@ -287,9 +297,15 @@ namespace YahtzeeGame
 
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 #line 135 "..\..\GameWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button btnStart;
+=======
+#line 133 "..\..\GameWindow.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Label lblTimesRolled;
+>>>>>>> Stashed changes
 =======
 #line 133 "..\..\GameWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
@@ -301,9 +317,15 @@ namespace YahtzeeGame
 
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 #line 136 "..\..\GameWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button btnAbout;
+=======
+#line 134 "..\..\GameWindow.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Label lblRollCountText;
+>>>>>>> Stashed changes
 =======
 #line 134 "..\..\GameWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
@@ -322,6 +344,7 @@ namespace YahtzeeGame
 #line hidden
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 #line 138 "..\..\GameWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
@@ -330,6 +353,8 @@ namespace YahtzeeGame
 #line default
 #line hidden
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
         private bool _contentLoaded;
@@ -366,6 +391,7 @@ namespace YahtzeeGame
             switch (connectionId)
             {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 case 1:
                     this.DGScoreBoard = ((System.Windows.Controls.DataGrid)(target));
                     return;
@@ -387,6 +413,8 @@ namespace YahtzeeGame
                 case 7:
                     this.sixesRdBtt = ((System.Windows.Controls.RadioButton)(target));
                     return;
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
                 case 8:
@@ -423,6 +451,7 @@ namespace YahtzeeGame
 #line hidden
                     return;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 case 13:
                     this.LblUpperSectionTitle = ((System.Windows.Controls.Label)(target));
                     return;
@@ -444,6 +473,8 @@ namespace YahtzeeGame
                 case 19:
                     this.LblFivesTitle = ((System.Windows.Controls.Label)(target));
                     return;
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
                 case 20:
@@ -483,6 +514,7 @@ namespace YahtzeeGame
                     this.lblRollCountText = ((System.Windows.Controls.Label)(target));
                     return;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 case 32:
                     this.btnStart = ((System.Windows.Controls.Button)(target));
 
@@ -503,6 +535,8 @@ namespace YahtzeeGame
                     return;
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
                 case 34:
                     this.lblInstructions = ((System.Windows.Controls.Label)(target));
                     return;
@@ -513,9 +547,12 @@ namespace YahtzeeGame
             this._contentLoaded = true;
         }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         internal System.Windows.Controls.Label lblRollsLeft;
         internal System.Windows.Controls.Label lblRollsLeftExplain;
 =======
+=======
+>>>>>>> Stashed changes
         internal System.Windows.Controls.Label lblAces;
         internal System.Windows.Controls.TextBox tbTwos;
         internal System.Windows.Controls.Button btnAces;
@@ -554,6 +591,9 @@ namespace YahtzeeGame
         internal System.Windows.Controls.Label lblChance;
         internal System.Windows.Controls.TextBox tbChance;
         internal System.Windows.Controls.Button btnChance;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     }
 }
