@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,13 +19,15 @@ namespace YahtzeeGame
         public int Rolls;
         public Dice Pool;
         public Player currentPlayer;
+        private Random rand;
 
         public GameManager()
         {
             Round = 1;
             Turn = 1;
             Rolls = 3;
-            //currentPlayer = players[0];
+            rand = new Random((int)DateTime.Now.Ticks);
+
         }
 
         public void EndTurn()
@@ -44,6 +46,7 @@ namespace YahtzeeGame
             else if (this.Turn <= players.Count())
             {
                 currentPlayer = players[Turn - 1];
+            
             }
 
 
@@ -51,8 +54,9 @@ namespace YahtzeeGame
 
         public void RollUsed(bool[]dicestate)
         {
+           
             Rolls--;
-            Pool.RollDice(dicestate);
+            Pool.RollDice(dicestate, rand);
 
         }
 

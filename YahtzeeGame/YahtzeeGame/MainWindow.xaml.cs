@@ -20,14 +20,11 @@ namespace YahtzeeGame
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    /// 
     public partial class MainWindow : Window
     {
         //List of players. Will be used to track player information and scores.
         List<Player> Players = new List<Player>();
-
-        readonly ScoreBoard scoreBoard;
-
-        GameManager YahtzeeGame = new GameManager();
 
 
         public MainWindow()
@@ -45,6 +42,10 @@ namespace YahtzeeGame
 
             Player singlePlayer = new Player(1);
             Players.Add(singlePlayer);
+            GameWindow gameWindow = new GameWindow();
+
+            gameWindow.Show();
+            this.Close();
         }
         private void getNameBtt_Click(object sender, RoutedEventArgs e)
         {
@@ -101,6 +102,13 @@ namespace YahtzeeGame
 
             MessageBox.Show($"1. {topFive[0]}, {Scores[topFive[0]]} \n2.  {topFive[1]}, {Scores[topFive[1]]} \n3. {topFive[2]}, {Scores[topFive[2]]}\n4. {topFive[3]}, {Scores[topFive[3]]}\n5. {topFive[4]}, {Scores[topFive[4]]}  ");
 
+        }
+
+        private void multiPlayerBtt_Click(object sender, RoutedEventArgs e)
+        {
+            MultiplayerWindow multiWindow = new MultiplayerWindow();
+            Visibility = Visibility.Hidden;
+            multiWindow.Show();
         }
     }
     

@@ -165,3 +165,7 @@ C:\Users\brady\OneDrive\Documents\GitHub\C-2Yahtzee\YahtzeeGame\YahtzeeGame\obj\
 C:\Users\corto\OneDrive\Documents\GitHub\C-2Yahtzee\YahtzeeGame\YahtzeeGame\obj\Debug\GameWindow.g.cs
 C:\Users\corto\OneDrive\Documents\GitHub\C-2Yahtzee\YahtzeeGame\YahtzeeGame\obj\Debug\GameWindow.baml
 >>>>>>> Stashed changes
+C:\Users\gbmcp\Documents\GitHub\C-2Yahtzee\YahtzeeGame\YahtzeeGame\obj\Debug\GameWindow.g.cs
+C:\Users\gbmcp\Documents\GitHub\C-2Yahtzee\YahtzeeGame\YahtzeeGame\obj\Debug\GameWindow.baml
+C:\Users\gbmcp\Documents\GitHub\C-2Yahtzee\YahtzeeGame\YahtzeeGame\obj\Debug\MultiplayerWindow.g.cs
+C:\Users\gbmcp\Documents\GitHub\C-2Yahtzee\YahtzeeGame\YahtzeeGame\obj\Debug\MultiplayerWindow.baml
