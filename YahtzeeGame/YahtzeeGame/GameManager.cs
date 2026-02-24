@@ -25,7 +25,7 @@ namespace YahtzeeGame
             Round = 1;
             Turn = 1;
             Rolls = 3;
-            currentPlayer = players[0];
+            //currentPlayer = players[0];
         }
 
         public void EndTurn()

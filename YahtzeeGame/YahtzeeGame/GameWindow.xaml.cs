@@ -125,7 +125,7 @@ namespace YahtzeeGame
         private void btnAbout_Click(object sender, RoutedEventArgs e)
         {
             //Program Information
-            MessageBox.Show("Yahtzee Version 0.1. Made By Marcus Cantrall, Bradye Vanderheyden,Connor Orton, Nicole Gonzalez Rodriguez and Beau Baker. ");
+            MessageBox.Show("Yahtzee Version 0.1. Made By Marcus Cantrall, Bradye Vanderheyden, Connor Orton, Nicole Gonzalez Rodriguez and Beau Baker. ");
         }
 
 
@@ -269,6 +269,7 @@ namespace YahtzeeGame
             game.EndTurn();
             currentPlayer = game.currentPlayer;
             RefactorBoard();
+            FillBoxes(currentPlayer);
         }
         
         private void RefactorBoard()
@@ -371,6 +372,77 @@ namespace YahtzeeGame
             btnLargeStraight.IsEnabled = true;
             btnYahtzee.IsEnabled = true;
             btnChance.IsEnabled = true;
+        }
+
+        private void FillBoxes(Player player)
+        {
+            tbCurrentPlayer.Text = player.PlayerName;
+            tbTotalScore.Text = player.PlayerScores.totalScore.ToString();
+            
+            if (player.PlayerScores.acesScored)
+            {
+                tbAces.Text = player.PlayerScores.aces.ToString();
+            }
+
+            if (player.PlayerScores.twosScored)
+            {
+                tbTwos.Text = player.PlayerScores.twos.ToString();
+            }
+
+            if (player.PlayerScores.threesScored)
+            {
+                tbThrees.Text = player.PlayerScores.threes.ToString();
+            }
+
+            if (player.PlayerScores.foursScored)
+            {
+                tbFours.Text = player.PlayerScores.fours.ToString();
+            }
+
+            if (player.PlayerScores.fivesScored)
+            {
+                tbFives.Text = player.PlayerScores.fives.ToString();
+            }
+
+            if (player.PlayerScores.sixesScored)
+            {
+                tbSixes.Text = player.PlayerScores.sixes.ToString();
+            }
+
+            if (player.PlayerScores.threeOfAKindScored)
+            {
+                tbThreeKind.Text = player.PlayerScores.threeOfAKind.ToString();
+            }
+
+            if (player.PlayerScores.fourOfAKindScored)
+            {
+                tbFourKind.Text = player.PlayerScores.fourOfAKind.ToString();
+            }
+
+            if (player.PlayerScores.fullHouseScored)
+            {
+                tbFullHouse.Text = player.PlayerScores.fullHouse.ToString();
+            }
+
+            if (player.PlayerScores.smallStraightScored)
+            {
+                tbSmallStraight.Text = player.PlayerScores.smallStraight.ToString();
+            }
+
+            if (player.PlayerScores.largeStraightScored)
+            {
+                tbLargeStraight.Text = player.PlayerScores.largeStraight.ToString();
+            }
+
+            if (player.PlayerScores.yahtzeeScored)
+            {
+                tbYahtzee.Text = player.PlayerScores.yahtzee.ToString();
+            }
+
+            if (player.PlayerScores.chanceScored)
+            {
+                tbChance.Text = player.PlayerScores.chance.ToString();
+            }
         }
 
         private void btnAces_Click(object sender, RoutedEventArgs e)

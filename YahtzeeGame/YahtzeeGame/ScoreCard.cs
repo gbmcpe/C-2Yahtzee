@@ -10,13 +10,11 @@ namespace YahtzeeGame
 {
     public class ScoreCard
     {
-        //Fields Notes
-        /*
+        /*Fields Notes
          * Quick note about the fields, each variable is public and can be changed without affecting totalScore. So you can call scores 
          * from previously filled in boxes for displaying to the player and other UI elements. fullHouse, smallStraight, largeStraight,
          * and yahtzee are public Readonly because their point total isn't affected by the dice, but can still be called if needed.
          */
-
         #region Fields
         //These are flags that keep track of whether a score has been locked in
         public bool acesScored;
@@ -46,10 +44,10 @@ namespace YahtzeeGame
         public int sixes;
         public int threeOfAKind;
         public int fourOfAKind;
-        public readonly int fullHouse;
-        public readonly int smallStraight;
-        public readonly int largeStraight;
-        public readonly int yahtzee;
+        public int fullHouse;
+        public int smallStraight;
+        public int largeStraight;
+        public int yahtzee;
         public int chance;
 
         //This is the final score of the player
@@ -81,16 +79,15 @@ namespace YahtzeeGame
             sixes = 0;
             threeOfAKind = 0;
             fourOfAKind = 0;
-            fullHouse = 25;
-            smallStraight = 30;
-            largeStraight = 40;
-            yahtzee = 50;
+            fullHouse = 0;
+            smallStraight = 0;
+            largeStraight = 0;
+            yahtzee = 0;
             chance = 0;
             totalScore = 0;
         }
 
-        //Card Checking Methods
-        /*
+        /*Card Checking Methods
          * These checks are run at the start and end of every Scoring Method. First an If statement runs ScoreCardNotFinished. By default, it returns True.
          * It loads all the current flags into a list for a convenient foreach Loop that increments a variable if that flag is true. If all 13 are true,
          * the method returns a false instead, which prevents the Scoring Method from being run.
@@ -98,7 +95,6 @@ namespace YahtzeeGame
          * If the Scoring Method is not run, an Else statement fires off ScoreCardFilled. This current holds a generic popup message, but can be filled
          * with code to throw a flag or something else later. 
          */
-
         #region Checking Methods
 
         public bool ScoreCardNotFinished()
@@ -136,10 +132,113 @@ namespace YahtzeeGame
             MessageBox.Show("The card has already been filled. Your game is over. You scored " + totalScore + "points");
         }
 
+        public int[] DieCounter(int[] dice)
+        {
+            int[] result = new int[5];
+
+            foreach (int die in dice)
+            {
+                if (die == 1) { result[0] = result[0] + 1; }
+                if (die == 2) { result[1] = result[1] + 1; }
+                if (die == 3) { result[2] = result[2] + 1; }
+                if (die == 4) { result[3] = result[3] + 1; }
+                if (die == 5) { result[4] = result[4] + 1; }
+                if (die == 6) { result[5] = result[5] + 1; }
+            }
+
+            return result;
+        }
+
+        public bool ThreeKindValidation(int[] dice)
+        {
+            //three match
+            int[] dieCount = DieCounter(dice);
+
+            foreach (int count in dieCount)
+            {
+                if (count >= 3)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool FourKindValidation(int[] dice)
+        {
+            int[] dieCount = DieCounter(dice);
+
+            foreach (int count in dieCount)
+            {
+                if (count >= 4)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool FullHouseValidation(int[] dice)
+        {
+            int[] dieCount = DieCounter(dice);
+            int checker = 0;
+            
+            foreach (int count in dieCount)
+            {
+                if (count == 3) { checker++; }
+                if (count == 2) { checker++; }
+            }
+
+            if (checker == 2)
+            {
+                return true;
+            } 
+            
+            return false;
+        }
+
+        public bool SmallStraightValidation(int[] dice)
+        {
+            int[] count = DieCounter(dice);
+
+            if (count[0] == 1 && count[1] == 1 && count[2] == 1 && count[3] == 1 ||
+                count[1] == 1 && count[2] == 1 && count[3] == 1 && count[4] == 1)
+            {
+                return true;
+            }
+            
+            return false; 
+        }
+
+        public bool LargeStraightValidation(int[] dice)
+        {
+            int[] count = DieCounter(dice);
+
+            if (count[0] == 1 && count[1] == 1 && count[2] == 1 && count[3] == 1 && count[4] == 1)
+            {
+                return true;
+            }
+            
+            return false; 
+        }
+
+        public bool YahtzeeValidation(int[] dice)
+        {
+            int[] dieCount = DieCounter(dice);
+
+            foreach (int count in dieCount)
+            {
+                if (count == 5) { return true; }
+            }
+            
+            return false; 
+            
+        }
         #endregion
         
-        //Scoring Methods Notes
-        /* 
+        /* Scoring Method Notes
          * These are all really similar, so I'm documenting them as a region because I'm lazy.
          
          * Each Method is intended to be called by a click event, when the player clicks on a box to score.
@@ -155,7 +254,6 @@ namespace YahtzeeGame
          *
          * Update 2: Each Scoring Method now checks if the Score Card has been filled. If not, it fires off ScoreCardFilled()
          */
-
         #region Scoring Methods
         public void AcesSelected(int[] Dice)
         {
@@ -355,23 +453,36 @@ namespace YahtzeeGame
 
         public void ThreeOfAKindSelected(int[] Dice)
         {
+
             if (ScoreCardNotFinished())
             {
                 if (threeOfAKindScored == false)
                 {
-                    foreach (int Die in Dice)
+                    if (ThreeKindValidation(Dice))
                     {
-                        threeOfAKind += Die;
+                        foreach (int Die in Dice)
+                        {
+                            threeOfAKind += Die;
+                        }
+
+                        MessageBoxResult choice = MessageBox.Show("Do you want to score Three of a Kind? You will gain "
+                                                                  + threeOfAKind + " points.", "Confirmation", MessageBoxButton.YesNo);
+
+                        if (choice == MessageBoxResult.Yes)
+                        {
+                            threeOfAKindScored = true;
+                            totalScore += threeOfAKind;
+                        }
                     }
-
-                    MessageBoxResult choice = MessageBox.Show("Do you want to score Three of a Kind? You will gain "
-                                                              + threeOfAKind + " points.", "Confirmation",
-                        MessageBoxButton.YesNo);
-
-                    if (choice == MessageBoxResult.Yes)
+                    else
                     {
-                        threeOfAKindScored = true;
-                        totalScore += threeOfAKind;
+                        MessageBoxResult choice = MessageBox.Show("Do you want to score Three of a Kind? You will gain 0 points.", 
+                            "Confirmation", MessageBoxButton.YesNo);
+                        if (choice == MessageBoxResult.Yes)
+                        {
+                            threeOfAKind = 0;
+                            threeOfAKindScored = true;
+                        }
                     }
                 }
                 else
@@ -388,19 +499,32 @@ namespace YahtzeeGame
             {
                 if (fourOfAKindScored == false)
                 {
-                    foreach (int Die in Dice)
+                    if (FourKindValidation(Dice))
                     {
-                        fourOfAKind += Die;
+                        foreach (int Die in Dice)
+                        {
+                            fourOfAKind += Die;
+                        }
+
+                        MessageBoxResult choice = MessageBox.Show("Do you want to score Four of a Kind? You will gain "
+                                                                  + fourOfAKind + " points.", "Confirmation",
+                            MessageBoxButton.YesNo);
+
+                        if (choice == MessageBoxResult.Yes)
+                        {
+                            fourOfAKindScored = true;
+                            totalScore += fourOfAKind;
+                        }
                     }
-
-                    MessageBoxResult choice = MessageBox.Show("Do you want to score Four of a Kind? You will gain "
-                                                              + fourOfAKind + " points.", "Confirmation",
-                        MessageBoxButton.YesNo);
-
-                    if (choice == MessageBoxResult.Yes)
+                    else
                     {
-                        fourOfAKindScored = true;
-                        totalScore += fourOfAKind;
+                        MessageBoxResult choice = MessageBox.Show("Do you want to score Four of a Kind? You will gain 0 points.",
+                            "Confirmation", MessageBoxButton.YesNo);
+                        if (choice == MessageBoxResult.Yes)
+                        {
+                            fourOfAKind = 0; 
+                            fourOfAKindScored = true;
+                        }
                     }
                 }
                 else
@@ -417,14 +541,28 @@ namespace YahtzeeGame
             {
                 if (fullHouseScored == false)
                 {
-                    MessageBoxResult choice = MessageBox.Show("Do you want to score Full House? You will gain "
-                                                              + fullHouse + " points.", "Confirmation",
-                        MessageBoxButton.YesNo);
-
-                    if (choice == MessageBoxResult.Yes)
+                    if (FullHouseValidation(Dice))
                     {
-                        fullHouseScored = true;
-                        totalScore += fullHouse;
+                        MessageBoxResult choice = MessageBox.Show("Do you want to score Full House? You will gain 25 points.", "Confirmation",
+                            MessageBoxButton.YesNo);
+
+                        if (choice == MessageBoxResult.Yes)
+                        {
+                            fullHouse = 25;
+                            fullHouseScored = true;
+                            totalScore += fullHouse;
+                        }
+                    }
+                    else
+                    {
+                        MessageBoxResult choice = MessageBox.Show("Do you want to score Full House? You will gain 0 points.", "Confirmation",
+                            MessageBoxButton.YesNo);
+
+                        if (choice == MessageBoxResult.Yes)
+                        {
+                            fullHouse = 0;
+                            fullHouseScored = true;
+                        }
                     }
                 }
                 else
@@ -441,14 +579,28 @@ namespace YahtzeeGame
             {
                 if (smallStraightScored == false)
                 {
-                    MessageBoxResult choice = MessageBox.Show("Do you want to score Small Straight? You will gain "
-                                                              + smallStraight + " points.", "Confirmation",
-                        MessageBoxButton.YesNo);
-
-                    if (choice == MessageBoxResult.Yes)
+                    if (FullHouseValidation(Dice))
                     {
-                        smallStraightScored = true;
-                        totalScore += smallStraight;
+                        MessageBoxResult choice = MessageBox.Show("Do you want to score Small Straight? You will gain 30 points.", "Confirmation",
+                            MessageBoxButton.YesNo);
+
+                        if (choice == MessageBoxResult.Yes)
+                        {
+                            smallStraight = 30;
+                            smallStraightScored = true;
+                            totalScore += smallStraight;
+                        }
+                    }
+                    else
+                    {
+                        MessageBoxResult choice = MessageBox.Show("Do you want to score Small Straight? You will gain 0 points.", "Confirmation",
+                            MessageBoxButton.YesNo);
+
+                        if (choice == MessageBoxResult.Yes)
+                        {
+                            smallStraight = 0;
+                            smallStraightScored = true;
+                        }
                     }
                 }
                 else
@@ -465,14 +617,30 @@ namespace YahtzeeGame
             {
                 if (largeStraightScored == false)
                 {
-                    MessageBoxResult choice = MessageBox.Show("Do you want to score Large Straight? You will gain "
-                                                              + largeStraight + " points.", "Confirmation",
-                        MessageBoxButton.YesNo);
-
-                    if (choice == MessageBoxResult.Yes)
+                    if (LargeStraightValidation(Dice))
                     {
-                        largeStraightScored = true;
-                        totalScore += largeStraight;
+                        MessageBoxResult choice = MessageBox.Show(
+                            "Do you want to score Large Straight? You will gain 40 points.", "Confirmation",
+                            MessageBoxButton.YesNo);
+
+                        if (choice == MessageBoxResult.Yes)
+                        {
+                            largeStraight = 40;
+                            largeStraightScored = true;
+                            totalScore += largeStraight;
+                        }
+                    }
+                    else
+                    {
+                        MessageBoxResult choice = MessageBox.Show(
+                            "Do you want to score Large Straight? You will gain 0 points.", "Confirmation",
+                            MessageBoxButton.YesNo);
+
+                        if (choice == MessageBoxResult.Yes)
+                        {
+                            largeStraight = 0;
+                            largeStraightScored = true;
+                        }
                     }
                 }
                 else
@@ -487,21 +655,37 @@ namespace YahtzeeGame
         {
             if (ScoreCardNotFinished())
             {
-                if (yahtzeeScored == false)
+                if (YahtzeeValidation(Dice))
                 {
-                    MessageBoxResult choice = MessageBox.Show("Do you want to score Yahtzee? You will gain "
-                                                              + yahtzee + " points.", "Confirmation",
-                        MessageBoxButton.YesNo);
-
-                    if (choice == MessageBoxResult.Yes)
+                    if (yahtzeeScored == false)
                     {
-                        yahtzeeScored = true;
-                        totalScore += yahtzee;
+
+                        MessageBoxResult choice = MessageBox.Show(
+                            "Do you want to score Yahtzee? You will gain 50 points.", "Confirmation",
+                            MessageBoxButton.YesNo);
+
+                        if (choice == MessageBoxResult.Yes)
+                        {
+                            yahtzee = 50;
+                            yahtzeeScored = true;
+                            totalScore += yahtzee;
+                        }
+                    }
+
+                    {
+                        MessageBox.Show("This box has already been scored. It contains " + yahtzee + " points.");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("This box has already been scored. It contains " + yahtzee + " points.");
+                    MessageBoxResult choice = MessageBox.Show("Do you want to score Yahtzee? You will gain 0 points.", "Confirmation",
+                        MessageBoxButton.YesNo);
+
+                    if (choice == MessageBoxResult.Yes)
+                    {
+                        yahtzee = 0;
+                        yahtzeeScored = true;
+                    }
                 }
             }
             else { ScoreCardFilled(); }
