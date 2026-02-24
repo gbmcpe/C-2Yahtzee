@@ -151,7 +151,7 @@
         <Button x:Name="btnStart" Content="Start Game" HorizontalAlignment="Left" Margin="10,369,0,0" VerticalAlignment="Top" Click="btnStart_Click" Height="28" Width="118" Grid.Column="1" FontFamily="Berlin Sans FB" FontSize="20"/>
         <Button x:Name="btnAbout" Content="About" HorizontalAlignment="Left" Margin="10,374,0,0" VerticalAlignment="Top" Click="btnAbout_Click" Height="32" Width="107" FontFamily="Berlin Sans FB" FontSize="20"/>
         <Label x:Name="lblInstructions" Grid.Column="1" Content="Click the dice you want to keep." HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Height="31" Width="320" FontFamily="Berlin Sans FB" FontSize="15" Background="{x:Null}"/>
-        <Grid x:Name="getNameScreen" Margin="0,0,0,-1" Grid.ColumnSpan="2">
+        <Grid x:Name="getNameScreen" Margin="0,-1,0,0" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="377*"/>
                 <ColumnDefinition Width="74*"/>
