@@ -429,7 +429,7 @@ namespace YahtzeeGame
         }
         private void btnThreeKind_Click(object sender, RoutedEventArgs e)
         {
-            currentPlayer.PlayerScores.ThreesSelected(game.Pool.diceValue);
+            currentPlayer.PlayerScores.ThreeOfAKindSelected(game.Pool.diceValue);
 
             if (currentPlayer.PlayerScores.threeOfAKindScored)
             {
@@ -438,7 +438,7 @@ namespace YahtzeeGame
         }
         private void btnFourKind_Click(object sender, RoutedEventArgs e)
         {
-            currentPlayer.PlayerScores.FoursSelected(game.Pool.diceValue);
+            currentPlayer.PlayerScores.FourOfAKindSelected(game.Pool.diceValue);
 
             if (currentPlayer.PlayerScores.fourOfAKindScored)
             {
