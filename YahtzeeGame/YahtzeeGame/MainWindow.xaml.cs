@@ -58,6 +58,7 @@ namespace YahtzeeGame
             //Create a instance of a player
             //add it to the player list
             //and hide the start screen.
+
             Player singlePlayer = new Player(1);
             Players.Add(singlePlayer);
             startScreenGr.Visibility = Visibility.Collapsed;
