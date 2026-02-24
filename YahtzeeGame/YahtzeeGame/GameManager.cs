@@ -18,13 +18,14 @@ namespace YahtzeeGame
         public List<Player> players;
         public int Rolls;
         public Dice Pool;
+        public Player currentPlayer;
 
         public GameManager()
         {
             Round = 1;
             Turn = 1;
             Rolls = 3;
-
+            currentPlayer = players[0];
         }
 
         public void EndTurn()
@@ -34,6 +35,7 @@ namespace YahtzeeGame
             {
                 Round++;
                 Turn = 1;
+                currentPlayer = players[Turn - 1];
             }
 
       
@@ -41,8 +43,9 @@ namespace YahtzeeGame
             //If this statement is true, the current round should continue and move to the next player in order.
             else if (this.Turn <= players.Count())
             {
-                { }
+                currentPlayer = players[Turn - 1];
             }
+
 
         }
 

@@ -30,6 +30,7 @@ namespace YahtzeeGame
             InitializeComponent();
             game = new GameManager();
             currentPlayer = new Player(0);
+            LockBoard();
         }
 
         #region Click Events
@@ -102,6 +103,8 @@ namespace YahtzeeGame
                 DiceActivation(false);
             }
 
+            UnlockBoard();
+            RefactorBoard();
         }
 
         private void btnStart_Click(object sender, RoutedEventArgs e)
@@ -260,13 +263,114 @@ namespace YahtzeeGame
         }
 
         #region New Stuff
-
-        //TODO: Disable button after it's been clicked, so that the player can't click the same one
-
-        private void refreshBoard()
+        private void NextTurn()
         {
+            UnlockBoard();
+            game.EndTurn();
+            currentPlayer = game.currentPlayer;
+            RefactorBoard();
+        }
+        
+        private void RefactorBoard()
+        {
+            if (currentPlayer.PlayerScores.acesScored)
+            {
+                btnAces.IsEnabled = false;
+            }
 
+            if (currentPlayer.PlayerScores.twosScored)
+            {
+                btnTwos.IsEnabled = false;
+            }
 
+            if (currentPlayer.PlayerScores.threesScored)
+            {
+                btnThrees.IsEnabled = false;
+            }
+
+            if (currentPlayer.PlayerScores.foursScored)
+            {
+                btnFours.IsEnabled = false;
+            }
+
+            if (currentPlayer.PlayerScores.fivesScored)
+            {
+                btnFives.IsEnabled = false;
+            }
+
+            if (currentPlayer.PlayerScores.sixesScored)
+            {
+                btnSixes.IsEnabled = false;
+            }
+
+            if (currentPlayer.PlayerScores.threeOfAKindScored)
+            {
+                btnThreeKind.IsEnabled = false;
+            }
+
+            if (currentPlayer.PlayerScores.fourOfAKindScored)
+            {
+                btnFourKind.IsEnabled = false;
+            }
+
+            if (currentPlayer.PlayerScores.fullHouseScored)
+            {
+                btnFullHouse.IsEnabled = false;
+            }
+
+            if (currentPlayer.PlayerScores.smallStraightScored)
+            {
+                btnSmallStraight.IsEnabled = false;
+            }
+
+            if (currentPlayer.PlayerScores.largeStraightScored)
+            {
+                btnLargeStraight.IsEnabled = false;
+            }
+
+            if (currentPlayer.PlayerScores.yahtzeeScored)
+            {
+                btnYahtzee.IsEnabled = false;
+            }
+
+            if (currentPlayer.PlayerScores.chanceScored)
+            {
+                btnChance.IsEnabled = false;
+            }
+        }
+
+        private void LockBoard()
+        {
+            btnAces.IsEnabled = false;
+            btnTwos.IsEnabled = false;
+            btnThrees.IsEnabled = false;
+            btnFours.IsEnabled = false;
+            btnFives.IsEnabled = false;
+            btnSixes.IsEnabled = false;
+            btnThreeKind.IsEnabled = false;
+            btnFourKind.IsEnabled = false;
+            btnFullHouse.IsEnabled = false;
+            btnSmallStraight.IsEnabled = false;
+            btnLargeStraight.IsEnabled = false;
+            btnYahtzee.IsEnabled = false;
+            btnChance.IsEnabled = false;
+        }
+
+        private void UnlockBoard()
+        {
+            btnAces.IsEnabled = true;
+            btnTwos.IsEnabled = true;
+            btnThrees.IsEnabled = true;
+            btnFours.IsEnabled = true;
+            btnFives.IsEnabled = true;
+            btnSixes.IsEnabled = true;
+            btnThreeKind.IsEnabled = true;
+            btnFourKind.IsEnabled = true;
+            btnFullHouse.IsEnabled = true;
+            btnSmallStraight.IsEnabled = true;
+            btnLargeStraight.IsEnabled = true;
+            btnYahtzee.IsEnabled = true;
+            btnChance.IsEnabled = true;
         }
 
         private void btnAces_Click(object sender, RoutedEventArgs e)
@@ -275,8 +379,7 @@ namespace YahtzeeGame
 
             if (currentPlayer.PlayerScores.acesScored)
             {
-                game.EndTurn();
-
+                NextTurn();
             }
         }
         private void btnTwos_Click(object sender, RoutedEventArgs e)
@@ -285,7 +388,7 @@ namespace YahtzeeGame
 
             if (currentPlayer.PlayerScores.twosScored)
             {
-                game.EndTurn();
+                NextTurn();
             }
         }
         private void btnThrees_Click(object sender, RoutedEventArgs e)
@@ -294,7 +397,7 @@ namespace YahtzeeGame
 
             if (currentPlayer.PlayerScores.threesScored)
             {
-                game.EndTurn();
+                NextTurn();
             }
         }
         private void btnFours_Click(object sender, RoutedEventArgs e)
@@ -303,7 +406,7 @@ namespace YahtzeeGame
 
             if (currentPlayer.PlayerScores.foursScored)
             {
-                game.EndTurn();
+                NextTurn();
             }
         }
         private void btnFives_Click(object sender, RoutedEventArgs e)
@@ -312,7 +415,7 @@ namespace YahtzeeGame
 
             if (currentPlayer.PlayerScores.fivesScored)
             {
-                game.EndTurn();
+                NextTurn();
             }
         }
         private void btnSixes_Click(object sender, RoutedEventArgs e)
@@ -321,7 +424,7 @@ namespace YahtzeeGame
 
             if (currentPlayer.PlayerScores.sixesScored)
             {
-                game.EndTurn();
+                NextTurn();
             }
         }
         private void btnThreeKind_Click(object sender, RoutedEventArgs e)
@@ -330,7 +433,7 @@ namespace YahtzeeGame
 
             if (currentPlayer.PlayerScores.threeOfAKindScored)
             {
-                game.EndTurn();
+                NextTurn();
             }
         }
         private void btnFourKind_Click(object sender, RoutedEventArgs e)
@@ -339,7 +442,7 @@ namespace YahtzeeGame
 
             if (currentPlayer.PlayerScores.fourOfAKindScored)
             {
-                game.EndTurn();
+                NextTurn();
             }
         }
         private void btnFullHouse_Click(object sender, RoutedEventArgs e)
@@ -348,7 +451,7 @@ namespace YahtzeeGame
 
             if (currentPlayer.PlayerScores.fullHouseScored)
             {
-                game.EndTurn();
+                NextTurn();
             }
         }
         private void btnSmallStraight_Click(object sender, RoutedEventArgs e)
@@ -357,7 +460,7 @@ namespace YahtzeeGame
 
             if (currentPlayer.PlayerScores.smallStraightScored)
             {
-                game.EndTurn();
+                NextTurn();
             }
         }
         private void btnLargeStraight_Click(object sender, RoutedEventArgs e)
@@ -366,7 +469,7 @@ namespace YahtzeeGame
 
             if (currentPlayer.PlayerScores.largeStraightScored)
             {
-                game.EndTurn();
+                NextTurn();
             }
         }
         private void btnYahtzee_Click(object sender, RoutedEventArgs e)
@@ -375,7 +478,7 @@ namespace YahtzeeGame
 
             if (currentPlayer.PlayerScores.yahtzeeScored)
             {
-                game.EndTurn();
+                NextTurn();
             }
         }
         private void btnChance_Click(object sender, RoutedEventArgs e)
@@ -384,7 +487,7 @@ namespace YahtzeeGame
 
             if (currentPlayer.PlayerScores.chanceScored)
             {
-                game.EndTurn();
+                NextTurn();
             }
         }
 
