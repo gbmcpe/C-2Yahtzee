@@ -24,17 +24,7 @@ namespace YahtzeeGame
         public GameWindow()
         {
             InitializeComponent();
-
-
-            // Create scoreboard in memory and bind it
-            scoreBoard = new ScoreBoard();
-            DGScoreBoard.ItemsSource = scoreBoard.Rows;
-            DGScoreBoard.DataContext = scoreBoard;
-
-
         }
-
-        public ScoreBoard scoreBoard;
 
         public GameManager game;
 
@@ -110,6 +100,7 @@ namespace YahtzeeGame
 
         }
 
+<<<<<<< Updated upstream
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
             //Upon starting, the start button is disabled, and the turn controls are activated.
@@ -133,6 +124,12 @@ namespace YahtzeeGame
         {
             //Program Information
             MessageBox.Show("Yahtzee Version 0.1. Made By Marcus Cantrall, Bradye Vanderheyden,Connor Orton, Nicole Gonzalez Rodriguez and Beau Baker. ");
+=======
+
+        private void BtnReset_Click(object sender, RoutedEventArgs e)
+        {
+            
+>>>>>>> Stashed changes
         }
         #endregion
 
@@ -145,9 +142,6 @@ namespace YahtzeeGame
         }
 
         #region Voids
-
-
-
         private void LoadScores()
         {
             Dictionary<int, string> Scores = new Dictionary<int, string>();
@@ -194,10 +188,16 @@ namespace YahtzeeGame
             DisplayDice(2, 3);
             DisplayDice(3, 4);
             DisplayDice(4, 5);
+<<<<<<< Updated upstream
          
     
             btnStart.IsEnabled = true;
 
+=======
+
+            lblTimesRolled.Content = "3";
+            lblTimesRolled.ContentStringFormat = "3";
+>>>>>>> Stashed changes
         }
 
         private void DisplayDice(int DicePos, int DiceValue)
@@ -271,6 +271,21 @@ namespace YahtzeeGame
         private void btnHighScore_Click(object sender, RoutedEventArgs e)
         {
             LoadScores();
+        }
+
+        private void btnAces_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnTwos_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnThrees_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
