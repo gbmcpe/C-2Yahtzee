@@ -33,18 +33,20 @@ namespace YahtzeeGame
         public void EndTurn()
         {
             //If this statement is true, the current round should end and return to the first player.
-            if (this.Turn > players.Count())
+            if (this.Turn >= players.Count())
             {
                 Round++;
                 Turn = 1;
+                
                 currentPlayer = players[Turn - 1];
             }
 
       
 
             //If this statement is true, the current round should continue and move to the next player in order.
-            else if (this.Turn <= players.Count())
+            else if (this.Turn < players.Count())
             {
+                Turn++;
                 currentPlayer = players[Turn - 1];
             
             }

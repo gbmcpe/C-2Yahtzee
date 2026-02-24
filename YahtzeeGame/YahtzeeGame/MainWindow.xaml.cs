@@ -95,6 +95,7 @@ namespace YahtzeeGame
             MultiplayerWindow multiWindow = new MultiplayerWindow();
             Visibility = Visibility.Hidden;
             multiWindow.Show();
+            this.Close();
         }
 
         private void nameTxtBx_TextChanged(object sender, TextChangedEventArgs e)

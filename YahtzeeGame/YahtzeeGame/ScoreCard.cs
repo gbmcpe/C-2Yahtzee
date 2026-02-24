@@ -184,11 +184,13 @@ namespace YahtzeeGame
         {
             int[] dieCount = DieCounter(dice);
             int checker = 0;
+            bool threeCheckFlag = false;
+            bool twoCheckFlag = false;
             
             foreach (int count in dieCount)
             {
-                if (count == 3) { checker++; }
-                if (count == 2) { checker++; }
+                if (count == 3 && !threeCheckFlag) { checker++; threeCheckFlag = true; }
+                if (count == 2 && !twoCheckFlag) { checker++; twoCheckFlag = true; }
             }
 
             if (checker == 2)

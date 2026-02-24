@@ -64,6 +64,10 @@ namespace YahtzeeGame
                 DiceActivation(false);
             }
 
+            if (game.Rolls == 2)
+            {
+                DiceActivation(true);
+            }
             UnlockBoard();
             RefactorBoard();
         }
@@ -238,13 +242,21 @@ namespace YahtzeeGame
             if (!currentPlayer.PlayerScores.ScoreCardNotFinished())
             {
                 EndGame();
-                MessageBox.Show("It's over fuck face go home");
             }
         }
 
         private void EndGame()
         {
+            MessageBox.Show("The game has ended. Generating final scores now.");
             RecordHighScores(currentPlayer);
+            int x = game.players.Count - 1;
+
+            while (x >= 0)
+            {
+                MessageBox.Show(game.players[x].PlayerName + " achieved " + game.players[x].PlayerScores.totalScore +
+                                " Points.");
+                x--;
+            }
         }
 
         private void RecordHighScores(Player P)
