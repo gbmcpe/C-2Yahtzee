@@ -21,12 +21,16 @@ namespace YahtzeeGame
     /// </summary>
     public partial class GameWindow : Window
     {
+
+        public GameManager game;
+        public Player currentPlayer;
+
         public GameWindow()
         {
             InitializeComponent();
+            game = new GameManager();
+            currentPlayer = new Player(0);
         }
-
-        public GameManager game;
 
         #region Click Events
 
@@ -255,20 +259,136 @@ namespace YahtzeeGame
             LoadScores();
         }
 
+        #region New Stuff
+
+        //TODO: Disable button after it's been clicked, so that the player can't click the same one
+
+        private void refreshBoard()
+        {
+
+
+        }
+
         private void btnAces_Click(object sender, RoutedEventArgs e)
         {
+            currentPlayer.PlayerScores.AcesSelected(game.Pool.diceValue);
 
+            if (currentPlayer.PlayerScores.acesScored)
+            {
+                game.EndTurn();
+
+            }
         }
-
         private void btnTwos_Click(object sender, RoutedEventArgs e)
         {
+            currentPlayer.PlayerScores.TwosSelected(game.Pool.diceValue);
 
+            if (currentPlayer.PlayerScores.twosScored)
+            {
+                game.EndTurn();
+            }
         }
-
         private void btnThrees_Click(object sender, RoutedEventArgs e)
         {
+            currentPlayer.PlayerScores.ThreesSelected(game.Pool.diceValue);
 
+            if (currentPlayer.PlayerScores.threesScored)
+            {
+                game.EndTurn();
+            }
         }
+        private void btnFours_Click(object sender, RoutedEventArgs e)
+        {
+            currentPlayer.PlayerScores.FoursSelected(game.Pool.diceValue);
+
+            if (currentPlayer.PlayerScores.foursScored)
+            {
+                game.EndTurn();
+            }
+        }
+        private void btnFives_Click(object sender, RoutedEventArgs e)
+        {
+            currentPlayer.PlayerScores.FivesSelected(game.Pool.diceValue);
+
+            if (currentPlayer.PlayerScores.fivesScored)
+            {
+                game.EndTurn();
+            }
+        }
+        private void btnSixes_Click(object sender, RoutedEventArgs e)
+        {
+            currentPlayer.PlayerScores.SixesSelected(game.Pool.diceValue);
+
+            if (currentPlayer.PlayerScores.sixesScored)
+            {
+                game.EndTurn();
+            }
+        }
+        private void btnThreeKind_Click(object sender, RoutedEventArgs e)
+        {
+            currentPlayer.PlayerScores.ThreesSelected(game.Pool.diceValue);
+
+            if (currentPlayer.PlayerScores.threeOfAKindScored)
+            {
+                game.EndTurn();
+            }
+        }
+        private void btnFourKind_Click(object sender, RoutedEventArgs e)
+        {
+            currentPlayer.PlayerScores.FoursSelected(game.Pool.diceValue);
+
+            if (currentPlayer.PlayerScores.fourOfAKindScored)
+            {
+                game.EndTurn();
+            }
+        }
+        private void btnFullHouse_Click(object sender, RoutedEventArgs e)
+        {
+            currentPlayer.PlayerScores.FullHouseSelected(game.Pool.diceValue);
+
+            if (currentPlayer.PlayerScores.fullHouseScored)
+            {
+                game.EndTurn();
+            }
+        }
+        private void btnSmallStraight_Click(object sender, RoutedEventArgs e)
+        {
+            currentPlayer.PlayerScores.SmallStraightSelected(game.Pool.diceValue);
+
+            if (currentPlayer.PlayerScores.smallStraightScored)
+            {
+                game.EndTurn();
+            }
+        }
+        private void btnLargeStraight_Click(object sender, RoutedEventArgs e)
+        {
+            currentPlayer.PlayerScores.LargeStraightSelected(game.Pool.diceValue);
+
+            if (currentPlayer.PlayerScores.largeStraightScored)
+            {
+                game.EndTurn();
+            }
+        }
+        private void btnYahtzee_Click(object sender, RoutedEventArgs e)
+        {
+            currentPlayer.PlayerScores.YahtzeeSelected(game.Pool.diceValue);
+
+            if (currentPlayer.PlayerScores.yahtzeeScored)
+            {
+                game.EndTurn();
+            }
+        }
+        private void btnChance_Click(object sender, RoutedEventArgs e)
+        {
+            currentPlayer.PlayerScores.ChanceSelected(game.Pool.diceValue);
+
+            if (currentPlayer.PlayerScores.chanceScored)
+            {
+                game.EndTurn();
+            }
+        }
+
+        #endregion
     }
 }
 

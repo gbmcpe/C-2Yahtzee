@@ -411,7 +411,7 @@ namespace YahtzeeGame
             else { ScoreCardFilled(); }
         }
 
-        public void FullHouseSelected()
+        public void FullHouseSelected(int[] Dice)
         {
             if (ScoreCardNotFinished())
             {
@@ -435,7 +435,7 @@ namespace YahtzeeGame
             else { ScoreCardFilled(); }
         }
 
-        public void SmallStraightSelected()
+        public void SmallStraightSelected(int[] Dice)
         {
             if (ScoreCardNotFinished())
             {
@@ -459,7 +459,7 @@ namespace YahtzeeGame
             else { ScoreCardFilled(); }
         }
 
-        public void LargeStraightSelected()
+        public void LargeStraightSelected(int[] Dice)
         {
             if (ScoreCardNotFinished())
             {
@@ -483,7 +483,7 @@ namespace YahtzeeGame
             else { ScoreCardFilled(); }
         }
 
-        public void YahtzeeSelected()
+        public void YahtzeeSelected(int[] Dice)
         {
             if (ScoreCardNotFinished())
             {

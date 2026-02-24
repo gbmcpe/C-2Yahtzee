@@ -13,7 +13,7 @@ namespace YahtzeeGame
         private int PlayerPos;
         private string playerName;
         private bool ComputerPlayer;
-        private ScoreCard PlayerScores;
+        public ScoreCard PlayerScores;
         public int SelectedScore;
 
         //constructors

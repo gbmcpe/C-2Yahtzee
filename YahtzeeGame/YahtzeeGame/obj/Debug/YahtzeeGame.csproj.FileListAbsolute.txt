@@ -151,6 +151,7 @@ C:\Users\gbmcp\Documents\GitHub\C-2Yahtzee\YahtzeeGameNew\YahtzeeGame\obj\Debug\
 C:\Users\gbmcp\Documents\GitHub\C-2Yahtzee\YahtzeeGameNew\YahtzeeGame\obj\Debug\YahtzeeGame.csproj.CoreCompileInputs.cache
 C:\Users\gbmcp\Documents\GitHub\C-2Yahtzee\YahtzeeGameNew\YahtzeeGame\obj\Debug\YahtzeeGame.exe
 C:\Users\gbmcp\Documents\GitHub\C-2Yahtzee\YahtzeeGameNew\YahtzeeGame\obj\Debug\YahtzeeGame.pdb
+<<<<<<< Updated upstream
 C:\Users\brady\OneDrive\Documents\GitHub\C-2Yahtzee\YahtzeeGame\YahtzeeGame\obj\Debug\YahtzeeGame.csproj.AssemblyReference.cache
 C:\Users\brady\OneDrive\Documents\GitHub\C-2Yahtzee\YahtzeeGame\YahtzeeGame\obj\Debug\YahtzeeGame.exe.config
 C:\Users\brady\OneDrive\Documents\GitHub\C-2Yahtzee\YahtzeeGame\YahtzeeGame\obj\Debug\GameWindow.g.cs
@@ -160,3 +161,7 @@ C:\Users\brady\OneDrive\Documents\GitHub\C-2Yahtzee\YahtzeeGame\YahtzeeGame\obj\
 C:\Users\brady\OneDrive\Documents\GitHub\C-2Yahtzee\YahtzeeGame\YahtzeeGame\obj\Debug\YahtzeeGame_MarkupCompile.lref
 C:\Users\brady\OneDrive\Documents\GitHub\C-2Yahtzee\YahtzeeGame\YahtzeeGame\obj\Debug\YahtzeeGame.exe
 C:\Users\brady\OneDrive\Documents\GitHub\C-2Yahtzee\YahtzeeGame\YahtzeeGame\obj\Debug\YahtzeeGame.pdb
+=======
+C:\Users\corto\OneDrive\Documents\GitHub\C-2Yahtzee\YahtzeeGame\YahtzeeGame\obj\Debug\GameWindow.g.cs
+C:\Users\corto\OneDrive\Documents\GitHub\C-2Yahtzee\YahtzeeGame\YahtzeeGame\obj\Debug\GameWindow.baml
+>>>>>>> Stashed changes
