@@ -22,6 +22,7 @@ namespace YahtzeeGame
             PlayerPos = Pos;
             PlayerName = ($"Player {Pos}");
             ComputerPlayer = false;
+            PlayerScores = new ScoreCard();
         }
 
         public Player(int Pos, string Name)
@@ -29,14 +30,15 @@ namespace YahtzeeGame
             PlayerPos = Pos;
             PlayerName = Name;
             ComputerPlayer = false;
+            PlayerScores = new ScoreCard();
         }
 
         public Player(int Pos, string Name, bool Comp)
         {
             PlayerPos = Pos;
             PlayerName = Name;
-            ComputerPlayer = Comp;
-
+            ComputerPlayer = Comp; 
+            PlayerScores = new ScoreCard();
         }
 
         //Set and get  the name property 

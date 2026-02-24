@@ -28,14 +28,33 @@ namespace YahtzeeGame
 
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
+            Player player;
+            if (tbPlayer1 != null)
+            {
+                player = new Player(1, tbPlayer1.Text); 
+                Players.Add(player);
+            }
 
-            if (tbPlayer1 != null) { Players.Add(new Player(1, tbPlayer1.Text)); }
-            if (tbPlayer2 != null) { Players.Add(new Player(2, tbPlayer2.Text)); }
-            if (tbPlayer3 != null && tbPlayer3.IsEnabled == true) { Players.Add(new Player(3, tbPlayer3.Text)); }
-            if (tbPlayer4 != null && tbPlayer4.IsEnabled == true) { Players.Add(new Player(2, tbPlayer4.Text)); }
+            if (tbPlayer2 != null)
+            {
+                player = new Player(2, tbPlayer2.Text);
+                Players.Add(player);
+            }
+
+            if (tbPlayer3 != null && tbPlayer3.IsEnabled == true)
+            {
+                player = new Player(3, tbPlayer3.Text);
+                Players.Add(player);
+            }
+
+            if (tbPlayer4 != null && tbPlayer4.IsEnabled == true)
+            {
+                player = new Player(4, tbPlayer4.Text);
+                Players.Add(player);
+            }
 
             //PUT PLAYERS LIST IN HERE AND THEN CATCH IT IN ITS CONSTRUCTOR!
-            GameWindow gameWindow = new GameWindow();
+            GameWindow gameWindow = new GameWindow(Players);
             gameWindow.Show();
             this.Close();
         }

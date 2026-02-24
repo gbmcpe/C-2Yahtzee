@@ -40,34 +40,19 @@ namespace YahtzeeGame
             //add it to the player list
             //and hide the start screen.
 
-            Player singlePlayer = new Player(1);
+            Player singlePlayer = new Player(1, nameTxtBx.Text);
             Players.Add(singlePlayer);
-            GameWindow gameWindow = new GameWindow();
+            GameWindow gameWindow = new GameWindow(Players);
 
             gameWindow.Show();
             this.Close();
         }
-        private void getNameBtt_Click(object sender, RoutedEventArgs e)
-        {
-            //Takes the text from the name input box,
-            //and sets it as the player's name.
-            //If the input is empty, prompts the user to enter a name.
-            string name = nameTxtBx.Text;
-            if (name != "")
-            {
-                Players[0].PlayerName = name;
-               }
-            else
-            {
-                MessageBox.Show("Please enter a name.");
-            }
-
-        }
+        
 
         private void btnAbout(object sender, RoutedEventArgs e)
         {
             //Program Information
-            MessageBox.Show("Yahtzee Version 0.1. Made By Marcus Cantrall, Bradye Vanderheyden,Connor Orton, Nicole Gonzalez Rodriguez and Beau Baker. ");
+            MessageBox.Show("Yahtzee Version 0.1. Made By Marcus Cantrall, Bradye Vanderheyden, Connor Orton, Nicole Gonzalez Rodriguez and Beau Baker. ");
         }
 
         private void btnHighScore_Click(object sender, RoutedEventArgs e)
@@ -101,7 +86,8 @@ namespace YahtzeeGame
             }
 
             MessageBox.Show($"1. {topFive[0]}, {Scores[topFive[0]]} \n2.  {topFive[1]}, {Scores[topFive[1]]} \n3. {topFive[2]}, {Scores[topFive[2]]}\n4. {topFive[3]}, {Scores[topFive[3]]}\n5. {topFive[4]}, {Scores[topFive[4]]}  ");
-
+            
+            Input.Close();
         }
 
         private void multiPlayerBtt_Click(object sender, RoutedEventArgs e)
@@ -109,6 +95,18 @@ namespace YahtzeeGame
             MultiplayerWindow multiWindow = new MultiplayerWindow();
             Visibility = Visibility.Hidden;
             multiWindow.Show();
+        }
+
+        private void nameTxtBx_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (nameTxtBx.Text != null)
+            {
+                singlePlayerbtt.IsEnabled = true;
+            }
+            else
+            {
+                singlePlayerbtt.IsEnabled = false;
+            }
         }
     }
     

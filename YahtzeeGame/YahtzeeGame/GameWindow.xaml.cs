@@ -25,11 +25,14 @@ namespace YahtzeeGame
         public GameManager game;
         public Player currentPlayer;
 
-        public GameWindow()
+        public GameWindow(List<Player> players)
         {
             InitializeComponent();
             game = new GameManager();
-            currentPlayer = new Player(0);
+            game.players = players;
+            currentPlayer = players[0];
+            tbCurrentPlayer.Text = currentPlayer.PlayerName;
+            tbTotalScore.Text = currentPlayer.PlayerScores.totalScore.ToString();
             LockBoard();
         }
 
@@ -41,9 +44,7 @@ namespace YahtzeeGame
         /// <param name="sender"></param>
         /// <param name="e"></param>'
         /// 
-
-     
-
+        
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
             Close();
@@ -52,52 +53,12 @@ namespace YahtzeeGame
         private void BtnRollDice_Click(object sender, RoutedEventArgs e)
         {
 
-
             game.RollUsed(CheckDice());
 
             DisplayDiceSet();
 
-
             lblTimesRolled.Content = (game.Rolls).ToString();
 
-
-            ////Function that handles rolling the dice pool and displaying matching visuals.
-
-            ////Counter for times rolled in one Turn. Starts at 3, and decreases by 1 every time the dice are rerolled.
-            //int counter = int.Parse(lblTimesRolled.ContentStringFormat);
-
-            //lblTimesRolled.ContentStringFormat = (counter - 1).ToString();
-            //lblTimesRolled.Content = (counter - 1).ToString();
-
-            ////Gets the current input state.
-            //bool[] DiceState = CheckDice();
-
-            ////RNG for dice.
-            //Random random = new Random();
-
-            ////For loop to take us through each of the 5 dice sequentially.
-
-            //for (int c = 0; c < 5; c++)
-            //{
-            //    //If Statement Triggers if a die is unchecked. Checked Dice do not reroll.
-
-            //    if (DiceState[c] == false)
-            //    {
-            //        int DieValue = random.Next(1, 7);
-
-            //        //Displays rolled die face. c = die face.
-
-            //        DisplayDice(c, DieValue);
-
-            //    }
-            //}
-
-            //// If Statement fires once the roll counter hits 0, marking the end of a turn. 
-
-            //if (int.Parse(lblTimesRolled.ContentStringFormat) == 0)
-            //{
-            //    TurnActivation(false);
-            //}
             if (game.Rolls == 0)
             {
                 DiceActivation(false);
@@ -270,8 +231,28 @@ namespace YahtzeeGame
             currentPlayer = game.currentPlayer;
             RefactorBoard();
             FillBoxes(currentPlayer);
+            game.Rolls = 3;
+            lblTimesRolled.Content = 3.ToString();
+            BtnRollDice.IsEnabled = true;
+
+            if (!currentPlayer.PlayerScores.ScoreCardNotFinished())
+            {
+                EndGame();
+                MessageBox.Show("It's over fuck face go home");
+            }
         }
-        
+
+        private void EndGame()
+        {
+            RecordHighScores(currentPlayer);
+        }
+
+        private void RecordHighScores(Player P)
+        {
+            StreamWriter Output = new StreamWriter("HighScores.txt");
+            Output.WriteLine($"{P.PlayerScores.totalScore} {P.PlayerName}");
+        }
+
         private void RefactorBoard()
         {
             if (currentPlayer.PlayerScores.acesScored)

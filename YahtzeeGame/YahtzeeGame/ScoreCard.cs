@@ -134,7 +134,7 @@ namespace YahtzeeGame
 
         public int[] DieCounter(int[] dice)
         {
-            int[] result = new int[5];
+            int[] result = new int[6];
 
             foreach (int die in dice)
             {
@@ -161,7 +161,7 @@ namespace YahtzeeGame
                     return true;
                 }
             }
-
+            
             return false;
         }
 
@@ -203,8 +203,9 @@ namespace YahtzeeGame
         {
             int[] count = DieCounter(dice);
 
-            if (count[0] == 1 && count[1] == 1 && count[2] == 1 && count[3] == 1 ||
-                count[1] == 1 && count[2] == 1 && count[3] == 1 && count[4] == 1)
+            if (count[0] >= 1 && count[1] >= 1 && count[2] >= 1 && count[3] >= 1 ||
+                count[1] >= 1 && count[2] >= 1 && count[3] >= 1 && count[4] >= 1 ||
+                count[2] >= 1 && count[3] >= 1 && count[4] >= 1 && count[5] >= 1)
             {
                 return true;
             }
@@ -216,7 +217,8 @@ namespace YahtzeeGame
         {
             int[] count = DieCounter(dice);
 
-            if (count[0] == 1 && count[1] == 1 && count[2] == 1 && count[3] == 1 && count[4] == 1)
+            if (count[0] == 1 && count[1] == 1 && count[2] == 1 && count[3] == 1 && count[4] == 1 ||
+                count[1] == 1 && count[2] == 1 && count[3] == 1 && count[4] == 1 && count[5] == 1)
             {
                 return true;
             }
@@ -579,7 +581,7 @@ namespace YahtzeeGame
             {
                 if (smallStraightScored == false)
                 {
-                    if (FullHouseValidation(Dice))
+                    if (SmallStraightValidation(Dice))
                     {
                         MessageBoxResult choice = MessageBox.Show("Do you want to score Small Straight? You will gain 30 points.", "Confirmation",
                             MessageBoxButton.YesNo);

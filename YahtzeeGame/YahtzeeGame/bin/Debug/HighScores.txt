@@ -1,9 +1,0 @@
-1 DummyScore
-2 DummyScore
-3 DummyScore
-4 DummyScore
-5 DummyScore
-6 DummyScore
-7 DummyScore
-8 DummyScore
-9 DummyScore

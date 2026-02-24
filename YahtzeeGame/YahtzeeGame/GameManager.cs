@@ -27,7 +27,7 @@ namespace YahtzeeGame
             Turn = 1;
             Rolls = 3;
             rand = new Random((int)DateTime.Now.Ticks);
-
+            Pool = new Dice();
         }
 
         public void EndTurn()

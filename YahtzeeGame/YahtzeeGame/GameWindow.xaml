@@ -9,7 +9,7 @@
     <Grid>
         <Button x:Name="BtnClose" Content="Close" HorizontalAlignment="Left" Margin="697,367,0,0" VerticalAlignment="Top" Click="BtnClose_Click" Height="32" Width="72" FontFamily="Berlin Sans FB" FontSize="20"/>
         <Button x:Name="BtnReset" Content="Reset" HorizontalAlignment="Left" Margin="610,367,0,0" VerticalAlignment="Top" Click="BtnReset_Click" Height="32" Width="82" FontFamily="Berlin Sans FB" FontSize="20" RenderTransformOrigin="0.591,-0.11"/>
-        <Button x:Name="BtnRollDice" Content="Roll Dice!" HorizontalAlignment="Left" Margin="584,233,0,0" VerticalAlignment="Top" Click="BtnRollDice_Click" IsEnabled="False" Height="34" Width="108" FontFamily="Berlin Sans FB" FontSize="20"/>
+        <Button x:Name="BtnRollDice" Content="Roll Dice!" HorizontalAlignment="Left" Margin="584,233,0,0" VerticalAlignment="Top" Click="BtnRollDice_Click" Height="34" Width="108" FontFamily="Berlin Sans FB" FontSize="20"/>
         <Image x:Name="Die1" HorizontalAlignment="Left" Height="54" Margin="341,148,0,0" VerticalAlignment="Top" Width="52" Source="/1Die.bmp"/>
         <Image x:Name="Die2" HorizontalAlignment="Left" Height="54" Margin="429,148,0,0" VerticalAlignment="Top" Width="52" Source="/2Die.bmp"/>
         <Image x:Name="Die3" HorizontalAlignment="Left" Height="54" Margin="518,148,0,0" VerticalAlignment="Top" Width="52" Source="/3Die.bmp"/>
@@ -69,48 +69,48 @@
         <Label x:Name="lblRollCountText" Content="Rolls Left:" HorizontalAlignment="Left" Margin="472,89,0,0" VerticalAlignment="Top" Height="31" Width="108" FontFamily="Berlin Sans FB" FontSize="20" Background="#FFDEACAC"/>
         <Label x:Name="lblInstructions" Content="Click the dice you want to keep." HorizontalAlignment="Left" Margin="422,49,0,0" VerticalAlignment="Top" Height="31" Width="208" FontFamily="Berlin Sans FB" FontSize="15" Background="{x:Null}"/>
         <Label x:Name="lblAces" Content="Aces" HorizontalAlignment="Left" Margin="37,27,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbAces" HorizontalAlignment="Left" Margin="99,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbAces" HorizontalAlignment="Left" Margin="99,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
         <Button x:Name="btnAces" Content="Score" HorizontalAlignment="Left" Margin="241,28,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Click="btnAces_Click"/>
         <Label x:Name="lblTwos" Content="Twos" HorizontalAlignment="Left" Margin="32,58,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbTwos" HorizontalAlignment="Left" Margin="99,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbTwos" HorizontalAlignment="Left" Margin="99,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
         <Button x:Name="btnTwos" Content="Score" HorizontalAlignment="Left" Margin="241,60,0,0" VerticalAlignment="Top" Click="btnTwos_Click"/>
         <Label Content="Threes" HorizontalAlignment="Left" Margin="32,93,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbThrees" HorizontalAlignment="Left" Margin="99,93,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbThrees" HorizontalAlignment="Left" Margin="99,93,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
         <Button x:Name="btnThrees" Content="Score" HorizontalAlignment="Left" Margin="241,90,0,0" VerticalAlignment="Top" Click="btnThrees_Click"/>
         <Label x:Name="lblFours" Content="Fours" HorizontalAlignment="Left" Margin="32,130,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbFours" HorizontalAlignment="Left" Margin="99,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbFours" HorizontalAlignment="Left" Margin="99,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
         <Button x:Name="btnFours" Content="Score" HorizontalAlignment="Left" Margin="241,124,0,0" VerticalAlignment="Top" Click="btnFours_Click"/>
         <Label x:Name="lblFives" Content="Fives" HorizontalAlignment="Left" Margin="32,152,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbFives" HorizontalAlignment="Left" Margin="99,156,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbFives" HorizontalAlignment="Left" Margin="99,156,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
         <Button x:Name="btnFives" Content="Score" HorizontalAlignment="Left" Margin="241,154,0,0" VerticalAlignment="Top" Click="btnFives_Click"/>
         <Label x:Name="lblSixes" Content="Sixes" HorizontalAlignment="Left" Margin="31,186,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbSixes" HorizontalAlignment="Left" Margin="99,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbSixes" HorizontalAlignment="Left" Margin="99,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
         <Button x:Name="btnSixes" Content="Score" HorizontalAlignment="Left" Margin="241,192,0,0" VerticalAlignment="Top" Click="btnSixes_Click"/>
         <Label x:Name="lblThreeKind" Content="3 of a Kind" HorizontalAlignment="Left" Margin="15,223,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbThreeKind" HorizontalAlignment="Left" Margin="99,227,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbThreeKind" HorizontalAlignment="Left" Margin="99,227,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
         <Button x:Name="btnThreeKind" Content="Score" HorizontalAlignment="Left" Margin="241,226,0,0" VerticalAlignment="Top" Click="btnThreeKind_Click"/>
         <Label x:Name="lblFourKind" Content="4 of a Kind" HorizontalAlignment="Left" Margin="10,258,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbFourKind" HorizontalAlignment="Left" Margin="99,258,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbFourKind" HorizontalAlignment="Left" Margin="99,258,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
         <Button x:Name="btnFourKind" Content="Score" HorizontalAlignment="Left" Margin="241,258,0,0" VerticalAlignment="Top" Click="btnFourKind_Click"/>
         <Label x:Name="lblFullHouse" Content="Full House" HorizontalAlignment="Left" Margin="10,289,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbFullHouse" HorizontalAlignment="Left" Margin="99,289,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbFullHouse" HorizontalAlignment="Left" Margin="99,289,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
         <Button x:Name="btnFullHouse" Content="Score" HorizontalAlignment="Left" Margin="241,289,0,0" VerticalAlignment="Top" Click="btnFullHouse_Click"/>
         <Label x:Name="lblSmallStraight" Content="Small Straight" HorizontalAlignment="Left" Margin="10,314,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbSmallStraight" HorizontalAlignment="Left" Margin="99,314,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbSmallStraight" HorizontalAlignment="Left" Margin="99,314,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
         <Button x:Name="btnSmallStraight" Content="Score" HorizontalAlignment="Left" Margin="241,312,0,0" VerticalAlignment="Top" Click="btnSmallStraight_Click"/>
         <Label x:Name="lblLargeStraight" Content="Large Straight" HorizontalAlignment="Left" Margin="10,339,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbLargeStraight" HorizontalAlignment="Left" Margin="99,344,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbLargeStraight" HorizontalAlignment="Left" Margin="99,344,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
         <Button x:Name="btnLargeStraight" Content="Score" HorizontalAlignment="Left" Margin="241,342,0,0" VerticalAlignment="Top" Click="btnLargeStraight_Click"/>
         <Label x:Name="lblYahtzee" Content="YAHTZEE" HorizontalAlignment="Left" Margin="10,364,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbYahtzee" HorizontalAlignment="Left" Margin="99,364,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbYahtzee" HorizontalAlignment="Left" Margin="99,364,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
         <Button x:Name="btnYahtzee" Content="Score" HorizontalAlignment="Left" Margin="241,364,0,0" VerticalAlignment="Top" Click="btnYahtzee_Click"/>
         <Label x:Name="lblChance" Content="Chance" HorizontalAlignment="Left" Margin="10,389,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbChance" HorizontalAlignment="Left" Margin="99,391,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbChance" HorizontalAlignment="Left" Margin="99,391,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
         <Button x:Name="btnChance" Content="Score" HorizontalAlignment="Left" Margin="241,389,0,0" VerticalAlignment="Top" Click="btnChance_Click"/>
         <Label x:Name="lblCurrentPlayer" Content="Current Player:" HorizontalAlignment="Left" Margin="315,261,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lblTotalScore" Content="Total Score:" HorizontalAlignment="Left" Margin="331,309,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbCurrentPlayer" HorizontalAlignment="Left" Margin="408,265,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tbTotalScore" HorizontalAlignment="Left" Margin="408,314,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbCurrentPlayer" HorizontalAlignment="Left" Margin="408,265,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
+        <TextBox x:Name="tbTotalScore" HorizontalAlignment="Left" Margin="408,314,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
 
     </Grid>
 </Window>

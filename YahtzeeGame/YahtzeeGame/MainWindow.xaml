@@ -33,12 +33,11 @@
                 </LinearGradientBrush>
             </Label.BorderBrush>
         </Label>
-        <Button x:Name="singlePlayerbtt" Content="Single-player" HorizontalAlignment="Left" Margin="30,209,0,0" VerticalAlignment="Top" Height="70" Width="210" FontSize="30" FontFamily="Berlin Sans FB" Background="#FFEFF665" Foreground="#FF630A0A" Click="singlePlayerbtt_Click"/>
+        <Button x:Name="singlePlayerbtt" Content="Single-player" HorizontalAlignment="Left" Margin="30,209,0,0" VerticalAlignment="Top" Height="70" Width="210" FontSize="30" FontFamily="Berlin Sans FB" Background="#FFEFF665" Foreground="#FF630A0A" Click="singlePlayerbtt_Click" IsEnabled="False"/>
         <Button x:Name="multiPlayerBtt" Content="Multi-player" HorizontalAlignment="Left" Margin="287,208,0,0" VerticalAlignment="Top" Height="71" Width="210" FontSize="30" FontFamily="Berlin Sans FB" Background="#FFEFF665" Foreground="#FF630A0A" Click="multiPlayerBtt_Click"/>
         <Button x:Name="howToplayBtt" Content="How to play" HorizontalAlignment="Left" Margin="548,208,0,0" VerticalAlignment="Top" Height="71" Width="210" FontSize="30" FontFamily="Berlin Sans FB" Background="#FFEFF665" Foreground="#FF630A0A"/>
         <Button x:Name="btnHighScore" Content="High Scores" HorizontalAlignment="Left" Margin="174,342,0,0" VerticalAlignment="Top" Height="42" Width="176" FontSize="30" FontFamily="Berlin Sans FB" Background="#FFEFF665" Foreground="#FF630A0A" Click="btnHighScore_Click"/>
-        <TextBox x:Name="nameTxtBx" HorizontalAlignment="Left" Margin="233,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="264" Height="40" FontFamily="Berlin Sans FB" FontSize="30" TextAlignment="Center"/>
-        <Button x:Name="getNameBtt" Content="-&gt;" HorizontalAlignment="Left" Margin="548,150,0,0" VerticalAlignment="Top" Height="40" Width="46" FontSize="30" FontFamily="Berlin Sans FB" Background="#FFEFF665" Foreground="#FF630A0A" Click="getNameBtt_Click" IsDefault="True"/>
+        <TextBox x:Name="nameTxtBx" HorizontalAlignment="Left" Margin="233,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="264" Height="40" FontFamily="Berlin Sans FB" FontSize="30" TextAlignment="Center" TextChanged="nameTxtBx_TextChanged"/>
         <Label x:Name="lblPlayerName" Content="Please Enter your Player Name Below:" HorizontalAlignment="Left" Margin="275,82,0,0" VerticalAlignment="Top" Width="234" Background="{x:Null}" Height="38" FontSize="13" FontWeight="Medium" VerticalContentAlignment="Center" Foreground="#FFD4FDCE"/>
         <Button x:Name="btnAboutinfo" Content="About" HorizontalAlignment="Left" Margin="438,342,0,0" VerticalAlignment="Top" Height="42" Width="176" FontSize="30" FontFamily="Berlin Sans FB" Background="#FFEFF665" Foreground="#FF630A0A" Click="btnAbout"/>
 
