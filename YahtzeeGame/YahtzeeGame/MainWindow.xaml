@@ -40,7 +40,7 @@
         <TextBox x:Name="nameTxtBx" HorizontalAlignment="Left" Margin="233,228,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="264" Height="40" FontFamily="Berlin Sans FB" FontSize="30" TextAlignment="Center"/>
         <Button x:Name="getNameBtt" Content="-&gt;" HorizontalAlignment="Left" Margin="548,228,0,0" VerticalAlignment="Top" Height="40" Width="46" FontSize="30" FontFamily="Berlin Sans FB" Background="#FFEFF665" Foreground="#FF630A0A" Click="getNameBtt_Click" IsDefault="True"/>
         <Label x:Name="lblPlayerName" Content="Please Enter your Player Name Below:" HorizontalAlignment="Left" Margin="275,160,0,0" VerticalAlignment="Top" Width="234" Background="{x:Null}" Height="38" FontSize="13" FontWeight="Medium" VerticalContentAlignment="Center" Foreground="#FFD4FDCE"/>
-        <Button x:Name="btnAboutinfo" Content="About" HorizontalAlignment="Left" Margin="438,504,0,0" VerticalAlignment="Top" Height="42" Width="176" FontSize="30" FontFamily="Berlin Sans FB" Background="#FFEFF665" Foreground="#FF630A0A" Click="btnAboutinfo"/>
+        <Button x:Name="btnAboutinfo" Content="About" HorizontalAlignment="Left" Margin="438,504,0,0" VerticalAlignment="Top" Height="42" Width="176" FontSize="30" FontFamily="Berlin Sans FB" Background="#FFEFF665" Foreground="#FF630A0A" Click="btnAbout"/>
 
     </Grid>
 </Window>

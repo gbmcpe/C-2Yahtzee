@@ -63,7 +63,7 @@ namespace YahtzeeGame
 
         }
 
-        private void btnAboutinfo(object sender, RoutedEventArgs e)
+        private void btnAbout(object sender, RoutedEventArgs e)
         {
             //Program Information
             MessageBox.Show("Yahtzee Version 0.1. Made By Marcus Cantrall, Bradye Vanderheyden,Connor Orton, Nicole Gonzalez Rodriguez and Beau Baker. ");

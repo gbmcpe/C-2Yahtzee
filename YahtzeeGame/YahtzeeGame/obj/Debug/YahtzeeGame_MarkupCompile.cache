@@ -4,25 +4,17 @@
 winexe
 C#
 .cs
-<<<<<<< Updated upstream
-C:\Users\brady\OneDrive\Documents\GitHub\C-2Yahtzee\YahtzeeGame\YahtzeeGame\obj\Debug\
-=======
-C:\Users\corto\OneDrive\Documents\GitHub\C-2Yahtzee\YahtzeeGame\YahtzeeGame\obj\Debug\
->>>>>>> Stashed changes
+C:\Users\gbmcp\Documents\GitHub\C-2Yahtzee\YahtzeeGame\YahtzeeGame\obj\Debug\
 YahtzeeGame
 none
 false
 DEBUG;TRACE
-<<<<<<< Updated upstream
-C:\Users\brady\OneDrive\Documents\GitHub\C-2Yahtzee\YahtzeeGame\YahtzeeGame\App.xaml
-=======
-C:\Users\corto\OneDrive\Documents\GitHub\C-2Yahtzee\YahtzeeGame\YahtzeeGame\App.xaml
->>>>>>> Stashed changes
+C:\Users\gbmcp\Documents\GitHub\C-2Yahtzee\YahtzeeGame\YahtzeeGame\App.xaml
 2-1996233715
 
 111658368904
 13-38814620
 GameWindow.xaml;MainWindow.xaml;
 
-False
+True
 
