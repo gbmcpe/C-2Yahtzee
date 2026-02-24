@@ -261,7 +261,7 @@ namespace YahtzeeGame
 
         private void RecordHighScores(Player P)
         {
-            StreamWriter Output = new StreamWriter("HighScores.txt");
+            StreamWriter Output = new StreamWriter("HighScores.txt", true);
             Output.WriteLine($"{P.PlayerScores.totalScore} {P.PlayerName}");
         }
 
