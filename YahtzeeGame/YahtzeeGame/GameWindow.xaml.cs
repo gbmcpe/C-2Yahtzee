@@ -557,6 +557,129 @@ namespace YahtzeeGame
         }
 
         #endregion
+
+        #region EasyModeBot
+
+        /// <summary>
+        /// Holds the easy mode bot logic object used for CPU decisions.
+        /// </summary>
+        private readonly EasyModeBot _bot = new EasyModeBot();
+
+        /// <summary>
+        /// Prevents the CPU from executing multiple turns at the same time.
+        /// </summary>
+        private bool _cpuTurnRunning = false;
+
+        /// <summary>
+        /// Controls how long the CPU waits between visible actions.
+        /// </summary>
+        private int _cpuStepDelayMs = 600;
+
+        /// <summary>
+        /// Determines if the given player is an Easy CPU.
+        /// </summary>
+        private bool IsCpuPlayer(Player p)
+        {
+            return p != null
+                   && p.PlayerName != null
+                   && p.PlayerName.EndsWith("(CPU)");
+        }
+
+        /// <summary>
+        /// Executes a full CPU turn visibly so the user can watch.
+        /// </summary>
+        public async Task PlayCpuTurnIfNeededAsync()
+        {
+            /// If current player is not CPU, exit.
+            if (!IsCpuPlayer(currentPlayer)) return;
+
+            /// Prevent duplicate CPU execution.
+            if (_cpuTurnRunning) return;
+
+            /// Lock CPU execution.
+            _cpuTurnRunning = true;
+
+            try
+            {
+                /// Show CPU playing inside tbCurrentPlayer textbox.
+                tbCurrentPlayer.Text = currentPlayer.PlayerName;
+
+                /// Enable dice controls for CPU turn.
+                DiceActivation(true);
+
+                /// Clear holds so user can see CPU choose them.
+                cbDie1.IsChecked = false;
+                cbDie2.IsChecked = false;
+                cbDie3.IsChecked = false;
+                cbDie4.IsChecked = false;
+                cbDie5.IsChecked = false;
+
+                /// Short pause so UI updates.
+                await Task.Delay(_cpuStepDelayMs);
+
+                /// Continue rolling while rolls remain.
+                while (game.Rolls > 0)
+                {
+                    /// Ask bot which dice to keep.
+                    bool[] holds = _bot.ChooseDice(game.Pool.diceValue, game.Rolls);
+
+                    /// Apply hold decisions to UI.
+                    cbDie1.IsChecked = holds[0];
+                    cbDie2.IsChecked = holds[1];
+                    cbDie3.IsChecked = holds[2];
+                    cbDie4.IsChecked = holds[3];
+                    cbDie5.IsChecked = holds[4];
+
+                    /// Pause so holds are visible.
+                    await Task.Delay(_cpuStepDelayMs);
+
+                    /// Roll dice using existing engine.
+                    game.RollUsed(CheckDice());
+
+                    /// Update dice images.
+                    DisplayDiceSet();
+
+                    /// Update rolls remaining label.
+                    lblTimesRolled.Content = game.Rolls.ToString();
+
+                    /// Preserve existing enable/disable behavior.
+                    if (game.Rolls == 0) DiceActivation(false);
+                    if (game.Rolls == 2) DiceActivation(true);
+
+                    /// Enable scoring buttons and disable used ones.
+                    UnlockBoard();
+                    RefactorBoard();
+
+                    /// Pause so roll results are visible.
+                    await Task.Delay(_cpuStepDelayMs);
+                }
+
+                /// Choose best scoring category.
+                string category = _bot.ChooseCategory(game.Pool.diceValue, currentPlayer.PlayerScores);
+
+                /// Apply score silently.
+                _bot.ApplyScore(category, game.Pool.diceValue, currentPlayer.PlayerScores);
+
+                /// Refresh score display.
+                FillBoxes(currentPlayer);
+
+                /// Restore textbox to normal player name.
+                tbCurrentPlayer.Text = currentPlayer.PlayerName;
+
+                /// Pause briefly before ending turn.
+                await Task.Delay(_cpuStepDelayMs);
+
+                /// End CPU turn.
+                NextTurn();
+            }
+            finally
+            {
+                /// Release CPU execution lock.
+                _cpuTurnRunning = false;
+            }
+        }
+
+        #endregion
     }
 }
 
