@@ -34,6 +34,9 @@ namespace YahtzeeGame
             tbCurrentPlayer.Text = currentPlayer.PlayerName;
             tbTotalScore.Text = currentPlayer.PlayerScores.totalScore.ToString();
             LockBoard();
+
+            /// If the first player is CPU, run CPU turn after the window loads. - EasyModeBot
+            this.Loaded += async (_, __) => await PlayCpuTurnIfNeededAsync();
         }
 
         #region Click Events
@@ -76,6 +79,9 @@ namespace YahtzeeGame
         {
             //Upon starting, the start button is disabled, and the turn controls are activated.
            DiceActivation(true);
+
+            /// If CPU is current player, start CPU immediately after pressing Start. - EasyModeBot
+            _ = PlayCpuTurnIfNeededAsync();
         }
 
 
@@ -243,6 +249,9 @@ namespace YahtzeeGame
             {
                 EndGame();
             }
+
+            /// If the next player is CPU, let the CPU play automatically. - EasyModeBot
+            _ = PlayCpuTurnIfNeededAsync();
         }
 
         private void EndGame()
@@ -576,6 +585,11 @@ namespace YahtzeeGame
         private int _cpuStepDelayMs = 600;
 
         /// <summary>
+        /// Tracks whether the next CPU turn should be queued after the current CPU turn fully releases.
+        /// </summary>
+        private bool _queueNextCpuTurn = false;
+
+        /// <summary>
         /// Determines if the given player is an Easy CPU.
         /// </summary>
         private bool IsCpuPlayer(Player p)
@@ -599,6 +613,9 @@ namespace YahtzeeGame
             /// Lock CPU execution.
             _cpuTurnRunning = true;
 
+            /// Clear any previous queued state at the start of a CPU turn.
+            _queueNextCpuTurn = false;
+
             try
             {
                 /// Show CPU playing inside tbCurrentPlayer textbox.
@@ -617,6 +634,30 @@ namespace YahtzeeGame
                 /// Short pause so UI updates.
                 await Task.Delay(_cpuStepDelayMs);
 
+                /// Roll once so the CPU makes a decision.
+                if (game.Rolls > 0)
+                {
+                    /// Roll dice.
+                    game.RollUsed(CheckDice());
+
+                    /// Update dice images.
+                    DisplayDiceSet();
+
+                    /// Update rolls remaining label.
+                    lblTimesRolled.Content = game.Rolls.ToString();
+
+                    /// Preserve existing enable/disable behavior.
+                    if (game.Rolls == 0) DiceActivation(false);
+                    if (game.Rolls == 2) DiceActivation(true);
+
+                    /// Enable scoring buttons and disable used ones.
+                    UnlockBoard();
+                    RefactorBoard();
+
+                    /// Pause so roll results are visible.
+                    await Task.Delay(_cpuStepDelayMs);
+                }
+
                 /// Continue rolling while rolls remain.
                 while (game.Rolls > 0)
                 {
@@ -633,7 +674,7 @@ namespace YahtzeeGame
                     /// Pause so holds are visible.
                     await Task.Delay(_cpuStepDelayMs);
 
-                    /// Roll dice using existing engine.
+                    /// Roll dice.
                     game.RollUsed(CheckDice());
 
                     /// Update dice images.
@@ -671,11 +712,20 @@ namespace YahtzeeGame
 
                 /// End CPU turn.
                 NextTurn();
+
+                /// If the next player is CPU, queue the next CPU turn after this one fully completes.
+                _queueNextCpuTurn = IsCpuPlayer(currentPlayer) && currentPlayer.PlayerScores.ScoreCardNotFinished();
             }
             finally
             {
                 /// Release CPU execution lock.
                 _cpuTurnRunning = false;
+
+                /// Run the next CPU turn on the dispatcher so it starts after this turn fully completes.
+                if (_queueNextCpuTurn)
+                {
+                    Dispatcher.BeginInvoke(new Action(async () => await PlayCpuTurnIfNeededAsync()));
+                }
             }
         }
 

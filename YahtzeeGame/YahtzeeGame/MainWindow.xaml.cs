@@ -36,6 +36,23 @@ namespace YahtzeeGame
 
         private void singlePlayerbtt_Click(object sender, RoutedEventArgs e)
         {
+                    
+            ///logic for singleplayer bot.
+            #region easybot
+            /// Store the entered name so we can optionally convert it to a CPU name.
+            string rawName = nameTxtBx.Text;
+
+            /// If the user typed "Easy Bot", convert it to the CPU tagged name.
+            if (rawName != null && rawName.Trim().Equals("Easy Bot", StringComparison.OrdinalIgnoreCase))
+            {
+                /// Tag the player name so IsCpuPlayer detects it.
+                rawName = "Easy Bot (CPU)";
+            }
+
+            /// Push the final name back into the textbox.
+            nameTxtBx.Text = rawName;
+            #endregion
+
             //Create a instance of a player
             //add it to the player list
             //and hide the start screen.

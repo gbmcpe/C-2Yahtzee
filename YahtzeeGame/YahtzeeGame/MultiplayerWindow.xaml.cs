@@ -37,24 +37,36 @@ namespace YahtzeeGame
             Player player;
             if (tbPlayer1 != null)
             {
+                /// Modify Player 1 name if it matches "Easy Bot".
+                tbPlayer1.Text = CpuNameIfEasyBot(tbPlayer1.Text);
+
                 player = new Player(turnOrder[0], tbPlayer1.Text); 
                 Players.Add(player);
             }
 
             if (tbPlayer2 != null)
             {
+                /// Modify Player 2 name if it matches "Easy Bot".
+                tbPlayer2.Text = CpuNameIfEasyBot(tbPlayer2.Text);
+
                 player = new Player(turnOrder[1], tbPlayer2.Text);
                 Players.Add(player);
             }
 
             if (tbPlayer3 != null && tbPlayer3.IsEnabled == true)
             {
+                /// Modify Player 3 name if it matches "Easy Bot".
+                tbPlayer3.Text = CpuNameIfEasyBot(tbPlayer3.Text);
+
                 player = new Player(turnOrder[2], tbPlayer3.Text);
                 Players.Add(player);
             }
 
             if (tbPlayer4 != null && tbPlayer4.IsEnabled == true)
             {
+                /// Modify Player 4 name if it matches "Easy Bot".
+                tbPlayer4.Text = CpuNameIfEasyBot(tbPlayer4.Text);
+
                 player = new Player(turnOrder[3], tbPlayer4.Text);
                 Players.Add(player);
             }
@@ -248,5 +260,31 @@ namespace YahtzeeGame
             }
             return true;
         }
+        #region EasyModeBot
+        /// <summary>
+        /// Converts the name "Easy Bot" into a CPU player.
+        /// </summary>
+        /// <param name="rawName">The original name entered by the user.</param>
+        /// <returns>Modified name if CPU, otherwise original name.</returns>
+        private string CpuNameIfEasyBot(string rawName)
+        {
+            /// If the textbox value is null, return it unchanged.
+            if (rawName == null) return rawName;
+
+            /// Compare trimmed name to "Easy Bot" ignoring case.
+            if (rawName.Trim().Equals("Easy Bot", StringComparison.OrdinalIgnoreCase))
+            {
+                /// Return the modified CPU-tagged name.
+                return "Easy Bot (CPU)";
+            }
+
+            /// If not Easy Bot, return the original name.
+            return rawName;
+        }
+
+        #endregion
+
+
+
     }
 }
