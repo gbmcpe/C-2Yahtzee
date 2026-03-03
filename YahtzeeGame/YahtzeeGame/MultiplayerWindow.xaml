@@ -61,6 +61,7 @@
                     <ImageBrush ImageSource="/6Die.bmp"/>
                 </Button.Background>
             </Button>
+            <Label x:Name="LblEasyBotInstruction" Content="Type &quot;Easy Bot&quot; For easy CPU player." HorizontalAlignment="Left" Margin="587,81,0,0" VerticalAlignment="Top" Width="203" Foreground="White"/>
 
         </Grid>
 
