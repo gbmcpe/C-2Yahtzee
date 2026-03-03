@@ -32,40 +32,6 @@ namespace YahtzeeGame
           InitializeComponent();
         }
 
-        
-
-        private void singlePlayerbtt_Click(object sender, RoutedEventArgs e)
-        {
-                    
-            ///logic for singleplayer bot.
-            #region easybot
-            /// Store the entered name so we can optionally convert it to a CPU name.
-            string rawName = tbPlayer1.Text;
-
-            /// If the user typed "Easy Bot", convert it to the CPU tagged name.
-            if (rawName != null && rawName.Trim().Equals("Easy Bot", StringComparison.OrdinalIgnoreCase))
-            {
-                /// Tag the player name so IsCpuPlayer detects it.
-                rawName = "Easy Bot (CPU)";
-            }
-
-            /// Push the final name back into the textbox.
-            tbPlayer1.Text = rawName;
-            #endregion
-
-            //Create a instance of a player
-            //add it to the player list
-            //and hide the start screen.
-
-            Player singlePlayer = new Player(1, tbPlayer1.Text);
-            Players.Add(singlePlayer);
-            GameWindow gameWindow = new GameWindow(Players);
-
-            gameWindow.Show();
-            this.Close();
-        }
-        
-
         private void btnAbout(object sender, RoutedEventArgs e)
         {
             //Program Information
@@ -106,16 +72,7 @@ namespace YahtzeeGame
             
             Input.Close();
         }
-
-        private void multiPlayerBtt_Click(object sender, RoutedEventArgs e)
-        {
-            MultiplayerWindow multiWindow = new MultiplayerWindow();
-            Visibility = Visibility.Hidden;
-            multiWindow.Show();
-            this.Close();
-        }
-
-        
+       
 
         Dice[] PlayerRolls = new Dice[4];
         int firstPlayer;
