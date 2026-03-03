@@ -5,62 +5,100 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:YahtzeeGame"
         mc:Ignorable="d"
-        Title="MultiplayerWindow" Height="658" Width="1039" Background="#FF0A0101">
-    <Grid Margin="0,0,62,19">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="713*"/>
-            <ColumnDefinition Width="87*"/>
-        </Grid.ColumnDefinitions>
-        <ComboBox x:Name="cmbxPlayerType1" Margin="16,101,744,492" SelectionChanged="cmbxPlayerType1_SelectionChanged" Background="Black">
+        Title="MultiplayerWindow" Height="400" Width="800">
+    <Grid>
+        <Grid Height="400">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFFF8686"/>
+                    <GradientStop Color="#FF235882" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="lbMultiplayer" Content="Multiplayer Setup" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="50" FontFamily="Berlin Sans FB" Padding="10,10,10,10" Background="{x:Null}" Foreground="#FFD4FDCE" Margin="176,0,0,0" Height="76">
+                <Label.Style>
+                    <Style/>
+                </Label.Style>
+                <Label.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </Label.BorderBrush>
+            </Label>
+            <TextBox x:Name="tbPlayer1" HorizontalAlignment="Left" Margin="246,143,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="264" Height="40" FontFamily="Berlin Sans FB" FontSize="30" TextAlignment="Center" IsEnabled="False" TextChanged="tbPlayer1_TextChanged"/>
+            <Button x:Name="btnStart" Content="-&gt;" HorizontalAlignment="Left" Margin="644,324,0,0" VerticalAlignment="Top" Height="40" Width="46" FontSize="30" FontFamily="Berlin Sans FB" Background="#FFEFF665" Foreground="#FF630A0A" Click="btnStart_Click" IsDefault="True" IsEnabled="False"/>
+            <Label x:Name="lblPlayerName" Content="Please Enter your Player Names Below:" HorizontalAlignment="Left" Margin="262,107,0,0" VerticalAlignment="Top" Width="234" Background="{x:Null}" Height="38" FontSize="13" FontWeight="Medium" VerticalContentAlignment="Center" Foreground="#FFD4FDCE" Visibility="Hidden"/>
+            <TextBox x:Name="tbPlayer2" HorizontalAlignment="Left" Margin="246,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="264" Height="40" FontFamily="Berlin Sans FB" FontSize="30" TextAlignment="Center" IsEnabled="False" TextChanged="tbPlayer2_TextChanged"/>
+            <TextBox x:Name="tbPlayer3" HorizontalAlignment="Left" Margin="246,261,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="264" Height="40" FontFamily="Berlin Sans FB" FontSize="30" TextAlignment="Center" IsEnabled="False" TextChanged="tbPlayer3_TextChanged"/>
+            <TextBox x:Name="tbPlayer4" HorizontalAlignment="Left" Margin="246,322,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="264" Height="40" FontFamily="Berlin Sans FB" FontSize="30" TextAlignment="Center" IsEnabled="False" TextChanged="tbPlayer4_TextChanged"/>
+            <ComboBox x:Name="cmbxPlayers" HorizontalAlignment="Left" Margin="299,86,0,0" VerticalAlignment="Top" Width="154" Height="24" RenderTransformOrigin="0.5,0.5" AllowDrop="True" AlternationCount="1" IsDropDownOpen="True" SelectionChanged="cmbxPlayers_SelectionChanged">
+                <ComboBox.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleX="0.503"/>
+                        <RotateTransform/>
+                        <TranslateTransform X="0.241"/>
+                    </TransformGroup>
+                </ComboBox.RenderTransform>
+                <ComboBoxItem x:Name="cmbxiDefault" Content="Choose Player Number" IsSelected="True"/>
+                <ComboBoxItem x:Name="cmbxi2Player" Content="2 Players"/>
+                <ComboBoxItem x:Name="cmbxi3Player" Content="3 Players"/>
+                <ComboBoxItem x:Name="cmbxi4Player" Content="4 Players"/>
+            </ComboBox>
+            <Label x:Name="lblPlayer1" Content="Player 1" HorizontalAlignment="Left" Margin="158,139,0,0" VerticalAlignment="Top" Width="70" Background="{x:Null}" Height="38" FontSize="13" FontWeight="Medium" VerticalContentAlignment="Center" Foreground="#FFD4FDCE"/>
+            <Label x:Name="lblPlayer2" Content="Player 2" HorizontalAlignment="Left" Margin="158,197,0,0" VerticalAlignment="Top" Width="70" Background="{x:Null}" Height="38" FontSize="13" FontWeight="Medium" VerticalContentAlignment="Center" Foreground="#FFD4FDCE"/>
+            <Label x:Name="lblPlayer3" Content="Player 3" HorizontalAlignment="Left" Margin="158,263,0,0" VerticalAlignment="Top" Width="70" Background="{x:Null}" Height="38" FontSize="13" FontWeight="Medium" VerticalContentAlignment="Center" Foreground="#FFD4FDCE"/>
+            <Label x:Name="lblPlayer3_Copy" Content="Player 4" HorizontalAlignment="Left" Margin="158,324,0,0" VerticalAlignment="Top" Width="70" Background="{x:Null}" Height="38" FontSize="13" FontWeight="Medium" VerticalContentAlignment="Center" Foreground="#FFD4FDCE"/>
+            <Label x:Name="lblPlayer1_Roll" Content="" HorizontalAlignment="Left" Margin="526,139,0,0" VerticalAlignment="Top" Width="70" Background="{x:Null}" Height="38" FontSize="13" FontWeight="Medium" VerticalContentAlignment="Center" Foreground="#FFD4FDCE"/>
+            <Label x:Name="lblPlayer2_Roll" Content="" HorizontalAlignment="Left" Margin="526,197,0,0" VerticalAlignment="Top" Width="70" Background="{x:Null}" Height="38" FontSize="13" FontWeight="Medium" VerticalContentAlignment="Center" Foreground="#FFD4FDCE"/>
+            <Label x:Name="lblPlayer3_Roll" Content="" HorizontalAlignment="Left" Margin="526,263,0,0" VerticalAlignment="Top" Width="70" Background="{x:Null}" Height="38" FontSize="13" FontWeight="Medium" VerticalContentAlignment="Center" Foreground="#FFD4FDCE"/>
+            <Label x:Name="lblPlayer4_Roll" Content="" HorizontalAlignment="Left" Margin="526,324,0,0" VerticalAlignment="Top" Width="70" Background="{x:Null}" Height="38" FontSize="13" FontWeight="Medium" VerticalContentAlignment="Center" Foreground="#FFD4FDCE"/>
+            <Button x:Name="btnRollForPosition" Content="" HorizontalAlignment="Left" Margin="644,257,0,0" VerticalAlignment="Top" Height="44" Width="46" FontSize="30" FontFamily="Berlin Sans FB" Foreground="#FF630A0A" Click="btnRollPos_Click" IsDefault="True">
+                <Button.Background>
+                    <ImageBrush ImageSource="/6Die.bmp"/>
+                </Button.Background>
+            </Button>
+            <Label x:Name="LblEasyBotInstruction" Content="Type &quot;Easy Bot&quot; For easy CPU player." HorizontalAlignment="Left" Margin="587,81,0,0" VerticalAlignment="Top" Width="203" Foreground="White"/>
+            <ComboBox x:Name="cmbxPlayerType2" Margin="29,209,663,167" SelectionChanged="cmbxPlayerType1_SelectionChanged">
+                <ComboBox Height="38" Width="2"/>
+                <ComboBoxItem Content="Player Type . . ." IsSelected="True"/>
+                <ComboBoxItem Content="Human"/>
+                <ComboBoxItem Content="Easy CPU"/>
+                <ComboBoxItem Content="Hard CPU"/>
+            </ComboBox>
+
+        </Grid>
+        <ComboBox x:Name="cmbxPlayerType1" Margin="28,147,664,213" SelectionChanged="cmbxPlayerType1_SelectionChanged">
             <ComboBox Height="38" Width="2"/>
             <ComboBoxItem Content="Player Type . . ." IsSelected="True"/>
             <ComboBoxItem Content="Human"/>
             <ComboBoxItem Content="Easy CPU"/>
             <ComboBoxItem Content="Hard CPU"/>
         </ComboBox>
-        <ComboBox x:Name="cmbxPlayerType1_Copy" Margin="16,228,744,368" SelectionChanged="cmbxPlayerType1_SelectionChanged" Background="Black">
+        <ComboBox x:Name="cmbxPlayerType1_Copy" Margin="28,274,664,86" SelectionChanged="cmbxPlayerType1_SelectionChanged">
             <ComboBox Height="38" Width="2"/>
             <ComboBoxItem Content="Player Type . . ." IsSelected="True"/>
             <ComboBoxItem Content="Human"/>
             <ComboBoxItem Content="Easy CPU"/>
             <ComboBoxItem Content="Hard CPU"/>
         </ComboBox>
-        <ComboBox x:Name="cmbxPlayerType1_Copy2" Margin="16,285,744,307" SelectionChanged="cmbxPlayerType1_SelectionChanged" Background="Black">
+        <ComboBox x:Name="cmbxPlayerType1_Copy1" Margin="28,331,664,29" SelectionChanged="cmbxPlayerType1_SelectionChanged">
             <ComboBox Height="38" Width="2"/>
             <ComboBoxItem Content="Player Type . . ." IsSelected="True"/>
             <ComboBoxItem Content="Human"/>
             <ComboBoxItem Content="Easy CPU"/>
             <ComboBoxItem Content="Hard CPU"/>
         </ComboBox>
-        <Button x:Name="btnRollForPosition" Content="" HorizontalAlignment="Left" Margin="552,376,0,0" VerticalAlignment="Top" Height="44" Width="46" FontSize="30" FontFamily="Berlin Sans FB" Foreground="#FF630A0A" Click="btnRollPos_Click" IsDefault="True">
-            <Button.Background>
-                <ImageBrush ImageSource="/6Die.bmp"/>
-            </Button.Background>
-        </Button>
-        <Label x:Name="lblRollForPosition_Copy" HorizontalAlignment="Left" Margin="253,362,0,0" VerticalAlignment="Top" FontFamily="Arial Rounded MT Bold" Width="245" Height="73" ClipToBounds="True" FontSize="16" Foreground="#FFFBF8F8">
-            <Button Content="Button"/>
-        </Label>
-        <TextBox x:Name="tbPlayer1" HorizontalAlignment="Left" Margin="234,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="264" Height="40" FontFamily="Berlin Sans FB" FontSize="30" TextAlignment="Center" IsEnabled="False" TextChanged="tbPlayer1_TextChanged" Foreground="#FFB72727" Background="#FFE63C3C"/>
-        <TextBox x:Name="tbPlayer2" HorizontalAlignment="Left" Margin="234,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="264" Height="40" FontFamily="Berlin Sans FB" FontSize="30" TextAlignment="Center" IsEnabled="False" TextChanged="tbPlayer2_TextChanged" Foreground="#FFB72727" Background="#FFE63C3C"/>
-        <TextBox x:Name="tbPlayer3" HorizontalAlignment="Left" Margin="234,215,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="264" Height="40" FontFamily="Berlin Sans FB" FontSize="30" TextAlignment="Center" IsEnabled="False" TextChanged="tbPlayer3_TextChanged" Foreground="#FFB72727" Background="#FFE63C3C"/>
-        <TextBox x:Name="tbPlayer4" HorizontalAlignment="Left" Margin="234,276,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="264" Height="40" FontFamily="Berlin Sans FB" FontSize="30" TextAlignment="Center" IsEnabled="False" TextChanged="tbPlayer4_TextChanged" Foreground="#FFB72727" Background="#FFE63C3C"/>
-        <Button x:Name="btnStart" Content="Start Game" HorizontalAlignment="Left" Margin="361,469,0,0" VerticalAlignment="Top" Height="40" Width="164" FontSize="30" FontFamily="Berlin Sans FB" Background="#FFEFF665" Foreground="#FF630A0A" Click="btnStart_Click" IsDefault="True" IsEnabled="False"/>
-        <Label x:Name="lblPlayer1" Content="Player 1" HorizontalAlignment="Left" Margin="146,93,0,0" VerticalAlignment="Top" Width="70" Background="{x:Null}" Height="38" FontSize="13" FontWeight="Medium" VerticalContentAlignment="Center" Foreground="#FFD4FDCE"/>
-        <Label x:Name="lblPlayer2" Content="Player 2" HorizontalAlignment="Left" Margin="146,151,0,0" VerticalAlignment="Top" Width="70" Background="{x:Null}" Height="38" FontSize="13" FontWeight="Medium" VerticalContentAlignment="Center" Foreground="#FFD4FDCE"/>
-        <Label x:Name="lblPlayer3" Content="Player 3" HorizontalAlignment="Left" Margin="146,217,0,0" VerticalAlignment="Top" Width="70" Background="{x:Null}" Height="38" FontSize="13" FontWeight="Medium" VerticalContentAlignment="Center" Foreground="#FFD4FDCE"/>
-        <Label x:Name="lblPlayer3_Copy" Content="Player 4" HorizontalAlignment="Left" Margin="146,278,0,0" VerticalAlignment="Top" Width="70" Background="{x:Null}" Height="38" FontSize="13" FontWeight="Medium" VerticalContentAlignment="Center" Foreground="#FFD4FDCE"/>
-        <ComboBox x:Name="cmbxPlayerType2" Margin="16,159,744,434" SelectionChanged="cmbxPlayerType1_SelectionChanged" Background="Black">
+        <ComboBox x:Name="cmbxPlayerType1_Copy2" Margin="28,331,664,29" SelectionChanged="cmbxPlayerType1_SelectionChanged">
             <ComboBox Height="38" Width="2"/>
             <ComboBoxItem Content="Player Type . . ." IsSelected="True"/>
             <ComboBoxItem Content="Human"/>
             <ComboBoxItem Content="Easy CPU"/>
             <ComboBoxItem Content="Hard CPU"/>
         </ComboBox>
-        <Label x:Name="lblPlayer1_Roll" Content="" HorizontalAlignment="Left" Margin="688,206,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lblPlayer2_Roll" Content="" HorizontalAlignment="Left" Margin="688,264,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lblPlayer3_Roll" Content="" HorizontalAlignment="Left" Margin="693,327,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lblPlayer4_Roll" Content="" HorizontalAlignment="Left" Margin="693,386,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cmbxPlayers" HorizontalAlignment="Left" Margin="244,37,0,0" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>

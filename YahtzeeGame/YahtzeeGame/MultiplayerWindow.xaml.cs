@@ -125,11 +125,11 @@ namespace YahtzeeGame
 
             if (cmbxPlayers.SelectedIndex == 0)
             {
-                tbPlayer1.IsEnabled = true;
+                tbPlayer1.IsEnabled = false;
                 tbPlayer2.IsEnabled = false;
                 tbPlayer3.IsEnabled = false;
                 tbPlayer4.IsEnabled = false;
-                
+                lblPlayerName.Visibility = Visibility.Hidden;
             }
             else if (cmbxPlayers.SelectedIndex == 1)
             {
@@ -137,6 +137,7 @@ namespace YahtzeeGame
                 tbPlayer2.IsEnabled = true;
                 tbPlayer3.IsEnabled = false;
                 tbPlayer4.IsEnabled = false;
+                lblPlayerName.Visibility = Visibility.Visible;
             }
             else if (cmbxPlayers.SelectedIndex == 2)
             {
@@ -144,6 +145,7 @@ namespace YahtzeeGame
                 tbPlayer2.IsEnabled = true;
                 tbPlayer3.IsEnabled = true;
                 tbPlayer4.IsEnabled = false;
+                lblPlayerName.Visibility = Visibility.Visible;
             }
             else if (cmbxPlayers.SelectedIndex == 3)
             {
@@ -151,6 +153,7 @@ namespace YahtzeeGame
                 tbPlayer2.IsEnabled = true;
                 tbPlayer3.IsEnabled = true;
                 tbPlayer4.IsEnabled = true;
+                lblPlayerName.Visibility = Visibility.Visible;
             }
         }
 
@@ -193,7 +196,6 @@ namespace YahtzeeGame
 
         private void btnRollPos_Click(object sender, RoutedEventArgs e)
         {
-            
             lblPlayer1_Roll.Content = "";
             lblPlayer2_Roll.Content = "";
             lblPlayer3_Roll.Content = "";
