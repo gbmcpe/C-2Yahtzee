@@ -24,7 +24,7 @@ namespace YahtzeeGame
             {
                 if (!this.PlayerScores.yahtzeeScored)
                 {
-                    //score yahtzee
+                    this.PlayerScores.YahtzeeSelected(dice, true);
                     return true;
                 }
             }
@@ -35,7 +35,7 @@ namespace YahtzeeGame
             {
                 if (!this.PlayerScores.LargeStraightValidation(dice))
                 {
-                    //score Large Straight
+                    this.PlayerScores.LargeStraightSelected(dice, true);
                     return true;
                 }
             }
@@ -49,7 +49,7 @@ namespace YahtzeeGame
                 //if on 3rd roll
                 if (!this.PlayerScores.SmallStraightValidation(dice))
                 {
-                    //score Small Straight
+                    this.PlayerScores.SmallStraightSelected(dice, true);
                     return true;
                 }
             }
@@ -65,16 +65,7 @@ namespace YahtzeeGame
                 //if on 3rd roll
                 if (!this.PlayerScores.fourOfAKindScored)
                 {
-                    //score Four of a Kind
-                    return true;
-                }
-            }
-
-            if (this.PlayerScores.FullHouseValidation(dice))
-            {
-                if (!this.PlayerScores.fullHouseScored)
-                {
-                    //score Full House
+                    this.PlayerScores.FourOfAKindSelected(dice, true);
                     return true;
                 }
             }
@@ -91,7 +82,7 @@ namespace YahtzeeGame
                 //else, If on 3rd roll
                 if (!this.PlayerScores.threeOfAKindScored)
                 {
-                    //score three of a kind
+                    this.PlayerScores.ThreeOfAKindSelected(dice, true);
                     return true;
                 }
             }
@@ -114,17 +105,45 @@ namespace YahtzeeGame
                 if (this.PlayerScores.FullHouseValidation(dice))
                 {
                     if (!this.PlayerScores.fullHouseScored)
-                    //score full house
+                    {
+                        this.PlayerScores.FullHouseSelected(dice, true);
+                    }
                     return true;
                 }
                 else if(!this.PlayerScores.chanceScored && this.PlayerScores.chance > 15)
                 {
-                    //score chance
+                    this.PlayerScores.ChanceSelected(dice, true);
                     return true;
                 }
                 else
                 {
                     //score lowest pair
+
+                    if (!this.PlayerScores.acesScored)
+                    {
+                        this.PlayerScores.AcesSelected(dice, true);
+                    }
+                    else if (!this.PlayerScores.twosScored)
+                    {
+                        this.PlayerScores.TwosSelected(dice, true);
+                    }
+                    else if (!this.PlayerScores.threesScored)
+                    {
+                        this.PlayerScores.ThreesSelected(dice, true);
+                    }
+                    else if (!this.PlayerScores.foursScored)
+                    {
+                        this.PlayerScores.FoursSelected(dice, true);
+                    }
+                    else if (!this.PlayerScores.fivesScored)
+                    {
+                        this.PlayerScores.FivesSelected(dice, true);
+                    }
+                    else if (!this.PlayerScores.sixesScored)
+                    {
+                        this.PlayerScores.SixesSelected(dice, true);
+                    }
+
                     return true;
                 }
             }

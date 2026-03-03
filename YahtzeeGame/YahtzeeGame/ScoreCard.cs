@@ -262,7 +262,7 @@ namespace YahtzeeGame
          * Update 2: Each Scoring Method now checks if the Score Card has been filled. If not, it fires off ScoreCardFilled()
          */
         #region Scoring Methods
-        public void AcesSelected(int[] Dice)
+        public void AcesSelected(int[] Dice, bool isComputer = false)
         {
             if (ScoreCardNotFinished())
             {
@@ -276,11 +276,14 @@ namespace YahtzeeGame
                         }
                     }
 
-                    MessageBoxResult choice =
-                        MessageBox.Show("Do you want to score Aces? You will gain " + aces + " points.", "Confirmation",
-                            MessageBoxButton.YesNo);
+                    MessageBoxResult choice = MessageBoxResult.No;
 
-                    if (choice == MessageBoxResult.Yes)
+                    if (!isComputer)
+                    {
+                        choice = MessageBox.Show("Do you want to score Aces? You will gain " + aces + " points.", "Confirmation", MessageBoxButton.YesNo);
+                    }
+
+                    if (choice == MessageBoxResult.Yes || isComputer)
                     {
                         acesScored = true;
                         totalScore += aces;
@@ -288,7 +291,9 @@ namespace YahtzeeGame
                 }
                 else
                 {
+                    
                     MessageBox.Show("This box has already been scored. It contains " + aces + " points.");
+                    
                 }
             }
             else
@@ -297,7 +302,7 @@ namespace YahtzeeGame
             }
         }
 
-        public void TwosSelected(int[] Dice)
+        public void TwosSelected(int[] Dice, bool isComputer = false)
         {
             if (ScoreCardNotFinished())
             {
@@ -311,11 +316,14 @@ namespace YahtzeeGame
                         }
                     }
 
-                    MessageBoxResult choice =
-                        MessageBox.Show("Do you want to score Twos? You will gain " + twos + " points.", "Confirmation",
-                            MessageBoxButton.YesNo);
+                    MessageBoxResult choice = MessageBoxResult.No;
 
-                    if (choice == MessageBoxResult.Yes)
+                    if (!isComputer)
+                    {
+                        choice = MessageBox.Show("Do you want to score Twos? You will gain " + twos + " points.", "Confirmation", MessageBoxButton.YesNo);
+                    }
+
+                    if (choice == MessageBoxResult.Yes || isComputer)
                     {
                         twosScored = true;
                         totalScore += twos;
@@ -330,7 +338,7 @@ namespace YahtzeeGame
             else { ScoreCardFilled(); }
 }
 
-        public void ThreesSelected(int[] Dice)
+        public void ThreesSelected(int[] Dice, bool isComputer = false)
         {
             if (ScoreCardNotFinished())
             {
@@ -344,11 +352,14 @@ namespace YahtzeeGame
                         }
                     }
 
-                    MessageBoxResult choice =
-                        MessageBox.Show("Do you want to score Threes? You will gain " + threes + " points.",
-                            "Confirmation", MessageBoxButton.YesNo);
+                    MessageBoxResult choice = MessageBoxResult.No;
 
-                    if (choice == MessageBoxResult.Yes)
+                    if (!isComputer)
+                    {
+                        choice = MessageBox.Show("Do you want to score Threes? You will gain " + threes + " points.", "Confirmation", MessageBoxButton.YesNo);
+                    }
+
+                    if (choice == MessageBoxResult.Yes || isComputer)
                     {
                         threesScored = true;
                         totalScore += threes;
@@ -362,7 +373,7 @@ namespace YahtzeeGame
             else { ScoreCardFilled(); }
         }
 
-        public void FoursSelected(int[] Dice)
+        public void FoursSelected(int[] Dice, bool isComputer = false)
         {
             if (ScoreCardNotFinished())
             {
@@ -376,11 +387,14 @@ namespace YahtzeeGame
                         }
                     }
 
-                    MessageBoxResult choice =
-                        MessageBox.Show("Do you want to score Fours? You will gain " + fours + " points.",
-                            "Confirmation", MessageBoxButton.YesNo);
+                    MessageBoxResult choice = MessageBoxResult.No;
 
-                    if (choice == MessageBoxResult.Yes)
+                    if (!isComputer)
+                    {
+                        choice = MessageBox.Show("Do you want to score Fours? You will gain " + fours + " points.", "Confirmation", MessageBoxButton.YesNo);
+                    }
+
+                    if (choice == MessageBoxResult.Yes || isComputer)
                     {
                         foursScored = true;
                         totalScore += fours;
@@ -394,7 +408,7 @@ namespace YahtzeeGame
             else { ScoreCardFilled(); }
         }
 
-        public void FivesSelected(int[] Dice)
+        public void FivesSelected(int[] Dice, bool isComputer = false)
         {
             if (ScoreCardNotFinished())
             {
@@ -408,11 +422,13 @@ namespace YahtzeeGame
                         }
                     }
 
-                    MessageBoxResult choice =
-                        MessageBox.Show("Do you want to score Fives? You will gain " + fives + " points.",
-                            "Confirmation", MessageBoxButton.YesNo);
+                    MessageBoxResult choice = MessageBoxResult.No;
 
-                    if (choice == MessageBoxResult.Yes)
+                    if (!isComputer)
+                    { 
+                        choice = MessageBox.Show("Do you want to score Fives? You will gain " + fives + " points.", "Confirmation", MessageBoxButton.YesNo);}
+
+                    if (choice == MessageBoxResult.Yes || isComputer)
                     {
                         fivesScored = true;
                         totalScore += fives;
@@ -426,7 +442,7 @@ namespace YahtzeeGame
             else { ScoreCardFilled(); }
         }
 
-        public void SixesSelected(int[] Dice)
+        public void SixesSelected(int[] Dice, bool isComputer = false)
         {
             if (ScoreCardNotFinished())
             {
@@ -440,11 +456,15 @@ namespace YahtzeeGame
                         }
                     }
 
-                    MessageBoxResult choice =
-                        MessageBox.Show("Do you want to score Sixes? You will gain " + sixes + " points.",
-                            "Confirmation", MessageBoxButton.YesNo);
+                    MessageBoxResult choice = MessageBoxResult.No;
 
-                    if (choice == MessageBoxResult.Yes)
+                    if (!isComputer)
+                    {
+                        choice = MessageBox.Show("Do you want to score Sixes? You will gain " + sixes + " points.", "Confirmation", MessageBoxButton.YesNo);
+
+                    }
+
+                    if (choice == MessageBoxResult.Yes || isComputer)
                     {
                         sixesScored = true;
                         totalScore += sixes;
@@ -469,7 +489,7 @@ namespace YahtzeeGame
             }
         }
 
-        public void ThreeOfAKindSelected(int[] Dice)
+        public void ThreeOfAKindSelected(int[] Dice, bool isComputer = false)
         {
 
             if (ScoreCardNotFinished())
@@ -483,10 +503,16 @@ namespace YahtzeeGame
                             threeOfAKind += Die;
                         }
 
-                        MessageBoxResult choice = MessageBox.Show("Do you want to score Three of a Kind? You will gain "
-                                                                  + threeOfAKind + " points.", "Confirmation", MessageBoxButton.YesNo);
+                        
+                        MessageBoxResult choice = MessageBoxResult.No;
 
-                        if (choice == MessageBoxResult.Yes)
+                        if (!isComputer)
+                        {
+                            choice = MessageBox.Show("Do you want to score Three of a Kind? You will gain "
+                                            + threeOfAKind + " points.", "Confirmation", MessageBoxButton.YesNo);
+                        }
+
+                        if (choice == MessageBoxResult.Yes || isComputer)
                         {
                             threeOfAKindScored = true;
                             totalScore += threeOfAKind;
@@ -494,9 +520,15 @@ namespace YahtzeeGame
                     }
                     else
                     {
-                        MessageBoxResult choice = MessageBox.Show("Do you want to score Three of a Kind? You will gain 0 points.", 
-                            "Confirmation", MessageBoxButton.YesNo);
-                        if (choice == MessageBoxResult.Yes)
+
+                        MessageBoxResult choice = MessageBoxResult.No;
+                        if (!isComputer)
+                        {
+                            choice = MessageBox.Show("Do you want to score Three of a Kind? You will gain 0 points.",
+                                "Confirmation", MessageBoxButton.YesNo);
+                        }
+
+                        if (choice == MessageBoxResult.Yes || isComputer)
                         {
                             threeOfAKind = 0;
                             threeOfAKindScored = true;
@@ -511,7 +543,7 @@ namespace YahtzeeGame
             else { ScoreCardFilled(); }
         }
 
-        public void FourOfAKindSelected(int[] Dice)
+        public void FourOfAKindSelected(int[] Dice, bool isComputer = false)
         {
             if (ScoreCardNotFinished())
             {
@@ -524,11 +556,15 @@ namespace YahtzeeGame
                             fourOfAKind += Die;
                         }
 
-                        MessageBoxResult choice = MessageBox.Show("Do you want to score Four of a Kind? You will gain "
-                                                                  + fourOfAKind + " points.", "Confirmation",
-                            MessageBoxButton.YesNo);
+                        MessageBoxResult choice = MessageBoxResult.No;
 
-                        if (choice == MessageBoxResult.Yes)
+                        if (!isComputer)
+                        { 
+                            choice = MessageBox.Show("Do you want to score Four of a Kind? You will gain "
+                                          + fourOfAKind + " points.", "Confirmation", MessageBoxButton.YesNo);
+                        }
+
+                        if (choice == MessageBoxResult.Yes || isComputer)
                         {
                             fourOfAKindScored = true;
                             totalScore += fourOfAKind;
@@ -536,9 +572,16 @@ namespace YahtzeeGame
                     }
                     else
                     {
-                        MessageBoxResult choice = MessageBox.Show("Do you want to score Four of a Kind? You will gain 0 points.",
-                            "Confirmation", MessageBoxButton.YesNo);
-                        if (choice == MessageBoxResult.Yes)
+
+                        MessageBoxResult choice = MessageBoxResult.No;
+
+                        if (!isComputer)
+                        {
+                            choice = MessageBox.Show("Do you want to score Four of a Kind? You will gain 0 points.",
+                                "Confirmation", MessageBoxButton.YesNo);
+                        }
+
+                        if (choice == MessageBoxResult.Yes || isComputer)
                         {
                             fourOfAKind = 0; 
                             fourOfAKindScored = true;
@@ -553,7 +596,7 @@ namespace YahtzeeGame
             else { ScoreCardFilled(); }
         }
 
-        public void FullHouseSelected(int[] Dice)
+        public void FullHouseSelected(int[] Dice, bool isComputer = false)
         {
             if (ScoreCardNotFinished())
             {
@@ -561,10 +604,15 @@ namespace YahtzeeGame
                 {
                     if (FullHouseValidation(Dice))
                     {
-                        MessageBoxResult choice = MessageBox.Show("Do you want to score Full House? You will gain 25 points.", "Confirmation",
-                            MessageBoxButton.YesNo);
+                        MessageBoxResult choice = MessageBoxResult.No;
 
-                        if (choice == MessageBoxResult.Yes)
+                        if (!isComputer)
+                        {
+                            choice = MessageBox.Show("Do you want to score Full House? You will gain 25 points.", "Confirmation", MessageBoxButton.YesNo);
+
+                        }
+
+                        if (choice == MessageBoxResult.Yes || isComputer)
                         {
                             fullHouse = 25;
                             fullHouseScored = true;
@@ -573,10 +621,14 @@ namespace YahtzeeGame
                     }
                     else
                     {
-                        MessageBoxResult choice = MessageBox.Show("Do you want to score Full House? You will gain 0 points.", "Confirmation",
-                            MessageBoxButton.YesNo);
+                        MessageBoxResult choice = MessageBoxResult.No;
+                        
+                        if (!isComputer)
+                        {
+                            choice = MessageBox.Show("Do you want to score Full House? You will gain 0 points.", "Confirmation", MessageBoxButton.YesNo);
+                        }
 
-                        if (choice == MessageBoxResult.Yes)
+                        if (choice == MessageBoxResult.Yes || isComputer)
                         {
                             fullHouse = 0;
                             fullHouseScored = true;
@@ -591,7 +643,7 @@ namespace YahtzeeGame
             else { ScoreCardFilled(); }
         }
 
-        public void SmallStraightSelected(int[] Dice)
+        public void SmallStraightSelected(int[] Dice, bool isComputer = false)
         {
             if (ScoreCardNotFinished())
             {
@@ -599,10 +651,15 @@ namespace YahtzeeGame
                 {
                     if (SmallStraightValidation(Dice))
                     {
-                        MessageBoxResult choice = MessageBox.Show("Do you want to score Small Straight? You will gain 30 points.", "Confirmation",
-                            MessageBoxButton.YesNo);
 
-                        if (choice == MessageBoxResult.Yes)
+                        MessageBoxResult choice = MessageBoxResult.No;
+                        
+                        if (!isComputer)
+                        {
+                            choice = MessageBox.Show("Do you want to score Small Straight? You will gain 30 points.", "Confirmation", MessageBoxButton.YesNo);
+                        }
+
+                        if (choice == MessageBoxResult.Yes || isComputer)
                         {
                             smallStraight = 30;
                             smallStraightScored = true;
@@ -611,8 +668,12 @@ namespace YahtzeeGame
                     }
                     else
                     {
-                        MessageBoxResult choice = MessageBox.Show("Do you want to score Small Straight? You will gain 0 points.", "Confirmation",
-                            MessageBoxButton.YesNo);
+                        MessageBoxResult choice = MessageBoxResult.No;
+                        
+                        if (!isComputer)
+                        {
+                            choice = MessageBox.Show("Do you want to score Small Straight? You will gain 0 points.", "Confirmation", MessageBoxButton.YesNo);
+                        }
 
                         if (choice == MessageBoxResult.Yes)
                         {
@@ -629,7 +690,7 @@ namespace YahtzeeGame
             else { ScoreCardFilled(); }
         }
 
-        public void LargeStraightSelected(int[] Dice)
+        public void LargeStraightSelected(int[] Dice, bool isComputer = false)
         {
             if (ScoreCardNotFinished())
             {
@@ -637,11 +698,15 @@ namespace YahtzeeGame
                 {
                     if (LargeStraightValidation(Dice))
                     {
-                        MessageBoxResult choice = MessageBox.Show(
-                            "Do you want to score Large Straight? You will gain 40 points.", "Confirmation",
-                            MessageBoxButton.YesNo);
 
-                        if (choice == MessageBoxResult.Yes)
+                        MessageBoxResult choice = MessageBoxResult.No;
+                        
+                        if (!isComputer)
+                        {
+                            choice = MessageBox.Show("Do you want to score Large Straight? You will gain 40 points.", "Confirmation", MessageBoxButton.YesNo);
+                        }
+
+                        if (choice == MessageBoxResult.Yes || isComputer)
                         {
                             largeStraight = 40;
                             largeStraightScored = true;
@@ -650,11 +715,14 @@ namespace YahtzeeGame
                     }
                     else
                     {
-                        MessageBoxResult choice = MessageBox.Show(
-                            "Do you want to score Large Straight? You will gain 0 points.", "Confirmation",
-                            MessageBoxButton.YesNo);
+                        MessageBoxResult choice = MessageBoxResult.No;
+                        
+                        if (!isComputer)
+                        {
+                            choice = MessageBox.Show("Do you want to score Large Straight? You will gain 0 points.", "Confirmation", MessageBoxButton.YesNo);
+                        }
 
-                        if (choice == MessageBoxResult.Yes)
+                        if (choice == MessageBoxResult.Yes || isComputer)
                         {
                             largeStraight = 0;
                             largeStraightScored = true;
@@ -669,7 +737,7 @@ namespace YahtzeeGame
             else { ScoreCardFilled(); }
         }
 
-        public void YahtzeeSelected(int[] Dice)
+        public void YahtzeeSelected(int[] Dice, bool isComputer = false)
         {
             if (ScoreCardNotFinished())
             {
@@ -678,11 +746,14 @@ namespace YahtzeeGame
                     if (yahtzeeScored == false)
                     {
 
-                        MessageBoxResult choice = MessageBox.Show(
-                            "Do you want to score Yahtzee? You will gain 50 points.", "Confirmation",
-                            MessageBoxButton.YesNo);
+                        MessageBoxResult choice = MessageBoxResult.No;
+                        
+                        if (!isComputer)
+                        {
+                            choice = MessageBox.Show("Do you want to score Yahtzee? You will gain 50 points.", "Confirmation", MessageBoxButton.YesNo);
+                        }
 
-                        if (choice == MessageBoxResult.Yes)
+                        if (choice == MessageBoxResult.Yes || isComputer)
                         {
                             yahtzee = 50;
                             yahtzeeScored = true;
@@ -696,10 +767,15 @@ namespace YahtzeeGame
                 }
                 else
                 {
-                    MessageBoxResult choice = MessageBox.Show("Do you want to score Yahtzee? You will gain 0 points.", "Confirmation",
-                        MessageBoxButton.YesNo);
 
-                    if (choice == MessageBoxResult.Yes)
+                    MessageBoxResult choice = MessageBoxResult.No;
+                    
+                    if (!isComputer)
+                    {
+                        MessageBox.Show("Do you want to score Yahtzee? You will gain 0 points.", "Confirmation", MessageBoxButton.YesNo);
+                    }
+
+                    if (choice == MessageBoxResult.Yes || isComputer)
                     {
                         yahtzee = 0;
                         yahtzeeScored = true;
@@ -709,7 +785,7 @@ namespace YahtzeeGame
             else { ScoreCardFilled(); }
         }
 
-        public void ChanceSelected(int[] Dice)
+        public void ChanceSelected(int[] Dice, bool isComputer = false)
         {
             if (ScoreCardNotFinished())
             {
@@ -720,11 +796,14 @@ namespace YahtzeeGame
                         chance += Die;
                     }
 
-                    MessageBoxResult choice = MessageBox.Show("Do you want to score Chance? You will gain "
-                                                              + chance + " points.", "Confirmation",
-                        MessageBoxButton.YesNo);
+                    MessageBoxResult choice = MessageBoxResult.No;
+                    
+                    if (!isComputer)
+                    {
+                        choice = MessageBox.Show("Do you want to score Chance? You will gain " + chance + " points.", "Confirmation", MessageBoxButton.YesNo);
+                    }
 
-                    if (choice == MessageBoxResult.Yes)
+                    if (choice == MessageBoxResult.Yes || isComputer)
                     {
                         chanceScored = true;
                         totalScore += chance;
