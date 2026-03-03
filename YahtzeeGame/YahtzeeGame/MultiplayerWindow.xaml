@@ -62,8 +62,43 @@
                 </Button.Background>
             </Button>
             <Label x:Name="LblEasyBotInstruction" Content="Type &quot;Easy Bot&quot; For easy CPU player." HorizontalAlignment="Left" Margin="587,81,0,0" VerticalAlignment="Top" Width="203" Foreground="White"/>
+            <ComboBox x:Name="cmbxPlayerType2" Margin="29,209,663,167" SelectionChanged="cmbxPlayerType1_SelectionChanged">
+                <ComboBox Height="38" Width="2"/>
+                <ComboBoxItem Content="Player Type . . ." IsSelected="True"/>
+                <ComboBoxItem Content="Human"/>
+                <ComboBoxItem Content="Easy CPU"/>
+                <ComboBoxItem Content="Hard CPU"/>
+            </ComboBox>
 
         </Grid>
+        <ComboBox x:Name="cmbxPlayerType1" Margin="28,147,664,213" SelectionChanged="cmbxPlayerType1_SelectionChanged">
+            <ComboBox Height="38" Width="2"/>
+            <ComboBoxItem Content="Player Type . . ." IsSelected="True"/>
+            <ComboBoxItem Content="Human"/>
+            <ComboBoxItem Content="Easy CPU"/>
+            <ComboBoxItem Content="Hard CPU"/>
+        </ComboBox>
+        <ComboBox x:Name="cmbxPlayerType1_Copy" Margin="28,274,664,86" SelectionChanged="cmbxPlayerType1_SelectionChanged">
+            <ComboBox Height="38" Width="2"/>
+            <ComboBoxItem Content="Player Type . . ." IsSelected="True"/>
+            <ComboBoxItem Content="Human"/>
+            <ComboBoxItem Content="Easy CPU"/>
+            <ComboBoxItem Content="Hard CPU"/>
+        </ComboBox>
+        <ComboBox x:Name="cmbxPlayerType1_Copy1" Margin="28,331,664,29" SelectionChanged="cmbxPlayerType1_SelectionChanged">
+            <ComboBox Height="38" Width="2"/>
+            <ComboBoxItem Content="Player Type . . ." IsSelected="True"/>
+            <ComboBoxItem Content="Human"/>
+            <ComboBoxItem Content="Easy CPU"/>
+            <ComboBoxItem Content="Hard CPU"/>
+        </ComboBox>
+        <ComboBox x:Name="cmbxPlayerType1_Copy2" Margin="28,331,664,29" SelectionChanged="cmbxPlayerType1_SelectionChanged">
+            <ComboBox Height="38" Width="2"/>
+            <ComboBoxItem Content="Player Type . . ." IsSelected="True"/>
+            <ComboBoxItem Content="Human"/>
+            <ComboBoxItem Content="Easy CPU"/>
+            <ComboBoxItem Content="Hard CPU"/>
+        </ComboBox>
 
     </Grid>
 </Window>

@@ -25,9 +25,11 @@ namespace YahtzeeGame
             InitializeComponent();
             btnRollForPosition.IsEnabled = false;
         }
+
         List<Player> Players = new List<Player>();
         Dice[] PlayerRolls = new Dice[4];
         int firstPlayer;
+
 
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
@@ -282,9 +284,17 @@ namespace YahtzeeGame
             return rawName;
         }
 
+
+
         #endregion
 
+        private void cmbxPlayerType1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
 
-
+            // Item 1 is the default (no selection)
+            //Item 2 is Human
+            //Item 3 is Easy CPU
+            //Item 4 is Hard CPU
+        }
     }
 }
