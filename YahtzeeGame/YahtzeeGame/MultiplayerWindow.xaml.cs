@@ -46,7 +46,7 @@ namespace YahtzeeGame
                 Players.Add(player);
             }
 
-            if (tbPlayer2 != null)
+            if (tbPlayer2 != null && tbPlayer2.IsEnabled == true)
             {
                 /// Modify Player 2 name if it matches "Easy Bot".
                 tbPlayer2.Text = CpuNameIfEasyBot(tbPlayer2.Text);
@@ -134,7 +134,7 @@ namespace YahtzeeGame
             else if (cmbxPlayers.SelectedIndex == 1)
             {
                 tbPlayer1.IsEnabled = true;
-                tbPlayer2.IsEnabled = true;
+                tbPlayer2.IsEnabled = false;
                 tbPlayer3.IsEnabled = false;
                 tbPlayer4.IsEnabled = false;
                 lblPlayerName.Visibility = Visibility.Visible;
@@ -143,11 +143,19 @@ namespace YahtzeeGame
             {
                 tbPlayer1.IsEnabled = true;
                 tbPlayer2.IsEnabled = true;
-                tbPlayer3.IsEnabled = true;
+                tbPlayer3.IsEnabled = false;
                 tbPlayer4.IsEnabled = false;
                 lblPlayerName.Visibility = Visibility.Visible;
             }
             else if (cmbxPlayers.SelectedIndex == 3)
+            {
+                tbPlayer1.IsEnabled = true;
+                tbPlayer2.IsEnabled = true;
+                tbPlayer3.IsEnabled = true;
+                tbPlayer4.IsEnabled = false;
+                lblPlayerName.Visibility = Visibility.Visible;
+            }
+            else if (cmbxPlayers.SelectedIndex == 4)
             {
                 tbPlayer1.IsEnabled = true;
                 tbPlayer2.IsEnabled = true;
@@ -159,17 +167,23 @@ namespace YahtzeeGame
 
         private void tbPlayer1_TextChanged(object sender, TextChangedEventArgs e)
         {
-            btnRollForPosition.IsEnabled = CheckStart();
+            if (tbPlayer1 != null && tbPlayer2.IsEnabled == false)
+            {
+               btnStart.IsEnabled=CheckStart();
+            }
+            else if (tbPlayer1 != null && tbPlayer2.IsEnabled==true)
+            { btnRollForPosition.IsEnabled = CheckStart(); }
+         
 
         }
 
         private bool CheckStart()
         {
-            if ((tbPlayer1 != null) && (tbPlayer2 != null)
+            if ((tbPlayer1 != null) && (tbPlayer2 != null || tbPlayer2.IsEnabled ==false )
                                     && (tbPlayer3 != null || tbPlayer3.IsEnabled == false)
                                     && (tbPlayer3 != null || tbPlayer3.IsEnabled == false))
             {
-                btnRollForPosition.IsEnabled = true;
+              
                 return true;
             }
             

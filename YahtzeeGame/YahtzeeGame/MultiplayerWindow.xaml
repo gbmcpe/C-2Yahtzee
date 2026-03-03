@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:YahtzeeGame"
         mc:Ignorable="d"
-        Title="MultiplayerWindow" Height="400" Width="800">
+        Title="MultiplayerWindow" Height="480" Width="872">
     <Grid>
-        <Grid Height="400">
+        <Grid Margin="0,10,10,10">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFFF8686"/>
@@ -17,7 +17,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Label x:Name="lbMultiplayer" Content="Multiplayer Setup" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="50" FontFamily="Berlin Sans FB" Padding="10,10,10,10" Background="{x:Null}" Foreground="#FFD4FDCE" Margin="176,0,0,0" Height="76">
+            <Label x:Name="lbMultiplayer" Content="Game Setup" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="50" FontFamily="Berlin Sans FB" Padding="10,10,10,10" Background="{x:Null}" Foreground="#FFD4FDCE" Margin="230,0,0,0" Height="76">
                 <Label.Style>
                     <Style/>
                 </Label.Style>
@@ -62,43 +62,62 @@
                 </Button.Background>
             </Button>
             <Label x:Name="LblEasyBotInstruction" Content="Type &quot;Easy Bot&quot; For easy CPU player." HorizontalAlignment="Left" Margin="587,81,0,0" VerticalAlignment="Top" Width="203" Foreground="White"/>
-            <ComboBox x:Name="cmbxPlayerType2" Margin="29,209,663,167" SelectionChanged="cmbxPlayerType1_SelectionChanged">
-                <ComboBox Height="38" Width="2"/>
-                <ComboBoxItem Content="Player Type . . ." IsSelected="True"/>
-                <ComboBoxItem Content="Human"/>
-                <ComboBoxItem Content="Easy CPU"/>
-                <ComboBoxItem Content="Hard CPU"/>
+            <Label x:Name="LblEasyBotInstruction_Copy" Content="Click the Dice to roll for Turn Position! (Multiplayer Only)" HorizontalAlignment="Left" Margin="561,204,0,0" VerticalAlignment="Top" Width="210" Foreground="White" Height="24"/>
+            <Label x:Name="LblEasyBotInstruction_Copy1" Content="(Multiplayer Only)" HorizontalAlignment="Left" Margin="610,227,0,0" VerticalAlignment="Top" Width="114" Foreground="White" Height="24"/>
+            <ComboBox x:Name="cmbxPlayerType1" HorizontalAlignment="Left" Margin="56,149,0,0" VerticalAlignment="Top" Width="88" Height="24" RenderTransformOrigin="0.5,0.5" AllowDrop="True" AlternationCount="1" IsDropDownOpen="True" SelectionChanged="cmbxPlayers_SelectionChanged">
+                <ComboBox.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleX="0.503"/>
+                        <RotateTransform/>
+                        <TranslateTransform X="0.241"/>
+                    </TransformGroup>
+                </ComboBox.RenderTransform>
+                <ComboBoxItem x:Name="cmbxiDefault1" Content="Human" IsSelected="True"/>
+                <ComboBoxItem x:Name="cmbxi2Player1" Content="Easy AI"/>
+                <ComboBoxItem x:Name="cmbxi3Player1" Content="Hard AI"/>
+            </ComboBox>
+            <ComboBox x:Name="cmbxPlayerType1_Copy" HorizontalAlignment="Left" Margin="56,205,0,0" VerticalAlignment="Top" Width="88" Height="24" RenderTransformOrigin="0.5,0.5" AllowDrop="True" AlternationCount="1" IsDropDownOpen="True" SelectionChanged="cmbxPlayers_SelectionChanged">
+                <ComboBox.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleX="0.503"/>
+                        <RotateTransform/>
+                        <TranslateTransform X="0.241"/>
+                    </TransformGroup>
+                </ComboBox.RenderTransform>
+                <ComboBoxItem x:Name="cmbxiDefault2" Content="Human" IsSelected="True"/>
+                <ComboBoxItem x:Name="cmbxi2Player2" Content="Easy AI"/>
+                <ComboBoxItem x:Name="cmbxi3Player2" Content="Hard AI"/>
+            </ComboBox>
+            <ComboBox x:Name="cmbxPlayerType1_Copy1" HorizontalAlignment="Left" Margin="56,271,0,0" VerticalAlignment="Top" Width="88" Height="24" RenderTransformOrigin="0.5,0.5" AllowDrop="True" AlternationCount="1" IsDropDownOpen="True" SelectionChanged="cmbxPlayers_SelectionChanged">
+                <ComboBox.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleX="0.503"/>
+                        <RotateTransform/>
+                        <TranslateTransform X="0.241"/>
+                    </TransformGroup>
+                </ComboBox.RenderTransform>
+                <ComboBoxItem x:Name="cmbxiDefault3" Content="Human" IsSelected="True"/>
+                <ComboBoxItem x:Name="cmbxi2Player3" Content="Easy AI"/>
+                <ComboBoxItem x:Name="cmbxi3Player3" Content="Hard AI"/>
+            </ComboBox>
+            <ComboBox x:Name="cmbxPlayerType1_Copy2" HorizontalAlignment="Left" Margin="56,333,0,0" VerticalAlignment="Top" Width="88" Height="24" RenderTransformOrigin="0.5,0.5" AllowDrop="True" AlternationCount="1" IsDropDownOpen="True" SelectionChanged="cmbxPlayers_SelectionChanged">
+                <ComboBox.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleX="0.503"/>
+                        <RotateTransform/>
+                        <TranslateTransform X="0.241"/>
+                    </TransformGroup>
+                </ComboBox.RenderTransform>
+                <ComboBoxItem x:Name="cmbxiDefault4" Content="Human" IsSelected="True"/>
+                <ComboBoxItem x:Name="cmbxi2Player4" Content="Easy AI"/>
+                <ComboBoxItem x:Name="cmbxi3Player4" Content="Hard AI"/>
             </ComboBox>
 
         </Grid>
-        <ComboBox x:Name="cmbxPlayerType1" Margin="28,147,664,213" SelectionChanged="cmbxPlayerType1_SelectionChanged">
-            <ComboBox Height="38" Width="2"/>
-            <ComboBoxItem Content="Player Type . . ." IsSelected="True"/>
-            <ComboBoxItem Content="Human"/>
-            <ComboBoxItem Content="Easy CPU"/>
-            <ComboBoxItem Content="Hard CPU"/>
-        </ComboBox>
-        <ComboBox x:Name="cmbxPlayerType1_Copy" Margin="28,274,664,86" SelectionChanged="cmbxPlayerType1_SelectionChanged">
-            <ComboBox Height="38" Width="2"/>
-            <ComboBoxItem Content="Player Type . . ." IsSelected="True"/>
-            <ComboBoxItem Content="Human"/>
-            <ComboBoxItem Content="Easy CPU"/>
-            <ComboBoxItem Content="Hard CPU"/>
-        </ComboBox>
-        <ComboBox x:Name="cmbxPlayerType1_Copy1" Margin="28,331,664,29" SelectionChanged="cmbxPlayerType1_SelectionChanged">
-            <ComboBox Height="38" Width="2"/>
-            <ComboBoxItem Content="Player Type . . ." IsSelected="True"/>
-            <ComboBoxItem Content="Human"/>
-            <ComboBoxItem Content="Easy CPU"/>
-            <ComboBoxItem Content="Hard CPU"/>
-        </ComboBox>
-        <ComboBox x:Name="cmbxPlayerType1_Copy2" Margin="28,331,664,29" SelectionChanged="cmbxPlayerType1_SelectionChanged">
-            <ComboBox Height="38" Width="2"/>
-            <ComboBoxItem Content="Player Type . . ." IsSelected="True"/>
-            <ComboBoxItem Content="Human"/>
-            <ComboBoxItem Content="Easy CPU"/>
-            <ComboBoxItem Content="Hard CPU"/>
-        </ComboBox>
 
     </Grid>
 </Window>
