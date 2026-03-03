@@ -23,6 +23,7 @@ namespace YahtzeeGame
         public bool foursScored;
         public bool fivesScored;
         public bool sixesScored;
+        public bool bonusScored;
         public bool threeOfAKindScored;
         public bool fourOfAKindScored;
         public bool fullHouseScored;
@@ -42,6 +43,7 @@ namespace YahtzeeGame
         public int fours;
         public int fives;
         public int sixes;
+        public int bonus;
         public int threeOfAKind;
         public int fourOfAKind;
         public int fullHouse;
@@ -77,6 +79,7 @@ namespace YahtzeeGame
             fours = 0;
             fives = 0;
             sixes = 0;
+            bonus = 0;
             threeOfAKind = 0;
             fourOfAKind = 0;
             fullHouse = 0;
@@ -453,6 +456,17 @@ namespace YahtzeeGame
                 }
             }
             else { ScoreCardFilled(); }
+        }
+        public void BonusConditionsMet()
+        {
+            if (aces + twos+ threes+ fours + fives + sixes >= 63)
+            {
+                bonus = 35;
+            }
+            else
+            {
+                bonus = 0;
+            }
         }
 
         public void ThreeOfAKindSelected(int[] Dice)

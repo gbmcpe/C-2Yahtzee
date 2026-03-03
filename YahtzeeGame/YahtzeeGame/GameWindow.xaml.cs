@@ -411,6 +411,11 @@ namespace YahtzeeGame
                 tbSixes.Text = player.PlayerScores.sixes.ToString();
             }
 
+            if (player.PlayerScores.bonusScored)
+            {
+                tbBonus.Text = player.PlayerScores.bonus.ToString();
+            }
+
             if (player.PlayerScores.threeOfAKindScored)
             {
                 tbThreeKind.Text = player.PlayerScores.threeOfAKind.ToString();
