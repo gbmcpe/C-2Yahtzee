@@ -23,5 +23,19 @@ namespace YahtzeeGame
         {
             InitializeComponent();
         }
+
+        private void btnReturnToGame_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO
+        }
+
+        private void btnMainMenu_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO
+        }
+
+
+
+
     }
 }
