@@ -288,10 +288,10 @@ namespace YahtzeeGame
             if (rawName == null) return rawName;
 
             /// Compare trimmed name to "Easy Bot" ignoring case.
-            if (rawName.Trim().Equals("Easy Bot", StringComparison.OrdinalIgnoreCase))
+            if (rawName.Trim().Equals("Hard Bot", StringComparison.OrdinalIgnoreCase))
             {
                 /// Return the modified CPU-tagged name.
-                return "Easy Bot (CPU)";
+                return "Hard Bot (CPU)";
             }
 
             /// If not Easy Bot, return the original name.
@@ -304,11 +304,37 @@ namespace YahtzeeGame
 
         private void cmbxPlayerType1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (cmbxPlayerType1.SelectedIndex == 0)
+            {
+                tbPlayer1.Text = "";
+            }
+           else if (cmbxPlayerType1.SelectedIndex == 1)
+            {
+                tbPlayer1.Text = "Easy Bot";
+            }
 
-            // Item 1 is the default (no selection)
-            //Item 2 is Human
-            //Item 3 is Easy CPU
-            //Item 4 is Hard CPU
+            else if (cmbxPlayerType1.SelectedIndex == 2)
+            {
+                tbPlayer1.Text = "Hard Bot";
+            }
+
+        }
+
+        private void cmbxPlayerType2_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+
+
+        }
+
+        private void cmbxPlayerType3_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void cmbxPlayerType4_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

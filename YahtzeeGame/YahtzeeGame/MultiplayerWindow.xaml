@@ -64,7 +64,7 @@
             <Label x:Name="LblEasyBotInstruction" Content="Type &quot;Easy Bot&quot; For easy CPU player." HorizontalAlignment="Left" Margin="587,81,0,0" VerticalAlignment="Top" Width="203" Foreground="White"/>
             <Label x:Name="LblEasyBotInstruction_Copy" Content="Click the Dice to roll for Turn Position! (Multiplayer Only)" HorizontalAlignment="Left" Margin="561,204,0,0" VerticalAlignment="Top" Width="210" Foreground="White" Height="24"/>
             <Label x:Name="LblEasyBotInstruction_Copy1" Content="(Multiplayer Only)" HorizontalAlignment="Left" Margin="610,227,0,0" VerticalAlignment="Top" Width="114" Foreground="White" Height="24"/>
-            <ComboBox x:Name="cmbxPlayerType1" HorizontalAlignment="Left" Margin="56,149,0,0" VerticalAlignment="Top" Width="88" Height="24" RenderTransformOrigin="0.5,0.5" AllowDrop="True" AlternationCount="1" IsDropDownOpen="True" SelectionChanged="cmbxPlayers_SelectionChanged">
+            <ComboBox x:Name="cmbxPlayerType1" HorizontalAlignment="Left" Margin="56,149,0,0" VerticalAlignment="Top" Width="88" Height="24" RenderTransformOrigin="0.5,0.5" AllowDrop="True" AlternationCount="1" IsDropDownOpen="True" SelectionChanged="cmbxPlayerType1_SelectionChanged">
                 <ComboBox.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -77,7 +77,7 @@
                 <ComboBoxItem x:Name="cmbxi2Player1" Content="Easy AI"/>
                 <ComboBoxItem x:Name="cmbxi3Player1" Content="Hard AI"/>
             </ComboBox>
-            <ComboBox x:Name="cmbxPlayerType1_Copy" HorizontalAlignment="Left" Margin="56,205,0,0" VerticalAlignment="Top" Width="88" Height="24" RenderTransformOrigin="0.5,0.5" AllowDrop="True" AlternationCount="1" IsDropDownOpen="True" SelectionChanged="cmbxPlayers_SelectionChanged">
+            <ComboBox x:Name="cmbxPlayerType2" HorizontalAlignment="Left" Margin="56,205,0,0" VerticalAlignment="Top" Width="88" Height="24" RenderTransformOrigin="0.5,0.5" AllowDrop="True" AlternationCount="1" IsDropDownOpen="True" SelectionChanged="cmbxPlayerType2_SelectionChanged">
                 <ComboBox.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -90,7 +90,7 @@
                 <ComboBoxItem x:Name="cmbxi2Player2" Content="Easy AI"/>
                 <ComboBoxItem x:Name="cmbxi3Player2" Content="Hard AI"/>
             </ComboBox>
-            <ComboBox x:Name="cmbxPlayerType1_Copy1" HorizontalAlignment="Left" Margin="56,271,0,0" VerticalAlignment="Top" Width="88" Height="24" RenderTransformOrigin="0.5,0.5" AllowDrop="True" AlternationCount="1" IsDropDownOpen="True" SelectionChanged="cmbxPlayers_SelectionChanged">
+            <ComboBox x:Name="cmbxPlayerType3" HorizontalAlignment="Left" Margin="56,271,0,0" VerticalAlignment="Top" Width="88" Height="24" RenderTransformOrigin="0.5,0.5" AllowDrop="True" AlternationCount="1" IsDropDownOpen="True" SelectionChanged="cmbxPlayerType3_SelectionChanged">
                 <ComboBox.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -103,7 +103,7 @@
                 <ComboBoxItem x:Name="cmbxi2Player3" Content="Easy AI"/>
                 <ComboBoxItem x:Name="cmbxi3Player3" Content="Hard AI"/>
             </ComboBox>
-            <ComboBox x:Name="cmbxPlayerType1_Copy2" HorizontalAlignment="Left" Margin="56,333,0,0" VerticalAlignment="Top" Width="88" Height="24" RenderTransformOrigin="0.5,0.5" AllowDrop="True" AlternationCount="1" IsDropDownOpen="True" SelectionChanged="cmbxPlayers_SelectionChanged">
+            <ComboBox x:Name="cmbxPlayerType4" HorizontalAlignment="Left" Margin="56,333,0,0" VerticalAlignment="Top" Width="88" Height="24" RenderTransformOrigin="0.5,0.5" AllowDrop="True" AlternationCount="1" IsDropDownOpen="True" SelectionChanged="cmbxPlayerType4_SelectionChanged">
                 <ComboBox.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
