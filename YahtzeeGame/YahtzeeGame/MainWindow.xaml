@@ -123,5 +123,7 @@
         </Button>
         <Button x:Name="btnStart" Grid.Column="1" Content="Start Game" HorizontalAlignment="Center" Margin="0,290,0,0" VerticalAlignment="Top" Background="#FFF3E9E9" FontWeight="Bold" Foreground="#FFC82323" FontSize="18" Height="51" Width="132"/>
         <Label x:Name="lbldirection" Content="Please click the die&#xD;&#xA;      to roll dice&#xD;&#xA;to decide player order" HorizontalAlignment="Left" Margin="10,270,0,0" VerticalAlignment="Top" Height="72" Width="167" Foreground="#FFF9F2F2" FontWeight="Medium" HorizontalContentAlignment="Center" FontSize="14" VerticalContentAlignment="Center"/>
+        <Button x:Name="btnAbout" Content="About" HorizontalAlignment="Left" Margin="148,-78,0,0" VerticalAlignment="Top" Grid.Column="1" FontSize="19" Background="#FF861B1B" Foreground="#FFF5F0F0" FontWeight="DemiBold"/>
+        <Button x:Name="btnHighScore" Content="High Score" HorizontalAlignment="Left" Margin="44,-78,0,0" VerticalAlignment="Top" FontSize="19" Background="#FF861B1B" Foreground="White" FontWeight="DemiBold"/>
     </Grid>
 </Window>
