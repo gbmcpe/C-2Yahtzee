@@ -40,7 +40,7 @@ namespace YahtzeeGame
             ///logic for singleplayer bot.
             #region easybot
             /// Store the entered name so we can optionally convert it to a CPU name.
-            string rawName = nameTxtBx.Text;
+            string rawName = tbPlayer1.Text;
 
             /// If the user typed "Easy Bot", convert it to the CPU tagged name.
             if (rawName != null && rawName.Trim().Equals("Easy Bot", StringComparison.OrdinalIgnoreCase))
@@ -50,14 +50,14 @@ namespace YahtzeeGame
             }
 
             /// Push the final name back into the textbox.
-            nameTxtBx.Text = rawName;
+            tbPlayer1.Text = rawName;
             #endregion
 
             //Create a instance of a player
             //add it to the player list
             //and hide the start screen.
 
-            Player singlePlayer = new Player(1, nameTxtBx.Text);
+            Player singlePlayer = new Player(1, tbPlayer1.Text);
             Players.Add(singlePlayer);
             GameWindow gameWindow = new GameWindow(Players);
 
@@ -115,19 +115,277 @@ namespace YahtzeeGame
             this.Close();
         }
 
-        private void nameTxtBx_TextChanged(object sender, TextChangedEventArgs e)
+        
+
+        Dice[] PlayerRolls = new Dice[4];
+        int firstPlayer;
+
+
+        private void btnStart_Click(object sender, RoutedEventArgs e)
         {
-            if (nameTxtBx.Text != null)
+            int[] turnOrder = new int[4];
+            turnOrder = DetermineOrder();
+
+            Player player;
+            if (tbPlayer1 != null)
             {
-                singlePlayerbtt.IsEnabled = true;
+                /// Modify Player 1 name if it matches "Easy Bot".
+                tbPlayer1.Text = CpuNameIfEasyBot(tbPlayer1.Text);
+
+                player = new Player(turnOrder[0], tbPlayer1.Text);
+                Players.Add(player);
             }
-            else
+
+            if (tbPlayer2 != null)
             {
-                singlePlayerbtt.IsEnabled = false;
+                /// Modify Player 2 name if it matches "Easy Bot".
+                tbPlayer2.Text = CpuNameIfEasyBot(tbPlayer2.Text);
+
+                player = new Player(turnOrder[1], tbPlayer2.Text);
+                Players.Add(player);
+            }
+
+            if (tbPlayer3 != null && tbPlayer3.IsEnabled == true)
+            {
+                /// Modify Player 3 name if it matches "Easy Bot".
+                tbPlayer3.Text = CpuNameIfEasyBot(tbPlayer3.Text);
+
+                player = new Player(turnOrder[2], tbPlayer3.Text);
+                Players.Add(player);
+            }
+
+            if (tbPlayer4 != null && tbPlayer4.IsEnabled == true)
+            {
+                /// Modify Player 4 name if it matches "Easy Bot".
+                tbPlayer4.Text = CpuNameIfEasyBot(tbPlayer4.Text);
+
+                player = new Player(turnOrder[3], tbPlayer4.Text);
+                Players.Add(player);
+            }
+
+            Players = Players.OrderBy(p => p.PlayerPos).ToList();
+
+            //PUT PLAYERS LIST IN HERE AND THEN CATCH IT IN ITS CONSTRUCTOR!
+            GameWindow gameWindow = new GameWindow(Players);
+            gameWindow.Show();
+            this.Close();
+        }
+
+        private int[] DetermineOrder()
+        {
+            int[] order = new int[4];
+
+            if (firstPlayer == 0)
+            {
+                order[0] = 0;
+                order[1] = 1;
+                order[2] = 2;
+                order[3] = 3;
+            }
+
+            if (firstPlayer == 1)
+            {
+                order[0] = 3;
+                order[1] = 0;
+                order[2] = 1;
+                order[3] = 2;
+            }
+
+            if (firstPlayer == 2)
+            {
+                order[0] = 2;
+                order[1] = 3;
+                order[2] = 0;
+                order[3] = 1;
+            }
+
+            if (firstPlayer == 3)
+            {
+                order[0] = 1;
+                order[1] = 2;
+                order[2] = 3;
+                order[3] = 0;
+            }
+
+            return order;
+        }
+
+        private void cmbxPlayers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            if (cmbxPlayers.SelectedIndex == 0)
+            {
+                tbPlayer1.IsEnabled = true;
+                tbPlayer2.IsEnabled = false;
+                tbPlayer3.IsEnabled = false;
+                tbPlayer4.IsEnabled = false;
+
+            }
+            else if (cmbxPlayers.SelectedIndex == 1)
+            {
+                tbPlayer1.IsEnabled = true;
+                tbPlayer2.IsEnabled = true;
+                tbPlayer3.IsEnabled = false;
+                tbPlayer4.IsEnabled = false;
+            }
+            else if (cmbxPlayers.SelectedIndex == 2)
+            {
+                tbPlayer1.IsEnabled = true;
+                tbPlayer2.IsEnabled = true;
+                tbPlayer3.IsEnabled = true;
+                tbPlayer4.IsEnabled = false;
+            }
+            else if (cmbxPlayers.SelectedIndex == 3)
+            {
+                tbPlayer1.IsEnabled = true;
+                tbPlayer2.IsEnabled = true;
+                tbPlayer3.IsEnabled = true;
+                tbPlayer4.IsEnabled = true;
             }
         }
-    }
-    
-}
-       
 
+        private void tbPlayer1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            btnRollForPosition.IsEnabled = CheckStart();
+
+        }
+
+        private bool CheckStart()
+        {
+            if ((tbPlayer1 != null) && (tbPlayer2 != null)
+                                    && (tbPlayer3 != null || tbPlayer3.IsEnabled == false)
+                                    && (tbPlayer3 != null || tbPlayer3.IsEnabled == false))
+            {
+                btnRollForPosition.IsEnabled = true;
+                return true;
+            }
+
+            return false;
+        }
+
+        private void tbPlayer2_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            btnRollForPosition.IsEnabled = CheckStart();
+
+        }
+
+        private void tbPlayer3_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            btnRollForPosition.IsEnabled = CheckStart();
+
+        }
+
+        private void tbPlayer4_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            btnRollForPosition.IsEnabled = CheckStart();
+
+        }
+
+        private void btnRollPos_Click(object sender, RoutedEventArgs e)
+        {
+
+            lblPlayer1_Roll.Content = "";
+            lblPlayer2_Roll.Content = "";
+            lblPlayer3_Roll.Content = "";
+            lblPlayer4_Roll.Content = "";
+
+            PlayerRolls[0] = new Dice();
+            PlayerRolls[1] = new Dice();
+            PlayerRolls[2] = new Dice();
+            PlayerRolls[3] = new Dice();
+            Random random = new Random();
+
+            for (int c = 0; c < 4; c++) { PlayerRolls[c].RollDice(random); }
+
+            if (tbPlayer1 != null)
+            {
+                lblPlayer1_Roll.Content = $"({PlayerRolls[0].diceSum})";
+                if (tbPlayer2 != null) { lblPlayer2_Roll.Content = $"({PlayerRolls[1].diceSum})"; }
+                if (tbPlayer3 != null && tbPlayer3.IsEnabled == true) { lblPlayer3_Roll.Content = $"({PlayerRolls[2].diceSum})"; }
+                if (tbPlayer4 != null && tbPlayer4.IsEnabled == true) { lblPlayer4_Roll.Content = $"({PlayerRolls[3].diceSum})"; }
+            }
+
+            int[] rolls = new int[4];
+            rolls[0] = PlayerRolls[0].diceSum;
+            rolls[1] = PlayerRolls[1].diceSum;
+            rolls[2] = PlayerRolls[2].diceSum;
+            rolls[3] = PlayerRolls[3].diceSum;
+
+            int max = rolls.Max();
+            int index = 0;
+
+            foreach (int roll in rolls)
+            {
+                if (max == roll)
+                {
+                    firstPlayer = index;
+                }
+
+                index++;
+            }
+
+            if (CheckStart() && NoTies(rolls))
+            {
+                btnStart.IsEnabled = true;
+            }
+            else { btnStart.IsEnabled = false; }
+        }
+
+        private bool NoTies(int[] rolls)
+        {
+            int max = rolls.Max();
+            int counter = 0;
+
+            foreach (int roll in rolls)
+            {
+                if (max == roll)
+                {
+                    counter++;
+                }
+            }
+
+            if (counter >= 2)
+            {
+                return false;
+            }
+            return true;
+        }
+        #region EasyModeBot
+        /// <summary>
+        /// Converts the name "Easy Bot" into a CPU player.
+        /// </summary>
+        /// <param name="rawName">The original name entered by the user.</param>
+        /// <returns>Modified name if CPU, otherwise original name.</returns>
+        private string CpuNameIfEasyBot(string rawName)
+        {
+            /// If the textbox value is null, return it unchanged.
+            if (rawName == null) return rawName;
+
+            /// Compare trimmed name to "Easy Bot" ignoring case.
+            if (rawName.Trim().Equals("Easy Bot", StringComparison.OrdinalIgnoreCase))
+            {
+                /// Return the modified CPU-tagged name.
+                return "Easy Bot (CPU)";
+            }
+
+            /// If not Easy Bot, return the original name.
+            return rawName;
+        }
+
+
+
+        #endregion
+
+        private void cmbxPlayerType1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            // Item 1 is the default (no selection)
+            //Item 2 is Human
+            //Item 3 is Easy CPU
+            //Item 4 is Hard CPU
+        }
+    }
+}
+
+
+    
