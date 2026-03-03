@@ -76,6 +76,7 @@
     <Compile Include="GameWindow.xaml.cs">
       <DependentUpon>GameWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HardAI.cs" />
     <Compile Include="MultiplayerWindow.xaml.cs">
       <DependentUpon>MultiplayerWindow.xaml</DependentUpon>
     </Compile>

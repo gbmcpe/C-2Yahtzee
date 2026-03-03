@@ -12,7 +12,7 @@ namespace YahtzeeGame
         //PlayerPos will start at 0.
         public int PlayerPos;
         private string playerName;
-        private bool ComputerPlayer;
+        public bool ComputerPlayer;
         public ScoreCard PlayerScores;
         public int SelectedScore;
 
