@@ -44,9 +44,11 @@
                     </TransformGroup>
                 </ComboBox.RenderTransform>
                 <ComboBoxItem x:Name="cmbxiDefault" Content="Choose Player Number" IsSelected="True"/>
+                <ComboBoxItem x:Name="cmbxi1player" Content="1 Player"/>
                 <ComboBoxItem x:Name="cmbxi2Player" Content="2 Players"/>
                 <ComboBoxItem x:Name="cmbxi3Player" Content="3 Players"/>
                 <ComboBoxItem x:Name="cmbxi4Player" Content="4 Players"/>
+                
             </ComboBox>
             <Label x:Name="lblPlayer1" Content="Player 1" HorizontalAlignment="Left" Margin="158,139,0,0" VerticalAlignment="Top" Width="70" Background="{x:Null}" Height="38" FontSize="13" FontWeight="Medium" VerticalContentAlignment="Center" Foreground="#FFD4FDCE"/>
             <Label x:Name="lblPlayer2" Content="Player 2" HorizontalAlignment="Left" Margin="158,197,0,0" VerticalAlignment="Top" Width="70" Background="{x:Null}" Height="38" FontSize="13" FontWeight="Medium" VerticalContentAlignment="Center" Foreground="#FFD4FDCE"/>
@@ -61,7 +63,6 @@
                     <ImageBrush ImageSource="/6Die.bmp"/>
                 </Button.Background>
             </Button>
-            <Label x:Name="LblEasyBotInstruction" Content="Type &quot;Easy Bot&quot; For easy CPU player." HorizontalAlignment="Left" Margin="587,81,0,0" VerticalAlignment="Top" Width="203" Foreground="White"/>
             <Label x:Name="LblEasyBotInstruction_Copy" Content="Click the Dice to roll for Turn Position! (Multiplayer Only)" HorizontalAlignment="Left" Margin="561,204,0,0" VerticalAlignment="Top" Width="210" Foreground="White" Height="24"/>
             <Label x:Name="LblEasyBotInstruction_Copy1" Content="(Multiplayer Only)" HorizontalAlignment="Left" Margin="610,227,0,0" VerticalAlignment="Top" Width="114" Foreground="White" Height="24"/>
             <ComboBox x:Name="cmbxPlayerType1" HorizontalAlignment="Left" Margin="56,149,0,0" VerticalAlignment="Top" Width="88" Height="24" RenderTransformOrigin="0.5,0.5" AllowDrop="True" AlternationCount="1" IsDropDownOpen="True" SelectionChanged="cmbxPlayerType1_SelectionChanged">

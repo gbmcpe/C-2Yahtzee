@@ -268,6 +268,7 @@ namespace YahtzeeGame
             {
                 if (acesScored == false)
                 {
+                    aces = 0;
                     foreach (int Die in Dice)
                     {
                         if (Die == 1)
@@ -287,6 +288,7 @@ namespace YahtzeeGame
                     {
                         acesScored = true;
                         totalScore += aces;
+                        
                     }
                 }
                 else
@@ -308,6 +310,7 @@ namespace YahtzeeGame
             {
                 if (twosScored == false)
                 {
+                    twos = 0;
                     foreach (int Die in Dice)
                     {
                         if (Die == 2)
@@ -327,6 +330,7 @@ namespace YahtzeeGame
                     {
                         twosScored = true;
                         totalScore += twos;
+                        
                     }
                 }
                 else
@@ -344,6 +348,7 @@ namespace YahtzeeGame
             {
                 if (threesScored == false)
                 {
+                    threes = 0;
                     foreach (int Die in Dice)
                     {
                         if (Die == 3)
@@ -363,6 +368,7 @@ namespace YahtzeeGame
                     {
                         threesScored = true;
                         totalScore += threes;
+                        
                     }
                 }
                 else
@@ -379,6 +385,7 @@ namespace YahtzeeGame
             {
                 if (foursScored == false)
                 {
+                    fours = 0;
                     foreach (int Die in Dice)
                     {
                         if (Die == 4)
@@ -398,6 +405,7 @@ namespace YahtzeeGame
                     {
                         foursScored = true;
                         totalScore += fours;
+                        
                     }
                 }
                 else
@@ -414,6 +422,7 @@ namespace YahtzeeGame
             {
                 if (fivesScored == false)
                 {
+                    fives = 0;
                     foreach (int Die in Dice)
                     {
                         if (Die == 5)
@@ -426,12 +435,15 @@ namespace YahtzeeGame
 
                     if (!isComputer)
                     { 
-                        choice = MessageBox.Show("Do you want to score Fives? You will gain " + fives + " points.", "Confirmation", MessageBoxButton.YesNo);}
+                        choice = MessageBox.Show("Do you want to score Fives? You will gain " + fives + " points.", "Confirmation", MessageBoxButton.YesNo);
+
+                    }
 
                     if (choice == MessageBoxResult.Yes || isComputer)
                     {
                         fivesScored = true;
                         totalScore += fives;
+                        
                     }
                 }
                 else
@@ -448,6 +460,7 @@ namespace YahtzeeGame
             {
                 if (sixesScored == false)
                 {
+                    sixes = 0;
                     foreach (int Die in Dice)
                     {
                         if (Die == 6)
@@ -468,6 +481,7 @@ namespace YahtzeeGame
                     {
                         sixesScored = true;
                         totalScore += sixes;
+                        
                     }
                 }
                 else

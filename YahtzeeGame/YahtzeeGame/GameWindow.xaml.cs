@@ -24,6 +24,9 @@ namespace YahtzeeGame
 
         public GameManager game;
         public Player currentPlayer;
+        public DumbBot bot;
+        public int tester = 0;
+        public bool gameEnd = false;
 
         public GameWindow(List<Player> players)
         {
@@ -34,6 +37,8 @@ namespace YahtzeeGame
             tbCurrentPlayer.Text = currentPlayer.PlayerName;
             tbTotalScore.Text = currentPlayer.PlayerScores.totalScore.ToString();
             LockBoard();
+            tester = players.Count;
+            
 
             /// If the first player is CPU, run CPU turn after the window loads. - EasyModeBot
             this.Loaded += async (_, __) => await PlayCpuTurnIfNeededAsync();
@@ -87,9 +92,15 @@ namespace YahtzeeGame
 
         private void BtnReset_Click(object sender, RoutedEventArgs e)
         {
+            /*
             //Resets the Turn Space and Deactivates the Turn
             Reset();
             DiceActivation(false);
+            */
+
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
 
         }
 
@@ -228,30 +239,105 @@ namespace YahtzeeGame
             Die5.IsEnabled = state;
         }
 
+        private void CheckState(bool state)
+        {
+            cbDie1.IsChecked = state;
+            cbDie2.IsChecked = state;
+            cbDie3.IsChecked = state;
+            cbDie4.IsChecked = state;
+            cbDie5.IsChecked = state;
+        }
+
         private void btnHighScore_Click(object sender, RoutedEventArgs e)
         {
             LoadScores();
         }
 
-        #region New Stuff
-        private void NextTurn()
+        public void BotTurn()
         {
-            UnlockBoard();
-            game.EndTurn();
-            currentPlayer = game.currentPlayer;
-            RefactorBoard();
-            FillBoxes(currentPlayer);
-            game.Rolls = 3;
-            lblTimesRolled.Content = 3.ToString();
-            BtnRollDice.IsEnabled = true;
+            bool stillBot = true;
+            
+            while (stillBot && !gameEnd)
+            {
+                if (currentPlayer.PlayerScores.isScoreCardFinished)
+                {
+                    tester--;
+                }
 
-            if (!currentPlayer.PlayerScores.ScoreCardNotFinished())
+                if (tester < 0)
+                {
+                    EndGame();
+
+                }
+                game.RollUsed(CheckDice());
+                bot.DecisionTree(game.Pool.diceValue);
+                game.EndTurn();
+                currentPlayer = game.currentPlayer;
+                if (currentPlayer.GetType() == typeof(DumbBot))
+                {
+                    bot = (DumbBot)game.currentPlayer;
+                }
+                FillBoxes();
+                CheckState(false);
+                game.RollUsed(CheckDice());
+                DisplayDiceSet();
+                game.Rolls = 2;
+                lblTimesRolled.Content = 2.ToString();
+                DiceActivation(true);
+                UnlockBoard();
+                RefactorBoard();
+                if (currentPlayer.GetType() == typeof(Player))
+                {
+                    stillBot = false;
+                }
+
+            }
+        }
+
+        #region New Stuff
+        public void NextTurn()
+        {
+            if (currentPlayer.PlayerScores.isScoreCardFinished)
+            {
+                tester--;
+            }
+
+            if (tester < 0)
             {
                 EndGame();
             }
+            game.EndTurn();
+            currentPlayer = game.currentPlayer;
+            FillBoxes();
+            CheckState(false);
+            game.RollUsed(CheckDice());
+            DisplayDiceSet();
+            game.Rolls = 2;
+            lblTimesRolled.Content = 2.ToString();
+            DiceActivation(true);
+            UnlockBoard();
+            RefactorBoard();
 
-            /// If the next player is CPU, let the CPU play automatically. - EasyModeBot
-            _ = PlayCpuTurnIfNeededAsync();
+            if (currentPlayer.GetType() == typeof(DumbBot))
+            {
+                bot = (DumbBot)game.currentPlayer;
+                BotTurn();
+                
+            }
+            else
+            {
+                
+                
+                
+                BtnRollDice.IsEnabled = true;
+
+
+
+                
+
+                /// If the next player is CPU, let the CPU play automatically. - EasyModeBot
+                _ = PlayCpuTurnIfNeededAsync();
+            }
         }
 
         private void EndGame()
@@ -266,12 +352,15 @@ namespace YahtzeeGame
                                 " Points.");
                 x--;
             }
+
+            gameEnd = true;
         }
 
         private void RecordHighScores(Player P)
         {
             StreamWriter Output = new StreamWriter("HighScores.txt", true);
             Output.WriteLine($"{P.PlayerScores.totalScore} {P.PlayerName}");
+            Output.Close();
         }
 
         private void RefactorBoard()
@@ -376,79 +465,94 @@ namespace YahtzeeGame
             btnChance.IsEnabled = true;
         }
 
-        private void FillBoxes(Player player)
+        private void FillBoxes()
         {
-            tbCurrentPlayer.Text = player.PlayerName;
-            tbTotalScore.Text = player.PlayerScores.totalScore.ToString();
+            tbAces.Text = "";
+            tbTwos.Text = "";
+            tbThrees.Text = "";
+            tbFours.Text = "";
+            tbFives.Text = "";
+            tbSixes.Text = "";
+            tbThreeKind.Text = "";
+            tbFourKind.Text = "";
+            tbFullHouse.Text = "";
+            tbSmallStraight.Text = "";
+            tbLargeStraight.Text = "";
+            tbYahtzee.Text = "";
+            tbChance.Text = "";
+
+            tbCurrentPlayer.Text = currentPlayer.PlayerName;
+            tbTotalScore.Text = currentPlayer.PlayerScores.totalScore.ToString();
             
-            if (player.PlayerScores.acesScored)
+            if (currentPlayer.PlayerScores.acesScored)
             {
-                tbAces.Text = player.PlayerScores.aces.ToString();
+                tbAces.Text = currentPlayer.PlayerScores.aces.ToString();
             }
 
-            if (player.PlayerScores.twosScored)
+            if (currentPlayer.PlayerScores.twosScored)
             {
-                tbTwos.Text = player.PlayerScores.twos.ToString();
+                tbTwos.Text = currentPlayer.PlayerScores.twos.ToString();
             }
 
-            if (player.PlayerScores.threesScored)
+            if (currentPlayer.PlayerScores.threesScored)
             {
-                tbThrees.Text = player.PlayerScores.threes.ToString();
+                tbThrees.Text = currentPlayer.PlayerScores.threes.ToString();
             }
 
-            if (player.PlayerScores.foursScored)
+            if (currentPlayer.PlayerScores.foursScored)
             {
-                tbFours.Text = player.PlayerScores.fours.ToString();
+                tbFours.Text = currentPlayer.PlayerScores.fours.ToString();
             }
 
-            if (player.PlayerScores.fivesScored)
+            if (currentPlayer.PlayerScores.fivesScored)
             {
-                tbFives.Text = player.PlayerScores.fives.ToString();
+                tbFives.Text = currentPlayer.PlayerScores.fives.ToString();
             }
 
-            if (player.PlayerScores.sixesScored)
+            if (currentPlayer.PlayerScores.sixesScored)
             {
-                tbSixes.Text = player.PlayerScores.sixes.ToString();
+                tbSixes.Text = currentPlayer.PlayerScores.sixes.ToString();
             }
 
-            if (player.PlayerScores.bonusScored)
+            /*
+            if (currentPlayer.PlayerScores.bonusScored)
             {
-                tbBonus.Text = player.PlayerScores.bonus.ToString();
+                tbBonus.Text = currentPlayer.PlayerScores.bonus.ToString();
+            }
+            */
+            if (currentPlayer.PlayerScores.threeOfAKindScored)
+            {
+                tbThreeKind.Text = currentPlayer.PlayerScores.threeOfAKind.ToString();
             }
 
-            if (player.PlayerScores.threeOfAKindScored)
+            if (currentPlayer.PlayerScores.fourOfAKindScored)
             {
-                tbThreeKind.Text = player.PlayerScores.threeOfAKind.ToString();
+                tbFourKind.Text = currentPlayer.PlayerScores.fourOfAKind.ToString();
             }
 
-            if (player.PlayerScores.fourOfAKindScored)
+            if (currentPlayer.PlayerScores.fullHouseScored)
             {
-                tbFourKind.Text = player.PlayerScores.fourOfAKind.ToString();
+                tbFullHouse.Text = currentPlayer.PlayerScores.fullHouse.ToString();
             }
 
-            if (player.PlayerScores.fullHouseScored)
+            if (currentPlayer.PlayerScores.smallStraightScored)
             {
-                tbFullHouse.Text = player.PlayerScores.fullHouse.ToString();
+                tbSmallStraight.Text = currentPlayer.PlayerScores.smallStraight.ToString();
             }
 
-            if (player.PlayerScores.smallStraightScored)
+            if (currentPlayer.PlayerScores.largeStraightScored)
             {
-                tbSmallStraight.Text = player.PlayerScores.smallStraight.ToString();
+                tbLargeStraight.Text = currentPlayer.PlayerScores.largeStraight.ToString();
             }
 
-            if (player.PlayerScores.largeStraightScored)
+            if (currentPlayer.PlayerScores.yahtzeeScored)
             {
-                tbLargeStraight.Text = player.PlayerScores.largeStraight.ToString();
+                tbYahtzee.Text = currentPlayer.PlayerScores.yahtzee.ToString();
             }
 
-            if (player.PlayerScores.yahtzeeScored)
+            if (currentPlayer.PlayerScores.chanceScored)
             {
-                tbYahtzee.Text = player.PlayerScores.yahtzee.ToString();
-            }
-
-            if (player.PlayerScores.chanceScored)
-            {
-                tbChance.Text = player.PlayerScores.chance.ToString();
+                tbChance.Text = currentPlayer.PlayerScores.chance.ToString();
             }
         }
 
@@ -707,7 +811,7 @@ namespace YahtzeeGame
                 _bot.ApplyScore(category, game.Pool.diceValue, currentPlayer.PlayerScores);
 
                 /// Refresh score display.
-                FillBoxes(currentPlayer);
+                FillBoxes();
 
                 /// Restore textbox to normal player name.
                 tbCurrentPlayer.Text = currentPlayer.PlayerName;
@@ -735,6 +839,15 @@ namespace YahtzeeGame
         }
 
         #endregion
+
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (currentPlayer.GetType() == typeof(DumbBot))
+            {
+                bot = (DumbBot)currentPlayer;
+                BotTurn();
+            }
+        }
     }
 }
 

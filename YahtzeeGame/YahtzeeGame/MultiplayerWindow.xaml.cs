@@ -37,37 +37,74 @@ namespace YahtzeeGame
             turnOrder = DetermineOrder();
 
             Player player;
-            if (tbPlayer1 != null)
+            DumbBot bot;
+            if (tbPlayer1 != null && cmbxPlayerType1.SelectedIndex == 0)
             {
-                /// Modify Player 1 name if it matches "Easy Bot".
-                tbPlayer1.Text = CpuNameIfEasyBot(tbPlayer1.Text);
-
                 player = new Player(turnOrder[0], tbPlayer1.Text); 
                 Players.Add(player);
             }
-
-            if (tbPlayer2 != null && tbPlayer2.IsEnabled == true)
+            else if (tbPlayer1 != null && cmbxPlayerType1.SelectedIndex == 1)
             {
-                /// Modify Player 2 name if it matches "Easy Bot".
-                tbPlayer2.Text = CpuNameIfEasyBot(tbPlayer2.Text);
+                bot = new DumbBot(turnOrder[0], tbPlayer1.Text, true);
+                Players.Add(bot);
+            }
+            else if (tbPlayer1 != null && cmbxPlayerType1.SelectedIndex == 2)
+            {
+                tbPlayer1.Text = tbPlayer1.Text + " (CPU)";
+
+                player = new Player(turnOrder[0], tbPlayer1.Text);
+                Players.Add(player);
+            }
+
+            if (tbPlayer2 != null && tbPlayer2.IsEnabled == true && cmbxPlayerType2.SelectedIndex == 0)
+            {
+                player = new Player(turnOrder[1], tbPlayer2.Text);
+                Players.Add(player);
+            }
+            else if (tbPlayer2 != null && cmbxPlayerType2.SelectedIndex == 1)
+            {
+                bot = new DumbBot(turnOrder[1], tbPlayer2.Text, true);
+                Players.Add(bot);
+            }
+            else if (tbPlayer2 != null && cmbxPlayerType2.SelectedIndex == 2)
+            {
+                tbPlayer2.Text = tbPlayer2.Text + " (CPU)";
 
                 player = new Player(turnOrder[1], tbPlayer2.Text);
                 Players.Add(player);
             }
 
-            if (tbPlayer3 != null && tbPlayer3.IsEnabled == true)
+            if (tbPlayer3 != null && tbPlayer3.IsEnabled == true && cmbxPlayerType3.SelectedIndex == 0)
             {
-                /// Modify Player 3 name if it matches "Easy Bot".
-                tbPlayer3.Text = CpuNameIfEasyBot(tbPlayer3.Text);
+                player = new Player(turnOrder[2], tbPlayer3.Text);
+                Players.Add(player);
+            }
+            else if (tbPlayer3 != null && cmbxPlayerType3.SelectedIndex == 1)
+            {
+                bot = new DumbBot(turnOrder[2], tbPlayer3.Text, true);
+                Players.Add(bot);
+            }
+            else if (tbPlayer3 != null && cmbxPlayerType3.SelectedIndex == 2)
+            {
+                tbPlayer3.Text = tbPlayer3.Text + " (CPU)";
 
                 player = new Player(turnOrder[2], tbPlayer3.Text);
                 Players.Add(player);
             }
 
-            if (tbPlayer4 != null && tbPlayer4.IsEnabled == true)
+            if (tbPlayer4 != null && tbPlayer4.IsEnabled == true && cmbxPlayerType4.SelectedIndex == 0)
             {
-                /// Modify Player 4 name if it matches "Easy Bot".
-                tbPlayer4.Text = CpuNameIfEasyBot(tbPlayer4.Text);
+                player = new Player(turnOrder[3], tbPlayer4.Text);
+                Players.Add(player);
+            }
+            else if (tbPlayer4 != null && cmbxPlayerType4.SelectedIndex == 1)
+            {
+                bot = new DumbBot(turnOrder[3], tbPlayer4.Text, true);
+                Players.Add(bot);
+            }
+            else if (tbPlayer4 != null && cmbxPlayerType4.SelectedIndex == 2)
+            {
+                tbPlayer4.Text = tbPlayer4.Text + " (CPU)";
 
                 player = new Player(turnOrder[3], tbPlayer4.Text);
                 Players.Add(player);
@@ -78,6 +115,8 @@ namespace YahtzeeGame
             //PUT PLAYERS LIST IN HERE AND THEN CATCH IT IN ITS CONSTRUCTOR!
             GameWindow gameWindow = new GameWindow(Players);
             gameWindow.Show();
+
+
             this.Close();
         }
 
@@ -308,7 +347,7 @@ namespace YahtzeeGame
             {
                 tbPlayer1.Text = "";
             }
-           else if (cmbxPlayerType1.SelectedIndex == 1)
+            else if (cmbxPlayerType1.SelectedIndex == 1)
             {
                 tbPlayer1.Text = "Easy Bot";
             }

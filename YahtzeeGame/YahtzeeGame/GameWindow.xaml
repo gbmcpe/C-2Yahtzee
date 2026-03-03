@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:YahtzeeGame"
         mc:Ignorable="d"
         Title="GameWindow" Height="450" Width="800">
-    <Grid Margin="0,0,0,-16">
+    <Grid Margin="0,0,0,-16" Loaded="Grid_Loaded">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <Button x:Name="BtnClose" Content="Close" HorizontalAlignment="Left" Margin="697,367,0,0" VerticalAlignment="Top" Click="BtnClose_Click" Height="32" Width="72" FontFamily="Berlin Sans FB" FontSize="20"/>
         <Button x:Name="BtnReset" Content="Reset" HorizontalAlignment="Left" Margin="610,367,0,0" VerticalAlignment="Top" Click="BtnReset_Click" Height="32" Width="82" FontFamily="Berlin Sans FB" FontSize="20" RenderTransformOrigin="0.591,-0.11"/>
         <Button x:Name="BtnRollDice" Content="Roll Dice!" HorizontalAlignment="Left" Margin="584,233,0,0" VerticalAlignment="Top" Click="BtnRollDice_Click" Height="34" Width="108" FontFamily="Berlin Sans FB" FontSize="20"/>
@@ -111,8 +114,6 @@
         <Label x:Name="lblTotalScore" Content="Total Score:" HorizontalAlignment="Left" Margin="331,309,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tbCurrentPlayer" HorizontalAlignment="Left" Margin="408,265,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
         <TextBox x:Name="tbTotalScore" HorizontalAlignment="Left" Margin="408,314,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
-        <TextBox x:Name="tbBonus" HorizontalAlignment="Left" Margin="99,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="lblBonus" Content="Bonus" HorizontalAlignment="Left" Margin="26,207,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
