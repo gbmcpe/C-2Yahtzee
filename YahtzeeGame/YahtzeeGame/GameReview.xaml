@@ -5,12 +5,103 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:YahtzeeGame"
         mc:Ignorable="d"
-        Title="GameReview" Height="450" Width="800">
+        Title="GameReview" Height="512" Width="797">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="119*"/>
-            <ColumnDefinition Width="681*"/>
+            <ColumnDefinition Width="399*"/>
+            <ColumnDefinition Width="138*"/>
+            <ColumnDefinition Width="145*"/>
         </Grid.ColumnDefinitions>
+        <Label x:Name="lblAces" Content="Aces" HorizontalAlignment="Left" Margin="39,42,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbAcesP1" HorizontalAlignment="Left" Margin="90,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.ColumnSpan="2"/>
+        <Label x:Name="lblTwos" Content="Twos" HorizontalAlignment="Left" Margin="38,69,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbTwosP1" HorizontalAlignment="Left" Margin="90,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.ColumnSpan="2"/>
+        <Label Content="Threes" HorizontalAlignment="Left" Margin="34,93,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbThreesP1" HorizontalAlignment="Left" Margin="90,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.ColumnSpan="2"/>
+        <Label x:Name="lblFours" Content="Fours" HorizontalAlignment="Left" Margin="37,116,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.054,0.733"/>
+        <TextBox x:Name="tbFoursP1" HorizontalAlignment="Left" Margin="90,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.ColumnSpan="2"/>
+        <Label x:Name="lblFives" Content="Fives" HorizontalAlignment="Left" Margin="39,141,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbFivesP1" HorizontalAlignment="Left" Margin="90,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.ColumnSpan="2"/>
+        <Label x:Name="lblSixes" Content="Sixes" HorizontalAlignment="Left" Margin="40,164,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbSixesP1" HorizontalAlignment="Left" Margin="90,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.ColumnSpan="2"/>
+        <Label x:Name="lblThreeKind" Content="3 of a Kind" HorizontalAlignment="Left" Margin="14,236,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbThreeKindP1" HorizontalAlignment="Left" Margin="90,240,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.ColumnSpan="2"/>
+        <Label x:Name="lblFourKind" Content="4 of a Kind" HorizontalAlignment="Left" Margin="16,262,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbFourKindP1" HorizontalAlignment="Left" Margin="90,266,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.ColumnSpan="2"/>
+        <Label x:Name="lblFullHouse" Content="Full House" HorizontalAlignment="Left" Margin="14,285,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbFullHouseP1" HorizontalAlignment="Left" Margin="90,291,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.ColumnSpan="2"/>
+        <Label x:Name="lblSmallStraight" Content="Small Straight" HorizontalAlignment="Left" Margin="-2,312,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbSmallStraightP1" HorizontalAlignment="Left" Margin="90,316,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.ColumnSpan="2"/>
+        <Label x:Name="lblLargeStraight" Content="Large Straight" HorizontalAlignment="Left" Margin="-4,336,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbLargeStraightP1" HorizontalAlignment="Left" Margin="90,340,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.ColumnSpan="2"/>
+        <Label x:Name="lblYahtzee" Content="YAHTZEE" HorizontalAlignment="Left" Margin="19,359,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbYahtzeeP1" HorizontalAlignment="Left" Margin="90,364,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.ColumnSpan="2"/>
+        <Label x:Name="lblChance" Content="Chance" HorizontalAlignment="Left" Margin="26,384,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbChanceP1" HorizontalAlignment="Left" Margin="90,388,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="tbBonusP1" HorizontalAlignment="Left" Margin="90,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.ColumnSpan="2"/>
+        <Label x:Name="lblBonus" Content="Bonus" HorizontalAlignment="Center" Margin="0,190,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblUpperSection" Content="Upper Section" HorizontalAlignment="Left" Margin="108,24,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <Label x:Name="lblLowerSection" Content="Lower Section" HorizontalAlignment="Left" Margin="107,217,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="tbAcesP2" HorizontalAlignment="Left" Margin="96,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
+        <TextBox x:Name="tbTwosP2" HorizontalAlignment="Left" Margin="96,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
+        <TextBox x:Name="tbThreesP2" HorizontalAlignment="Left" Margin="96,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
+        <TextBox x:Name="tbFoursP2" HorizontalAlignment="Left" Margin="96,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
+        <TextBox x:Name="tbFivesP2" HorizontalAlignment="Left" Margin="96,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
+        <TextBox x:Name="tbSixesP2" HorizontalAlignment="Left" Margin="96,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
+        <TextBox x:Name="tbThreeKindP2" HorizontalAlignment="Left" Margin="96,240,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
+        <TextBox x:Name="tbFourKindP2" HorizontalAlignment="Left" Margin="96,266,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
+        <TextBox x:Name="tbFullHouseP2" HorizontalAlignment="Left" Margin="96,291,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
+        <TextBox x:Name="tbSmallStraightP2" HorizontalAlignment="Left" Margin="96,316,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
+        <TextBox x:Name="tbLargeStraightP2" HorizontalAlignment="Left" Margin="96,340,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
+        <TextBox x:Name="tbYahtzeeP2" HorizontalAlignment="Left" Margin="96,364,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
+        <TextBox x:Name="tbChanceP2" HorizontalAlignment="Left" Margin="96,388,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
+        <TextBox x:Name="tbBonusP2" HorizontalAlignment="Left" Margin="96,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
+        <TextBox x:Name="tbAcesP3" HorizontalAlignment="Left" Margin="221,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
+        <TextBox x:Name="tbTwosP3" HorizontalAlignment="Left" Margin="221,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
+        <TextBox x:Name="tbThreesP3" HorizontalAlignment="Left" Margin="221,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
+        <TextBox x:Name="tbFoursP3" HorizontalAlignment="Left" Margin="221,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
+        <TextBox x:Name="tbFivesP3" HorizontalAlignment="Left" Margin="221,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
+        <TextBox x:Name="tbSixesP3" HorizontalAlignment="Left" Margin="221,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
+        <TextBox x:Name="tbThreeKindP3" HorizontalAlignment="Left" Margin="221,240,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
+        <TextBox x:Name="tbFourKindP3" HorizontalAlignment="Left" Margin="221,266,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
+        <TextBox x:Name="tbFullHouseP3" HorizontalAlignment="Left" Margin="221,291,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
+        <TextBox x:Name="tbSmallStraightP3" HorizontalAlignment="Left" Margin="221,316,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
+        <TextBox x:Name="tbLargeStraightP3" HorizontalAlignment="Left" Margin="221,340,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
+        <TextBox x:Name="tbYahtzee_Copy1" HorizontalAlignment="Left" Margin="221,364,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
+        <TextBox x:Name="tbChanceP3" HorizontalAlignment="Left" Margin="221,388,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
+        <TextBox x:Name="tbBonusP3" HorizontalAlignment="Left" Margin="221,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
+        <TextBox x:Name="tbAcesP4" HorizontalAlignment="Left" Margin="346,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="tbTwosP4" HorizontalAlignment="Left" Margin="346,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="tbThreesP4" HorizontalAlignment="Left" Margin="346,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="tbFoursP4" HorizontalAlignment="Left" Margin="346,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="tbFivesP4" HorizontalAlignment="Left" Margin="346,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="tbSixesP4" HorizontalAlignment="Left" Margin="346,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="tbThreeKindP4" HorizontalAlignment="Left" Margin="346,240,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="tbFourKindP4" HorizontalAlignment="Left" Margin="346,266,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="tbFullHouseP4" HorizontalAlignment="Left" Margin="346,291,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="tbSmallStraightP4" HorizontalAlignment="Left" Margin="346,316,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="tbLargeStraightP4" HorizontalAlignment="Left" Margin="346,340,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="tbYahtzeeP4" HorizontalAlignment="Left" Margin="346,364,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="tbChanceP4" HorizontalAlignment="Left" Margin="346,388,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="tbBonusP4" HorizontalAlignment="Left" Margin="346,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <Label x:Name="lblPlayer1" Content="Player 1" HorizontalAlignment="Left" Margin="6,6,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label x:Name="lblPlayer2" Content="Player 2" HorizontalAlignment="Left" Margin="130,6,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label x:Name="lblPlayer3" Content="Player 3" HorizontalAlignment="Left" Margin="255,6,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label x:Name="lblPlayer4" Content="Player 4" HorizontalAlignment="Left" Margin="380,6,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <Label x:Name="lblWinner" Content="Wins!" HorizontalAlignment="Left" Margin="130,53,0,0" VerticalAlignment="Top" Grid.Column="2" FontSize="32" Grid.ColumnSpan="2"/>
+        <Label x:Name="lblWinnerNae" Content="(name)" HorizontalAlignment="Left" Margin="120,9,0,0" VerticalAlignment="Top" Grid.Column="2" FontSize="32" Grid.ColumnSpan="2"/>
+        <Label x:Name="lblTotal" Content="Total" HorizontalAlignment="Left" Margin="27,410,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="16"/>
+        <TextBox x:Name="tbTotalP1" HorizontalAlignment="Left" Margin="90,418,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="tbTotalP2" HorizontalAlignment="Left" Margin="96,418,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
+        <TextBox x:Name="tbTotalP3" HorizontalAlignment="Left" Margin="221,418,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
+        <TextBox x:Name="tbTotalP4" HorizontalAlignment="Left" Margin="346,418,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <Button x:Name="btnReturnToGame" Grid.Column="3" Content="Play Again!" HorizontalAlignment="Left" Margin="3,122,0,0" VerticalAlignment="Top" Width="69"/>
+        <Button x:Name="btnMainMenu" Grid.Column="2" Content="Back to Main Menu" HorizontalAlignment="Left" Margin="114,154,0,0" VerticalAlignment="Top" Width="114" Grid.ColumnSpan="2"/>
+        <Button x:Name="btnSaveScoreP1" Content="Save Score" HorizontalAlignment="Left" Margin="115,454,0,0" VerticalAlignment="Top" Width="69" Grid.ColumnSpan="2"/>
+        <Button x:Name="btnSaveScoreP2" Content="Save Score" HorizontalAlignment="Left" Margin="113,454,0,0" VerticalAlignment="Top" Width="69" Grid.Column="1"
+        <Button x:Name="btnSaveScoreP3" Content="Save Score" HorizontalAlignment="Left" Margin="247,454,0,0" VerticalAlignment="Top" Width="69" Grid.Column="1"/>
+            <Button x:Name="btnSaveScoreP4" Content="Save Score" HorizontalAlignment="Left" Margin="372,454,0,0" VerticalAlignment="Top" Width="69" Grid.Column="1" Grid.ColumnSpan="2"/> />
 
     </Grid>
 </Window>
