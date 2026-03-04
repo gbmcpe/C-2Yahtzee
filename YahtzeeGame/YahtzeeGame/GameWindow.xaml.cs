@@ -243,8 +243,6 @@ namespace YahtzeeGame
 
         #endregion
 
-
-
         #region Voids
 
 
@@ -508,16 +506,7 @@ namespace YahtzeeGame
 
             while (stillBot && !gameEnd)
             {
-                if (currentPlayer.PlayerScores.isScoreCardFinished)
-                {
-                    tester--;
-                }
-
-                if (tester < 0)
-                {
-                    EndGame();
-
-                }
+            
                 game.RollUsed(CheckDice());
                 bot.DecisionTree(game.Pool.diceValue);
                 game.EndTurn();
@@ -545,56 +534,47 @@ namespace YahtzeeGame
 
         public void NextTurn()
         {
+
+                    game.EndTurn();
+                    currentPlayer = game.currentPlayer;
+
+                    FillBoxes();
+                    CheckState(false);
+                    game.RollUsed(CheckDice());
+                    DisplayDiceSet();
+                    game.Rolls = 2;
+                    lblTimesRolled.Content = 2.ToString();
+                    DiceActivation(true);
+                    ScoreCardActivated(true);
+                    RefactorBoard();
+
+                    if (currentPlayer.GetType() == typeof(DumbBot))
+                    {
+                        bot = (DumbBot)game.currentPlayer;
+                        BotTurn();
+
+                    }
+                    else
+                    {
+
+
+
+                        BtnRollDice.IsEnabled = true;
+
+
+
+
+
+                        /// If the next player is CPU, let the CPU play automatically. - EasyModeBot
+                        _ = PlayCpuTurnIfNeededAsync();
+                    }
+
             if (game.IsGameOver())
             {
                 EndGame();
             }
-
-           //if (currentPlayer.PlayerScores.isScoreCardFinished)
-           //{
-           // tester--;
-           //}
-
-           //if (tester < 0)
-           //{
-           //      EndGame();
-           //}
-
-            game.EndTurn();
-            currentPlayer = game.currentPlayer;
-
-
-            FillBoxes();
-            CheckState(false);
-            game.RollUsed(CheckDice());
-            DisplayDiceSet();
-            game.Rolls = 2;
-            lblTimesRolled.Content = 2.ToString();
-            DiceActivation(true);
-            ScoreCardActivated(true);
-            RefactorBoard();
-
-            if (currentPlayer.GetType() == typeof(DumbBot))
-            {
-                bot = (DumbBot)game.currentPlayer;
-                BotTurn();
-
-            }
-            else
-            {
-
-
-
-                BtnRollDice.IsEnabled = true;
-
-
-
-
-
-                /// If the next player is CPU, let the CPU play automatically. - EasyModeBot
-                _ = PlayCpuTurnIfNeededAsync();
-            }
         }
+        
 
         private void EndGame()
         {

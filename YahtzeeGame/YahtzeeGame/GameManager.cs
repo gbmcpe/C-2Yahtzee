@@ -68,10 +68,9 @@ namespace YahtzeeGame
             
             foreach (Player p in this.players)
             {
-                if (!p.PlayerScores.isScoreCardFinished)
+                if (p.PlayerScores.ScoreCardNotFinished() == true)
                 {
                     gameOver = false;
-    
                 }
             }
             return gameOver;

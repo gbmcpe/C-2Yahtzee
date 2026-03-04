@@ -786,7 +786,7 @@ namespace YahtzeeGame
                     
                     if (!isComputer)
                     {
-                        MessageBox.Show("Do you want to score Yahtzee? You will gain 0 points.", "Confirmation", MessageBoxButton.YesNo);
+                       choice = MessageBox.Show("Do you want to score Yahtzee? You will gain 0 points.", "Confirmation", MessageBoxButton.YesNo);
                     }
 
                     if (choice == MessageBoxResult.Yes || isComputer)
