@@ -41,8 +41,8 @@
         <TextBox x:Name="tbChanceP1" HorizontalAlignment="Left" Margin="90,388,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.ColumnSpan="2"/>
         <TextBox x:Name="tbBonusP1" HorizontalAlignment="Left" Margin="90,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.ColumnSpan="2"/>
         <Label x:Name="lblBonus" Content="Bonus" HorizontalAlignment="Center" Margin="0,190,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lblUpperSection" Content="Upper Section" HorizontalAlignment="Left" Margin="108,24,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-        <Label x:Name="lblLowerSection" Content="Lower Section" HorizontalAlignment="Left" Margin="107,217,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <Label x:Name="lblUpperSection" Content="Upper Section" HorizontalAlignment="Left" Margin="180,24,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label x:Name="lblLowerSection" Content="Lower Section" HorizontalAlignment="Left" Margin="179,217,0,0" VerticalAlignment="Top" Grid.Column="1"/>
         <TextBox x:Name="tbAcesP2" HorizontalAlignment="Left" Margin="96,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
         <TextBox x:Name="tbTwosP2" HorizontalAlignment="Left" Margin="96,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
         <TextBox x:Name="tbThreesP2" HorizontalAlignment="Left" Margin="96,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
@@ -68,7 +68,7 @@
         <TextBox x:Name="tbFullHouseP3" HorizontalAlignment="Left" Margin="221,291,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
         <TextBox x:Name="tbSmallStraightP3" HorizontalAlignment="Left" Margin="221,316,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
         <TextBox x:Name="tbLargeStraightP3" HorizontalAlignment="Left" Margin="221,340,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
-        <TextBox x:Name="tbYahtzee_Copy1" HorizontalAlignment="Left" Margin="221,364,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
+        <TextBox x:Name="tbYahtzeeP3" HorizontalAlignment="Left" Margin="221,364,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
         <TextBox x:Name="tbChanceP3" HorizontalAlignment="Left" Margin="221,388,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
         <TextBox x:Name="tbBonusP3" HorizontalAlignment="Left" Margin="221,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
         <TextBox x:Name="tbAcesP4" HorizontalAlignment="Left" Margin="346,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1" Grid.ColumnSpan="2"/>
@@ -89,19 +89,19 @@
         <Label x:Name="lblPlayer2" Content="Player 2" HorizontalAlignment="Left" Margin="130,6,0,0" VerticalAlignment="Top" Grid.Column="1"/>
         <Label x:Name="lblPlayer3" Content="Player 3" HorizontalAlignment="Left" Margin="255,6,0,0" VerticalAlignment="Top" Grid.Column="1"/>
         <Label x:Name="lblPlayer4" Content="Player 4" HorizontalAlignment="Left" Margin="380,6,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.ColumnSpan="2"/>
-        <Label x:Name="lblWinner" Content="Wins!" HorizontalAlignment="Left" Margin="130,53,0,0" VerticalAlignment="Top" Grid.Column="2" FontSize="32" Grid.ColumnSpan="2"/>
-        <Label x:Name="lblWinnerNae" Content="(name)" HorizontalAlignment="Left" Margin="120,9,0,0" VerticalAlignment="Top" Grid.Column="2" FontSize="32" Grid.ColumnSpan="2"/>
+        <Label x:Name="lblWinner" Content="Wins!" HorizontalAlignment="Left" Margin="127,53,0,0" VerticalAlignment="Top" Grid.Column="2" FontSize="32" Grid.ColumnSpan="2"/>
+        <Label x:Name="lblWinnerName" Content="(name)" HorizontalAlignment="Left" Margin="127,20,0,0" VerticalAlignment="Top" Grid.Column="2" FontSize="24" Grid.ColumnSpan="2"/>
         <Label x:Name="lblTotal" Content="Total" HorizontalAlignment="Left" Margin="27,410,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="16"/>
         <TextBox x:Name="tbTotalP1" HorizontalAlignment="Left" Margin="90,418,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.ColumnSpan="2"/>
         <TextBox x:Name="tbTotalP2" HorizontalAlignment="Left" Margin="96,418,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
         <TextBox x:Name="tbTotalP3" HorizontalAlignment="Left" Margin="221,418,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1"/>
         <TextBox x:Name="tbTotalP4" HorizontalAlignment="Left" Margin="346,418,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1" Grid.ColumnSpan="2"/>
-        <Button x:Name="btnReturnToGame" Grid.Column="3" Content="Play Again!" HorizontalAlignment="Left" Margin="3,122,0,0" VerticalAlignment="Top" Width="69" Click="btnReturnToGame_Click"/>
+        <Button x:Name="btnReturnToGame" Grid.Column="2" Content="Play Again!" HorizontalAlignment="Left" Margin="114,122,0,0" VerticalAlignment="Top" Width="114" Click="btnReturnToGame_Click" Grid.ColumnSpan="2"/>
         <Button x:Name="btnMainMenu" Grid.Column="2" Content="Back to Main Menu" HorizontalAlignment="Left" Margin="114,154,0,0" VerticalAlignment="Top" Width="114" Grid.ColumnSpan="2" Click="btnMainMenu_Click"/>
-        <Button x:Name="btnSaveScoreP1" Content="Save Score" HorizontalAlignment="Left" Margin="115,454,0,0" VerticalAlignment="Top" Width="69" Grid.ColumnSpan="2"/>
-        <Button x:Name="btnSaveScoreP2" Content="Save Score" HorizontalAlignment="Left" Margin="113,454,0,0" VerticalAlignment="Top" Width="69" Grid.Column="1"/>
-        <Button x:Name="btnSaveScoreP3" Content="Save Score" HorizontalAlignment="Left" Margin="247,454,0,0" VerticalAlignment="Top" Width="69" Grid.Column="1"/>
-        <Button x:Name="btnSaveScoreP4" Content="Save Score" HorizontalAlignment="Left" Margin="372,454,0,0" VerticalAlignment="Top" Width="69" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <Button x:Name="btnSaveScoreP1" Content="Save Score" HorizontalAlignment="Left" Margin="115,454,0,0" VerticalAlignment="Top" Width="69" Grid.ColumnSpan="2" Click="btnSaveScoreP1_Click"/>
+        <Button x:Name="btnSaveScoreP2" Content="Save Score" HorizontalAlignment="Left" Margin="113,454,0,0" VerticalAlignment="Top" Width="69" Grid.Column="1" Click="btnSaveScoreP2_Click"/>
+        <Button x:Name="btnSaveScoreP3" Content="Save Score" HorizontalAlignment="Left" Margin="247,454,0,0" VerticalAlignment="Top" Width="69" Grid.Column="1" Click="btnSaveScoreP3_Click"/>
+        <Button x:Name="btnSaveScoreP4" Content="Save Score" HorizontalAlignment="Left" Margin="372,454,0,0" VerticalAlignment="Top" Width="69" Grid.Column="1" Grid.ColumnSpan="2" Click="btnSaveScoreP4_Click"/>
 
     </Grid>
 </Window>

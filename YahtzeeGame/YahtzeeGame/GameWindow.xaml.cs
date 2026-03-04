@@ -297,6 +297,12 @@ namespace YahtzeeGame
         #region New Stuff
         public void NextTurn()
         {
+            if (game.IsGameOver())
+            {
+                EndGame();
+            }
+
+
             if (currentPlayer.PlayerScores.isScoreCardFinished)
             {
                 tester--;
@@ -343,26 +349,26 @@ namespace YahtzeeGame
         private void EndGame()
         {
             MessageBox.Show("The game has ended. Generating final scores now.");
-            RecordHighScores(currentPlayer);
+
             int x = game.players.Count - 1;
 
-            while (x >= 0)
-            {
-                MessageBox.Show(game.players[x].PlayerName + " achieved " + game.players[x].PlayerScores.totalScore +
-                                " Points.");
-                x--;
-            }
-
             gameEnd = true;
-        }
 
-        private void RecordHighScores(Player P)
-        {
-            StreamWriter Output = new StreamWriter("HighScores.txt", true);
-            Output.WriteLine($"{P.PlayerScores.totalScore} {P.PlayerName}");
-            Output.Close();
-        }
+            GameReview gReview = new GameReview(game.players);
+            gReview.Show();
+            this.Close();
 
+
+
+          //  while (x >= 0)
+            //{
+           //     MessageBox.Show(game.players[x].PlayerName + " achieved " + game.players[x].PlayerScores.totalScore +
+                            //    " Points.");
+           //     x--;
+          //  }
+
+          
+        }
         private void RefactorBoard()
         {
             if (currentPlayer.PlayerScores.acesScored)

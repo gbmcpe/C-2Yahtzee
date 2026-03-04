@@ -62,5 +62,21 @@ namespace YahtzeeGame
 
         }
 
+        public bool IsGameOver()
+        {
+           
+            foreach (Player p in this.players)
+            {
+                if (p.PlayerScores.isScoreCardFinished)
+                {
+                 return false;
+                }
+            }
+            return true;
+        }
+
+
+
+
     }
 }
