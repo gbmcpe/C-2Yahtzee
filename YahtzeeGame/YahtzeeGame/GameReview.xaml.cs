@@ -21,17 +21,20 @@ namespace YahtzeeGame
     /// </summary>
     public partial class GameReview : Window
     {
-        public GameReview(List<Player> Players)
+        public GameReview(List<Player> Players, bool gameOver)
         {
             InitializeComponent();
 
             StoredPlayers = Players;
+            GameOver = gameOver;
 
             ApplyEndState(Players);
 
         }
 
        private List<Player> StoredPlayers;
+
+       private bool GameOver { get; }
 
         private void FillBoxes(Player currentPlayer, int n)
         {
@@ -179,7 +182,7 @@ namespace YahtzeeGame
 
             foreach (Player p in players)
             {
-                MessageBox.Show($"{p.PlayerName}");
+               
 
                 FillBoxes(p, n);
                 if (winner == null) { winner = p; }
@@ -197,8 +200,13 @@ namespace YahtzeeGame
                 n++;
             }
 
-            if (tie) { lblWinner.Content = "Tie!"; lblWinnerName.Content = ""; }
-            else { lblWinner.Content = "Wins!"; lblWinnerName.Content = winner.PlayerName; }
+            if (GameOver == true)
+            {
+                if (tie) { lblWinner.Content = "Tie!"; lblWinnerName.Content = ""; }
+                else { lblWinner.Content = "Wins!"; lblWinnerName.Content = winner.PlayerName; }
+            }
+            else { lblWinner.Content = ""; lblWinnerName.Content = ""; btnReturnToGame.Content = "Return to Game"; }
+
         }
 
         private void RecordHighScores(Player P)
@@ -211,12 +219,21 @@ namespace YahtzeeGame
 
         private void btnReturnToGame_Click(object sender, RoutedEventArgs e)
         {
+            if (GameOver)
+            {
+                foreach (Player p in StoredPlayers)
+                { p.PlayerScores = new ScoreCard(); }
+                GameWindow gamewindow = new GameWindow(StoredPlayers);
+                gamewindow.Show();
+                this.Close();
+            }
+            else
+            {
+                GameWindow gamewindow = new GameWindow(StoredPlayers);
+                gamewindow.Show();
+                this.Close();
+            }
 
-            foreach (Player p in StoredPlayers)
-            { p.PlayerScores = new ScoreCard(); }
-            GameWindow gamewindow = new GameWindow(StoredPlayers);
-            gamewindow.Show();
-            this.Close();
         }
 
         private void btnMainMenu_Click(object sender, RoutedEventArgs e)

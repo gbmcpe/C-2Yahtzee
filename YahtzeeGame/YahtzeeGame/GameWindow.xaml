@@ -10,8 +10,8 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="BtnClose" Content="Close" HorizontalAlignment="Left" Margin="697,367,0,0" VerticalAlignment="Top" Click="BtnClose_Click" Height="32" Width="72" FontFamily="Berlin Sans FB" FontSize="20"/>
-        <Button x:Name="BtnReset" Content="Reset" HorizontalAlignment="Left" Margin="610,367,0,0" VerticalAlignment="Top" Click="BtnReset_Click" Height="32" Width="82" FontFamily="Berlin Sans FB" FontSize="20" RenderTransformOrigin="0.591,-0.11"/>
+        <Button x:Name="BtnClose" Content="Close" HorizontalAlignment="Left" Margin="697,383,0,0" VerticalAlignment="Top" Click="BtnClose_Click" Height="32" Width="72" FontFamily="Berlin Sans FB" FontSize="20"/>
+        <Button x:Name="BtnReset" Content="Reset" HorizontalAlignment="Left" Margin="472,383,0,0" VerticalAlignment="Top" Click="BtnReset_Click" Height="32" Width="82" FontFamily="Berlin Sans FB" FontSize="20" RenderTransformOrigin="0.591,-0.11"/>
         <Button x:Name="BtnRollDice" Content="Roll Dice!" HorizontalAlignment="Left" Margin="584,233,0,0" VerticalAlignment="Top" Click="BtnRollDice_Click" Height="34" Width="108" FontFamily="Berlin Sans FB" FontSize="20"/>
         <Image x:Name="Die1" HorizontalAlignment="Left" Height="54" Margin="341,148,0,0" VerticalAlignment="Top" Width="52" Source="/1Die.bmp"/>
         <Image x:Name="Die2" HorizontalAlignment="Left" Height="54" Margin="429,148,0,0" VerticalAlignment="Top" Width="52" Source="/2Die.bmp"/>
@@ -118,6 +118,7 @@
         <Label x:Name="lblBonus" Content="Bonus" HorizontalAlignment="Left" Margin="47,176,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lblUpperSection" Content="Upper Section" HorizontalAlignment="Left" Margin="117,10,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lblLowerSection" Content="Lower Section" HorizontalAlignment="Left" Margin="116,203,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="BtnViewScores" Content="Game Scores" HorizontalAlignment="Left" Margin="560,383,0,0" VerticalAlignment="Top" Click="btnViewScoreCards" Height="32" Width="132" FontFamily="Berlin Sans FB" FontSize="20" RenderTransformOrigin="0.591,-0.11"/>
 
     </Grid>
 </Window>

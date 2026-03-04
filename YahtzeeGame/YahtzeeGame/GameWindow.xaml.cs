@@ -303,15 +303,15 @@ namespace YahtzeeGame
             }
 
 
-            if (currentPlayer.PlayerScores.isScoreCardFinished)
-            {
+            //if (currentPlayer.PlayerScores.isScoreCardFinished)
+            //{
                 tester--;
-            }
+            //}
 
-            if (tester < 0)
-            {
-                EndGame();
-            }
+            //if (tester < 0)
+            //{
+          //      EndGame();
+        //    }
             game.EndTurn();
             currentPlayer = game.currentPlayer;
             FillBoxes();
@@ -354,7 +354,7 @@ namespace YahtzeeGame
 
             gameEnd = true;
 
-            GameReview gReview = new GameReview(game.players);
+            GameReview gReview = new GameReview(game.players, true);
             gReview.Show();
             this.Close();
 
@@ -853,6 +853,14 @@ namespace YahtzeeGame
                 bot = (DumbBot)currentPlayer;
                 BotTurn();
             }
+        }
+
+        private void btnViewScoreCards(object sender, RoutedEventArgs e)
+        {
+            //TODO: Implement this
+
+            GameReview pausereview = new GameReview(game.players, false);
+            pausereview.ShowDialog();
         }
     }
 }

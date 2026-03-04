@@ -67,12 +67,12 @@ namespace YahtzeeGame
            
             foreach (Player p in this.players)
             {
-                if (p.PlayerScores.isScoreCardFinished)
+                if (!p.PlayerScores.isScoreCardFinished)
                 {
-                 return false;
+                 return true;
                 }
             }
-            return true;
+            return false;
         }
 
 
