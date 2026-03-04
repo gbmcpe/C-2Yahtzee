@@ -328,7 +328,7 @@ namespace YahtzeeGame
 
                 btnFours.IsEnabled = !currentPlayer.PlayerScores.foursScored;
      
-                btnFives.IsEnabled = currentPlayer.PlayerScores.fivesScored;
+                btnFives.IsEnabled = !currentPlayer.PlayerScores.fivesScored;
 
                 btnSixes.IsEnabled = !currentPlayer.PlayerScores.sixesScored;
 
