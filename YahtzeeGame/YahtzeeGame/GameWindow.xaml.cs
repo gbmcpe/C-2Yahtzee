@@ -545,25 +545,24 @@ namespace YahtzeeGame
 
         public void NextTurn()
         {
+            if (game.IsGameOver())
+            {
+                EndGame();
+            }
 
+           //if (currentPlayer.PlayerScores.isScoreCardFinished)
+           //{
+           // tester--;
+           //}
 
-            //if (currentPlayer.PlayerScores.isScoreCardFinished)
-            //{
-            tester--;
-            //}
-
-            //if (tester < 0)
-            //{
-            //      EndGame();
-            //    }
+           //if (tester < 0)
+           //{
+           //      EndGame();
+           //}
 
             game.EndTurn();
             currentPlayer = game.currentPlayer;
 
-         if (game.IsGameOver())
-            {
-                EndGame();
-            }
 
             FillBoxes();
             CheckState(false);
