@@ -185,3 +185,5 @@ C:\Users\brady\OneDrive\Documents\GitHub\C-2Yahtzee\YahtzeeGame\YahtzeeGame\obj\
 C:\Users\brady\OneDrive\Documents\GitHub\C-2Yahtzee\YahtzeeGame\YahtzeeGame\obj\Debug\YahtzeeGame.pdb
 C:\Users\gbmcp\Documents\GitHub\C-2Yahtzee\YahtzeeGame\YahtzeeGame\obj\Debug\GameReview.g.cs
 C:\Users\gbmcp\Documents\GitHub\C-2Yahtzee\YahtzeeGame\YahtzeeGame\obj\Debug\GameReview.baml
+C:\Users\corto\OneDrive\Documents\GitHub\C-2Yahtzee\YahtzeeGame\YahtzeeGame\obj\Debug\GameReview.g.cs
+C:\Users\corto\OneDrive\Documents\GitHub\C-2Yahtzee\YahtzeeGame\YahtzeeGame\obj\Debug\GameReview.baml
