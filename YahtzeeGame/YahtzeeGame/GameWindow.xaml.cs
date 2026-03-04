@@ -320,70 +320,32 @@ namespace YahtzeeGame
 
         private void RefactorBoard()
         {
-            if (currentPlayer.PlayerScores.acesScored)
-            {
-                btnAces.IsEnabled = false;
-            }
+                btnAces.IsEnabled = !currentPlayer.PlayerScores.acesScored;
 
-            if (currentPlayer.PlayerScores.twosScored)
-            {
-                btnTwos.IsEnabled = false;
-            }
+                btnTwos.IsEnabled = !currentPlayer.PlayerScores.twosScored;
 
-            if (currentPlayer.PlayerScores.threesScored)
-            {
-                btnThrees.IsEnabled = false;
-            }
+                btnThrees.IsEnabled = !currentPlayer.PlayerScores.threesScored;
 
-            if (currentPlayer.PlayerScores.foursScored)
-            {
-                btnFours.IsEnabled = false;
-            }
+                btnFours.IsEnabled = !currentPlayer.PlayerScores.foursScored;
+     
+                btnFives.IsEnabled = currentPlayer.PlayerScores.fivesScored;
 
-            if (currentPlayer.PlayerScores.fivesScored)
-            {
-                btnFives.IsEnabled = false;
-            }
+                btnSixes.IsEnabled = !currentPlayer.PlayerScores.sixesScored;
 
-            if (currentPlayer.PlayerScores.sixesScored)
-            {
-                btnSixes.IsEnabled = false;
-            }
+                btnThreeKind.IsEnabled = !currentPlayer.PlayerScores.threeOfAKindScored;
 
-            if (currentPlayer.PlayerScores.threeOfAKindScored)
-            {
-                btnThreeKind.IsEnabled = false;
-            }
+                btnFourKind.IsEnabled = !currentPlayer.PlayerScores.fourOfAKindScored;
+ 
+                btnFullHouse.IsEnabled = !currentPlayer.PlayerScores.fullHouseScored;
 
-            if (currentPlayer.PlayerScores.fourOfAKindScored)
-            {
-                btnFourKind.IsEnabled = false;
-            }
+                btnSmallStraight.IsEnabled = !currentPlayer.PlayerScores.smallStraightScored;
 
-            if (currentPlayer.PlayerScores.fullHouseScored)
-            {
-                btnFullHouse.IsEnabled = false;
-            }
+                btnLargeStraight.IsEnabled = !currentPlayer.PlayerScores.largeStraightScored;
+     
+                btnYahtzee.IsEnabled = !currentPlayer.PlayerScores.yahtzeeScored;
 
-            if (currentPlayer.PlayerScores.smallStraightScored)
-            {
-                btnSmallStraight.IsEnabled = false;
-            }
-
-            if (currentPlayer.PlayerScores.largeStraightScored)
-            {
-                btnLargeStraight.IsEnabled = false;
-            }
-
-            if (currentPlayer.PlayerScores.yahtzeeScored)
-            {
-                btnYahtzee.IsEnabled = false;
-            }
-
-            if (currentPlayer.PlayerScores.chanceScored)
-            {
-                btnChance.IsEnabled = false;
-            }
+                btnChance.IsEnabled = !currentPlayer.PlayerScores.chanceScored;
+     
         }
 
         private void ScoreCardActivated(bool state)
