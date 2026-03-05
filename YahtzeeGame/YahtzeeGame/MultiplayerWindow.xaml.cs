@@ -205,7 +205,7 @@ namespace YahtzeeGame
         }
 
         private void tbPlayer1_TextChanged(object sender, TextChangedEventArgs e)
-        {
+            {
             if (tbPlayer1 != null && tbPlayer2.IsEnabled == false)
             {
                btnStart.IsEnabled=CheckStart();

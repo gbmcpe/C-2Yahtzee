@@ -10,11 +10,11 @@ namespace YahtzeeGame
     {
 
         //PlayerPos will start at 0.
-        public int PlayerPos;
+        private int playerPos;
         private string playerName;
-        public bool ComputerPlayer;
-        public ScoreCard PlayerScores;
-        public int SelectedScore;
+        private bool computerPlayer;
+        private ScoreCard playerScores;
+        private int selectedScore;
 
         //constructors
         public Player(int Pos) 
@@ -44,9 +44,15 @@ namespace YahtzeeGame
         //Set and get  the name property 
         public string PlayerName
         {
-            get { return playerName; }
-            set { playerName = value; }
+            get { return PlayerName1; }
+            set { PlayerName1 = value; }
         }
+
+        public int PlayerPos { get => playerPos; set => playerPos = value; }
+        public string PlayerName1 { get => playerName; set => playerName = value; }
+        public bool ComputerPlayer { get => computerPlayer; set => computerPlayer = value; }
+        public ScoreCard PlayerScores { get => playerScores; set => playerScores = value; }
+        public int SelectedScore { get => selectedScore; set => selectedScore = value; }
 
 
 

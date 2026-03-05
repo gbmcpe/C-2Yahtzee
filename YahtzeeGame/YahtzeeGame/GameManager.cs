@@ -1,6 +1,7 @@
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -15,7 +16,8 @@ namespace YahtzeeGame
         public int Round;
         public int Turn;
         // public int Initiative;
-        public List<Player> players;
+        public ObservableCollection<Player> players = new ObservableCollection<Player>();
+        //public List<Player> players;
         public int Rolls;
         public Dice Pool;
         public Player currentPlayer;

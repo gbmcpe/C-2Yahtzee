@@ -153,44 +153,44 @@ namespace YahtzeeGame
             {
                 
                 case "aces":
-                    card.aces = points; card.acesScored = true; card.totalScore += points; break;
+                    card.Aces = points; card.AcesScored = true; card.TotalScore += points; break;
                 
                 case "twos":
-                    card.twos = points; card.twosScored = true; card.totalScore += points; break;
+                    card.Twos = points; card.TwosScored = true; card.TotalScore += points; break;
                 
                 case "threes":
-                    card.threes = points; card.threesScored = true; card.totalScore += points; break;
+                    card.Threes = points; card.ThreesScored = true; card.TotalScore += points; break;
                 
                 case "fours":
-                    card.fours = points; card.foursScored = true; card.totalScore += points; break;
+                    card.Fours = points; card.FoursScored = true; card.TotalScore += points; break;
                 
                 case "fives":
-                    card.fives = points; card.fivesScored = true; card.totalScore += points; break;
+                    card.Fives = points; card.FivesScored = true; card.TotalScore += points; break;
                 
                 case "sixes":
-                    card.sixes = points; card.sixesScored = true; card.totalScore += points; break;
+                    card.Sixes = points; card.SixesScored = true; card.TotalScore += points; break;
 
                 
                 case "threeKind":
-                    card.threeOfAKind = points; card.threeOfAKindScored = true; card.totalScore += points; break;
+                    card.ThreeOfAKind = points; card.ThreeOfAKindScored = true; card.TotalScore += points; break;
                
                 case "fourKind":
-                    card.fourOfAKind = points; card.fourOfAKindScored = true; card.totalScore += points; break;
+                    card.FourOfAKind = points; card.FourOfAKindScored = true; card.TotalScore += points; break;
                
                 case "fullHouse":
-                    card.fullHouse = points; card.fullHouseScored = true; card.totalScore += points; break;
+                    card.FullHouse = points; card.FullHouseScored = true; card.TotalScore += points; break;
                 
                 case "smallStraight":
-                    card.smallStraight = points; card.smallStraightScored = true; card.totalScore += points; break;
+                    card.SmallStraight = points; card.SmallStraightScored = true; card.TotalScore += points; break;
                 
                 case "largeStraight":
-                    card.largeStraight = points; card.largeStraightScored = true; card.totalScore += points; break;
+                    card.LargeStraight = points; card.LargeStraightScored = true; card.TotalScore += points; break;
                 
                 case "yahtzee":
-                    card.yahtzee = points; card.yahtzeeScored = true; card.totalScore += points; break;
+                    card.Yahtzee = points; card.YahtzeeScored = true; card.TotalScore += points; break;
                 
                 case "chance":
-                    card.chance = points; card.chanceScored = true; card.totalScore += points; break;
+                    card.Chance = points; card.ChanceScored = true; card.TotalScore += points; break;
             }
         }
 
@@ -209,19 +209,19 @@ namespace YahtzeeGame
             var list = new List<string>();
 
             /// Add each category if it has not been scored yet.
-            if (!category.acesScored) list.Add("aces");
-            if (!category.twosScored) list.Add("twos");
-            if (!category.threesScored) list.Add("threes");
-            if (!category.foursScored) list.Add("fours");
-            if (!category.fivesScored) list.Add("fives");
-            if (!category.sixesScored) list.Add("sixes");
-            if (!category.threeOfAKindScored) list.Add("threeKind");
-            if (!category.fourOfAKindScored) list.Add("fourKind");
-            if (!category.fullHouseScored) list.Add("fullHouse");
-            if (!category.smallStraightScored) list.Add("smallStraight");
-            if (!category.largeStraightScored) list.Add("largeStraight");
-            if (!category.yahtzeeScored) list.Add("yahtzee");
-            if (!category.chanceScored) list.Add("chance");
+            if (!category.AcesScored) list.Add("aces");
+            if (!category.TwosScored) list.Add("twos");
+            if (!category.ThreesScored) list.Add("threes");
+            if (!category.FoursScored) list.Add("fours");
+            if (!category.FivesScored) list.Add("fives");
+            if (!category.SixesScored) list.Add("sixes");
+            if (!category.ThreeOfAKindScored) list.Add("threeKind");
+            if (!category.FourOfAKindScored) list.Add("fourKind");
+            if (!category.FullHouseScored) list.Add("fullHouse");
+            if (!category.SmallStraightScored) list.Add("smallStraight");
+            if (!category.LargeStraightScored) list.Add("largeStraight");
+            if (!category.YahtzeeScored) list.Add("yahtzee");
+            if (!category.ChanceScored) list.Add("chance");
 
             /// Return the completed list.
             return list;

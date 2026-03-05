@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:YahtzeeGame"
         mc:Ignorable="d"
-        Title="YahtzeeGame" Height="450" Width="800">
+        Title="YahtzeeGame" Height="441" Width="800">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="#FF1A1A1A"/>
             <GradientStop Color="#FF1A1A1A" Offset="1"/>
         </LinearGradientBrush>
     </Window.Background>
-    <Grid Margin="0,0,0,32">
+    <Grid Margin="0,0,0,19">
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                 <GradientStop Color="#FFFF8686"/>
@@ -22,7 +22,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Label x:Name="titleLb" Content="Welcome to Yahtzee!" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="50" FontFamily="Berlin Sans FB" Padding="10,10,10,10" Background="{x:Null}" Foreground="#FFD4FDCE" Margin="174,6,0,0" Height="76">
+        <Label x:Name="titleLb" Content="Welcome to Yahtzee!" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="50" FontFamily="Berlin Sans FB" Padding="10,10,10,10" Background="{x:Null}" Foreground="#FFD4FDCE" Margin="174,50,0,0" Height="76">
             <Label.Style>
                 <Style/>
             </Label.Style>
@@ -33,9 +33,9 @@
                 </LinearGradientBrush>
             </Label.BorderBrush>
         </Label>
-        <Button x:Name="multiPlayerBtt" Content="Play!" HorizontalAlignment="Left" Margin="299,0,0,0" VerticalAlignment="Center" Height="71" Width="210" FontSize="30" FontFamily="Berlin Sans FB" Background="#FFEFF665" Foreground="#FF630A0A" Click="multiPlayerBtt_Click"/>
-        <Button x:Name="btnHighScore" Content="High Scores" HorizontalAlignment="Left" Margin="77,205,0,0" VerticalAlignment="Top" Height="42" Width="176" FontSize="30" FontFamily="Berlin Sans FB" Background="#FFEFF665" Foreground="#FF630A0A" Click="btnHighScore_Click"/>
-        <Button x:Name="btnAboutinfo" Content="About" HorizontalAlignment="Left" Margin="555,205,0,0" VerticalAlignment="Top" Height="42" Width="176" FontSize="30" FontFamily="Berlin Sans FB" Background="#FFEFF665" Foreground="#FF630A0A" Click="btnAbout"/>
+        <Button x:Name="multiPlayerBtt" Content="Play!" HorizontalAlignment="Center" Margin="0,183,0,0" VerticalAlignment="Top" Height="71" Width="210" FontSize="30" FontFamily="Berlin Sans FB" Background="#FFEFF665" Foreground="#FF630A0A" Click="multiPlayerBtt_Click"/>
+        <Button x:Name="btnHighScore" Content="High Scores" HorizontalAlignment="Left" Margin="174,289,0,0" VerticalAlignment="Top" Height="42" Width="176" FontSize="30" FontFamily="Berlin Sans FB" Background="#FFEFF665" Foreground="#FF630A0A" Click="btnHighScore_Click"/>
+        <Button x:Name="btnAboutinfo" Content="About" HorizontalAlignment="Left" Margin="440,289,0,0" VerticalAlignment="Top" Height="42" Width="176" FontSize="30" FontFamily="Berlin Sans FB" Background="#FFEFF665" Foreground="#FF630A0A" Click="btnAbout"/>
 
     </Grid>
 </Window>

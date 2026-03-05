@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -8,7 +9,9 @@ using System.Windows;
 
 namespace YahtzeeGame
 {
-    public class ScoreCard
+    //Adding an interface for property changed so that we can bind the scorecard to the UI and have it update
+    //when the values change.
+    public class ScoreCard : INotifyPropertyChanged
     {
         /*Fields Notes
          * Quick note about the fields, each variable is public and can be changed without affecting totalScore. So you can call scores 
@@ -17,77 +20,368 @@ namespace YahtzeeGame
          */
         #region Fields
         //These are flags that keep track of whether a score has been locked in
-        public bool acesScored;
-        public bool twosScored;
-        public bool threesScored;
-        public bool foursScored;
-        public bool fivesScored;
-        public bool sixesScored;
-        public bool bonusScored;
-        public bool threeOfAKindScored;
-        public bool fourOfAKindScored;
-        public bool fullHouseScored;
-        public bool smallStraightScored;
-        public bool largeStraightScored;
-        public bool yahtzeeScored;
-        public bool chanceScored;
+        private bool acesScored;
+        private bool twosScored;
+        private bool threesScored;
+        private bool foursScored;
+        private bool fivesScored;
+        private bool sixesScored;
+        private bool bonusScored;
+        private bool threeOfAKindScored;
+        private bool fourOfAKindScored;
+        private bool fullHouseScored;
+        private bool smallStraightScored;
+        private bool largeStraightScored;
+        private bool yahtzeeScored;
+        private bool chanceScored;
 
         //This flag triggers when the entire scorecard is finished. Further attempts to flip one of the other flags will fire off ScoreCardFilledWarning()
         public bool isScoreCardFinished;
 
         //These hold the actual values that will be added to totalScore when locked in. These are all separate values so that they can be called later for
         //displaying on the game card. If we find a better way of doing it, these can be erased.
-        public int aces;
-        public int twos;
-        public int threes;
-        public int fours;
-        public int fives;
-        public int sixes;
-        public int bonus;
-        public int threeOfAKind;
-        public int fourOfAKind;
-        public int fullHouse;
-        public int smallStraight;
-        public int largeStraight;
-        public int yahtzee;
-        public int chance;
+        private int aces;
+        private int twos;
+        private int threes;
+        private int fours;
+        private int fives;
+        private int sixes;
+        private int bonus;
+        private int threeOfAKind;
+        private int fourOfAKind;
+        private int fullHouse;
+        private int smallStraight;
+        private int largeStraight;
+        private int yahtzee;
+        private int chance;
 
         //This is the final score of the player
-        public int totalScore;
+        private int totalScore;
+
+        //This is the event handler for the INotifyPropertyChanged interface,
+        //which allows us to bind the scorecard to the UI and have it update when values change.
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// This method is called whenever a property changes, and it raises the PropertyChanged event to notify the UI to update.
+        /// The propertyName parameter is the name of the property that changed, which is used by the UI to determine which element to update.
+        /// </summary>
+        /// <param name="propertyName"></param>
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        /// <summary>
+        /// These are the properties for the score values. They're all public so they can be called by the UI, but they don't affect totalScore when changed. 
+        //* They're only changed when the player locks in a score, which is when the associated flag is flipped to true. This way, we can call these values
+        //* for display purposes without affecting the actual score of the player.
+        /// </summary>
+        public int Aces
+        {
+            get => aces;
+            set
+            {
+                aces = value;
+                OnPropertyChanged(nameof(Aces));
+            }
+        }
+        public int Twos
+        {
+            get => twos;
+            set
+            {
+                twos = value;
+                OnPropertyChanged(nameof(Twos));
+            }
+        }
+        public int Threes { 
+            get => threes;  
+            set
+            {
+                threes = value;
+                OnPropertyChanged(nameof(threes));
+            }
+        }
+        public int Fours
+        {
+            get => fours;
+            set
+            {
+                fours = value;
+                OnPropertyChanged(nameof(Fours));
+            }
+        }
+        public int Fives
+        {
+            get => fives;
+            set
+            {
+                fives = value;
+                OnPropertyChanged(nameof(Fives));
+            }
+        }
+        public int Sixes
+        {
+            get => sixes;
+            set
+            {
+                sixes = value;
+                OnPropertyChanged(nameof(Sixes));
+            }
+        }
+        public int Bonus
+        {
+            get => bonus;
+            set
+            {
+                bonus = value;
+                OnPropertyChanged(nameof(Bonus));
+            }
+        }
+
+        public int ThreeOfAKind
+        {
+            get => threeOfAKind;
+            set
+            {
+                threeOfAKind = value;
+                OnPropertyChanged(nameof(ThreeOfAKind));
+            }
+        }
+
+        public int FourOfAKind
+        {
+            get => fourOfAKind;
+            set
+            {
+                fourOfAKind = value;
+                OnPropertyChanged(nameof(FourOfAKind));
+            }
+        }
+
+        public int FullHouse
+        {
+            get => fullHouse;
+            set
+            {
+                fullHouse = value;
+                OnPropertyChanged(nameof(FullHouse));
+            }
+        }
+
+        public int SmallStraight
+        {
+            get => smallStraight;
+            set
+            {
+                smallStraight = value;
+                OnPropertyChanged(nameof(SmallStraight));
+            }
+        }
+
+        public int LargeStraight
+        {
+            get => largeStraight;
+            set
+            {
+                largeStraight = value;
+                OnPropertyChanged(nameof(LargeStraight));
+            }
+        }
+
+        public int Yahtzee
+        {
+            get => yahtzee;
+            set
+            {
+                yahtzee = value;
+                OnPropertyChanged(nameof(Yahtzee));
+            }
+        }
+
+        public int Chance
+        {
+            get => chance;
+            set
+            {
+                chance = value;
+                OnPropertyChanged(nameof(Chance));
+            }
+        }
+
+        public int TotalScore
+        {
+            get => totalScore;
+            set
+            {
+                totalScore = value;
+                OnPropertyChanged(nameof(TotalScore));
+            }
+        }
+
+        public bool AcesScored
+        {
+            get => acesScored;
+            set
+            {
+                acesScored = value;
+                OnPropertyChanged(nameof(AcesScored));
+            }
+        }
+
+        public bool TwosScored
+        {
+            get => twosScored;
+            set
+            {
+                twosScored = value;
+                OnPropertyChanged(nameof(TwosScored));
+            }
+        }
+        public bool ThreesScored
+        {
+            get => threesScored;
+            set
+            {
+                threesScored = value;
+                OnPropertyChanged(nameof(ThreesScored));
+            }
+        }
+        public bool FoursScored 
+        { 
+            get => foursScored;
+            set
+            {
+                foursScored = value;
+                OnPropertyChanged(nameof(FoursScored));
+            }
+        }
+        public bool FivesScored
+        {
+            get => fivesScored;
+            set
+            {
+                fivesScored = value;
+                OnPropertyChanged(nameof(FivesScored));
+            }
+        }
+        public bool SixesScored
+        {
+            get => sixesScored;
+            set
+            {
+                sixesScored = value;
+                OnPropertyChanged(nameof(SixesScored));
+            }
+        }
+        public bool BonusScored 
+        { 
+            get => bonusScored;
+            set
+            {
+                bonusScored = value;
+                OnPropertyChanged(nameof(BonusScored));
+            }
+        }
+        public bool ThreeOfAKindScored 
+        { 
+            get => threeOfAKindScored;
+            set
+            {
+                threeOfAKindScored = value;
+                OnPropertyChanged(nameof(ThreeOfAKindScored));
+            }
+        }
+        public bool FourOfAKindScored
+        {
+            get => fourOfAKindScored;
+            set
+            {
+                fourOfAKindScored = value;
+                OnPropertyChanged(nameof(FourOfAKindScored));
+            }
+        }
+        public bool FullHouseScored
+        {
+            get => fullHouseScored;
+            set
+            {
+                fullHouseScored = value;
+                OnPropertyChanged(nameof(FullHouseScored));
+            }
+        }
+        public bool SmallStraightScored 
+        { 
+            get => smallStraightScored;
+            set
+            {
+                smallStraightScored = value;
+                OnPropertyChanged(nameof(SmallStraightScored));
+            }
+        }
+        public bool LargeStraightScored
+        {
+            get => largeStraightScored;
+            set
+            {
+                largeStraightScored = value;
+                OnPropertyChanged(nameof(LargeStraightScored));
+            }
+        }
+        public bool YahtzeeScored 
+        {
+            get => yahtzeeScored;
+            set
+            {
+                yahtzeeScored = value;
+                OnPropertyChanged(nameof(YahtzeeScored));
+            }
+        }
+        public bool ChanceScored 
+        { 
+            get => chanceScored;
+            set
+            {
+                chanceScored = value;
+                OnPropertyChanged(nameof(ChanceScored));
+            }
+        }
+
         #endregion
 
         //Constructor
         public ScoreCard()
         {
-            acesScored = false;
-            twosScored = false;
-            threesScored = false;
-            foursScored = false;
-            fivesScored = false;
-            sixesScored = false;
-            threeOfAKindScored = false;
-            fourOfAKindScored = false;
-            fullHouseScored = false;
-            smallStraightScored = false;
-            largeStraightScored = false;
-            yahtzeeScored = false;
-            chanceScored = false;
+            AcesScored = false;
+            TwosScored = false;
+            ThreesScored = false;
+            FoursScored = false;
+            FivesScored = false;
+            SixesScored = false;
+            ThreeOfAKindScored = false;
+            FourOfAKindScored = false;
+            FullHouseScored = false;
+            SmallStraightScored = false;
+            LargeStraightScored = false;
+            YahtzeeScored = false;
+            ChanceScored = false;
             isScoreCardFinished = false;
-            aces = 0;
-            twos = 0;
-            threes = 0;
-            fours = 0;
-            fives = 0;
-            sixes = 0;
-            bonus = 0;
-            threeOfAKind = 0;
-            fourOfAKind = 0;
-            fullHouse = 0;
-            smallStraight = 0;
-            largeStraight = 0;
-            yahtzee = 0;
-            chance = 0;
-            totalScore = 0;
+            Aces = 0;
+            Twos = 0;
+            Threes = 0;
+            Fours = 0;
+            Fives = 0;
+            Sixes = 0;
+            Bonus = 0;
+            ThreeOfAKind = 0;
+            FourOfAKind = 0;
+            FullHouse = 0;
+            SmallStraight = 0;
+            LargeStraight = 0;
+            Yahtzee = 0;
+            Chance = 0;
+            TotalScore = 0;
         }
 
         /*Card Checking Methods
@@ -107,11 +401,11 @@ namespace YahtzeeGame
 
             List<bool> scores = new List<bool>()
             {
-                acesScored, twosScored, threesScored,
-                foursScored, fivesScored, sixesScored,
-                threeOfAKindScored, fourOfAKindScored, fullHouseScored,
-                smallStraightScored, largeStraightScored, yahtzeeScored,
-                chanceScored
+                AcesScored, TwosScored, ThreesScored,
+                FoursScored, FivesScored, SixesScored,
+                ThreeOfAKindScored, FourOfAKindScored, FullHouseScored,
+                SmallStraightScored, LargeStraightScored, YahtzeeScored,
+                ChanceScored
             };
 
             foreach (bool s in scores)
@@ -132,7 +426,7 @@ namespace YahtzeeGame
 
         public void ScoreCardFilled()
         {
-            MessageBox.Show("The card has already been filled. Your game is over. You scored " + totalScore + "points");
+            MessageBox.Show("The card has already been filled. Your game is over. You scored " + TotalScore + "points");
         }
 
         public int[] DieCounter(int[] dice)
@@ -141,12 +435,12 @@ namespace YahtzeeGame
 
             foreach (int die in dice)
             {
-                if (die == 1) { result[0] = result[0] + 1; }
-                if (die == 2) { result[1] = result[1] + 1; }
-                if (die == 3) { result[2] = result[2] + 1; }
-                if (die == 4) { result[3] = result[3] + 1; }
-                if (die == 5) { result[4] = result[4] + 1; }
-                if (die == 6) { result[5] = result[5] + 1; }
+                if (die == 1) { result[0] += 1; }
+                if (die == 2) { result[1] += 1; }
+                if (die == 3) { result[2] += 1; }
+                if (die == 4) { result[3] += 1; }
+                if (die == 5) { result[4] += 1; }
+                if (die == 6) { result[5] += 1; }
             }
 
             return result;
@@ -244,7 +538,7 @@ namespace YahtzeeGame
             
         }
         #endregion
-        
+
         /* Scoring Method Notes
          * These are all really similar, so I'm documenting them as a region because I'm lazy.
          
@@ -260,41 +554,46 @@ namespace YahtzeeGame
          * you'll need to feed it an array with all five dice. It won't throw an error, but the logic won't work right.
          *
          * Update 2: Each Scoring Method now checks if the Score Card has been filled. If not, it fires off ScoreCardFilled()
+         *Update 3: Each scoring was previusly calculated, but now the player is prompted to confirm that they want to score 
+         *that box for the points it contains. This way, if they accidentally click the wrong box, they can back out without losing points. 
+         *The computer player will automatically select yes for all prompts.
          */
+
+        // Update 4: I deleted the argument for dice the dice is no longer needed as an argument
+        //because the scores are updated in real time as the dice are rolled,
+        //so the current score options are always available in the ScoreCard object.
         #region Scoring Methods
-        public void AcesSelected(int[] Dice, bool isComputer = false)
+        public void AcesSelected( bool isComputer = false)
         {
             if (ScoreCardNotFinished())
             {
-                if (acesScored == false)
-                {
-                    aces = 0;
-                    foreach (int Die in Dice)
-                    {
-                        if (Die == 1)
-                        {
-                            aces += Die;
-                        }
-                    }
-
+                if (AcesScored == false)
+                { 
                     MessageBoxResult choice = MessageBoxResult.No;
 
                     if (!isComputer)
                     {
-                        choice = MessageBox.Show("Do you want to score Aces? You will gain " + aces + " points.", "Confirmation", MessageBoxButton.YesNo);
+                        choice = MessageBox.Show("Do you want to score Aces? You will gain " + Aces + " points.", "Confirmation", MessageBoxButton.YesNo);
                     }
 
                     if (choice == MessageBoxResult.Yes || isComputer)
                     {
-                        acesScored = true;
-                        totalScore += aces;
-                        
+                        AcesScored = true;
+                        TotalScore += Aces;
+
+                        //Show only the score selected in the scored card
+                        //Save just the score selected 
+
+
+
+
+
                     }
                 }
                 else
                 {
                     
-                    MessageBox.Show("This box has already been scored. It contains " + aces + " points.");
+                    MessageBox.Show("This box has already been scored. It contains " + Aces + " points.");
                     
                 }
             }
@@ -304,232 +603,186 @@ namespace YahtzeeGame
             }
         }
 
-        public void TwosSelected(int[] Dice, bool isComputer = false)
+        public void TwosSelected( bool isComputer = false)
         {
             if (ScoreCardNotFinished())
             {
-                if (twosScored == false)
+                if (TwosScored == false)
                 {
-                    twos = 0;
-                    foreach (int Die in Dice)
-                    {
-                        if (Die == 2)
-                        {
-                            twos += Die;
-                        }
-                    }
-
                     MessageBoxResult choice = MessageBoxResult.No;
 
                     if (!isComputer)
                     {
-                        choice = MessageBox.Show("Do you want to score Twos? You will gain " + twos + " points.", "Confirmation", MessageBoxButton.YesNo);
+                        choice = MessageBox.Show("Do you want to score Twos? You will gain " + Twos + " points.", "Confirmation", MessageBoxButton.YesNo);
                     }
 
                     if (choice == MessageBoxResult.Yes || isComputer)
                     {
-                        twosScored = true;
-                        totalScore += twos;
+                        TwosScored = true;
+                        TotalScore += Twos;
                         
                     }
                 }
                 else
                 {
-                    MessageBox.Show("This box has already been scored. It contains " + twos + " points.");
+                    MessageBox.Show("This box has already been scored. It contains " + Twos + " points.");
                 }
 
             }
             else { ScoreCardFilled(); }
 }
 
-        public void ThreesSelected(int[] Dice, bool isComputer = false)
+        public void ThreesSelected(bool isComputer = false)
         {
             if (ScoreCardNotFinished())
             {
-                if (threesScored == false)
+                if (ThreesScored == false)
                 {
-                    threes = 0;
-                    foreach (int Die in Dice)
-                    {
-                        if (Die == 3)
-                        {
-                            threes += Die;
-                        }
-                    }
-
+                   
                     MessageBoxResult choice = MessageBoxResult.No;
 
                     if (!isComputer)
                     {
-                        choice = MessageBox.Show("Do you want to score Threes? You will gain " + threes + " points.", "Confirmation", MessageBoxButton.YesNo);
+                        choice = MessageBox.Show("Do you want to score Threes? You will gain " + Threes + " points.", "Confirmation", MessageBoxButton.YesNo);
                     }
 
                     if (choice == MessageBoxResult.Yes || isComputer)
                     {
-                        threesScored = true;
-                        totalScore += threes;
+                        ThreesScored = true;
+                        TotalScore += Threes;
                         
                     }
                 }
                 else
                 {
-                    MessageBox.Show("This box has already been scored. It contains " + threes + " points.");
+                    MessageBox.Show("This box has already been scored. It contains " + Threes + " points.");
                 }
             }
             else { ScoreCardFilled(); }
         }
 
-        public void FoursSelected(int[] Dice, bool isComputer = false)
+        public void FoursSelected(bool isComputer = false)
         {
             if (ScoreCardNotFinished())
             {
-                if (foursScored == false)
+                if (FoursScored == false)
                 {
-                    fours = 0;
-                    foreach (int Die in Dice)
-                    {
-                        if (Die == 4)
-                        {
-                            fours += Die;
-                        }
-                    }
 
                     MessageBoxResult choice = MessageBoxResult.No;
 
                     if (!isComputer)
                     {
-                        choice = MessageBox.Show("Do you want to score Fours? You will gain " + fours + " points.", "Confirmation", MessageBoxButton.YesNo);
+                        choice = MessageBox.Show("Do you want to score Fours? You will gain " + Fours + " points.", "Confirmation", MessageBoxButton.YesNo);
                     }
 
                     if (choice == MessageBoxResult.Yes || isComputer)
                     {
-                        foursScored = true;
-                        totalScore += fours;
+                        FoursScored = true;
+                        TotalScore += Fours;
                         
                     }
                 }
                 else
                 {
-                    MessageBox.Show("This box has already been scored. It contains " + fours + " points.");
+                    MessageBox.Show("This box has already been scored. It contains " + Fours + " points.");
                 }
             }
             else { ScoreCardFilled(); }
         }
 
-        public void FivesSelected(int[] Dice, bool isComputer = false)
+        public void FivesSelected( bool isComputer = false)
         {
             if (ScoreCardNotFinished())
             {
-                if (fivesScored == false)
+                if (FivesScored == false)
                 {
-                    fives = 0;
-                    foreach (int Die in Dice)
-                    {
-                        if (Die == 5)
-                        {
-                            fives += Die;
-                        }
-                    }
-
+                  
                     MessageBoxResult choice = MessageBoxResult.No;
 
                     if (!isComputer)
                     { 
-                        choice = MessageBox.Show("Do you want to score Fives? You will gain " + fives + " points.", "Confirmation", MessageBoxButton.YesNo);
+                        choice = MessageBox.Show("Do you want to score Fives? You will gain " + Fives + " points.", "Confirmation", MessageBoxButton.YesNo);
 
                     }
 
                     if (choice == MessageBoxResult.Yes || isComputer)
                     {
-                        fivesScored = true;
-                        totalScore += fives;
+                        FivesScored = true;
+                        TotalScore += Fives;
                         
                     }
                 }
                 else
                 {
-                    MessageBox.Show("This box has already been scored. It contains " + fives + " points.");
+                    MessageBox.Show("This box has already been scored. It contains " + Fives + " points.");
                 }
             }
             else { ScoreCardFilled(); }
         }
 
-        public void SixesSelected(int[] Dice, bool isComputer = false)
+        public void SixesSelected( bool isComputer = false)
         {
             if (ScoreCardNotFinished())
             {
-                if (sixesScored == false)
+                if (SixesScored == false)
                 {
-                    sixes = 0;
-                    foreach (int Die in Dice)
-                    {
-                        if (Die == 6)
-                        {
-                            sixes += Die;
-                        }
-                    }
+                  
 
                     MessageBoxResult choice = MessageBoxResult.No;
 
                     if (!isComputer)
                     {
-                        choice = MessageBox.Show("Do you want to score Sixes? You will gain " + sixes + " points.", "Confirmation", MessageBoxButton.YesNo);
+                        choice = MessageBox.Show("Do you want to score Sixes? You will gain " + Sixes + " points.", "Confirmation", MessageBoxButton.YesNo);
 
                     }
 
                     if (choice == MessageBoxResult.Yes || isComputer)
                     {
-                        sixesScored = true;
-                        totalScore += sixes;
+                        SixesScored = true;
+                        TotalScore += Sixes;
                         
                     }
                 }
                 else
                 {
-                    MessageBox.Show("This box has already been scored. It contains " + sixes + " points.");
+                    MessageBox.Show("This box has already been scored. It contains " + Sixes + " points.");
                 }
             }
             else { ScoreCardFilled(); }
         }
         public void BonusConditionsMet()
         {
-            if (aces + twos+ threes+ fours + fives + sixes >= 63)
+            if (Aces + Twos+ Threes+ Fours + Fives + Sixes >= 63)
             {
-                bonus = 35;
+                Bonus = 35;
             }
             else
             {
-                bonus = 0;
+                Bonus = 0;
             }
         }
 
-        public void ThreeOfAKindSelected(int[] Dice, bool isComputer = false)
+        public void ThreeOfAKindSelected( bool isComputer = false)
         {
 
             if (ScoreCardNotFinished())
             {
-                if (threeOfAKindScored == false)
+                if (ThreeOfAKindScored == false)
                 {
-                    if (ThreeKindValidation(Dice))
+                    if (threeOfAKind>0)
                     {
-                        foreach (int Die in Dice)
-                        {
-                            threeOfAKind += Die;
-                        }
-
-                        
                         MessageBoxResult choice = MessageBoxResult.No;
 
                         if (!isComputer)
                         {
                             choice = MessageBox.Show("Do you want to score Three of a Kind? You will gain "
-                                            + threeOfAKind + " points.", "Confirmation", MessageBoxButton.YesNo);
+                                            + ThreeOfAKind + " points.", "Confirmation", MessageBoxButton.YesNo);
                         }
 
                         if (choice == MessageBoxResult.Yes || isComputer)
                         {
-                            threeOfAKindScored = true;
-                            totalScore += threeOfAKind;
+                            ThreeOfAKindScored = true;
+                            TotalScore += ThreeOfAKind;
                         }
                     }
                     else
@@ -544,14 +797,14 @@ namespace YahtzeeGame
 
                         if (choice == MessageBoxResult.Yes || isComputer)
                         {
-                            threeOfAKind = 0;
-                            threeOfAKindScored = true;
+                            ThreeOfAKind = 0;
+                            ThreeOfAKindScored = true;
                         }
                     }
                 }
                 else
                 {
-                    MessageBox.Show("This box has already been scored. It contains " + threeOfAKind + " points.");
+                    MessageBox.Show("This box has already been scored. It contains " + ThreeOfAKind + " points.");
                 }
             }
             else { ScoreCardFilled(); }
@@ -561,27 +814,24 @@ namespace YahtzeeGame
         {
             if (ScoreCardNotFinished())
             {
-                if (fourOfAKindScored == false)
+                if (FourOfAKindScored == false)
                 {
-                    if (FourKindValidation(Dice))
+                    if (fourOfAKind>0)
                     {
-                        foreach (int Die in Dice)
-                        {
-                            fourOfAKind += Die;
-                        }
+                       
 
                         MessageBoxResult choice = MessageBoxResult.No;
 
                         if (!isComputer)
                         { 
                             choice = MessageBox.Show("Do you want to score Four of a Kind? You will gain "
-                                          + fourOfAKind + " points.", "Confirmation", MessageBoxButton.YesNo);
+                                          + FourOfAKind + " points.", "Confirmation", MessageBoxButton.YesNo);
                         }
 
                         if (choice == MessageBoxResult.Yes || isComputer)
                         {
-                            fourOfAKindScored = true;
-                            totalScore += fourOfAKind;
+                            FourOfAKindScored = true;
+                            TotalScore += FourOfAKind;
                         }
                     }
                     else
@@ -597,26 +847,26 @@ namespace YahtzeeGame
 
                         if (choice == MessageBoxResult.Yes || isComputer)
                         {
-                            fourOfAKind = 0; 
-                            fourOfAKindScored = true;
+                            FourOfAKind = 0; 
+                            FourOfAKindScored = true;
                         }
                     }
                 }
                 else
                 {
-                    MessageBox.Show("This box has already been scored. It contains " + fourOfAKind + " points.");
+                    MessageBox.Show("This box has already been scored. It contains " + FourOfAKind + " points.");
                 }
             }
             else { ScoreCardFilled(); }
         }
 
-        public void FullHouseSelected(int[] Dice, bool isComputer = false)
+        public void FullHouseSelected(bool isComputer = false)
         {
             if (ScoreCardNotFinished())
             {
-                if (fullHouseScored == false)
+                if (FullHouseScored == false)
                 {
-                    if (FullHouseValidation(Dice))
+                    if (fullHouse==25)
                     {
                         MessageBoxResult choice = MessageBoxResult.No;
 
@@ -628,9 +878,8 @@ namespace YahtzeeGame
 
                         if (choice == MessageBoxResult.Yes || isComputer)
                         {
-                            fullHouse = 25;
-                            fullHouseScored = true;
-                            totalScore += fullHouse;
+                            FullHouseScored = true;
+                            TotalScore += FullHouse;
                         }
                     }
                     else
@@ -644,26 +893,26 @@ namespace YahtzeeGame
 
                         if (choice == MessageBoxResult.Yes || isComputer)
                         {
-                            fullHouse = 0;
-                            fullHouseScored = true;
+                            FullHouse = 0;
+                            FullHouseScored = true;
                         }
                     }
                 }
                 else
                 {
-                    MessageBox.Show("This box has already been scored. It contains " + fullHouse + " points.");
+                    MessageBox.Show("This box has already been scored. It contains " + FullHouse + " points.");
                 }
             }
             else { ScoreCardFilled(); }
         }
 
-        public void SmallStraightSelected(int[] Dice, bool isComputer = false)
+        public void SmallStraightSelected( bool isComputer = false)
         {
             if (ScoreCardNotFinished())
             {
-                if (smallStraightScored == false)
+                if (SmallStraightScored == false)
                 {
-                    if (SmallStraightValidation(Dice))
+                    if (smallStraight==30)
                     {
 
                         MessageBoxResult choice = MessageBoxResult.No;
@@ -675,9 +924,8 @@ namespace YahtzeeGame
 
                         if (choice == MessageBoxResult.Yes || isComputer)
                         {
-                            smallStraight = 30;
-                            smallStraightScored = true;
-                            totalScore += smallStraight;
+                            SmallStraightScored = true;
+                            TotalScore += SmallStraight;
                         }
                     }
                     else
@@ -691,26 +939,26 @@ namespace YahtzeeGame
 
                         if (choice == MessageBoxResult.Yes)
                         {
-                            smallStraight = 0;
-                            smallStraightScored = true;
+                            SmallStraight = 0;
+                            SmallStraightScored = true;
                         }
                     }
                 }
                 else
                 {
-                    MessageBox.Show("This box has already been scored. It contains " + smallStraight + " points.");
+                    MessageBox.Show("This box has already been scored. It contains " + SmallStraight + " points.");
                 }
             }
             else { ScoreCardFilled(); }
         }
 
-        public void LargeStraightSelected(int[] Dice, bool isComputer = false)
+        public void LargeStraightSelected   ( bool isComputer = false)
         {
             if (ScoreCardNotFinished())
             {
-                if (largeStraightScored == false)
+                if (LargeStraightScored == false)
                 {
-                    if (LargeStraightValidation(Dice))
+                    if (largeStraight==40)
                     {
 
                         MessageBoxResult choice = MessageBoxResult.No;
@@ -722,9 +970,8 @@ namespace YahtzeeGame
 
                         if (choice == MessageBoxResult.Yes || isComputer)
                         {
-                            largeStraight = 40;
-                            largeStraightScored = true;
-                            totalScore += largeStraight;
+                            LargeStraightScored = true;
+                            TotalScore += LargeStraight;
                         }
                     }
                     else
@@ -738,26 +985,26 @@ namespace YahtzeeGame
 
                         if (choice == MessageBoxResult.Yes || isComputer)
                         {
-                            largeStraight = 0;
-                            largeStraightScored = true;
+                            LargeStraight = 0;
+                            LargeStraightScored = true;
                         }
                     }
                 }
                 else
                 {
-                    MessageBox.Show("This box has already been scored. It contains " + largeStraight + " points.");
+                    MessageBox.Show("This box has already been scored. It contains " + LargeStraight + " points.");
                 }
             }
             else { ScoreCardFilled(); }
         }
 
-        public void YahtzeeSelected(int[] Dice, bool isComputer = false)
+        public void YahtzeeSelected( bool isComputer = false)
         {
             if (ScoreCardNotFinished())
             {
-                if (YahtzeeValidation(Dice))
+                if (YahtzeeScored == false)
                 {
-                    if (yahtzeeScored == false)
+                    if (yahtzee==50)
                     {
 
                         MessageBoxResult choice = MessageBoxResult.No;
@@ -769,14 +1016,13 @@ namespace YahtzeeGame
 
                         if (choice == MessageBoxResult.Yes || isComputer)
                         {
-                            yahtzee = 50;
-                            yahtzeeScored = true;
-                            totalScore += yahtzee;
+                            YahtzeeScored = true;
+                            TotalScore += Yahtzee;
                         }
                     }
-
+                    else
                     {
-                        MessageBox.Show("This box has already been scored. It contains " + yahtzee + " points.");
+                        MessageBox.Show("This box has already been scored. It contains " + Yahtzee + " points.");
                     }
                 }
                 else
@@ -791,8 +1037,8 @@ namespace YahtzeeGame
 
                     if (choice == MessageBoxResult.Yes || isComputer)
                     {
-                        yahtzee = 0;
-                        yahtzeeScored = true;
+                        Yahtzee = 0;
+                        YahtzeeScored = true;
                     }
                 }
             }
@@ -803,32 +1049,52 @@ namespace YahtzeeGame
         {
             if (ScoreCardNotFinished())
             {
-                if (chanceScored == false)
+                if (ChanceScored == false)
                 {
                     foreach (int Die in Dice)
                     {
-                        chance += Die;
+                        Chance += Die;
                     }
 
                     MessageBoxResult choice = MessageBoxResult.No;
                     
                     if (!isComputer)
                     {
-                        choice = MessageBox.Show("Do you want to score Chance? You will gain " + chance + " points.", "Confirmation", MessageBoxButton.YesNo);
+                        choice = MessageBox.Show("Do you want to score Chance? You will gain " + Chance + " points.", "Confirmation", MessageBoxButton.YesNo);
                     }
 
                     if (choice == MessageBoxResult.Yes || isComputer)
                     {
-                        chanceScored = true;
-                        totalScore += chance;
+                        ChanceScored = true;
+                        TotalScore += Chance;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("This box has already been scored. It contains " + chance + " points.");
+                    MessageBox.Show("This box has already been scored. It contains " + Chance + " points.");
                 }
             }
             else { ScoreCardFilled(); }
+        }
+
+        //method to show just the score selected in the scored card
+        //and set the rest to 0 
+        public void ShowSelectedScores()
+        {
+            if (AcesScored == false) { Aces = 0; }
+            if (TwosScored == false) { Twos = 0; }
+            if (ThreesScored == false) { Threes = 0; }
+            if (FoursScored == false) { Fours = 0; }
+            if (FivesScored == false) { Fives = 0; }
+            if (SixesScored == false) { Sixes = 0; }
+            if (BonusScored == false) { Bonus = 0; }
+            if (ThreeOfAKindScored == false) { ThreeOfAKind = 0; }
+            if (FourOfAKindScored == false) { FourOfAKind = 0; }
+            if (FullHouseScored == false) { FullHouse = 0; }
+            if (SmallStraightScored == false) { SmallStraight = 0; }
+            if (LargeStraightScored == false) { LargeStraight = 0; }
+            if (YahtzeeScored == false) { Yahtzee = 0; }
+            if (ChanceScored == false) { Chance = 0; }
         }
         #endregion
     }

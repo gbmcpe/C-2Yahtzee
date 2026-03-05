@@ -3,11 +3,7 @@
     "",
     "\\YahtzeeGame",
     "\\YahtzeeGame\\YahtzeeGame",
-    "\\YahtzeeGame\\YahtzeeGame\\bin",
-    "\\YahtzeeGame\\YahtzeeGame\\bin\\Debug",
-    "\\YahtzeeGame\\YahtzeeGame\\Classes",
-    "\\YahtzeeGame\\YahtzeeGame\\obj",
-    "\\YahtzeeGame\\YahtzeeGame\\Properties"
+    "\\YahtzeeGame\\YahtzeeGame\\bin"
   ],
   "SelectedNode": "\\YahtzeeGame\\YahtzeeGame.sln",
   "PreviewInSolutionExplorer": false

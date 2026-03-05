@@ -19,180 +19,180 @@ namespace YahtzeeGame
         {
             if (!this.PlayerScores.isScoreCardFinished)
             {
-                if (this.PlayerScores.YahtzeeValidation(dice) && !this.PlayerScores.yahtzeeScored)
+                if (this.PlayerScores.YahtzeeValidation(dice) && !this.PlayerScores.YahtzeeScored)
                 {
-                    this.PlayerScores.YahtzeeSelected(dice, true);
+                    this.PlayerScores.YahtzeeSelected(true);
                     MessageBox.Show("The Bot has made a decision. It has selected Yahtzee, scoring " +
-                                    PlayerScores.yahtzee + " points, and " +
-                                    "now has " + PlayerScores.totalScore + " points.");
+                                    PlayerScores.Yahtzee + " points, and " +
+                                    "now has " + PlayerScores.TotalScore + " points.");
                 }
-                else if (this.PlayerScores.LargeStraightValidation(dice) && !this.PlayerScores.largeStraightScored)
+                else if (this.PlayerScores.LargeStraightValidation(dice) && !this.PlayerScores.LargeStraightScored)
                 {
-                    this.PlayerScores.LargeStraightSelected(dice, true);
+                    this.PlayerScores.LargeStraightSelected( true);
                     MessageBox.Show("The Bot has made a decision. It has selected Large Straight, scoring " +
-                                    PlayerScores.largeStraight + " points, and " +
-                                    "now has " + PlayerScores.totalScore + " points.");
+                                    PlayerScores.LargeStraight + " points, and " +
+                                    "now has " + PlayerScores.TotalScore + " points.");
                 }
-                else if (this.PlayerScores.SmallStraightValidation(dice) && !this.PlayerScores.smallStraightScored)
+                else if (this.PlayerScores.SmallStraightValidation(dice) && !this.PlayerScores.SmallStraightScored)
                 {
-                    this.PlayerScores.SmallStraightSelected(dice, true);
+                    this.PlayerScores.SmallStraightSelected(true);
                     MessageBox.Show("The Bot has made a decision. It has selected Small Straight, scoring " +
-                                    PlayerScores.smallStraight + " points, and " +
-                                    "now has " + PlayerScores.totalScore + " points.");
+                                    PlayerScores.SmallStraight + " points, and " +
+                                    "now has " + PlayerScores.TotalScore + " points.");
                 }
-                else if (this.PlayerScores.FourKindValidation(dice) && !this.PlayerScores.fourOfAKindScored)
+                else if (this.PlayerScores.FourKindValidation(dice) && !this.PlayerScores.FourOfAKindScored)
                 {
                     this.PlayerScores.FourOfAKindSelected(dice, true);
                     MessageBox.Show("The Bot has made a decision. It has selected Four of a Kind, scoring " +
-                                    PlayerScores.fourOfAKind + " points, and " +
-                                    "now has " + PlayerScores.totalScore + " points.");
+                                    PlayerScores.FourOfAKind + " points, and " +
+                                    "now has " + PlayerScores.TotalScore + " points.");
                 }
-                else if (this.PlayerScores.ThreeKindValidation(dice) && !this.PlayerScores.threeOfAKindScored)
+                else if (this.PlayerScores.ThreeKindValidation(dice) && !this.PlayerScores.ThreeOfAKindScored)
                 {
-                    this.PlayerScores.ThreeOfAKindSelected(dice, true);
+                    this.PlayerScores.ThreeOfAKindSelected(true);
                     MessageBox.Show("The Bot has made a decision. It has selected Three of a Kind, scoring " +
-                                    PlayerScores.threeOfAKind + " points, and " +
-                                    "now has " + PlayerScores.totalScore + " points.");
+                                    PlayerScores.ThreeOfAKind + " points, and " +
+                                    "now has " + PlayerScores.TotalScore + " points.");
                 }
-                else if (this.PlayerScores.FullHouseValidation(dice) && !this.PlayerScores.fullHouseScored)
+                else if (this.PlayerScores.FullHouseValidation(dice) && !this.PlayerScores.FullHouseScored)
                 {
-                    this.PlayerScores.FullHouseSelected(dice, true);
+                    this.PlayerScores.FullHouseSelected(true);
                     MessageBox.Show("The Bot has made a decision. It has selected Full House, scoring " +
-                                    PlayerScores.fullHouse + " points, and " +
-                                    "now has " + PlayerScores.totalScore + " points.");
+                                    PlayerScores.FullHouse + " points, and " +
+                                    "now has " + PlayerScores.TotalScore + " points.");
                 }
-                else if (!this.PlayerScores.sixesScored && this.PlayerScores.sixes > 0)
+                else if (!this.PlayerScores.SixesScored && this.PlayerScores.Sixes > 0)
                 {
-                    this.PlayerScores.SixesSelected(dice, true);
+                    this.PlayerScores.SixesSelected(true);
                     MessageBox.Show("The Bot has made a decision. It has selected Sixes, scoring " +
-                                    PlayerScores.sixes + " points, and " +
-                                    "now has " + PlayerScores.totalScore + " points.");
+                                    PlayerScores.Sixes + " points, and " +
+                                    "now has " + PlayerScores.TotalScore + " points.");
                 }
-                else if (!this.PlayerScores.fivesScored && this.PlayerScores.fives > 0)
+                else if (!this.PlayerScores.FivesScored && this.PlayerScores.Fives > 0)
                 {
-                    this.PlayerScores.FivesSelected(dice, true);
+                    this.PlayerScores.FivesSelected(true);
                     MessageBox.Show("The Bot has made a decision. It has selected Fives, scoring " +
-                                    PlayerScores.fives + " points, and " +
-                                    "now has " + PlayerScores.totalScore + " points.");
+                                    PlayerScores.Fives + " points, and " +
+                                    "now has " + PlayerScores.TotalScore + " points.");
                 }
-                else if (!this.PlayerScores.foursScored && this.PlayerScores.fours > 0)
+                else if (!this.PlayerScores.FoursScored && this.PlayerScores.Fours > 0)
                 {
-                    this.PlayerScores.FoursSelected(dice, true);
+                    this.PlayerScores.FoursSelected(true);
                     MessageBox.Show("The Bot has made a decision. It has selected Fours, scoring " +
-                                    PlayerScores.fours + " points, and " +
-                                    "now has " + PlayerScores.totalScore + " points.");
+                                    PlayerScores.Fours + " points, and " +
+                                    "now has " + PlayerScores.TotalScore + " points.");
                 }
-                else if (!this.PlayerScores.threesScored && this.PlayerScores.threes > 0)
+                else if (!this.PlayerScores.ThreesScored && this.PlayerScores.Threes > 0)
                 {
-                    this.PlayerScores.ThreesSelected(dice, true);
+                    this.PlayerScores.ThreesSelected(true);
                     MessageBox.Show("The Bot has made a decision. It has selected Threes, scoring " +
-                                    PlayerScores.threes + " points, and " +
-                                    "now has " + PlayerScores.totalScore + " points.");
+                                    PlayerScores.Threes + " points, and " +
+                                    "now has " + PlayerScores.TotalScore + " points.");
                 }
-                else if (!this.PlayerScores.twosScored && this.PlayerScores.twos > 0)
+                else if (!this.PlayerScores.TwosScored && this.PlayerScores.Twos > 0)
                 {
-                    this.PlayerScores.TwosSelected(dice, true);
-                    MessageBox.Show("The Bot has made a decision. It has selected Twos, scoring " + PlayerScores.twos +
+                    this.PlayerScores.TwosSelected(true);
+                    MessageBox.Show("The Bot has made a decision. It has selected Twos, scoring " + PlayerScores.Twos +
                                     " points, and " +
-                                    "now has " + PlayerScores.totalScore + " points.");
+                                    "now has " + PlayerScores.TotalScore + " points.");
                 }
-                else if (!this.PlayerScores.acesScored && this.PlayerScores.aces > 0)
+                else if (!this.PlayerScores.AcesScored && this.PlayerScores.Aces > 0)
                 {
-                    this.PlayerScores.AcesSelected(dice, true);
-                    MessageBox.Show("The Bot has made a decision. It has selected Aces, scoring " + PlayerScores.aces +
+                    this.PlayerScores.AcesSelected(true);
+                    MessageBox.Show("The Bot has made a decision. It has selected Aces, scoring " + PlayerScores.Aces +
                                     " points, and " +
-                                    "now has " + PlayerScores.totalScore + " points.");
+                                    "now has " + PlayerScores.TotalScore + " points.");
                 }
-                else if (!this.PlayerScores.chanceScored && this.PlayerScores.chance > 0)
+                else if (!this.PlayerScores.ChanceScored && this.PlayerScores.Chance > 0)
                 {
                     this.PlayerScores.ChanceSelected(dice, true);
                     MessageBox.Show("The Bot has made a decision. It has selected Chance, scoring " +
-                                    PlayerScores.chance + " points, and " +
-                                    "now has " + PlayerScores.totalScore + " points.");
+                                    PlayerScores.Chance + " points, and " +
+                                    "now has " + PlayerScores.TotalScore + " points.");
                 }
-                else if (!this.PlayerScores.acesScored)
+                else if (!this.PlayerScores.AcesScored)
                 {
-                    this.PlayerScores.AcesSelected(dice, true);
-                    MessageBox.Show("The Bot has made a decision. It has selected Aces, scoring " + PlayerScores.aces +
+                    this.PlayerScores.AcesSelected(true);
+                    MessageBox.Show("The Bot has made a decision. It has selected Aces, scoring " + PlayerScores.Aces +
                                     " points, and " +
-                                    "now has " + PlayerScores.totalScore + " points.");
+                                    "now has " + PlayerScores.TotalScore + " points.");
                 }
-                else if (!this.PlayerScores.twosScored)
+                else if (!this.PlayerScores.TwosScored)
                 {
-                    this.PlayerScores.TwosSelected(dice, true);
-                    MessageBox.Show("The Bot has made a decision. It has selected Twos, scoring " + PlayerScores.twos +
+                    this.PlayerScores.TwosSelected(true);
+                    MessageBox.Show("The Bot has made a decision. It has selected Twos, scoring " + PlayerScores.Twos +
                                     " points, and " +
-                                    "now has " + PlayerScores.totalScore + " points.");
+                                    "now has " + PlayerScores.TotalScore + " points.");
                 }
-                else if (!this.PlayerScores.threesScored)
+                else if (!this.PlayerScores.ThreesScored)
                 {
-                    this.PlayerScores.ThreesSelected(dice, true);
+                    this.PlayerScores.ThreesSelected(true);
                     MessageBox.Show("The Bot has made a decision. It has selected Threes, scoring " +
-                                    PlayerScores.threes + " points, and " +
-                                    "now has " + PlayerScores.totalScore + " points.");
+                                    PlayerScores.Threes + " points, and " +
+                                    "now has " + PlayerScores.TotalScore + " points.");
                 }
-                else if (!this.PlayerScores.foursScored)
+                else if (!this.PlayerScores.FoursScored)
                 {
-                    this.PlayerScores.FoursSelected(dice, true);
+                    this.PlayerScores.FoursSelected(true);
                     MessageBox.Show("The Bot has made a decision. It has selected Fours, scoring " +
-                                    PlayerScores.fours + " points, and " +
-                                    "now has " + PlayerScores.totalScore + " points.");
+                                    PlayerScores.Fours + " points, and " +
+                                    "now has " + PlayerScores.TotalScore + " points.");
                 }
-                else if (!this.PlayerScores.fivesScored)
+                else if (!this.PlayerScores.FivesScored)
                 {
-                    this.PlayerScores.FivesSelected(dice, true);
+                    this.PlayerScores.FivesSelected(true);
                     MessageBox.Show("The Bot has made a decision. It has selected Fives, scoring " +
-                                    PlayerScores.fives + " points, and " +
-                                    "now has " + PlayerScores.totalScore + " points.");
+                                    PlayerScores.Fives + " points, and " +
+                                    "now has " + PlayerScores.TotalScore + " points.");
                 }
-                else if (!this.PlayerScores.sixesScored)
+                else if (!this.PlayerScores.SixesScored)
                 {
-                    this.PlayerScores.SixesSelected(dice, true);
+                    this.PlayerScores.SixesSelected(true);
                     MessageBox.Show("The Bot has made a decision. It has selected Sixes, scoring " +
-                                    PlayerScores.sixes + " points, and " +
-                                    "now has " + PlayerScores.totalScore + " points.");
+                                    PlayerScores.Sixes + " points, and " +
+                                    "now has " + PlayerScores.TotalScore + " points.");
                 }
-                else if (!this.PlayerScores.threeOfAKindScored)
+                else if (!this.PlayerScores.ThreeOfAKindScored)
                 {
-                    this.PlayerScores.ThreeOfAKindSelected(dice, true);
+                    this.PlayerScores.ThreeOfAKindSelected(true);
                     MessageBox.Show("The Bot has made a decision. It has selected Three of a Kind, scoring " +
-                                    PlayerScores.threeOfAKind + " points, and " +
-                                    "now has " + PlayerScores.totalScore + " points.");
+                                    PlayerScores.ThreeOfAKind + " points, and " +
+                                    "now has " + PlayerScores.TotalScore + " points.");
                 }
-                else if (!this.PlayerScores.fourOfAKindScored)
+                else if (!this.PlayerScores.FourOfAKindScored)
                 {
                     this.PlayerScores.FourOfAKindSelected(dice, true);
                     MessageBox.Show("The Bot has made a decision. It has selected Four of a Kind, scoring " +
-                                    PlayerScores.fourOfAKind + " points, and " +
-                                    "now has " + PlayerScores.totalScore + " points.");
+                                    PlayerScores.FourOfAKind + " points, and " +
+                                    "now has " + PlayerScores.TotalScore + " points.");
                 }
-                else if (!this.PlayerScores.fullHouseScored)
+                else if (!this.PlayerScores.FullHouseScored)
                 {
-                    this.PlayerScores.FullHouseSelected(dice, true);
+                    this.PlayerScores.FullHouseSelected(true);
                     MessageBox.Show("The Bot has made a decision. It has selected Full House, scoring " +
-                                    PlayerScores.fullHouse + " points, and " +
-                                    "now has " + PlayerScores.totalScore + " points.");
+                                    PlayerScores.FullHouse + " points, and " +
+                                    "now has " + PlayerScores.TotalScore + " points.");
                 }
-                else if (!this.PlayerScores.smallStraightScored)
+                else if (!this.PlayerScores.SmallStraightScored)
                 {
-                    this.PlayerScores.SmallStraightSelected(dice, true);
+                    this.PlayerScores.SmallStraightSelected(true);
                     MessageBox.Show("The Bot has made a decision. It has selected Small Straight, scoring " +
-                                    PlayerScores.smallStraight + " points, and " +
-                                    "now has " + PlayerScores.totalScore + " points.");
+                                    PlayerScores.SmallStraight + " points, and " +
+                                    "now has " + PlayerScores.TotalScore + " points.");
                 }
-                else if (!this.PlayerScores.largeStraightScored)
+                else if (!this.PlayerScores.LargeStraightScored)
                 {
-                    this.PlayerScores.LargeStraightSelected(dice, true);
+                    this.PlayerScores.LargeStraightSelected(true);
                     MessageBox.Show("The Bot has made a decision. It has selected Large Straight, scoring " +
-                                    PlayerScores.largeStraight + " points, and " +
-                                    "now has " + PlayerScores.totalScore + " points.");
+                                    PlayerScores.LargeStraight + " points, and " +
+                                    "now has " + PlayerScores.TotalScore + " points.");
                 }
-                else if (!this.PlayerScores.yahtzeeScored)
+                else if (!this.PlayerScores.YahtzeeScored)
                 {
-                    this.PlayerScores.YahtzeeSelected(dice, true);
+                    this.PlayerScores.YahtzeeSelected(true);
                     MessageBox.Show("The Bot has made a decision. It has selected Yahtzee, scoring " +
-                                    PlayerScores.yahtzee + " points, and " +
-                                    "now has " + PlayerScores.totalScore + " points.");
+                                    PlayerScores.Yahtzee + " points, and " +
+                                    "now has " + PlayerScores.TotalScore + " points.");
                 }
                 else
                 {

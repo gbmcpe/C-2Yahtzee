@@ -36,9 +36,9 @@ namespace YahtzeeGame
 
             if (this.PlayerScores.YahtzeeValidation(dice))
             {
-                if (!this.PlayerScores.yahtzeeScored)
+                if (!this.PlayerScores.YahtzeeScored)
                 {
-                    this.PlayerScores.YahtzeeSelected(dice, true);
+                    this.PlayerScores.YahtzeeSelected(true);
                     scored = true;
                 }
             }
@@ -52,7 +52,7 @@ namespace YahtzeeGame
             {
                 if (!this.PlayerScores.LargeStraightValidation(dice))
                 {
-                    this.PlayerScores.LargeStraightSelected(dice, true);
+                    this.PlayerScores.LargeStraightSelected(true);
                     scored = true;
                 }
             }
@@ -63,14 +63,14 @@ namespace YahtzeeGame
         {
             // 0 = move to next case, 1 = scored, 2 = lock in dice and reroll
             int result = 0;
-            if (this.PlayerScores.smallStraightScored)
+            if (this.PlayerScores.SmallStraightScored)
             {
-                if (!this.PlayerScores.smallStraightScored && rollNumber == 0)
+                if (!this.PlayerScores.SmallStraightScored && rollNumber == 0)
                 {
-                    this.PlayerScores.SmallStraightSelected(dice, true);
+                    this.PlayerScores.SmallStraightSelected(true);
                     result = 1;
                 }
-                else if (!this.PlayerScores.smallStraightScored && rollNumber > 0)
+                else if (!this.PlayerScores.SmallStraightScored && rollNumber > 0)
                 {
                     result = 2;
                 }
@@ -84,7 +84,7 @@ namespace YahtzeeGame
             int result = 0;
             if (this.PlayerScores.FourKindValidation(dice))
             {
-                if (!this.PlayerScores.fourOfAKindScored && rollNumber == 0)
+                if (!this.PlayerScores.FourOfAKindScored && rollNumber == 0)
                 {
                     this.PlayerScores.FourOfAKindSelected(dice, true);
                     result = 1;
@@ -115,12 +115,12 @@ namespace YahtzeeGame
                 //if true, lock in if 4, 5, or 6
                 //else, preserve three of a kind and roll again if not 3rd roll 
 
-                if (!this.PlayerScores.threeOfAKindScored && rollNumber == 0)
+                if (!this.PlayerScores.ThreeOfAKindScored && rollNumber == 0)
                 {
-                    this.PlayerScores.ThreeOfAKindSelected(dice, true);
+                    this.PlayerScores.ThreeOfAKindSelected(true);
                     result = 1;
                 }
-                else if (!this.PlayerScores.fourOfAKindScored && (count[5] == 3 || count[4] == 3 || count[3] == 3))
+                else if (!this.PlayerScores.FourOfAKindScored && (count[5] == 3 || count[4] == 3 || count[3] == 3))
                 {
                     result = 2;
                 }
@@ -181,13 +181,13 @@ namespace YahtzeeGame
             {
                 if (this.PlayerScores.FullHouseValidation(dice))
                 {
-                    if (!this.PlayerScores.fullHouseScored && rollNumber == 0)
+                    if (!this.PlayerScores.FullHouseScored && rollNumber == 0)
                     {
-                        this.PlayerScores.FullHouseSelected(dice, true);
+                        this.PlayerScores.FullHouseSelected(true);
                     }
                     return heldDice;
                 }
-                else if(!this.PlayerScores.chanceScored && this.PlayerScores.chance > 15 && rollNumber == 0)
+                else if(!this.PlayerScores.ChanceScored && this.PlayerScores.Chance > 15 && rollNumber == 0)
                 {
                     this.PlayerScores.ChanceSelected(dice, true);
                     return heldDice;
@@ -195,34 +195,34 @@ namespace YahtzeeGame
                 else if (rollNumber == 0)
                 {
                     
-                    if (!this.PlayerScores.acesScored)
+                    if (!this.PlayerScores.AcesScored)
                     {
-                        this.PlayerScores.AcesSelected(dice, true);
+                        this.PlayerScores.AcesSelected(true);
                         return heldDice;
                     }
-                    else if (!this.PlayerScores.twosScored)
+                    else if (!this.PlayerScores.TwosScored)
                     {
-                        this.PlayerScores.TwosSelected(dice, true);
+                        this.PlayerScores.TwosSelected(true);
                         return heldDice;
                     }
-                    else if (!this.PlayerScores.threesScored)
+                    else if (!this.PlayerScores.ThreesScored)
                     {
-                        this.PlayerScores.ThreesSelected(dice, true);
+                        this.PlayerScores.ThreesSelected(true);
                         return heldDice;
                     }
-                    else if (!this.PlayerScores.foursScored)
+                    else if (!this.PlayerScores.FoursScored)
                     {
-                        this.PlayerScores.FoursSelected(dice, true);
+                        this.PlayerScores.FoursSelected(true);
                         return heldDice;
                     }
-                    else if (!this.PlayerScores.fivesScored)
+                    else if (!this.PlayerScores.FivesScored)
                     {
-                        this.PlayerScores.FivesSelected(dice, true);
+                        this.PlayerScores.FivesSelected(true);
                         return heldDice;
                     }
-                    else if (!this.PlayerScores.sixesScored)
+                    else if (!this.PlayerScores.SixesScored)
                     {
-                        this.PlayerScores.SixesSelected(dice, true);
+                        this.PlayerScores.SixesSelected(true);
                         return heldDice;
                     }
                 }
@@ -243,34 +243,34 @@ namespace YahtzeeGame
 
                 if (rollNumber == 0)
                 {
-                    if (!this.PlayerScores.acesScored)
+                    if (!this.PlayerScores.AcesScored)
                     {
-                        this.PlayerScores.AcesSelected(dice, true);
+                        this.PlayerScores.AcesSelected(true);
                         return heldDice;
                     }
-                    else if (!this.PlayerScores.twosScored)
+                    else if (!this.PlayerScores.TwosScored)
                     {
-                        this.PlayerScores.TwosSelected(dice, true);
+                        this.PlayerScores.TwosSelected(true);
                         return heldDice;
                     }
-                    else if (!this.PlayerScores.threesScored)
+                    else if (!this.PlayerScores.ThreesScored)
                     {
-                        this.PlayerScores.ThreesSelected(dice, true);
+                        this.PlayerScores.ThreesSelected(true);
                         return heldDice;
                     }
-                    else if (!this.PlayerScores.foursScored)
+                    else if (!this.PlayerScores.FoursScored)
                     {
-                        this.PlayerScores.FoursSelected(dice, true);
+                        this.PlayerScores.FoursSelected(true);
                         return heldDice;
                     }
-                    else if (!this.PlayerScores.fivesScored)
+                    else if (!this.PlayerScores.FivesScored)
                     {
-                        this.PlayerScores.FivesSelected(dice, true);
+                        this.PlayerScores.FivesSelected(true);
                         return heldDice;
                     }
-                    else if (!this.PlayerScores.sixesScored)
+                    else if (!this.PlayerScores.SixesScored)
                     {
-                        this.PlayerScores.SixesSelected(dice, true);
+                        this.PlayerScores.SixesSelected(true);
                         return heldDice;
                     }
                 }
@@ -283,34 +283,34 @@ namespace YahtzeeGame
 
             //If nothing is rolled, because both straights are already marked, look for highest unscored upper section and roll for pairs of that.
 
-            if (this.PlayerScores.smallStraightScored && this.PlayerScores.largeStraightScored && rollNumber != 0)
+            if (this.PlayerScores.SmallStraightScored && this.PlayerScores.LargeStraightScored && rollNumber != 0)
             {
-                if (!this.PlayerScores.sixesScored)
+                if (!this.PlayerScores.SixesScored)
                 {
                     //preserve six
                     return heldDice;
                 }
-                else if (!this.PlayerScores.fivesScored)
+                else if (!this.PlayerScores.FivesScored)
                 {
                     //preserve five
                     return heldDice;
                 }
-                else if (!this.PlayerScores.foursScored)
+                else if (!this.PlayerScores.FoursScored)
                 {
                     //preserve four
                     return heldDice;
                 }
-                else if (!this.PlayerScores.threesScored)
+                else if (!this.PlayerScores.ThreesScored)
                 {
                     //preserve three
                     return heldDice;
                 }
-                else if (!this.PlayerScores.twosScored)
+                else if (!this.PlayerScores.TwosScored)
                 {
                     //preserve two
                     return heldDice;
                 }
-                else if (!this.PlayerScores.acesScored)
+                else if (!this.PlayerScores.AcesScored)
                 {
                     //preserve ace
                     return heldDice;
@@ -322,57 +322,57 @@ namespace YahtzeeGame
 
             if (!this.PlayerScores.ScoreCardNotFinished() && rollNumber == 0)
             {
-                if (!this.PlayerScores.acesScored)
+                if (!this.PlayerScores.AcesScored)
                 {
-                    this.PlayerScores.AcesSelected(dice, true);
+                    this.PlayerScores.AcesSelected( true);
                 }
-                else if (!this.PlayerScores.twosScored)
+                else if (!this.PlayerScores.TwosScored)
                 {
-                    this.PlayerScores.TwosSelected(dice, true);
+                    this.PlayerScores.TwosSelected(true);
                 }
-                else if (!this.PlayerScores.chanceScored)
+                else if (!this.PlayerScores.ChanceScored)
                 {
                     this.PlayerScores.ChanceSelected(dice, true);
                 }
-                else if (!this.PlayerScores.threesScored)
+                else if (!this.PlayerScores.ThreesScored)
                 {
-                    this.PlayerScores.ThreesSelected(dice, true);
+                    this.PlayerScores.ThreesSelected(true);
                 }
-                else if (!this.PlayerScores.foursScored)
+                else if (!this.PlayerScores.FoursScored)
                 {
-                    this.PlayerScores.FoursSelected(dice, true);
+                    this.PlayerScores.FoursSelected(true);
                 }
-                else if (!this.PlayerScores.threeOfAKindScored)
+                else if (!this.PlayerScores.ThreeOfAKindScored)
                 {
-                    this.PlayerScores.ThreeOfAKindSelected(dice, true);
+                    this.PlayerScores.ThreeOfAKindSelected(true);
                 }
-                else if (!this.PlayerScores.fullHouseScored)
+                else if (!this.PlayerScores.FullHouseScored)
                 {
-                    this.PlayerScores.FullHouseSelected(dice, true);
+                    this.PlayerScores.FullHouseSelected(true);
                 }
-                else if (!this.PlayerScores.fivesScored)
+                else if (!this.PlayerScores.FivesScored)
                 {
-                    this.PlayerScores.FivesSelected(dice, true);
+                    this.PlayerScores.FivesSelected(true);
                 }
-                else if (!this.PlayerScores.fourOfAKindScored)
+                else if (!this.PlayerScores.FourOfAKindScored)
                 {
-                    this.PlayerScores.FoursSelected(dice, true);
+                    this.PlayerScores.FoursSelected(true);
                 }
-                else if (!this.PlayerScores.sixesScored)
+                else if (!this.PlayerScores.SixesScored)
                 {
-                    this.PlayerScores.SixesSelected(dice, true);
+                    this.PlayerScores.SixesSelected(true);
                 }
-                else if (!this.PlayerScores.smallStraightScored)
+                else if (!this.PlayerScores.SmallStraightScored)
                 {
-                    this.PlayerScores.SmallStraightSelected(dice, true);
+                    this.PlayerScores.SmallStraightSelected(true);
                 }
-                else if (!this.PlayerScores.largeStraightScored)
+                else if (!this.PlayerScores.LargeStraightScored)
                 {
-                    this.PlayerScores.LargeStraightSelected(dice, true);
+                    this.PlayerScores.LargeStraightSelected(true);
                 }
-                else if (!this.PlayerScores.yahtzeeScored)
+                else if (!this.PlayerScores.YahtzeeScored)
                 {
-                    this.PlayerScores.YahtzeeSelected(dice, true);
+                    this.PlayerScores.YahtzeeSelected(true);
                 }
 
                 return heldDice;

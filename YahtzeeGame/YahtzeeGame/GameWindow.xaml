@@ -5,20 +5,337 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:YahtzeeGame"
         mc:Ignorable="d"
-        Title="GameWindow" Height="450" Width="800">
-    <Grid Margin="0,0,0,-16" Loaded="Grid_Loaded">
+        Title="GameWindow" Height="450" Width="911">
+    <Grid Loaded="Grid_Loaded" HorizontalAlignment="Center" Width="911">
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FFFF8686"/>
+                <GradientStop Color="#FF235882" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="219*"/>
+            <ColumnDefinition Width="6*"/>
+            <ColumnDefinition Width="124*"/>
+            <ColumnDefinition Width="274"/>
+            <ColumnDefinition Width="177*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="BtnClose" Content="Close" HorizontalAlignment="Left" Margin="697,367,0,0" VerticalAlignment="Top" Click="BtnClose_Click" Height="32" Width="72" FontFamily="Berlin Sans FB" FontSize="20"/>
-        <Button x:Name="BtnReset" Content="Reset" HorizontalAlignment="Left" Margin="610,367,0,0" VerticalAlignment="Top" Click="BtnReset_Click" Height="32" Width="82" FontFamily="Berlin Sans FB" FontSize="20" RenderTransformOrigin="0.591,-0.11"/>
-        <Button x:Name="BtnRollDice" Content="Roll Dice!" HorizontalAlignment="Left" Margin="584,233,0,0" VerticalAlignment="Top" Click="BtnRollDice_Click" Height="34" Width="108" FontFamily="Berlin Sans FB" FontSize="20"/>
-        <Image x:Name="Die1" HorizontalAlignment="Left" Height="54" Margin="341,148,0,0" VerticalAlignment="Top" Width="52" Source="/1Die.bmp"/>
-        <Image x:Name="Die2" HorizontalAlignment="Left" Height="54" Margin="429,148,0,0" VerticalAlignment="Top" Width="52" Source="/2Die.bmp"/>
-        <Image x:Name="Die3" HorizontalAlignment="Left" Height="54" Margin="518,148,0,0" VerticalAlignment="Top" Width="52" Source="/3Die.bmp"/>
-        <Image x:Name="Die4" HorizontalAlignment="Left" Height="54" Margin="610,155,0,0" VerticalAlignment="Top" Width="52" Source="/4Die.bmp"/>
-        <Image x:Name="Die5" HorizontalAlignment="Left" Height="54" Margin="692,150,0,0" VerticalAlignment="Top" Width="52" Source="/5Die.bmp"/>
-        <CheckBox x:Name="cbDie2" Content="" HorizontalAlignment="Left" Margin="447,172,0,0" VerticalAlignment="Top" Height="17" Width="16" RenderTransformOrigin="0.5,0.5" Opacity="0.5" IsEnabled="False">
+        <Grid Margin="14,50,61,0" VerticalAlignment="Top" Height="314" Grid.ColumnSpan="3" Width="auto">
+            <Grid.ColumnDefinitions>
+                <!--categories-->
+                <ColumnDefinition Width="150"/>
+                <!--players-->
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!--Columm 1-->
+            <StackPanel Grid.Column="0" Orientation="Vertical" Background="Chocolate">
+                <Border BorderBrush="#FFEFE6D0" BorderThickness="0,0,0,2" Margin="0,0,0,0" Padding="2" >
+                    <Label  Content="Player:" FontFamily="Berlin Sans FB" FontSize="12" Foreground="#FFEFE6D0" Height="15" VerticalAlignment="Center" Padding="1"/>
+                </Border>
+                <Border BorderBrush="#FFEFE6D0" BorderThickness="0,0,0,2" Margin="0,0,0,0" Padding="2">
+                    <Label Content="Aces: " FontFamily="Berlin Sans FB" FontSize="12" Foreground="#FFEFE6D0" Height="15" VerticalAlignment="Center" Padding="1"/>
+                </Border>
+                <Border BorderBrush="#FFEFE6D0" BorderThickness="0,0,0,2" Margin="0,0,0,0" Padding="2">
+                    <Label Content="Twos: " FontFamily="Berlin Sans FB" FontSize="12" Foreground="#FFEFE6D0" Height="15" VerticalAlignment="Center" Padding="1"/>
+                </Border>
+                <Border BorderBrush="#FFEFE6D0" BorderThickness="0,0,0,2" Margin="0,0,0,0" Padding="2">
+                    <Label Content="Threes: " FontFamily="Berlin Sans FB" FontSize="12" Foreground="#FFEFE6D0" Height="15" VerticalAlignment="Center" Padding="1"/>
+                </Border>
+                <Border BorderBrush="#FFEFE6D0" BorderThickness="0,0,0,2" Margin="0,0,0,0" Padding="2">
+                    <Label Content="Fours: " FontFamily="Berlin Sans FB" FontSize="12" Foreground="#FFEFE6D0" Height="15" VerticalAlignment="Center" Padding="1"/>
+                </Border>
+                <Border BorderBrush="#FFEFE6D0" BorderThickness="0,0,0,2" Margin="0,0,0,0" Padding="2">
+                    <Label Content="Fives: " FontFamily="Berlin Sans FB" FontSize="12" Foreground="#FFEFE6D0" Height="15" VerticalAlignment="Center" Padding="1"/>
+                </Border>
+                <Border BorderBrush="#FFEFE6D0" BorderThickness="0,0,0,2" Margin="0,0,0,0" Padding="2">
+                    <Label Content="Sixes: " FontFamily="Berlin Sans FB" FontSize="12" Foreground="#FFEFE6D0" Height="15" VerticalAlignment="Center" Padding="1"/>
+                </Border>
+                <Border BorderBrush="#FFEFE6D0" BorderThickness="0,0,0,2" Margin="0,0,0,0" Padding="2">
+                    <Label Content="Bonus: " FontFamily="Berlin Sans FB" FontSize="12" Foreground="#FFEFE6D0" Height="15" VerticalAlignment="Center" Padding="1"/>
+                </Border>
+                <Border BorderBrush="#FFEFE6D0" BorderThickness="0,0,0,2" Margin="0,0,0,0" Padding="2">
+                    <Label Content="ThreeOfAKind: " FontFamily="Berlin Sans FB" FontSize="12" Foreground="#FFEFE6D0" Height="15" VerticalAlignment="Center" Padding="1"/>
+                </Border>
+                <Border BorderBrush="#FFEFE6D0" BorderThickness="0,0,0,2" Margin="0,0,0,0" Padding="2">
+                    <Label Content="FourOfAKind: " FontFamily="Berlin Sans FB" FontSize="12" Foreground="#FFEFE6D0" Height="15" VerticalAlignment="Center" Padding="1"/>
+                </Border>
+                <Border BorderBrush="#FFEFE6D0" BorderThickness="0,0,0,2" Margin="0,0,0,0" Padding="2">
+                    <Label Content="FullHouse: " FontFamily="Berlin Sans FB" FontSize="12" Foreground="#FFEFE6D0" Height="15" VerticalAlignment="Center" Padding="1"/>
+                </Border>
+                <Border BorderBrush="#FFEFE6D0" BorderThickness="0,0,0,2" Margin="0,0,0,0" Padding="2">
+                    <Label Content="SmallStraight: " FontFamily="Berlin Sans FB" FontSize="12" Foreground="#FFEFE6D0" Height="15" VerticalAlignment="Center" Padding="1"/>
+                </Border>
+                <Border BorderBrush="#FFEFE6D0" BorderThickness="0,0,0,2" Margin="0,0,0,0" Padding="2">
+                    <Label Content="LargeStraight" FontFamily="Berlin Sans FB" FontSize="12" Foreground="#FFEFE6D0" Height="15" VerticalAlignment="Center" Padding="1"/>
+                </Border>
+                <Border BorderBrush="#FFEFE6D0" BorderThickness="0,0,0,2" Margin="0,0,0,0" Padding="2">
+                    <Label Content="Yahtzee" FontFamily="Berlin Sans FB" FontSize="12" Foreground="#FFEFE6D0" Height="15" VerticalAlignment="Center" Padding="1"/>
+                </Border>
+                <Border BorderBrush="#FFEFE6D0" BorderThickness="0,0,0,2" Margin="0,0,0,0" Padding="2">
+                    <Label Content="Chance: " FontFamily="Berlin Sans FB" FontSize="12" Foreground="#FFEFE6D0" Height="15" VerticalAlignment="Center" Padding="1"/>
+                </Border>
+            </StackPanel>
+            <ItemsControl ItemsSource="{Binding Players}" x:Name="PlayerList" Panel.ZIndex="999" MinWidth="10" MinHeight="400"  HorizontalAlignment="Center"  Grid.Column="1" Background="Chocolate" VerticalAlignment="Top" Height="401" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled" RenderTransformOrigin="0.5,0.5" ScrollViewer.CanContentScroll="True"  >
+                <ItemsControl.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="1"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </ItemsControl.RenderTransform>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical" Margin="0,0,0,0" Background="WhiteSmoke">
+                            <Border BorderBrush="#FFEFE6D0" BorderThickness="0,0,0,2" Margin="0,0,0,0" Padding="2">
+                                <Label  Content="{Binding PlayerName}" FontFamily="Berlin Sans FB" FontSize="12" Foreground="#FFEFE6D0" Background="Chocolate"  Height="15" VerticalAlignment="Center" Padding="3,0,3,0"/>
+                            </Border>
+                            <Border BorderBrush="#FFEFE6D0" BorderThickness="0,0,0,2" Margin="0,0,0,0" Padding="2">
+                                <Label Content="{Binding PlayerScores.Aces}" FontFamily="Berlin Sans FB" FontSize="12" Foreground="Chocolate"  Height="15" VerticalAlignment="Center" Padding="1">
+                                    <Label.Style>
+                                        <Style TargetType="Label">
+                                            <Style.Triggers>
+
+                                                <DataTrigger Binding="{Binding PlayerScores.AcesScored}" Value="True">
+                                                    <Setter Property="Background" Value="LightGreen" />
+                                                    <Setter Property="Foreground" Value="Black"/>
+                                                </DataTrigger>
+
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Label.Style>
+                                </Label>
+                            </Border>
+                            <Border BorderBrush="#FFEFE6D0" BorderThickness="0,0,0,2" Margin="0,0,0,0" Padding="2">
+                                <Label Content="{Binding PlayerScores.Twos}" FontFamily="Berlin Sans FB" FontSize="12" Foreground="Chocolate" Height="15" VerticalAlignment="Center" Padding="1">
+                                    <Label.Style>
+                                        <Style TargetType="Label">
+                                            <Style.Triggers>
+
+                                                <DataTrigger Binding="{Binding PlayerScores.TowsScored}" Value="True">
+                                                    <Setter Property="Background" Value="LightGreen"/>
+                                                    <Setter Property="Foreground" Value="Black"/>
+                                                </DataTrigger>
+
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Label.Style>
+                                </Label>
+
+                            </Border>
+                            <Border BorderBrush="#FFEFE6D0" BorderThickness="0,0,0,2" Margin="0,0,0,0" Padding="2">
+                                <Label Content="{Binding PlayerScores.Threes}" FontFamily="Berlin Sans FB" FontSize="12" Foreground="Chocolate"  Height="15" VerticalAlignment="Center" Padding="1">
+                                    <Label.Style>
+                                        <Style TargetType="Label">
+                                            <Style.Triggers>
+
+                                                <DataTrigger Binding="{Binding PlayerScores.ThreesScored}" Value="True">
+                                                    <Setter Property="Background" Value="LightGreen"/>
+                                                    <Setter Property="Foreground" Value="Black"/>
+                                                </DataTrigger>
+
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Label.Style>
+                                </Label>
+                            </Border>
+                            <Border BorderBrush="#FFEFE6D0" BorderThickness="0,0,0,2" Margin="0,0,0,0" Padding="2">
+                                <Label Content="{Binding PlayerScores.Fours}" FontFamily="Berlin Sans FB" FontSize="12" Foreground="Chocolate"  Height="15" VerticalAlignment="Center" Padding="1">
+                                    <Label.Style>
+                                        <Style TargetType="Label">
+                                            <Style.Triggers>
+
+                                                <DataTrigger Binding="{Binding PlayerScores.FoursScored}" Value="True">
+                                                    <Setter Property="Background" Value="LightGreen"/>
+                                                    <Setter Property="Foreground" Value="Black"/>
+                                                </DataTrigger>
+
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Label.Style>
+                                </Label>
+                            </Border>
+                            <Border BorderBrush="#FFEFE6D0" BorderThickness="0,0,0,2" Margin="0,0,0,0" Padding="2">
+                                <Label Content="{Binding PlayerScores.Fives}" FontFamily="Berlin Sans FB" FontSize="12" Foreground="Chocolate"  Height="15" VerticalAlignment="Center" Padding="1">
+                                    <Label.Style>
+                                        <Style TargetType="Label">
+                                            <Style.Triggers>
+
+                                                <DataTrigger Binding="{Binding PlayerScores.FivesScored}" Value="True">
+                                                    <Setter Property="Background" Value="LightGreen"/>
+                                                    <Setter Property="Foreground" Value="Black"/>
+                                                </DataTrigger>
+
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Label.Style>
+                                </Label>
+                            </Border>
+                            <Border BorderBrush="#FFEFE6D0" BorderThickness="0,0,0,2" Margin="0,0,0,0" Padding="2">
+                                <Label Content="{Binding PlayerScores.Sixes}" FontFamily="Berlin Sans FB" FontSize="12" Foreground="Chocolate"  Height="15" VerticalAlignment="Center" Padding="1">
+                                    <Label.Style>
+                                        <Style TargetType="Label">
+                                            <Style.Triggers>
+
+                                                <DataTrigger Binding="{Binding PlayerScores.SixesScored}" Value="True">
+                                                    <Setter Property="Background" Value="LightGreen"/>
+                                                    <Setter Property="Foreground" Value="Black"/>
+                                                </DataTrigger>
+
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Label.Style>
+                                </Label>
+                            </Border>
+                            <Border BorderBrush="#FFEFE6D0" BorderThickness="0,0,0,2" Margin="0,0,0,0" Padding="2">
+                                <Label Content="{Binding PlayerScores.Bonus}" FontFamily="Berlin Sans FB" FontSize="12" Foreground="Chocolate"  Height="15" VerticalAlignment="Center" Padding="1">
+                                    <Label.Style>
+                                        <Style TargetType="Label">
+                                            <Style.Triggers>
+
+                                                <DataTrigger Binding="{Binding PlayerScores.BonusScored}" Value="True">
+                                                    <Setter Property="Background" Value="LightGreen"/>
+                                                    <Setter Property="Foreground" Value="Black"/>
+                                                </DataTrigger>
+
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Label.Style>
+                                </Label>
+                            </Border>
+                            <Border BorderBrush="#FFEFE6D0" BorderThickness="0,0,0,2" Margin="0,0,0,0" Padding="2">
+                                <Label Content="{Binding PlayerScores.ThreeOfAKind}" FontFamily="Berlin Sans FB" FontSize="12" Foreground="Chocolate"  Height="15" VerticalAlignment="Center" Padding="1">
+                                    <Label.Style>
+                                        <Style TargetType="Label">
+                                            <Style.Triggers>
+
+                                                <DataTrigger Binding="{Binding PlayerScores.ThreeOfAKindScored}" Value="True">
+                                                    <Setter Property="Background" Value="LightGreen"/>
+                                                    <Setter Property="Foreground" Value="Black"/>
+                                                </DataTrigger>
+
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Label.Style>
+                                </Label>
+                            </Border>
+                            <Border BorderBrush="#FFEFE6D0" BorderThickness="0,0,0,2" Margin="0,0,0,0" Padding="2">
+                                <Label Content="{Binding PlayerScores.FourOfAKind}" FontFamily="Berlin Sans FB" FontSize="12" Foreground="Chocolate"  Height="15" VerticalAlignment="Center" Padding="1">
+                                    <Label.Style>
+                                        <Style TargetType="Label">
+                                            <Style.Triggers>
+
+                                                <DataTrigger Binding="{Binding PlayerScores.FourOfAKindScored}" Value="True">
+                                                    <Setter Property="Background" Value="LightGreen"/>
+                                                    <Setter Property="Foreground" Value="Black"/>
+                                                </DataTrigger>
+
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Label.Style>
+                                </Label>
+                            </Border>
+                            <Border BorderBrush="#FFEFE6D0" BorderThickness="0,0,0,2" Margin="0,0,0,0" Padding="2">
+                                <Label Content="{Binding PlayerScores.FullHouse }" FontFamily="Berlin Sans FB" FontSize="12" Foreground="Chocolate"  Height="15" VerticalAlignment="Center" Padding="1">
+                                    <Label.Style>
+                                        <Style TargetType="Label">
+                                            <Style.Triggers>
+
+                                                <DataTrigger Binding="{Binding PlayerScores.FullHouseScored}" Value="True">
+                                                    <Setter Property="Background" Value="LightGreen"/>
+                                                    <Setter Property="Foreground" Value="Black"/>
+                                                </DataTrigger>
+
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Label.Style>
+                                </Label>
+                            </Border>
+                            <Border BorderBrush="#FFEFE6D0" BorderThickness="0,0,0,2" Margin="0,0,0,0" Padding="2">
+                                <Label Content="{Binding PlayerScores.SmallStraight }" FontFamily="Berlin Sans FB" FontSize="12" Foreground="Chocolate"  Height="15" VerticalAlignment="Center" Padding="1">
+                                    <Label.Style>
+                                        <Style TargetType="Label">
+                                            <Style.Triggers>
+
+                                                <DataTrigger Binding="{Binding PlayerScores.SmallStraightScored}" Value="True">
+                                                    <Setter Property="Background" Value="LightGreen"/>
+                                                    <Setter Property="Foreground" Value="Black"/>
+                                                </DataTrigger>
+
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Label.Style>
+                                </Label>
+                            </Border>
+                            <Border BorderBrush="#FFEFE6D0" BorderThickness="0,0,0,2" Margin="0,0,0,0" Padding="2">
+                                <Label Content="{Binding PlayerScores.LargeStraight}" FontFamily="Berlin Sans FB" FontSize="12" Foreground="Chocolate"  Height="15" VerticalAlignment="Center" Padding="1">
+                                    <Label.Style>
+                                        <Style TargetType="Label">
+                                            <Style.Triggers>
+
+                                                <DataTrigger Binding="{Binding PlayerScores.LargeStraightScored}" Value="True">
+                                                    <Setter Property="Background" Value="LightGreen"/>
+                                                    <Setter Property="Foreground" Value="Black"/>
+                                                </DataTrigger>
+
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Label.Style>
+                                </Label>
+                            </Border>
+                            <Border BorderBrush="#FFEFE6D0" BorderThickness="0,0,0,2" Margin="0,0,0,0" Padding="2">
+                                <Label Content="{Binding PlayerScores.Yahtzee}" FontFamily="Berlin Sans FB" FontSize="12" Foreground="Chocolate"  Height="15" VerticalAlignment="Center" Padding="1">
+                                    <Label.Style>
+                                        <Style TargetType="Label">
+                                            <Style.Triggers>
+
+                                                <DataTrigger Binding="{Binding PlayerScores.YahtzeeScored}" Value="True">
+                                                    <Setter Property="Background" Value="LightGreen"/>
+                                                    <Setter Property="Foreground" Value="Black"/>
+                                                </DataTrigger>
+
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Label.Style>
+                                </Label>
+                            </Border>
+                            <Border BorderBrush="#FFEFE6D0" BorderThickness="0,0,0,2" Margin="0,0,0,10" Padding="2">
+                                <Label Content="{Binding PlayerScores.Chance}" FontFamily="Berlin Sans FB" FontSize="12" Foreground="Chocolate"  Height="15" VerticalAlignment="Center" Padding="1">
+                                    <Label.Style>
+                                        <Style TargetType="Label">
+                                            <Style.Triggers>
+
+                                                <DataTrigger Binding="{Binding PlayerScores.ChanceScored}" Value="True">
+                                                    <Setter Property="Background" Value="LightGreen"/>
+                                                    <Setter Property="Foreground" Value="Black"/>
+                                                </DataTrigger>
+
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Label.Style>
+                                </Label>
+                            </Border>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
+
+        <Button x:Name="BtnClose" Content="Close" HorizontalAlignment="Left" Margin="74,367,0,0" VerticalAlignment="Top" Click="BtnClose_Click" Height="32" Width="72" FontFamily="Berlin Sans FB" FontSize="20" Grid.Column="4"/>
+        <Button x:Name="BtnReset" Content="Reset" HorizontalAlignment="Left" Margin="261,367,0,0" VerticalAlignment="Top" Click="BtnReset_Click" Height="32" Width="82" FontFamily="Berlin Sans FB" FontSize="20" RenderTransformOrigin="0.591,-0.11" Grid.ColumnSpan="2" Grid.Column="3"/>
+        <Button x:Name="BtnRollDice" Content="Roll Dice!" HorizontalAlignment="Left" Margin="235,233,0,0" VerticalAlignment="Top" Click="BtnRollDice_Click" Height="34" Width="108" FontFamily="Berlin Sans FB" FontSize="20" Grid.ColumnSpan="2" Grid.Column="3"/>
+        <Image x:Name="Die1" HorizontalAlignment="Left" Height="54" Margin="143,148,0,0" VerticalAlignment="Top" Width="52" Source="/1Die.bmp" Grid.Column="2" Grid.ColumnSpan="2"/>
+        <Image x:Name="Die2" HorizontalAlignment="Left" Height="54" Margin="80,148,0,0" VerticalAlignment="Top" Width="52" Source="/2Die.bmp" Grid.Column="3"/>
+        <Image x:Name="Die3" HorizontalAlignment="Left" Height="54" Margin="169,148,0,0" VerticalAlignment="Top" Width="52" Source="/3Die.bmp" Grid.Column="3"/>
+        <Image x:Name="Die4" HorizontalAlignment="Left" Height="54" Margin="261,150,0,0" VerticalAlignment="Top" Width="52" Source="/4Die.bmp" Grid.Column="3" Grid.ColumnSpan="2" RenderTransformOrigin="0.958,0.546"/>
+        <Image x:Name="Die5" HorizontalAlignment="Left" Height="54" Margin="69,150,0,0" VerticalAlignment="Top" Width="52" Source="/5Die.bmp" Grid.Column="4"/>
+        <CheckBox x:Name="cbDie2" Content="" HorizontalAlignment="Left" Margin="98,172,0,0" VerticalAlignment="Top" Height="17" Width="16" RenderTransformOrigin="0.5,0.5" Opacity="0.5" IsEnabled="False" Grid.Column="3">
             <CheckBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="4.5" ScaleY="4.5"/>
@@ -28,7 +345,7 @@
                 </TransformGroup>
             </CheckBox.RenderTransform>
         </CheckBox>
-        <CheckBox x:Name="cbDie1" Content="" HorizontalAlignment="Left" Margin="359,172,0,0" VerticalAlignment="Top" Height="17" Width="16" RenderTransformOrigin="0.5,0.5" Opacity="0.5" IsEnabled="False">
+        <CheckBox x:Name="cbDie1" Content="" HorizontalAlignment="Left" Margin="10,172,0,0" VerticalAlignment="Top" Height="17" Width="16" RenderTransformOrigin="0.5,0.5" Opacity="0.5" IsEnabled="False" Grid.Column="3">
             <CheckBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="4.5" ScaleY="4.5"/>
@@ -38,7 +355,7 @@
                 </TransformGroup>
             </CheckBox.RenderTransform>
         </CheckBox>
-        <CheckBox x:Name="cbDie3" Content="" HorizontalAlignment="Left" Margin="536,172,0,0" VerticalAlignment="Top" Height="18" Width="16" RenderTransformOrigin="0.5,0.5" Opacity="0.5" IsEnabled="False">
+        <CheckBox x:Name="cbDie3" Content="" HorizontalAlignment="Left" Margin="187,172,0,0" VerticalAlignment="Top" Height="18" Width="16" RenderTransformOrigin="0.5,0.5" Opacity="0.5" IsEnabled="False" Grid.Column="3">
             <CheckBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="4.5" ScaleY="4.5"/>
@@ -48,7 +365,7 @@
                 </TransformGroup>
             </CheckBox.RenderTransform>
         </CheckBox>
-        <CheckBox x:Name="cbDie4" Content="" HorizontalAlignment="Left" Margin="628,174,0,0" VerticalAlignment="Top" Height="18" Width="16" RenderTransformOrigin="-0.47,-0.567" Opacity="0.5" IsEnabled="False">
+        <CheckBox x:Name="cbDie4" Content="" HorizontalAlignment="Left" Margin="5,172,0,0" VerticalAlignment="Top" Height="18" Width="16" RenderTransformOrigin="-0.47,-0.567" Opacity="0.5" IsEnabled="False" Grid.Column="4">
             <CheckBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="4.5" ScaleY="4.5"/>
@@ -58,7 +375,7 @@
                 </TransformGroup>
             </CheckBox.RenderTransform>
         </CheckBox>
-        <CheckBox x:Name="cbDie5" Content="" HorizontalAlignment="Left" Margin="710,174,0,0" VerticalAlignment="Top" Height="18" Width="16" RenderTransformOrigin="0.5,0.5" Opacity="0.5" IsEnabled="False">
+        <CheckBox x:Name="cbDie5" Content="" HorizontalAlignment="Left" Margin="87,174,0,0" VerticalAlignment="Top" Height="18" Width="16" RenderTransformOrigin="0.5,0.5" Opacity="0.5" IsEnabled="False" Grid.Column="4">
             <CheckBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="4.5" ScaleY="4.5"/>
@@ -68,52 +385,26 @@
                 </TransformGroup>
             </CheckBox.RenderTransform>
         </CheckBox>
-        <Label x:Name="lblTimesRolled" HorizontalAlignment="Left" Margin="580,89,0,0" VerticalAlignment="Top" ContentStringFormat="3" Content="3" Height="31" Width="28" FontFamily="Berlin Sans FB" FontSize="20"/>
-        <Label x:Name="lblRollCountText" Content="Rolls Left:" HorizontalAlignment="Left" Margin="472,89,0,0" VerticalAlignment="Top" Height="31" Width="108" FontFamily="Berlin Sans FB" FontSize="20" Background="#FFDEACAC"/>
-        <Label x:Name="lblInstructions" Content="Click the dice you want to keep." HorizontalAlignment="Left" Margin="422,49,0,0" VerticalAlignment="Top" Height="31" Width="222" FontFamily="Berlin Sans FB" FontSize="15" Background="{x:Null}"/>
-        <Label x:Name="lblAces" Content="Aces" HorizontalAlignment="Left" Margin="37,27,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbAces" HorizontalAlignment="Left" Margin="99,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
-        <Button x:Name="btnAces" Content="Score" HorizontalAlignment="Left" Margin="241,28,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Click="btnAces_Click"/>
-        <Label x:Name="lblTwos" Content="Twos" HorizontalAlignment="Left" Margin="32,58,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbTwos" HorizontalAlignment="Left" Margin="99,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
-        <Button x:Name="btnTwos" Content="Score" HorizontalAlignment="Left" Margin="241,60,0,0" VerticalAlignment="Top" Click="btnTwos_Click"/>
-        <Label Content="Threes" HorizontalAlignment="Left" Margin="32,93,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbThrees" HorizontalAlignment="Left" Margin="99,93,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
-        <Button x:Name="btnThrees" Content="Score" HorizontalAlignment="Left" Margin="241,90,0,0" VerticalAlignment="Top" Click="btnThrees_Click"/>
-        <Label x:Name="lblFours" Content="Fours" HorizontalAlignment="Left" Margin="32,130,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbFours" HorizontalAlignment="Left" Margin="99,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
-        <Button x:Name="btnFours" Content="Score" HorizontalAlignment="Left" Margin="241,124,0,0" VerticalAlignment="Top" Click="btnFours_Click"/>
-        <Label x:Name="lblFives" Content="Fives" HorizontalAlignment="Left" Margin="32,152,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbFives" HorizontalAlignment="Left" Margin="99,156,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
-        <Button x:Name="btnFives" Content="Score" HorizontalAlignment="Left" Margin="241,154,0,0" VerticalAlignment="Top" Click="btnFives_Click"/>
-        <Label x:Name="lblSixes" Content="Sixes" HorizontalAlignment="Left" Margin="31,186,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbSixes" HorizontalAlignment="Left" Margin="99,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
-        <Button x:Name="btnSixes" Content="Score" HorizontalAlignment="Left" Margin="241,192,0,0" VerticalAlignment="Top" Click="btnSixes_Click"/>
-        <Label x:Name="lblThreeKind" Content="3 of a Kind" HorizontalAlignment="Left" Margin="15,247,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbThreeKind" HorizontalAlignment="Left" Margin="99,251,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
-        <Button x:Name="btnThreeKind" Content="Score" HorizontalAlignment="Left" Margin="241,250,0,0" VerticalAlignment="Top" Click="btnThreeKind_Click"/>
-        <Label x:Name="lblFourKind" Content="4 of a Kind" HorizontalAlignment="Left" Margin="10,282,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbFourKind" HorizontalAlignment="Left" Margin="99,282,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
-        <Button x:Name="btnFourKind" Content="Score" HorizontalAlignment="Left" Margin="241,282,0,0" VerticalAlignment="Top" Click="btnFourKind_Click"/>
-        <Label x:Name="lblFullHouse" Content="Full House" HorizontalAlignment="Left" Margin="10,313,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbFullHouse" HorizontalAlignment="Left" Margin="99,313,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
-        <Button x:Name="btnFullHouse" Content="Score" HorizontalAlignment="Left" Margin="241,313,0,0" VerticalAlignment="Top" Click="btnFullHouse_Click"/>
-        <Label x:Name="lblSmallStraight" Content="Small Straight" HorizontalAlignment="Left" Margin="10,338,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbSmallStraight" HorizontalAlignment="Left" Margin="99,338,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
-        <Button x:Name="btnSmallStraight" Content="Score" HorizontalAlignment="Left" Margin="241,336,0,0" VerticalAlignment="Top" Click="btnSmallStraight_Click"/>
-        <Label x:Name="lblLargeStraight" Content="Large Straight" HorizontalAlignment="Left" Margin="10,363,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbLargeStraight" HorizontalAlignment="Left" Margin="99,368,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
-        <Button x:Name="btnLargeStraight" Content="Score" HorizontalAlignment="Left" Margin="241,366,0,0" VerticalAlignment="Top" Click="btnLargeStraight_Click"/>
-        <Label x:Name="lblYahtzee" Content="YAHTZEE" HorizontalAlignment="Left" Margin="10,388,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbYahtzee" HorizontalAlignment="Left" Margin="99,388,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
-        <Button x:Name="btnYahtzee" Content="Score" HorizontalAlignment="Left" Margin="241,388,0,0" VerticalAlignment="Top" Click="btnYahtzee_Click"/>
-        <Label x:Name="lblChance" Content="Chance" HorizontalAlignment="Left" Margin="10,413,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbChance" HorizontalAlignment="Left" Margin="99,415,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
-        <Button x:Name="btnChance" Content="Score" HorizontalAlignment="Left" Margin="241,413,0,0" VerticalAlignment="Top" Click="btnChance_Click"/>
-        <Label x:Name="lblCurrentPlayer" Content="Current Player:" HorizontalAlignment="Left" Margin="315,261,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lblTotalScore" Content="Total Score:" HorizontalAlignment="Left" Margin="331,309,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbCurrentPlayer" HorizontalAlignment="Left" Margin="408,265,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
-        <TextBox x:Name="tbTotalScore" HorizontalAlignment="Left" Margin="408,314,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
+        <Label x:Name="lblTimesRolled" HorizontalAlignment="Left" Margin="231,89,0,0" VerticalAlignment="Top" ContentStringFormat="3" Content="3" Height="31" Width="28" FontFamily="Berlin Sans FB" FontSize="20" Grid.Column="3"/>
+        <Label x:Name="lblRollCountText" Content="Rolls Left:" HorizontalAlignment="Left" Margin="123,89,0,0" VerticalAlignment="Top" Height="31" Width="108" FontFamily="Berlin Sans FB" FontSize="20" Background="#FFDEACAC" Grid.Column="3"/>
+        <Label x:Name="lblInstructions" Content="Click the dice you want to keep." HorizontalAlignment="Left" Margin="121,44,0,0" VerticalAlignment="Top" Height="31" Width="222" FontFamily="Berlin Sans FB" FontSize="15" Background="{x:Null}" Grid.ColumnSpan="2" Grid.Column="3" Foreground="White"/>
+        <Button x:Name="btnAces" Content="Score" HorizontalAlignment="Center" Margin="0,73,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Click="btnAces_Click" Width="46" FontFamily="Berlin Sans FB" Height="15" VerticalContentAlignment="Center" Padding="1,0,1,1"/>
+        <Button x:Name="btnTwos" Content="Score" HorizontalAlignment="Center" Margin="0,94,0,0" VerticalAlignment="Top" Click="btnTwos_Click" Width="46" FontFamily="Berlin Sans FB" Height="15" RenderTransformOrigin="0.592,0.153" Padding="0,0,0,0"/>
+        <Button x:Name="btnThrees" Content="Score" HorizontalAlignment="Center" Margin="0,115,0,0" VerticalAlignment="Top" Click="btnThrees_Click" Width="46" FontFamily="Berlin Sans FB" Height="15" Padding="1,0,1,1"/>
+        <Button x:Name="btnFours" Content="Score" HorizontalAlignment="Center" Margin="0,136,0,0" VerticalAlignment="Top" Click="btnFours_Click" Width="46" FontFamily="Berlin Sans FB" Height="15" Padding="1,0,1,1"/>
+        <Button x:Name="btnFives" Content="Score" HorizontalAlignment="Center" Margin="0,157,0,0" VerticalAlignment="Top" Click="btnFives_Click" Width="46" FontFamily="Berlin Sans FB" Height="15" Padding="1,0,1,1"/>
+        <Button x:Name="btnSixes" Content="Score" HorizontalAlignment="Center" Margin="0,178,0,0" VerticalAlignment="Top" Click="btnSixes_Click" Width="46" FontFamily="Berlin Sans FB" Height="15" Padding="1,0,1,1"/>
+        <Button x:Name="btnThreeKind" Content="Score" HorizontalAlignment="Center" Margin="0,220,0,0" VerticalAlignment="Top" Click="btnThreeKind_Click" Width="46" FontFamily="Berlin Sans FB" Height="15" Padding="1,0,1,1"/>
+        <Button x:Name="btnFourKind" Content="Score" HorizontalAlignment="Center" VerticalAlignment="Top" Click="btnFourKind_Click" Width="46" FontFamily="Berlin Sans FB" Height="15" Padding="1,0,1,1" Margin="0,241,0,0"/>
+        <Button x:Name="btnFullHouse" Content="Score" HorizontalAlignment="Center" Margin="0,262,0,0" VerticalAlignment="Top" Click="btnFullHouse_Click" Width="46" FontFamily="Berlin Sans FB" Height="15" Padding="1,0,1,1"/>
+        <Button x:Name="btnSmallStraight" Content="Score" HorizontalAlignment="Center" Margin="0,283,0,0" VerticalAlignment="Top" Click="btnSmallStraight_Click" Width="46" FontFamily="Berlin Sans FB" Height="15" Padding="1,0,1,1"/>
+        <Button x:Name="btnLargeStraight" Content="Score" HorizontalAlignment="Center" Margin="0,304,0,0" VerticalAlignment="Top" Click="btnLargeStraight_Click" Width="46" FontFamily="Berlin Sans FB" Height="15" Padding="1,0,1,1"/>
+        <Button x:Name="btnYahtzee" Content="Score" HorizontalAlignment="Center" Margin="0,325,0,0" VerticalAlignment="Top" Click="btnYahtzee_Click" Width="46" FontFamily="Berlin Sans FB" Height="15" Padding="1,0,1,1"/>
+        <Button x:Name="btnChance" Content="Score" HorizontalAlignment="Center" Margin="0,347,0,0" VerticalAlignment="Top" Click="btnChance_Click" Width="46" FontFamily="Berlin Sans FB" Height="14" Padding="1,0,1,1"/>
+        <Label x:Name="lblCurrentPlayer" Content="Current Player:" HorizontalAlignment="Left" Margin="110,234,0,0" VerticalAlignment="Top" Grid.Column="2" Grid.ColumnSpan="2" Foreground="#FFEFE6D0" FontFamily="Berlin Sans FB"/>
+        <Label x:Name="lblTotalScore" Content="Total Score:" HorizontalAlignment="Left" Margin="117,284,0,0" VerticalAlignment="Top" Grid.Column="2" Grid.ColumnSpan="2" FontFamily="Berlin Sans FB" Foreground="#FFEFE6D0"/>
+        <TextBox x:Name="tbCurrentPlayer" HorizontalAlignment="Left" Margin="70,240,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="3"/>
+        <TextBox x:Name="tbTotalScore" HorizontalAlignment="Left" Margin="70,289,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="3"/>
 
     </Grid>
 </Window>

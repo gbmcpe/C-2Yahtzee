@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,6 +23,8 @@ namespace YahtzeeGame
     /// </summary>
     public partial class GameWindow : Window
     {
+        public ObservableCollection<Player> Players { get; } = new ObservableCollection<Player>();
+        
 
         public GameManager game;
         public Player currentPlayer;
@@ -31,14 +35,25 @@ namespace YahtzeeGame
         public GameWindow(List<Player> players)
         {
             InitializeComponent();
+         
+
+            Players.Clear();
+            foreach (var p in players)
+                Players.Add(p);
+
+
             game = new GameManager();
-            game.players = players;
-            currentPlayer = players[0];
+            game.players =Players;
+            currentPlayer = Players[0];
             tbCurrentPlayer.Text = currentPlayer.PlayerName;
-            tbTotalScore.Text = currentPlayer.PlayerScores.totalScore.ToString();
+            tbTotalScore.Text = currentPlayer.PlayerScores.TotalScore.ToString();
             LockBoard();
             tester = players.Count;
+            DataContext = this;
             
+
+
+
 
             /// If the first player is CPU, run CPU turn after the window loads. - EasyModeBot
             this.Loaded += async (_, __) => await PlayCpuTurnIfNeededAsync();
@@ -78,6 +93,9 @@ namespace YahtzeeGame
             }
             UnlockBoard();
             RefactorBoard();
+            currentPlayer.PlayerScores.ShowSelectedScores();
+            fillScoresOpcion(game.Pool.diceValue);
+
         }
 
         private void btnStart_Click(object sender, RoutedEventArgs e)
@@ -111,9 +129,9 @@ namespace YahtzeeGame
         }
 
 
-
+        //Show dinamc scores before to choose one
         #endregion
-
+      
         private void DisplayDiceSet()
         {
             for (int c = 0; c < 5; c++)
@@ -208,7 +226,7 @@ namespace YahtzeeGame
             cbDie5.IsChecked = false;
 
 
-        }
+                                                                                                                                                  }
 
         #endregion
 
@@ -286,6 +304,7 @@ namespace YahtzeeGame
                 DiceActivation(true);
                 UnlockBoard();
                 RefactorBoard();
+
                 if (currentPlayer.GetType() == typeof(Player))
                 {
                     stillBot = false;
@@ -308,7 +327,7 @@ namespace YahtzeeGame
             }
             game.EndTurn();
             currentPlayer = game.currentPlayer;
-            FillBoxes();
+              FillBoxes();
             CheckState(false);
             game.RollUsed(CheckDice());
             DisplayDiceSet();
@@ -317,6 +336,7 @@ namespace YahtzeeGame
             DiceActivation(true);
             UnlockBoard();
             RefactorBoard();
+            fillScoresOpcion(game.Pool.diceValue);
 
             if (currentPlayer.GetType() == typeof(DumbBot))
             {
@@ -348,7 +368,7 @@ namespace YahtzeeGame
 
             while (x >= 0)
             {
-                MessageBox.Show(game.players[x].PlayerName + " achieved " + game.players[x].PlayerScores.totalScore +
+                MessageBox.Show(game.players[x].PlayerName + " achieved " + game.players[x].PlayerScores.TotalScore +
                                 " Points.");
                 x--;
             }
@@ -359,73 +379,77 @@ namespace YahtzeeGame
         private void RecordHighScores(Player P)
         {
             StreamWriter Output = new StreamWriter("HighScores.txt", true);
-            Output.WriteLine($"{P.PlayerScores.totalScore} {P.PlayerName}");
+            Output.WriteLine($"{P.PlayerScores.TotalScore} {P.PlayerName}");
             Output.Close();
         }
 
         private void RefactorBoard()
         {
-            if (currentPlayer.PlayerScores.acesScored)
+            if (currentPlayer.PlayerScores.AcesScored)
             {
                 btnAces.IsEnabled = false;
             }
+            else
+            {
 
-            if (currentPlayer.PlayerScores.twosScored)
+            }
+
+            if (currentPlayer.PlayerScores.TwosScored)
             {
                 btnTwos.IsEnabled = false;
             }
 
-            if (currentPlayer.PlayerScores.threesScored)
+            if (currentPlayer.PlayerScores.ThreesScored)
             {
                 btnThrees.IsEnabled = false;
             }
 
-            if (currentPlayer.PlayerScores.foursScored)
+            if (currentPlayer.PlayerScores.FoursScored)
             {
                 btnFours.IsEnabled = false;
             }
 
-            if (currentPlayer.PlayerScores.fivesScored)
+            if (currentPlayer.PlayerScores.FivesScored)
             {
                 btnFives.IsEnabled = false;
             }
 
-            if (currentPlayer.PlayerScores.sixesScored)
+            if (currentPlayer.PlayerScores.SixesScored)
             {
                 btnSixes.IsEnabled = false;
             }
 
-            if (currentPlayer.PlayerScores.threeOfAKindScored)
+            if (currentPlayer.PlayerScores.ThreeOfAKindScored)
             {
                 btnThreeKind.IsEnabled = false;
             }
 
-            if (currentPlayer.PlayerScores.fourOfAKindScored)
+            if (currentPlayer.PlayerScores.FourOfAKindScored)
             {
                 btnFourKind.IsEnabled = false;
             }
 
-            if (currentPlayer.PlayerScores.fullHouseScored)
+            if (currentPlayer.PlayerScores.FullHouseScored)
             {
                 btnFullHouse.IsEnabled = false;
             }
 
-            if (currentPlayer.PlayerScores.smallStraightScored)
+            if (currentPlayer.PlayerScores.SmallStraightScored)
             {
                 btnSmallStraight.IsEnabled = false;
             }
 
-            if (currentPlayer.PlayerScores.largeStraightScored)
+            if (currentPlayer.PlayerScores.LargeStraightScored)
             {
                 btnLargeStraight.IsEnabled = false;
             }
 
-            if (currentPlayer.PlayerScores.yahtzeeScored)
+            if (currentPlayer.PlayerScores.YahtzeeScored)
             {
                 btnYahtzee.IsEnabled = false;
             }
 
-            if (currentPlayer.PlayerScores.chanceScored)
+            if (currentPlayer.PlayerScores.ChanceScored)
             {
                 btnChance.IsEnabled = false;
             }
@@ -465,212 +489,258 @@ namespace YahtzeeGame
             btnChance.IsEnabled = true;
         }
 
+        /// This method will be used to fill the score options with the potential scores for the current dice roll,  
+        /// This method will be used to fill the score options with the potential scores for the current dice roll, 
+        ///so the player can make an informed decision.
+        private void fillScoresOpcion(int[] diceInPool)
+
+        {
+            foreach (int Die in diceInPool)
+            {
+                if (Die == 1 && !currentPlayer.PlayerScores.AcesScored)
+                {
+                    currentPlayer.PlayerScores.Aces += Die;
+                }
+                if (Die == 2 && !currentPlayer.PlayerScores.TwosScored)
+                {
+                    currentPlayer.PlayerScores.Twos += Die;
+                }
+                if (Die == 3 && !currentPlayer.PlayerScores.ThreesScored)
+                {
+                    currentPlayer.PlayerScores.Threes += Die;
+                }
+                if (Die == 4 && !currentPlayer.PlayerScores.FoursScored)
+                {
+                    currentPlayer.PlayerScores.Fours += Die;
+                }
+                if (Die == 5 && !currentPlayer.PlayerScores.FivesScored)
+                {
+                    currentPlayer.PlayerScores.Fives += Die;
+                }
+                if (Die == 6 && !currentPlayer.PlayerScores.SixesScored)
+                {
+                    currentPlayer.PlayerScores.Sixes += Die;
+                }
+                if (!currentPlayer.PlayerScores.ThreeOfAKindScored)
+                {
+                    if (currentPlayer.PlayerScores.ThreeKindValidation(diceInPool))
+                    {
+                        currentPlayer.PlayerScores.ThreeOfAKind += Die;
+                    }
+                }
+                if (!currentPlayer.PlayerScores.FourOfAKindScored)
+                {
+                    if (currentPlayer.PlayerScores.FourKindValidation(diceInPool))
+                    {
+                        currentPlayer.PlayerScores.FourOfAKind += Die;
+                    }
+                }
+                if (!currentPlayer.PlayerScores.ChanceScored)
+                {
+                    currentPlayer.PlayerScores.Chance += Die;
+                }
+            }
+
+            if (!currentPlayer.PlayerScores.FullHouseScored)
+            {
+                if (currentPlayer.PlayerScores.FullHouseValidation(diceInPool))
+                {
+                    currentPlayer.PlayerScores.FullHouse += 25;
+                }
+            }
+            if (!currentPlayer.PlayerScores.SmallStraightScored)
+            {
+                if (currentPlayer.PlayerScores.SmallStraightValidation(diceInPool))
+                {
+                    currentPlayer.PlayerScores.SmallStraight += 30;
+                }
+            }
+            if (!currentPlayer.PlayerScores.LargeStraightScored)
+            {
+                if (currentPlayer.PlayerScores.LargeStraightValidation(diceInPool))
+                {
+                    currentPlayer.PlayerScores.LargeStraight += 40;
+                }
+            }
+            if (!currentPlayer.PlayerScores.YahtzeeScored)
+            {
+                if (currentPlayer.PlayerScores.YahtzeeValidation(diceInPool))
+                {
+                    currentPlayer.PlayerScores.Yahtzee += 50;
+                }
+            }
+                
+
+            }
+
+            
         private void FillBoxes()
         {
-            tbAces.Text = "";
-            tbTwos.Text = "";
-            tbThrees.Text = "";
-            tbFours.Text = "";
-            tbFives.Text = "";
-            tbSixes.Text = "";
-            tbThreeKind.Text = "";
-            tbFourKind.Text = "";
-            tbFullHouse.Text = "";
-            tbSmallStraight.Text = "";
-            tbLargeStraight.Text = "";
-            tbYahtzee.Text = "";
-            tbChance.Text = "";
+            //tbAces.Text = "";
+            //tbTwos.Text = "";
+            //tbThrees.Text = "";
+            //tbFours.Text = "";
+            //tbFives.Text = "";
+            //tbSixes.Text = "";
+            //tbThreeKind.Text = "";
+            //tbFourKind.Text = "";
+            //tbFullHouse.Text = "";
+            //tbSmallStraight.Text = "";
+            //tbLargeStraight.Text = "";
+            //tbYahtzee.Text = "";
+            //tbChance.Text = "";
 
             tbCurrentPlayer.Text = currentPlayer.PlayerName;
-            tbTotalScore.Text = currentPlayer.PlayerScores.totalScore.ToString();
+            tbTotalScore.Text = currentPlayer.PlayerScores.TotalScore.ToString();
+        
             
-            if (currentPlayer.PlayerScores.acesScored)
-            {
-                tbAces.Text = currentPlayer.PlayerScores.aces.ToString();
-            }
-
-            if (currentPlayer.PlayerScores.twosScored)
-            {
-                tbTwos.Text = currentPlayer.PlayerScores.twos.ToString();
-            }
-
-            if (currentPlayer.PlayerScores.threesScored)
-            {
-                tbThrees.Text = currentPlayer.PlayerScores.threes.ToString();
-            }
-
-            if (currentPlayer.PlayerScores.foursScored)
-            {
-                tbFours.Text = currentPlayer.PlayerScores.fours.ToString();
-            }
-
-            if (currentPlayer.PlayerScores.fivesScored)
-            {
-                tbFives.Text = currentPlayer.PlayerScores.fives.ToString();
-            }
-
-            if (currentPlayer.PlayerScores.sixesScored)
-            {
-                tbSixes.Text = currentPlayer.PlayerScores.sixes.ToString();
-            }
-
-            /*
-            if (currentPlayer.PlayerScores.bonusScored)
-            {
-                tbBonus.Text = currentPlayer.PlayerScores.bonus.ToString();
-            }
-            */
-            if (currentPlayer.PlayerScores.threeOfAKindScored)
-            {
-                tbThreeKind.Text = currentPlayer.PlayerScores.threeOfAKind.ToString();
-            }
-
-            if (currentPlayer.PlayerScores.fourOfAKindScored)
-            {
-                tbFourKind.Text = currentPlayer.PlayerScores.fourOfAKind.ToString();
-            }
-
-            if (currentPlayer.PlayerScores.fullHouseScored)
-            {
-                tbFullHouse.Text = currentPlayer.PlayerScores.fullHouse.ToString();
-            }
-
-            if (currentPlayer.PlayerScores.smallStraightScored)
-            {
-                tbSmallStraight.Text = currentPlayer.PlayerScores.smallStraight.ToString();
-            }
-
-            if (currentPlayer.PlayerScores.largeStraightScored)
-            {
-                tbLargeStraight.Text = currentPlayer.PlayerScores.largeStraight.ToString();
-            }
-
-            if (currentPlayer.PlayerScores.yahtzeeScored)
-            {
-                tbYahtzee.Text = currentPlayer.PlayerScores.yahtzee.ToString();
-            }
-
-            if (currentPlayer.PlayerScores.chanceScored)
-            {
-                tbChance.Text = currentPlayer.PlayerScores.chance.ToString();
-            }
         }
+
 
         private void btnAces_Click(object sender, RoutedEventArgs e)
         {
-            currentPlayer.PlayerScores.AcesSelected(game.Pool.diceValue);
+            //Update: I deleted the argument for dice the dice is no longer needed as an argument
+            //because the scores are updated in real time as the dice are rolled,
+            //so the current score options are always available in the ScoreCard object.
+            currentPlayer.PlayerScores.AcesSelected();
 
-            if (currentPlayer.PlayerScores.acesScored)
+            if (currentPlayer.PlayerScores.AcesScored)
             {
+                currentPlayer.PlayerScores.ShowSelectedScores();
                 NextTurn();
+                
             }
         }
         private void btnTwos_Click(object sender, RoutedEventArgs e)
         {
-            currentPlayer.PlayerScores.TwosSelected(game.Pool.diceValue);
+            currentPlayer.PlayerScores.TwosSelected();
 
-            if (currentPlayer.PlayerScores.twosScored)
+            if (currentPlayer.PlayerScores.TwosScored)
             {
+               currentPlayer.PlayerScores.ShowSelectedScores();
                 NextTurn();
+                
             }
         }
         private void btnThrees_Click(object sender, RoutedEventArgs e)
         {
-            currentPlayer.PlayerScores.ThreesSelected(game.Pool.diceValue);
+            currentPlayer.PlayerScores.ThreesSelected();
 
-            if (currentPlayer.PlayerScores.threesScored)
-            {
+            if (currentPlayer.PlayerScores.ThreesScored)
+            { 
+                currentPlayer.PlayerScores.ShowSelectedScores();
                 NextTurn();
+               
             }
         }
         private void btnFours_Click(object sender, RoutedEventArgs e)
         {
-            currentPlayer.PlayerScores.FoursSelected(game.Pool.diceValue);
+            currentPlayer.PlayerScores.FoursSelected();
 
-            if (currentPlayer.PlayerScores.foursScored)
+            if (currentPlayer.PlayerScores.FoursScored)
             {
+                currentPlayer.PlayerScores.ShowSelectedScores();
                 NextTurn();
+                
             }
         }
         private void btnFives_Click(object sender, RoutedEventArgs e)
         {
-            currentPlayer.PlayerScores.FivesSelected(game.Pool.diceValue);
+            currentPlayer.PlayerScores.FivesSelected();
 
-            if (currentPlayer.PlayerScores.fivesScored)
+            if (currentPlayer.PlayerScores.FivesScored)
             {
+               currentPlayer.PlayerScores.ShowSelectedScores();
                 NextTurn();
+                
             }
         }
         private void btnSixes_Click(object sender, RoutedEventArgs e)
         {
-            currentPlayer.PlayerScores.SixesSelected(game.Pool.diceValue);
+            currentPlayer.PlayerScores.SixesSelected();
 
-            if (currentPlayer.PlayerScores.sixesScored)
+            if (currentPlayer.PlayerScores.SixesScored)
             {
+                currentPlayer.PlayerScores.ShowSelectedScores();
                 NextTurn();
+                
             }
         }
         private void btnThreeKind_Click(object sender, RoutedEventArgs e)
         {
-            currentPlayer.PlayerScores.ThreeOfAKindSelected(game.Pool.diceValue);
+            currentPlayer.PlayerScores.ThreeOfAKindSelected();
 
-            if (currentPlayer.PlayerScores.threeOfAKindScored)
+            if (currentPlayer.PlayerScores.ThreeOfAKindScored)
             {
+                currentPlayer.PlayerScores.ShowSelectedScores();
                 NextTurn();
+                
             }
         }
         private void btnFourKind_Click(object sender, RoutedEventArgs e)
         {
             currentPlayer.PlayerScores.FourOfAKindSelected(game.Pool.diceValue);
 
-            if (currentPlayer.PlayerScores.fourOfAKindScored)
+            if (currentPlayer.PlayerScores.FourOfAKindScored)
             {
+                currentPlayer.PlayerScores.ShowSelectedScores();
                 NextTurn();
+                
             }
         }
         private void btnFullHouse_Click(object sender, RoutedEventArgs e)
         {
-            currentPlayer.PlayerScores.FullHouseSelected(game.Pool.diceValue);
+            currentPlayer.PlayerScores.FullHouseSelected();
 
-            if (currentPlayer.PlayerScores.fullHouseScored)
+            if (currentPlayer.PlayerScores.FullHouseScored)
             {
+                currentPlayer.PlayerScores.ShowSelectedScores();
                 NextTurn();
+                
             }
         }
         private void btnSmallStraight_Click(object sender, RoutedEventArgs e)
         {
-            currentPlayer.PlayerScores.SmallStraightSelected(game.Pool.diceValue);
+            currentPlayer.PlayerScores.SmallStraightSelected();
 
-            if (currentPlayer.PlayerScores.smallStraightScored)
+            if (currentPlayer.PlayerScores.SmallStraightScored)
             {
+               currentPlayer.PlayerScores.ShowSelectedScores();
                 NextTurn();
+                
             }
         }
         private void btnLargeStraight_Click(object sender, RoutedEventArgs e)
         {
-            currentPlayer.PlayerScores.LargeStraightSelected(game.Pool.diceValue);
+            currentPlayer.PlayerScores.LargeStraightSelected();
 
-            if (currentPlayer.PlayerScores.largeStraightScored)
+            if (currentPlayer.PlayerScores.LargeStraightScored)
             {
+                currentPlayer.PlayerScores.ShowSelectedScores();
                 NextTurn();
+                
             }
         }
         private void btnYahtzee_Click(object sender, RoutedEventArgs e)
         {
-            currentPlayer.PlayerScores.YahtzeeSelected(game.Pool.diceValue);
+            currentPlayer.PlayerScores.YahtzeeSelected();
 
-            if (currentPlayer.PlayerScores.yahtzeeScored)
+            if (currentPlayer.PlayerScores.YahtzeeScored)
             {
+                currentPlayer.PlayerScores.ShowSelectedScores();
                 NextTurn();
+                
             }
         }
         private void btnChance_Click(object sender, RoutedEventArgs e)
         {
             currentPlayer.PlayerScores.ChanceSelected(game.Pool.diceValue);
 
-            if (currentPlayer.PlayerScores.chanceScored)
+            if (currentPlayer.PlayerScores.ChanceScored)
             {
+                currentPlayer.PlayerScores.ShowSelectedScores();
                 NextTurn();
+                
             }
         }
 

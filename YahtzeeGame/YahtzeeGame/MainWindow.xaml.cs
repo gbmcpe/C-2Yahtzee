@@ -23,8 +23,8 @@ namespace YahtzeeGame
     /// 
     public partial class MainWindow : Window
     {
-        //List of players. Will be used to track player information and scores.
-        List<Player> Players = new List<Player>();
+        
+        
 
 
         public MainWindow()
