@@ -28,7 +28,7 @@ namespace YahtzeeGame
                 }
                 else if (this.PlayerScores.LargeStraightValidation(dice) && !this.PlayerScores.LargeStraightScored)
                 {
-                    this.PlayerScores.LargeStraightSelected( true);
+                    this.PlayerScores.LargeStraightSelected(true);
                     MessageBox.Show("The Bot has made a decision. It has selected Large Straight, scoring " +
                                     PlayerScores.LargeStraight + " points, and " +
                                     "now has " + PlayerScores.TotalScore + " points.");
@@ -103,7 +103,11 @@ namespace YahtzeeGame
                                     " points, and " +
                                     "now has " + PlayerScores.TotalScore + " points.");
                 }
-                else if (!this.PlayerScores.chanceScored)
+
+                else if (!this.PlayerScores.ChanceScored && this.PlayerScores.Chance > 0) ;
+
+                else if (!this.PlayerScores.ChanceScored)
+
                 {
                     this.PlayerScores.ChanceSelected(dice, true);
                     MessageBox.Show("The Bot has made a decision. It has selected Chance, scoring " +

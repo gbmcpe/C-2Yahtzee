@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace YahtzeeGame
     /// </summary>
     public partial class GameReview : Window
     {
-        public GameReview(List<Player> Players, bool gameOver)
+        public GameReview(ObservableCollection<Player> Players, bool gameOver)
         {
             InitializeComponent();
 
@@ -32,7 +33,7 @@ namespace YahtzeeGame
 
         }
 
-       private List<Player> StoredPlayers;
+       private ObservableCollection<Player> StoredPlayers;
 
        private bool GameOver { get; }
 
@@ -42,25 +43,25 @@ namespace YahtzeeGame
 
             ((Label)this.FindName($"lblPlayer{n}")).Content = currentPlayer.PlayerName;
 
-            if (currentPlayer.PlayerScores.acesScored)
+            if (currentPlayer.PlayerScores.AcesScored)
             {
-                ((TextBox)this.FindName($"tbAcesP{n}")).Text = currentPlayer.PlayerScores.aces.ToString();
+                ((TextBox)this.FindName($"tbAcesP{n}")).Text = currentPlayer.PlayerScores.Aces.ToString();
             }
             else
             { ((TextBox)this.FindName($"tbAcesP{n}")).Text = ""; }
 
-            if (currentPlayer.PlayerScores.twosScored)
+            if (currentPlayer.PlayerScores.TwosScored)
             {
-                ((TextBox)this.FindName($"tbTwosP{n}")).Text = currentPlayer.PlayerScores.twos.ToString();
+                ((TextBox)this.FindName($"tbTwosP{n}")).Text = currentPlayer.PlayerScores.Twos.ToString();
             }
             else
             {
                 ((TextBox)this.FindName($"tbTwosP{n}")).Text = "";
             }
 
-            if (currentPlayer.PlayerScores.threesScored)
+            if (currentPlayer.PlayerScores.ThreesScored)
             {
-                ((TextBox)this.FindName($"tbThreesP{n}")).Text = currentPlayer.PlayerScores.threes.ToString();
+                ((TextBox)this.FindName($"tbThreesP{n}")).Text = currentPlayer.PlayerScores.Threes.ToString();
             }
             else
             {
@@ -68,27 +69,27 @@ namespace YahtzeeGame
             }
 
 
-            if (currentPlayer.PlayerScores.foursScored)
+            if (currentPlayer.PlayerScores.FoursScored)
             {
-                ((TextBox)this.FindName($"tbFoursP{n}")).Text = currentPlayer.PlayerScores.fours.ToString();
+                ((TextBox)this.FindName($"tbFoursP{n}")).Text = currentPlayer.PlayerScores.Fours.ToString();
             }
             else
             {
                 ((TextBox)this.FindName($"tbFoursP{n}")).Text = "";
             }
 
-            if (currentPlayer.PlayerScores.fivesScored)
+            if (currentPlayer.PlayerScores.FivesScored)
             {
-                ((TextBox)this.FindName($"tbFivesP{n}")).Text = currentPlayer.PlayerScores.fives.ToString();
+                ((TextBox)this.FindName($"tbFivesP{n}")).Text = currentPlayer.PlayerScores.Fives.ToString();
             }
             else
             {
                 ((TextBox)this.FindName($"tbFivesP{n}")).Text = "";
             }
 
-            if (currentPlayer.PlayerScores.sixesScored)
+            if (currentPlayer.PlayerScores.SixesScored)
             {
-                ((TextBox)this.FindName($"tbSixesP{n}")).Text = currentPlayer.PlayerScores.sixes.ToString();
+                ((TextBox)this.FindName($"tbSixesP{n}")).Text = currentPlayer.PlayerScores.Sixes.ToString();
             }
             else
             {
@@ -101,63 +102,63 @@ namespace YahtzeeGame
                 tbBonus.Text = currentPlayer.PlayerScores.bonus.ToString();
             }
             */
-            if (currentPlayer.PlayerScores.threeOfAKindScored)
+            if (currentPlayer.PlayerScores.ThreeOfAKindScored)
             {
-                ((TextBox)this.FindName($"tbThreeKindP{n}")).Text = currentPlayer.PlayerScores.threeOfAKind.ToString();
+                ((TextBox)this.FindName($"tbThreeKindP{n}")).Text = currentPlayer.PlayerScores.ThreeOfAKind.ToString();
             }
             else
             {
                 ((TextBox)this.FindName($"tbThreeKindP{n}")).Text = "";
             }
 
-            if (currentPlayer.PlayerScores.fourOfAKindScored)
+            if (currentPlayer.PlayerScores.FourOfAKindScored)
             {
-                ((TextBox)this.FindName($"tbFourKindP{n}")).Text = currentPlayer.PlayerScores.fourOfAKind.ToString();
+                ((TextBox)this.FindName($"tbFourKindP{n}")).Text = currentPlayer.PlayerScores.FourOfAKind.ToString();
             }
             else
             {
                 ((TextBox)this.FindName($"tbFourKindP{n}")).Text = "";
             }
 
-            if (currentPlayer.PlayerScores.fullHouseScored)
+            if (currentPlayer.PlayerScores.FullHouseScored)
             {
-                ((TextBox)this.FindName($"tbFullHouseP{n}")).Text = currentPlayer.PlayerScores.fullHouse.ToString();
+                ((TextBox)this.FindName($"tbFullHouseP{n}")).Text = currentPlayer.PlayerScores.FullHouse.ToString();
             }
             else
             {
                 ((TextBox)this.FindName($"FulLHouseP{n}")).Text = "";
             }
 
-            if (currentPlayer.PlayerScores.smallStraightScored)
+            if (currentPlayer.PlayerScores.SmallStraightScored)
             {
-                ((TextBox)this.FindName($"tbSmallStraightP{n}")).Text = currentPlayer.PlayerScores.smallStraight.ToString();
+                ((TextBox)this.FindName($"tbSmallStraightP{n}")).Text = currentPlayer.PlayerScores.SmallStraight.ToString();
             }
             else
             {
                 ((TextBox)this.FindName($"tbSmallStraightP{n}")).Text = "";
             }
 
-            if (currentPlayer.PlayerScores.largeStraightScored)
+            if (currentPlayer.PlayerScores.LargeStraightScored)
             {
-                ((TextBox)this.FindName($"tbLargeStraightP{n}")).Text = currentPlayer.PlayerScores.largeStraight.ToString();
+                ((TextBox)this.FindName($"tbLargeStraightP{n}")).Text = currentPlayer.PlayerScores.LargeStraight.ToString();
             }
             else
             {
                 ((TextBox)this.FindName($"tbLargeStraightP{n}")).Text = "";
             }
 
-            if (currentPlayer.PlayerScores.yahtzeeScored)
+            if (currentPlayer.PlayerScores.YahtzeeScored)
             {
-                ((TextBox)this.FindName($"tbYahtzeeP{n}")).Text = currentPlayer.PlayerScores.yahtzee.ToString();
+                ((TextBox)this.FindName($"tbYahtzeeP{n}")).Text = currentPlayer.PlayerScores.Yahtzee.ToString();
             }
             else
             {
                 ((TextBox)this.FindName($"tbYahtzeeP{n}")).Text = "";
             }
 
-            if (currentPlayer.PlayerScores.chanceScored)
+            if (currentPlayer.PlayerScores.ChanceScored)
             {
-                ((TextBox)this.FindName($"tbChanceP{n}")).Text = currentPlayer.PlayerScores.chance.ToString();
+                ((TextBox)this.FindName($"tbChanceP{n}")).Text = currentPlayer.PlayerScores.Chance.ToString();
             }
             else
             {
@@ -167,13 +168,13 @@ namespace YahtzeeGame
 
     
            
-                ((TextBox)this.FindName($"tbTotalP{n}")).Text = currentPlayer.PlayerScores.totalScore.ToString();
+                ((TextBox)this.FindName($"tbTotalP{n}")).Text = currentPlayer.PlayerScores.TotalScore.ToString();
             
           
             
         }
 
-        private void ApplyEndState(List<Player> players)
+        private void ApplyEndState(ObservableCollection<Player> players)
         {
             int n = 1;
             Player winner = null;
@@ -186,13 +187,13 @@ namespace YahtzeeGame
 
                 FillBoxes(p, n);
                 if (winner == null) { winner = p; }
-                else if (p.PlayerScores.totalScore > winner.PlayerScores.totalScore)
+                else if (p.PlayerScores.TotalScore > winner.PlayerScores.TotalScore)
                 {
                     winner = p;
                     tie = false;
                     tier = null;
                 }
-                else if (p.PlayerScores.totalScore == winner.PlayerScores.totalScore)
+                else if (p.PlayerScores.TotalScore == winner.PlayerScores.TotalScore)
                 {
                     tier = p;
                     tie = true;
@@ -212,7 +213,7 @@ namespace YahtzeeGame
         private void RecordHighScores(Player P)
         {
             StreamWriter Output = new StreamWriter("HighScores.txt", true);
-            Output.WriteLine($"{P.PlayerScores.totalScore} {P.PlayerName}");
+            Output.WriteLine($"{P.PlayerScores.TotalScore} {P.PlayerName}");
             Output.Close();
         }
 
@@ -223,13 +224,13 @@ namespace YahtzeeGame
             {
                 foreach (Player p in StoredPlayers)
                 { p.PlayerScores = new ScoreCard(); }
-                GameWindow gamewindow = new GameWindow(StoredPlayers);
+                GameWindow gamewindow = new GameWindow(StoredPlayers.ToList());
                 gamewindow.Show();
                 this.Close();
             }
             else
             {
-                GameWindow gamewindow = new GameWindow(StoredPlayers);
+                GameWindow gamewindow = new GameWindow(StoredPlayers.ToList());
                 gamewindow.Show();
                 this.Close();
             }

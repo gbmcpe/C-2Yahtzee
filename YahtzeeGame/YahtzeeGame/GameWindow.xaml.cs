@@ -3,18 +3,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace YahtzeeGame
 {
@@ -24,7 +16,7 @@ namespace YahtzeeGame
     public partial class GameWindow : Window
     {
         public ObservableCollection<Player> Players { get; } = new ObservableCollection<Player>();
-        
+
 
         public GameManager game;
         public Player currentPlayer;
@@ -35,7 +27,7 @@ namespace YahtzeeGame
         public GameWindow(List<Player> players)
         {
             InitializeComponent();
-         
+
 
             Players.Clear();
             foreach (var p in players)
@@ -43,14 +35,14 @@ namespace YahtzeeGame
 
 
             game = new GameManager();
-            game.players =Players;
+            game.players = Players;
             currentPlayer = Players[0];
             tbCurrentPlayer.Text = currentPlayer.PlayerName;
-            tbTotalScore.Text = currentPlayer.PlayerScores.totalScore.ToString();
+            tbTotalScore.Text = currentPlayer.PlayerScores.TotalScore.ToString();
             ScoreCardActivated(false);
             tester = players.Count;
             DataContext = this;
-            
+
 
 
 
@@ -69,7 +61,7 @@ namespace YahtzeeGame
         }
 
         #region Click Events
-
+        #endregion
 
         #region Main Form Click Events
 
@@ -113,7 +105,7 @@ namespace YahtzeeGame
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
             //Upon starting, the start button is disabled, and the turn controls are activated.
-           DiceActivation(true);
+            DiceActivation(true);
 
             /// If CPU is current player, start CPU immediately after pressing Start. - EasyModeBot
             _ = PlayCpuTurnIfNeededAsync();
@@ -298,9 +290,10 @@ namespace YahtzeeGame
 
             }
         }
-            
-        }
 
+
+        #endregion
+        
         #region Voids
         private void LoadScores()
         {
@@ -333,8 +326,9 @@ namespace YahtzeeGame
             }
 
             MessageBox.Show($"1. {topFive[0]}, {Scores[topFive[0]]} \n2.  {topFive[1]}, {Scores[topFive[1]]} \n3. {topFive[2]}, {Scores[topFive[2]]}\n4. {topFive[3]}, {Scores[topFive[3]]}\n5. {topFive[4]}, {Scores[topFive[4]]}  ");
-
+        }
         #endregion
+
 
         #region Voids
 
@@ -385,33 +379,20 @@ namespace YahtzeeGame
 
             DiceState(b);
             BtnRollDice.IsEnabled = b;
-            CheckState(false);
+           CheckState(false);
 
-        }
-        private bool[] CheckDice()
-        {
-            //This function packages the control data from the dice.
-            //It packages the checked state of the dice into an array
-            //that shows what dice are selected.
-
-            bool[] dice = new bool[5];
-            dice[0] = cbDie1.IsChecked ?? false;
-            dice[1] = cbDie2.IsChecked ?? false;
-            dice[2] = cbDie3.IsChecked ?? false;
-            dice[3] = cbDie4.IsChecked ?? false;
-            dice[4] = cbDie5.IsChecked ?? false;
-            return dice;
         }
 
 
         #endregion
         private void DiceState(bool state)
         {
-            Die1.IsEnabled = state;
-            Die2.IsEnabled = state;
-            Die3.IsEnabled = state;
-            Die4.IsEnabled = state;
-            Die5.IsEnabled = state;
+            cbDie1.IsEnabled = state;
+            cbDie2.IsEnabled = state;
+            cbDie3.IsEnabled = state;
+            cbDie4.IsEnabled = state;
+            cbDie5.IsEnabled = state;
+
         }
 
         private void CheckState(bool state)
@@ -433,32 +414,32 @@ namespace YahtzeeGame
 
         private void RefactorBoard()
         {
-                btnAces.IsEnabled = !currentPlayer.PlayerScores.acesScored;
+            btnAces.IsEnabled = !currentPlayer.PlayerScores.AcesScored;
 
-                btnTwos.IsEnabled = !currentPlayer.PlayerScores.twosScored;
+            btnTwos.IsEnabled = !currentPlayer.PlayerScores.TwosScored;
 
-                btnThrees.IsEnabled = !currentPlayer.PlayerScores.threesScored;
+            btnThrees.IsEnabled = !currentPlayer.PlayerScores.ThreesScored;
 
-                btnFours.IsEnabled = !currentPlayer.PlayerScores.foursScored;
-     
-                btnFives.IsEnabled = !currentPlayer.PlayerScores.fivesScored;
+            btnFours.IsEnabled = !currentPlayer.PlayerScores.FoursScored;
 
-                btnSixes.IsEnabled = !currentPlayer.PlayerScores.sixesScored;
+            btnFives.IsEnabled = !currentPlayer.PlayerScores.FivesScored;
 
-                btnThreeKind.IsEnabled = !currentPlayer.PlayerScores.threeOfAKindScored;
+            btnSixes.IsEnabled = !currentPlayer.PlayerScores.SixesScored;
 
-                btnFourKind.IsEnabled = !currentPlayer.PlayerScores.fourOfAKindScored;
- 
-                btnFullHouse.IsEnabled = !currentPlayer.PlayerScores.fullHouseScored;
+            btnThreeKind.IsEnabled = !currentPlayer.PlayerScores.ThreeOfAKindScored;
 
-                btnSmallStraight.IsEnabled = !currentPlayer.PlayerScores.smallStraightScored;
+            btnFourKind.IsEnabled = !currentPlayer.PlayerScores.FourOfAKindScored;
 
-                btnLargeStraight.IsEnabled = !currentPlayer.PlayerScores.largeStraightScored;
-     
-                btnYahtzee.IsEnabled = !currentPlayer.PlayerScores.yahtzeeScored;
+            btnFullHouse.IsEnabled = !currentPlayer.PlayerScores.FullHouseScored;
 
-                btnChance.IsEnabled = !currentPlayer.PlayerScores.chanceScored;
-     
+            btnSmallStraight.IsEnabled = !currentPlayer.PlayerScores.SmallStraightScored;
+
+            btnLargeStraight.IsEnabled = !currentPlayer.PlayerScores.LargeStraightScored;
+
+            btnYahtzee.IsEnabled = !currentPlayer.PlayerScores.YahtzeeScored;
+
+            btnChance.IsEnabled = !currentPlayer.PlayerScores.ChanceScored;
+
         }
 
         private void ScoreCardActivated(bool state)
@@ -561,19 +542,19 @@ namespace YahtzeeGame
                     currentPlayer.PlayerScores.Yahtzee += 50;
                 }
             }
-                
 
-            }
 
-            
+        }
+
+
         private void FillBoxes()
         {
-           
+
 
             tbCurrentPlayer.Text = currentPlayer.PlayerName;
             tbTotalScore.Text = currentPlayer.PlayerScores.TotalScore.ToString();
-        
-            
+
+
         }
         #endregion
 
@@ -585,7 +566,7 @@ namespace YahtzeeGame
 
             while (stillBot && !gameEnd)
             {
-            
+
                 game.RollUsed(CheckDice());
                 bot.DecisionTree(game.Pool.diceValue);
                 game.EndTurn();
@@ -614,46 +595,48 @@ namespace YahtzeeGame
         public void NextTurn()
         {
 
-                    game.EndTurn();
-                    currentPlayer = game.currentPlayer;
+            game.EndTurn();
+            currentPlayer = game.currentPlayer;
 
-                    FillBoxes();
-                    CheckState(false);
-                    game.RollUsed(CheckDice());
-                    DisplayDiceSet();
-                    game.Rolls = 2;
-                    lblTimesRolled.Content = 2.ToString();
-                    DiceActivation(true);
-                    ScoreCardActivated(true);
-                    RefactorBoard();
-
-                    if (currentPlayer.GetType() == typeof(DumbBot))
-                    {
-                        bot = (DumbBot)game.currentPlayer;
-                        BotTurn();
-
-                    }
-                    else
-                    {
+            FillBoxes();
+            CheckState(false);
+            game.RollUsed(CheckDice());
+            DisplayDiceSet();
+            game.Rolls = 2;
+            lblTimesRolled.Content = 2.ToString();
+            DiceActivation(true);
+            ScoreCardActivated(true);
+            RefactorBoard();
+            fillScoresOpcion(game.Pool.diceValue);
 
 
+            if (currentPlayer.GetType() == typeof(DumbBot))
+            {
+                bot = (DumbBot)game.currentPlayer;
+                BotTurn();
 
-                        BtnRollDice.IsEnabled = true;
+            }
+            else
+            {
 
 
 
+                BtnRollDice.IsEnabled = true;
 
 
-                        /// If the next player is CPU, let the CPU play automatically. - EasyModeBot
-                        _ = PlayCpuTurnIfNeededAsync();
-                    }
+
+
+
+                /// If the next player is CPU, let the CPU play automatically. - EasyModeBot
+                _ = PlayCpuTurnIfNeededAsync();
+            }
 
             if (game.IsGameOver())
             {
                 EndGame();
             }
         }
-        
+
 
         private void EndGame()
         {
@@ -696,9 +679,6 @@ namespace YahtzeeGame
             dice[4] = cbDie5.IsChecked ?? false;
             return dice;
         }
-
-        #endregion
-
 
         #endregion
 
@@ -786,7 +766,7 @@ namespace YahtzeeGame
                     if (game.Rolls == 2) DiceActivation(true);
 
                     /// Enable scoring buttons and disable used ones.
-                   ScoreCardActivated(true);
+                    ScoreCardActivated(true);
                     RefactorBoard();
 
                     /// Pause so roll results are visible.
@@ -866,7 +846,7 @@ namespace YahtzeeGame
 
         #endregion
 
-       
+      
     }
 }
 
