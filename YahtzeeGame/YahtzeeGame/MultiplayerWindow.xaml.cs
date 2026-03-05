@@ -24,6 +24,7 @@ namespace YahtzeeGame
         {
             InitializeComponent();
             btnRollForPosition.IsEnabled = false;
+            cmbxPlayers.Focus();
         }
 
         List<Player> Players = new List<Player>();
@@ -169,6 +170,8 @@ namespace YahtzeeGame
                 tbPlayer3.IsEnabled = false;
                 tbPlayer4.IsEnabled = false;
                 lblPlayerName.Visibility = Visibility.Hidden;
+
+
             }
             else if (cmbxPlayers.SelectedIndex == 1)
             {

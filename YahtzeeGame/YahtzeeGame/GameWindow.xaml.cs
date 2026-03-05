@@ -293,47 +293,30 @@ namespace YahtzeeGame
 
 
         #endregion
-        
-        #region Voids
-        private void LoadScores()
-        {
-            Dictionary<int, string> Scores = new Dictionary<int, string>();
-
-            List<int> ScoreNum = new List<int>();
-
-            String[] LineSplit = new string[2];
-
-            StreamReader Input = File.OpenText("HighScores.txt");
-
-            while (!Input.EndOfStream)
-            {
-                LineSplit = Input.ReadLine().Split(' ');
-
-
-                Scores.Add(int.Parse(LineSplit[0]), LineSplit[1]);
-
-                ScoreNum.Add(int.Parse(LineSplit[0]));
-
-            }
-
-            ScoreNum.OrderByDescending(score => score);
-
-            int[] topFive = new int[5];
-
-            for (int i = 0; i < 5; i++)
-            {
-                topFive[i] = ScoreNum[i];
-            }
-
-            MessageBox.Show($"1. {topFive[0]}, {Scores[topFive[0]]} \n2.  {topFive[1]}, {Scores[topFive[1]]} \n3. {topFive[2]}, {Scores[topFive[2]]}\n4. {topFive[3]}, {Scores[topFive[3]]}\n5. {topFive[4]}, {Scores[topFive[4]]}  ");
-        }
-        #endregion
-
 
         #region Voids
 
 
         #region Dice Void Methods
+
+        private void DiceState(bool state)
+        {
+            cbDie1.IsEnabled = state;
+            cbDie2.IsEnabled = state;
+            cbDie3.IsEnabled = state;
+            cbDie4.IsEnabled = state;
+            cbDie5.IsEnabled = state;
+
+        }
+
+        private void CheckState(bool state)
+        {
+            cbDie1.IsChecked = state;
+            cbDie2.IsChecked = state;
+            cbDie3.IsChecked = state;
+            cbDie4.IsChecked = state;
+            cbDie5.IsChecked = state;
+        }
 
         private void DisplayDiceSet()
         {
@@ -385,29 +368,9 @@ namespace YahtzeeGame
 
 
         #endregion
-        private void DiceState(bool state)
-        {
-            cbDie1.IsEnabled = state;
-            cbDie2.IsEnabled = state;
-            cbDie3.IsEnabled = state;
-            cbDie4.IsEnabled = state;
-            cbDie5.IsEnabled = state;
 
-        }
 
-        private void CheckState(bool state)
-        {
-            cbDie1.IsChecked = state;
-            cbDie2.IsChecked = state;
-            cbDie3.IsChecked = state;
-            cbDie4.IsChecked = state;
-            cbDie5.IsChecked = state;
-        }
 
-        private void btnHighScore_Click(object sender, RoutedEventArgs e)
-        {
-            LoadScores();
-        }
         #endregion
 
         #region ScoreCard Void Methods
@@ -594,6 +557,11 @@ namespace YahtzeeGame
 
         public void NextTurn()
         {
+
+            if (game.IsGameOver())
+            {
+                EndGame();
+            }
 
             game.EndTurn();
             currentPlayer = game.currentPlayer;
