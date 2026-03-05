@@ -586,15 +586,7 @@ namespace YahtzeeGame
             }
             else
             {
-
-
-
                 BtnRollDice.IsEnabled = true;
-
-
-
-
-
                 /// If the next player is CPU, let the CPU play automatically. - EasyModeBot
                 _ = PlayCpuTurnIfNeededAsync();
             }

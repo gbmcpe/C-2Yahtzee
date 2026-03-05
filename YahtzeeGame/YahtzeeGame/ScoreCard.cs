@@ -1024,24 +1024,24 @@ namespace YahtzeeGame
                     }
                     else
                     {
-                        MessageBox.Show("This box has already been scored. It contains " + Yahtzee + " points.");
+
+                        MessageBoxResult choice = MessageBoxResult.No;
+
+                        if (!isComputer)
+                        {
+                            choice = MessageBox.Show("Do you want to score Yahtzee? You will gain 0 points.", "Confirmation", MessageBoxButton.YesNo);
+                        }
+
+                        if (choice == MessageBoxResult.Yes || isComputer)
+                        {
+                            Yahtzee = 0;
+                            YahtzeeScored = true;
+                        }
                     }
                 }
                 else
                 {
-
-                    MessageBoxResult choice = MessageBoxResult.No;
-                    
-                    if (!isComputer)
-                    {
-                       choice = MessageBox.Show("Do you want to score Yahtzee? You will gain 0 points.", "Confirmation", MessageBoxButton.YesNo);
-                    }
-
-                    if (choice == MessageBoxResult.Yes || isComputer)
-                    {
-                        Yahtzee = 0;
-                        YahtzeeScored = true;
-                    }
+                    MessageBox.Show("This box has already been scored. It contains " + Yahtzee + " points.");
                 }
             }
             else { ScoreCardFilled(); }
@@ -1053,9 +1053,11 @@ namespace YahtzeeGame
             {
                 if (ChanceScored == false)
                 {
+                    int x = 0;
                     foreach (int Die in Dice)
                     {
                         Chance += Die;
+                        x++;
                     }
 
                     MessageBoxResult choice = MessageBoxResult.No;
