@@ -343,19 +343,7 @@ namespace YahtzeeGame
 
         private void cmbxPlayerType1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cmbxPlayerType1.SelectedIndex == 0)
-            {
-                tbPlayer1.Text = "";
-            }
-            else if (cmbxPlayerType1.SelectedIndex == 1)
-            {
-                tbPlayer1.Text = "Easy Bot";
-            }
 
-            else if (cmbxPlayerType1.SelectedIndex == 2)
-            {
-                tbPlayer1.Text = "Hard Bot";
-            }
 
         }
 

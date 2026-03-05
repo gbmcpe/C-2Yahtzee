@@ -103,7 +103,7 @@ namespace YahtzeeGame
                                     " points, and " +
                                     "now has " + PlayerScores.TotalScore + " points.");
                 }
-                else if (!this.PlayerScores.ChanceScored && this.PlayerScores.Chance > 0)
+                else if (!this.PlayerScores.chanceScored)
                 {
                     this.PlayerScores.ChanceSelected(dice, true);
                     MessageBox.Show("The Bot has made a decision. It has selected Chance, scoring " +
