@@ -336,7 +336,7 @@
             <Image x:Name="Die3" HorizontalAlignment="Left" Height="54" Margin="169,148,0,0" VerticalAlignment="Top" Width="52" Source="/3Die.bmp" Grid.Column="3"/>
             <Image x:Name="Die4" HorizontalAlignment="Left" Height="54" Margin="261,150,0,0" VerticalAlignment="Top" Width="52" Source="/4Die.bmp" Grid.Column="3" Grid.ColumnSpan="2" RenderTransformOrigin="0.958,0.546"/>
             <Image x:Name="Die5" HorizontalAlignment="Left" Height="54" Margin="69,150,0,0" VerticalAlignment="Top" Width="52" Source="/5Die.bmp" Grid.Column="4"/>
-            <CheckBox x:Name="cbDie2" Content="" HorizontalAlignment="Left" Margin="98,172,0,0" VerticalAlignment="Top" Height="17" Width="16" RenderTransformOrigin="0.5,0.5" Opacity="0.5" IsEnabled="False" Grid.Column="3">
+            <CheckBox x:Name="cbDie2" Content="" HorizontalAlignment="Left" Margin="98,172,0,0" VerticalAlignment="Top" Height="17" Width="16" RenderTransformOrigin="0.5,0.5" Opacity="0.5" IsEnabled="False" Grid.Column="3" Checked="cbDie_Checked" Unchecked="cbDie_Unchecked">
                 <CheckBox.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="4.5" ScaleY="4.5"/>
@@ -346,7 +346,7 @@
                     </TransformGroup>
                 </CheckBox.RenderTransform>
             </CheckBox>
-            <CheckBox x:Name="cbDie1" Content="" HorizontalAlignment="Left" Margin="10,170,0,0" VerticalAlignment="Top" Height="17" Width="16" RenderTransformOrigin="0.5,0.5" Opacity="0.5" IsEnabled="False" Grid.Column="3">
+            <CheckBox x:Name="cbDie1" Content="" HorizontalAlignment="Left" Margin="10,170,0,0" VerticalAlignment="Top" Height="17" Width="16" RenderTransformOrigin="0.5,0.5" Opacity="0.5" IsEnabled="False" Grid.Column="3" Checked="cbDie_Checked" Unchecked="cbDie_Unchecked">
                 <CheckBox.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="4.5" ScaleY="4.5"/>
@@ -356,7 +356,7 @@
                     </TransformGroup>
                 </CheckBox.RenderTransform>
             </CheckBox>
-            <CheckBox x:Name="cbDie3" Content="" HorizontalAlignment="Left" Margin="187,172,0,0" VerticalAlignment="Top" Height="18" Width="16" RenderTransformOrigin="0.5,0.5" Opacity="0.5" IsEnabled="False" Grid.Column="3">
+            <CheckBox x:Name="cbDie3" Content="" HorizontalAlignment="Left" Margin="187,172,0,0" VerticalAlignment="Top" Height="18" Width="16" RenderTransformOrigin="0.5,0.5" Opacity="0.5" IsEnabled="False" Grid.Column="3" Checked="cbDie_Checked" Unchecked="cbDie_Unchecked">
                 <CheckBox.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="4.5" ScaleY="4.5"/>
@@ -366,7 +366,7 @@
                     </TransformGroup>
                 </CheckBox.RenderTransform>
             </CheckBox>
-            <CheckBox x:Name="cbDie4" Content="" HorizontalAlignment="Left" Margin="5,172,0,0" VerticalAlignment="Top" Height="18" Width="16" RenderTransformOrigin="-0.47,-0.567" Opacity="0.5" IsEnabled="False" Grid.Column="4">
+            <CheckBox x:Name="cbDie4" Content="" HorizontalAlignment="Left" Margin="5,172,0,0" VerticalAlignment="Top" Height="18" Width="16" RenderTransformOrigin="-0.47,-0.567" Opacity="0.5" IsEnabled="False" Grid.Column="4" Checked="cbDie_Checked" Unchecked="cbDie_Unchecked">
                 <CheckBox.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="4.5" ScaleY="4.5"/>
@@ -376,7 +376,7 @@
                     </TransformGroup>
                 </CheckBox.RenderTransform>
             </CheckBox>
-            <CheckBox x:Name="cbDie5" Content="" HorizontalAlignment="Left" Margin="87,174,0,0" VerticalAlignment="Top" Height="18" Width="16" RenderTransformOrigin="0.5,0.5" Opacity="0.5" IsEnabled="False" Grid.Column="4" >
+            <CheckBox x:Name="cbDie5" Content="" HorizontalAlignment="Left" Margin="87,174,0,0" VerticalAlignment="Top" Height="18" Width="16" RenderTransformOrigin="0.5,0.5" Opacity="0.5" IsEnabled="False" Grid.Column="4" Unchecked="cbDie_Unchecked" Checked="cbDie_Checked" >
                 <CheckBox.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="4.5" ScaleY="4.5"/>

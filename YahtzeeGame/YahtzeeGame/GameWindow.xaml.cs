@@ -362,7 +362,13 @@ namespace YahtzeeGame
 
             DiceState(b);
             BtnRollDice.IsEnabled = b;
-           CheckState(false);
+
+            if (b)
+            {
+                cbDie1.Opacity = 0; cbDie2.Opacity = 0; cbDie3.Opacity = 0; cbDie4.Opacity = 0; cbDie5.Opacity = 0;
+            }
+      
+                CheckState(false);
 
         }
 
@@ -804,9 +810,21 @@ namespace YahtzeeGame
             }
         }
 
+
         #endregion
 
-      
+        private void cbDie_Checked(object sender, RoutedEventArgs e)
+        {
+            
+            ((CheckBox)sender).Opacity = 0.50; 
+           
+        }
+
+        private void cbDie_Unchecked(object sender, RoutedEventArgs e)
+        {
+            ((CheckBox)sender).Opacity = 0;
+        }
+
     }
 }
 
