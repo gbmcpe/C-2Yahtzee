@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace YahtzeeGame
 {
@@ -27,7 +28,9 @@ namespace YahtzeeGame
 
         public void RollDice(bool[] dicestates, Random r)
         {
-     
+
+
+
 
             for (int c = 0; c < 5; c++)
             {

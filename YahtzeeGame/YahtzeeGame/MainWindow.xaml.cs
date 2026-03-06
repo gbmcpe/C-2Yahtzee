@@ -39,6 +39,8 @@ namespace YahtzeeGame
         {
             //Program Information
             MessageBox.Show("Yahtzee Version 0.1. Made By Marcus Cantrall, Bradye Vanderheyden, Connor Orton, Nicole Gonzalez Rodriguez and Beau Baker. ");
+
+
         }
 
         private void btnHighScore_Click(object sender, RoutedEventArgs e)

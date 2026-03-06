@@ -167,5 +167,8 @@
   <ItemGroup>
     <Resource Include="6Die.bmp" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Diceroll.mp3" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

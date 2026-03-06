@@ -406,10 +406,6 @@
             <Label x:Name="lblTotalScore" Content="Total Score:" HorizontalAlignment="Left" Margin="117,284,0,0" VerticalAlignment="Top" Grid.Column="2" Grid.ColumnSpan="2" FontFamily="Berlin Sans FB" Foreground="#FFEFE6D0"/>
             <TextBox x:Name="tbCurrentPlayer" HorizontalAlignment="Left" Margin="70,240,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="3"/>
             <TextBox x:Name="tbTotalScore" HorizontalAlignment="Left" Margin="70,289,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="3"/>
-            <TextBox x:Name="tbSixes_Copy" HorizontalAlignment="Left" Margin="68,408,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
-            <Label x:Name="lblBonus" Content="Bonus" HorizontalAlignment="Left" Margin="14,404,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="lblUpperSection" Content="Upper Section" HorizontalAlignment="Left" Margin="14,19,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="lblLowerSection" Content="Lower Section" HorizontalAlignment="Left" Margin="10,373,0,0" VerticalAlignment="Top"/>
             <Button x:Name="BtnViewScores" Content="Game Scores" HorizontalAlignment="Left" Margin="560,383,0,0" VerticalAlignment="Top" Click="btnViewScoreCards" Height="32" Width="132" FontFamily="Berlin Sans FB" FontSize="20" RenderTransformOrigin="0.591,-0.11"/>
 
         </Grid>

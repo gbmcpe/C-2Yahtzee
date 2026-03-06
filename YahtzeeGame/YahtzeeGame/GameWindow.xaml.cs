@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace YahtzeeGame
@@ -23,6 +25,9 @@ namespace YahtzeeGame
         public DumbBot bot;
         public int tester = 0;
         public bool gameEnd = false;
+
+        private MediaPlayer diceplayer = new MediaPlayer();
+     
 
         public GameWindow(List<Player> players)
         {
@@ -79,9 +84,8 @@ namespace YahtzeeGame
 
         private void BtnRollDice_Click(object sender, RoutedEventArgs e)
         {
-
+            DiceRollSound();
             game.RollUsed(CheckDice());
-
             DisplayDiceSet();
 
             lblTimesRolled.Content = (game.Rolls).ToString();
@@ -337,6 +341,14 @@ namespace YahtzeeGame
             DisplayDice(4, 5);
         }
 
+        private void DiceRollSound()
+        {
+           
+            diceplayer.Open(new Uri(@"..\..\Diceroll.mp3", UriKind.Relative));
+            diceplayer.Play();
+           
+        }
+
         private void DisplayDice(int DicePos, int DiceValue)
         {
             //This method displays the results of dice rolls in the form dynamically, so that the code is reused.
@@ -563,6 +575,7 @@ namespace YahtzeeGame
 
         public void NextTurn()
         {
+   
 
             if (game.IsGameOver())
             {
@@ -574,6 +587,7 @@ namespace YahtzeeGame
 
             FillBoxes();
             CheckState(false);
+            DiceRollSound();
             game.RollUsed(CheckDice());
             DisplayDiceSet();
             game.Rolls = 2;
