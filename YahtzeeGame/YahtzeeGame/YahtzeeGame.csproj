@@ -70,21 +70,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Dice.cs" />
-    <Compile Include="DumbBot.cs" />
-    <Compile Include="EasyModeBot.cs" />
-    <Compile Include="GameManager.cs" />
+    <Compile Include="Classes\Dice.cs" />
+    <Compile Include="Classes\DumbBot.cs" />
+    <Compile Include="Classes\EasyModeBot.cs" />
+    <Compile Include="Classes\GameManager.cs" />
     <Compile Include="GameReview.xaml.cs">
       <DependentUpon>GameReview.xaml</DependentUpon>
     </Compile>
     <Compile Include="GameWindow.xaml.cs">
       <DependentUpon>GameWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="HardAI.cs" />
+    <Compile Include="Classes\HardAI.cs" />
     <Compile Include="MultiplayerWindow.xaml.cs">
       <DependentUpon>MultiplayerWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ScoreCard.cs" />
+    <Compile Include="Classes\ScoreCard.cs" />
     <Page Include="GameReview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -111,7 +111,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Player.cs" />
+    <Compile Include="Classes\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -167,5 +167,6 @@
   <ItemGroup>
     <Resource Include="6Die.bmp" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
