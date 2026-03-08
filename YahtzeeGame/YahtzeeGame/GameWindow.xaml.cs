@@ -106,14 +106,7 @@ namespace YahtzeeGame
 
         }
 
-        private void btnStart_Click(object sender, RoutedEventArgs e)
-        {
-            //Upon starting, the start button is disabled, and the turn controls are activated.
-            DiceActivation(true);
 
-            /// If CPU is current player, start CPU immediately after pressing Start. - EasyModeBot
-            _ = PlayCpuTurnIfNeededAsync();
-        }
 
 
         private void BtnReset_Click(object sender, RoutedEventArgs e)
@@ -136,11 +129,6 @@ namespace YahtzeeGame
 
             GameReview pausereview = new GameReview(game.players, false);
             pausereview.ShowDialog();
-        }
-        private void btnAbout_Click(object sender, RoutedEventArgs e)
-        {
-            //Program Information
-            MessageBox.Show("Yahtzee Version 0.1. Made By Marcus Cantrall, Bradye Vanderheyden, Connor Orton, Nicole Gonzalez Rodriguez and Beau Baker. ");
         }
 
 
@@ -344,7 +332,7 @@ namespace YahtzeeGame
         private void DiceRollSound()
         {
            
-            diceplayer.Open(new Uri(@"..\..\Diceroll.mp3", UriKind.Relative));
+            diceplayer.Open(new Uri(@"..\..\SFX\Diceroll.mp3", UriKind.Relative));
             diceplayer.Play();
            
         }
@@ -575,7 +563,8 @@ namespace YahtzeeGame
 
         public void NextTurn()
         {
-   
+            diceplayer.Open(new Uri(@"..\..\SFX\NextTurn.mp3", UriKind.Relative));
+            diceplayer.Play();
 
             if (game.IsGameOver())
             {
@@ -586,15 +575,10 @@ namespace YahtzeeGame
             currentPlayer = game.currentPlayer;
 
             FillBoxes();
-            CheckState(false);
-            DiceRollSound();
-            game.RollUsed(CheckDice());
-            DisplayDiceSet();
-            game.Rolls = 2;
-            lblTimesRolled.Content = 2.ToString();
-            DiceActivation(true);
-            ScoreCardActivated(true);
-            RefactorBoard();
+            ResetDice();
+            DiceActivation(false);
+            ScoreCardActivated(false);
+            lblTimesRolled.Content = 3.ToString();
             fillScoresOpcion(game.Pool.diceValue);
 
 

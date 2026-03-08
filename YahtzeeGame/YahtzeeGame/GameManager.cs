@@ -39,8 +39,9 @@ namespace YahtzeeGame
             {
                 Round++;
                 Turn = 1;
-                
                 currentPlayer = players[Turn - 1];
+                Rolls = 3;
+
             }
 
       
