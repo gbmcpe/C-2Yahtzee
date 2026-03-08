@@ -437,6 +437,7 @@ namespace YahtzeeGame
         private void fillScoresOpcion(int[] diceInPool)
 
         {
+
             foreach (int Die in diceInPool)
             {
                 if (Die == 1 && !currentPlayer.PlayerScores.AcesScored)

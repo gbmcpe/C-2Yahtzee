@@ -1053,6 +1053,9 @@ namespace YahtzeeGame
             {
                 if (ChanceScored == false)
                 {
+                    //Needed to set Chance to 0 because of how the hypothetical display messes with this variable. 
+                    // - Marcus
+                    Chance = 0;
                     int x = 0;
                     foreach (int Die in Dice)
                     {
