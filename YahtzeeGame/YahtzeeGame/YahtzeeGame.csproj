@@ -74,6 +74,7 @@
     <Compile Include="Classes\DumbBot.cs" />
     <Compile Include="Classes\EasyModeBot.cs" />
     <Compile Include="Classes\GameManager.cs" />
+    <Compile Include="Classes\HardAIV2.cs" />
     <Compile Include="GameReview.xaml.cs">
       <DependentUpon>GameReview.xaml</DependentUpon>
     </Compile>
