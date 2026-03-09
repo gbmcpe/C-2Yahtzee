@@ -77,6 +77,7 @@
                 <ComboBoxItem x:Name="cmbxiDefault1" Content="Human" IsSelected="True"/>
                 <ComboBoxItem x:Name="cmbxi2Player1" Content="Easy AI"/>
                 <ComboBoxItem x:Name="cmbxi3Player1" Content="Medium AI"/>
+                <ComboBoxItem Content="Hard Ai"/>
             </ComboBox>
             <ComboBox x:Name="cmbxPlayerType2" HorizontalAlignment="Left" Margin="56,205,0,0" VerticalAlignment="Top" Width="88" Height="24" RenderTransformOrigin="0.5,0.5" AllowDrop="True" AlternationCount="1" SelectionChanged="cmbxPlayerType2_SelectionChanged">
                 <ComboBox.RenderTransform>
@@ -90,6 +91,7 @@
                 <ComboBoxItem x:Name="cmbxiDefault2" Content="Human" IsSelected="True"/>
                 <ComboBoxItem x:Name="cmbxi2Player2" Content="Easy AI"/>
                 <ComboBoxItem x:Name="cmbxi3Player2" Content="Medium AI"/>
+                <ComboBoxItem Content="Hard Ai"/>
             </ComboBox>
             <ComboBox x:Name="cmbxPlayerType3" HorizontalAlignment="Left" Margin="56,271,0,0" VerticalAlignment="Top" Width="88" Height="24" RenderTransformOrigin="0.5,0.5" AllowDrop="True" AlternationCount="1" SelectionChanged="cmbxPlayerType3_SelectionChanged">
                 <ComboBox.RenderTransform>
@@ -103,6 +105,7 @@
                 <ComboBoxItem x:Name="cmbxiDefault3" Content="Human" IsSelected="True"/>
                 <ComboBoxItem x:Name="cmbxi2Player3" Content="Easy AI"/>
                 <ComboBoxItem x:Name="cmbxi3Player3" Content="Medium AI"/>
+                <ComboBoxItem Content="Hard Ai"/>
             </ComboBox>
             <ComboBox x:Name="cmbxPlayerType4" HorizontalAlignment="Left" Margin="56,333,0,0" VerticalAlignment="Top" Width="88" Height="24" RenderTransformOrigin="0.5,0.5" AllowDrop="True" AlternationCount="1" SelectionChanged="cmbxPlayerType4_SelectionChanged">
                 <ComboBox.RenderTransform>
@@ -116,6 +119,7 @@
                 <ComboBoxItem x:Name="cmbxiDefault4" Content="Human" IsSelected="True"/>
                 <ComboBoxItem x:Name="cmbxi2Player4" Content="Easy AI"/>
                 <ComboBoxItem x:Name="cmbxi3Player4" Content="Medium AI"/>
+                <ComboBoxItem Content="Hard Ai"/>
             </ComboBox>
 
         </Grid>

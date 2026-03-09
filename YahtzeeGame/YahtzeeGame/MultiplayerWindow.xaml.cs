@@ -57,6 +57,15 @@ namespace YahtzeeGame
                 Players.Add(player);
             }
 
+            /// Add hard bot
+            else if (tbPlayer1 != null && cmbxPlayerType1.SelectedIndex == 3)
+            {
+                tbPlayer1.Text = "Hard AI (CPU)";
+
+                player = new Player(turnOrder[0], tbPlayer1.Text);
+                Players.Add(player);
+            }
+
             if (tbPlayer2 != null && tbPlayer2.IsEnabled == true && cmbxPlayerType2.SelectedIndex == 0)
             {
                 player = new Player(turnOrder[1], tbPlayer2.Text);
@@ -70,6 +79,15 @@ namespace YahtzeeGame
             else if (tbPlayer2 != null && cmbxPlayerType2.SelectedIndex == 2)
             {
                 tbPlayer2.Text = tbPlayer2.Text + " (CPU)";
+
+                player = new Player(turnOrder[1], tbPlayer2.Text);
+                Players.Add(player);
+            }
+
+            /// Add hard bot
+            else if (tbPlayer2 != null && cmbxPlayerType2.SelectedIndex == 3)
+            {
+                tbPlayer2.Text = "Hard AI (CPU)";
 
                 player = new Player(turnOrder[1], tbPlayer2.Text);
                 Players.Add(player);
@@ -93,6 +111,15 @@ namespace YahtzeeGame
                 Players.Add(player);
             }
 
+            /// Add hard bot
+            else if (tbPlayer3 != null && cmbxPlayerType3.SelectedIndex == 3)
+            {
+                tbPlayer3.Text = "Hard AI (CPU)";
+
+                player = new Player(turnOrder[2], tbPlayer3.Text);
+                Players.Add(player);
+            }
+
             if (tbPlayer4 != null && tbPlayer4.IsEnabled == true && cmbxPlayerType4.SelectedIndex == 0)
             {
                 player = new Player(turnOrder[3], tbPlayer4.Text);
@@ -106,6 +133,15 @@ namespace YahtzeeGame
             else if (tbPlayer4 != null && cmbxPlayerType4.SelectedIndex == 2)
             {
                 tbPlayer4.Text = tbPlayer4.Text + " (CPU)";
+
+                player = new Player(turnOrder[3], tbPlayer4.Text);
+                Players.Add(player);
+            }
+
+            /// Add hard bot
+            else if (tbPlayer4 != null && cmbxPlayerType4.SelectedIndex == 3)
+            {
+                tbPlayer4.Text = "Hard AI (CPU)";
 
                 player = new Player(turnOrder[3], tbPlayer4.Text);
                 Players.Add(player);

@@ -616,6 +616,79 @@ namespace YahtzeeGame
 
         #region BotResources
 
+        #region HardAI
+        private HardAIV2 _hardAI = new HardAIV2();
+
+        /// <summary>
+        /// Determines if the given player is a Hard AI CPU.
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        private bool IsHardAiPlayer(Player p)
+        {
+            return p != null
+                   && p.PlayerName != null
+                   && p.PlayerName.Contains("Hard AI");
+        }
+
+        /// <summary>
+        /// Converts HardAIV2 hold counts into checkbox hold positions.
+        /// </summary>
+        /// <param name="holdCounts"></param>
+        /// <param name="diceValues"></param>
+        /// <returns></returns>
+        private bool[] ConvertHardAiHolds(int[] holdCounts, int[] diceValues)
+        {
+            bool[] holds = new bool[5];
+            int[] remaining = new int[6];
+
+            for (int i = 0; i < 6; i++)
+            {
+                remaining[i] = holdCounts[i];
+            }
+
+            for (int i = 0; i < 5; i++)
+            {
+                int face = diceValues[i];
+
+                if (face >= 1 && face <= 6 && remaining[face - 1] > 0)
+                {
+                    holds[i] = true;
+                    remaining[face - 1]--;
+                }
+                else
+                {
+                    holds[i] = false;
+                }
+            }
+
+            return holds;
+        }
+
+        /// <summary>
+        /// Converts HardAIV2 score decisions into category keys.
+        /// </summary>
+        /// <param name="decision"></param>
+        /// <returns></returns>
+        private string ConvertHardAiCategory(int decision)
+        {
+            if (decision == 1) return "aces";
+            if (decision == 2) return "twos";
+            if (decision == 3) return "threes";
+            if (decision == 4) return "fours";
+            if (decision == 5) return "fives";
+            if (decision == 6) return "sixes";
+            if (decision == 7) return "threeKind";
+            if (decision == 8) return "fourKind";
+            if (decision == 9) return "fullHouse";
+            if (decision == 10) return "smallStraight";
+            if (decision == 11) return "largeStraight";
+            if (decision == 12) return "yahtzee";
+            if (decision == 13) return "chance";
+
+            return "chance";
+        }
+        #endregion
         private CPUPlayer _bot;
 
         /// <summary>
@@ -652,22 +725,35 @@ namespace YahtzeeGame
         }
 
         /// <summary>
-        /// Selects the correct CPU bot based on the player's type.
+        /// Selects the correct CPU bot based on the player's name.
         /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
         private CPUPlayer GetCpuBot(Player p)
         {
-            if (p == null) return new MediumBot();
+            /// If player is null or has no name, use MediumBot by default.
+            if (p == null || p.PlayerName == null) return new MediumBot();
 
-            /// Easy AI slot (formerly DumbBot)
-            if (p.GetType() == typeof(DumbBot))
-                return new ActuallyEasyBot();
-
-            /// Medium bot
-            if (p.PlayerName != null && p.PlayerName.Contains("Medium Bot"))
+            /// Use Hard AI through the shared CPU system.
+            if (p.PlayerName.Contains("Hard AI"))
+            {
                 return new MediumBot();
+            }
 
-            /// Default Easy AI
-            return new ActuallyEasyBot();
+            /// Use ActuallyEasyBot if the name contains that bot label.
+            if (p.PlayerName.Contains("Easy Bot"))
+            {
+                return new ActuallyEasyBot();
+            }
+
+            /// Use MediumBot if the name contains that bot label.
+            if (p.PlayerName.Contains("Medium Bot"))
+            {
+                return new MediumBot();
+            }
+
+            /// Default CPU bot is MediumBot.
+            return new MediumBot();
         }
 
         /// <summary>
@@ -743,7 +829,17 @@ namespace YahtzeeGame
                 while (game.Rolls > 0)
                 {
                     /// Ask bot which dice to keep.
-                    bool[] holds = _bot.ChooseDice(game.Pool.diceValue, game.Rolls);
+                    bool[] holds;
+
+                    if (IsHardAiPlayer(currentPlayer))
+                    {
+                        int[] hardDecision = _hardAI.RollingStrategy(currentPlayer.PlayerScores, game.Pool.diceValue);
+                        holds = ConvertHardAiHolds(hardDecision, game.Pool.diceValue);
+                    }
+                    else
+                    {
+                        holds = _bot.ChooseDice(game.Pool.diceValue, game.Rolls);
+                    }
 
                     /// Apply hold decisions to UI.
                     cbDie1.IsChecked = holds[0];
@@ -780,7 +876,17 @@ namespace YahtzeeGame
                 }
 
                 /// Choose best scoring category.
-                string category = _bot.ChooseCategory(game.Pool.diceValue, currentPlayer.PlayerScores);
+                string category;
+
+                if (IsHardAiPlayer(currentPlayer))
+                {
+                    int hardPick = _hardAI.ScoringStrategy(currentPlayer.PlayerScores, game.Pool.diceValue);
+                    category = ConvertHardAiCategory(hardPick);
+                }
+                else
+                {
+                    category = _bot.ChooseCategory(game.Pool.diceValue, currentPlayer.PlayerScores);
+                }
 
                 /// Apply score silently.
                 _bot.ApplyScore(category, game.Pool.diceValue, currentPlayer.PlayerScores);
