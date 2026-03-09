@@ -573,7 +573,8 @@ namespace YahtzeeGame
             {
                 decision = 13;
             }
-            else
+
+            if (decision == 0)
             {
                 decision = LeastPriority(scoreCard);
             }

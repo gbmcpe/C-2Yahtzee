@@ -855,6 +855,7 @@ namespace YahtzeeGame
 
                 if (IsHardAiPlayer(currentPlayer))
                 {
+                    
                     int hardPick = _hardAI.ScoringStrategy(currentPlayer.PlayerScores, game.Pool.diceValue);
                     category = ConvertHardAiCategory(hardPick);
                 }
