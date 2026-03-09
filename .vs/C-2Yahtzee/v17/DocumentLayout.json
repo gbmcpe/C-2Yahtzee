@@ -3,24 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\beau\\Documents\\GitHub\\C-2Yahtzee\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\beau\\Documents\\GitHub\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\MultiplayerWindow.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:YahtzeeGame\\YahtzeeGame\\MultiplayerWindow.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\beau\\Documents\\GitHub\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\MainWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:YahtzeeGame\\YahtzeeGame\\MainWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\beau\\Documents\\GitHub\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\MainWindow.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:YahtzeeGame\\YahtzeeGame\\MainWindow.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\beau\\Documents\\GitHub\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\MainWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:YahtzeeGame\\YahtzeeGame\\MainWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\beau\\Documents\\GitHub\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\MultiplayerWindow.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:YahtzeeGame\\YahtzeeGame\\MultiplayerWindow.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\beau\\Documents\\GitHub\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\GameWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:YahtzeeGame\\YahtzeeGame\\GameWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\beau\\Documents\\GitHub\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\EasyModeBot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:YahtzeeGame\\YahtzeeGame\\EasyModeBot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,7 +46,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "MultiplayerWindow.xaml",
               "DocumentMoniker": "C:\\Users\\beau\\Documents\\GitHub\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\MultiplayerWindow.xaml",
               "RelativeDocumentMoniker": "YahtzeeGame\\YahtzeeGame\\MultiplayerWindow.xaml",
@@ -71,7 +67,8 @@
               "RelativeToolTip": "YahtzeeGame\\YahtzeeGame\\MainWindow.xaml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-03-03T12:26:48.176Z"
+              "WhenOpened": "2026-03-03T12:26:48.176Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -81,25 +78,14 @@
               "RelativeDocumentMoniker": "YahtzeeGame\\YahtzeeGame\\GameWindow.xaml.cs",
               "ToolTip": "C:\\Users\\beau\\Documents\\GitHub\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\GameWindow.xaml.cs",
               "RelativeToolTip": "YahtzeeGame\\YahtzeeGame\\GameWindow.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABQBAAAAAAAAAAAAAKACAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-02T20:34:09.429Z"
+              "WhenOpened": "2026-03-02T20:34:09.429Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "EasyModeBot.cs",
-              "DocumentMoniker": "C:\\Users\\beau\\Documents\\GitHub\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\EasyModeBot.cs",
-              "RelativeDocumentMoniker": "YahtzeeGame\\YahtzeeGame\\EasyModeBot.cs",
-              "ToolTip": "C:\\Users\\beau\\Documents\\GitHub\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\EasyModeBot.cs",
-              "RelativeToolTip": "YahtzeeGame\\YahtzeeGame\\EasyModeBot.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGYBAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-02T19:37:55.67Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\beau\\Documents\\GitHub\\C-2Yahtzee\\YahtzeeGame\\YahtzeeGame\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "YahtzeeGame\\YahtzeeGame\\MainWindow.xaml.cs",
@@ -107,7 +93,8 @@
               "RelativeToolTip": "YahtzeeGame\\YahtzeeGame\\MainWindow.xaml.cs",
               "ViewState": "AgIAADYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-15T06:29:33.62Z"
+              "WhenOpened": "2026-02-15T06:29:33.62Z",
+              "EditorCaption": ""
             }
           ]
         }

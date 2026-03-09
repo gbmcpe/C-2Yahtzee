@@ -160,6 +160,13 @@ public abstract class CPUPlayer
 
             case "smallStraight":
                 card.SmallStraightSelected(true);
+
+                /// Work around the ScoreCard bot path not locking in 0-point small straights.
+                if (!card.SmallStraightScored)
+                {
+                    card.SmallStraight = 0;
+                    card.SmallStraightScored = true;
+                }
                 break;
 
             case "largeStraight":
@@ -453,13 +460,13 @@ public abstract class CPUPlayer
     /// <param name="card"></param>
     public void UpdateScorePreview(int[] dice, ScoreCard card)
     {
-        /// Reset upper section preview values.
-        card.Aces = SumFace(dice, 1);
-        card.Twos = SumFace(dice, 2);
-        card.Threes = SumFace(dice, 3);
-        card.Fours = SumFace(dice, 4);
-        card.Fives = SumFace(dice, 5);
-        card.Sixes = SumFace(dice, 6);
+        /// Only update categories that have not already been scored.
+        if (!card.AcesScored) card.Aces = SumFace(dice, 1);
+        if (!card.TwosScored) card.Twos = SumFace(dice, 2);
+        if (!card.ThreesScored) card.Threes = SumFace(dice, 3);
+        if (!card.FoursScored) card.Fours = SumFace(dice, 4);
+        if (!card.FivesScored) card.Fives = SumFace(dice, 5);
+        if (!card.SixesScored) card.Sixes = SumFace(dice, 6);
 
         /// Count faces for validations.
         int[] counts = CountFaces(dice);
@@ -467,13 +474,13 @@ public abstract class CPUPlayer
         /// Sum all dice for total-based categories.
         int sumAll = SumAll(dice);
 
-        /// Update lower section preview values.
-        card.ThreeOfAKind = counts.Any(c => c >= 3) ? sumAll : 0;
-        card.FourOfAKind = counts.Any(c => c >= 4) ? sumAll : 0;
-        card.FullHouse = IsFullHouse(counts) ? 25 : 0;
-        card.SmallStraight = IsSmallStraight(dice) ? 30 : 0;
-        card.LargeStraight = IsLargeStraight(dice) ? 40 : 0;
-        card.Yahtzee = counts.Any(c => c == 5) ? 50 : 0;
+        /// Update lower section preview values only if not already scored.
+        if (!card.ThreeOfAKindScored) card.ThreeOfAKind = counts.Any(c => c >= 3) ? sumAll : 0;
+        if (!card.FourOfAKindScored) card.FourOfAKind = counts.Any(c => c >= 4) ? sumAll : 0;
+        if (!card.FullHouseScored) card.FullHouse = IsFullHouse(counts) ? 25 : 0;
+        if (!card.SmallStraightScored) card.SmallStraight = IsSmallStraight(dice) ? 30 : 0;
+        if (!card.LargeStraightScored) card.LargeStraight = IsLargeStraight(dice) ? 40 : 0;
+        if (!card.YahtzeeScored) card.Yahtzee = counts.Any(c => c == 5) ? 50 : 0;
 
         /// Update bonus preview.
         card.BonusConditionsMet();

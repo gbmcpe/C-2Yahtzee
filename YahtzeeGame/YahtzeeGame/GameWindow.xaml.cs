@@ -525,36 +525,10 @@ namespace YahtzeeGame
 
         #region Game Void Methods
 
-        public void BotTurn()
+        public async void BotTurn()
         {
-            bool stillBot = true;
-
-            while (stillBot && !gameEnd)
-            {
-
-                game.RollUsed(CheckDice());
-                bot.DecisionTree(game.Pool.diceValue);
-                game.EndTurn();
-                currentPlayer = game.currentPlayer;
-                if (currentPlayer.GetType() == typeof(DumbBot))
-                {
-                    bot = (DumbBot)game.currentPlayer;
-                }
-                FillBoxes();
-                CheckState(false);
-                game.RollUsed(CheckDice());
-                DisplayDiceSet();
-                game.Rolls = 2;
-                lblTimesRolled.Content = 2.ToString();
-                DiceActivation(true);
-                ScoreCardActivated(true);
-                RefactorBoard();
-                if (currentPlayer.GetType() == typeof(Player))
-                {
-                    stillBot = false;
-                }
-
-            }
+            /// Route old bot turns into the new CPU bot system.
+            await PlayCpuTurnIfNeededAsync();
         }
 
         public void NextTurn()
@@ -640,12 +614,9 @@ namespace YahtzeeGame
 
         #endregion
 
-        #region EasyModeBot
+        #region BotResources
 
-        /// <summary>
-        /// Holds the easy mode bot logic object used for CPU decisions.
-        /// </summary>
-        private readonly MediumBot _bot = new MediumBot();
+        private CPUPlayer _bot;
 
         /// <summary>
         /// Prevents the CPU from executing multiple turns at the same time.
@@ -663,13 +634,40 @@ namespace YahtzeeGame
         private bool _queueNextCpuTurn = false;
 
         /// <summary>
-        /// Determines if the given player is an Easy CPU.
+        /// Determines if the given player is a CPU.
         /// </summary>
         private bool IsCpuPlayer(Player p)
         {
-            return p != null
-                   && p.PlayerName != null
-                   && p.PlayerName.EndsWith("(CPU)");
+            if (p == null) return false;
+
+            /// If the player was created as a ai treat it as a CPU.
+            if (p.GetType() == typeof(DumbBot))
+                return true;
+
+            /// If the name contains CPU marker.
+            if (p.PlayerName != null && p.PlayerName.Contains("(CPU)"))
+                return true;
+
+            return false;
+        }
+
+        /// <summary>
+        /// Selects the correct CPU bot based on the player's type.
+        /// </summary>
+        private CPUPlayer GetCpuBot(Player p)
+        {
+            if (p == null) return new MediumBot();
+
+            /// Easy AI slot (formerly DumbBot)
+            if (p.GetType() == typeof(DumbBot))
+                return new ActuallyEasyBot();
+
+            /// Medium bot
+            if (p.PlayerName != null && p.PlayerName.Contains("Medium Bot"))
+                return new MediumBot();
+
+            /// Default Easy AI
+            return new ActuallyEasyBot();
         }
 
         /// <summary>
@@ -682,6 +680,13 @@ namespace YahtzeeGame
 
             /// Prevent duplicate CPU execution.
             if (_cpuTurnRunning) return;
+
+            /// Select the correct CPU bot for the current player.
+            _bot = GetCpuBot(currentPlayer);
+
+            /// Reset rolls for a new CPU turn.
+            game.Rolls = 3;
+            lblTimesRolled.Content = game.Rolls.ToString();
 
             /// Lock CPU execution.
             _cpuTurnRunning = true;
@@ -715,6 +720,9 @@ namespace YahtzeeGame
 
                     /// Update dice images.
                     DisplayDiceSet();
+
+                    /// Update score preview values for the current dice.
+                    _bot.UpdateScorePreview(game.Pool.diceValue, currentPlayer.PlayerScores);
 
                     /// Update rolls remaining label.
                     lblTimesRolled.Content = game.Rolls.ToString();
@@ -752,6 +760,9 @@ namespace YahtzeeGame
 
                     /// Update dice images.
                     DisplayDiceSet();
+
+                    /// Update score preview values for the current dice.
+                    _bot.UpdateScorePreview(game.Pool.diceValue, currentPlayer.PlayerScores);
 
                     /// Update rolls remaining label.
                     lblTimesRolled.Content = game.Rolls.ToString();
