@@ -462,7 +462,7 @@ namespace YahtzeeGame
         {
             int decision = DecideUpperSection(scoreCard, dice);
 
-            if (scoreCard.ThreeOfAKind >= 21)
+            if (!scoreCard.ThreeOfAKindScored && scoreCard.ThreeOfAKind >= 21)
             {
                 decision = 7;
             }

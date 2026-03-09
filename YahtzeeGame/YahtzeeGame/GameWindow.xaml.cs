@@ -619,11 +619,7 @@ namespace YahtzeeGame
         #region HardAI
         private HardAIV2 _hardAI = new HardAIV2();
 
-        /// <summary>
         /// Determines if the given player is a Hard AI CPU.
-        /// </summary>
-        /// <param name="p"></param>
-        /// <returns></returns>
         private bool IsHardAiPlayer(Player p)
         {
             return p != null
@@ -631,12 +627,7 @@ namespace YahtzeeGame
                    && p.PlayerName.Contains("Hard AI");
         }
 
-        /// <summary>
         /// Converts HardAIV2 hold counts into checkbox hold positions.
-        /// </summary>
-        /// <param name="holdCounts"></param>
-        /// <param name="diceValues"></param>
-        /// <returns></returns>
         private bool[] ConvertHardAiHolds(int[] holdCounts, int[] diceValues)
         {
             bool[] holds = new bool[5];
@@ -665,11 +656,7 @@ namespace YahtzeeGame
             return holds;
         }
 
-        /// <summary>
         /// Converts HardAIV2 score decisions into category keys.
-        /// </summary>
-        /// <param name="decision"></param>
-        /// <returns></returns>
         private string ConvertHardAiCategory(int decision)
         {
             if (decision == 1) return "aces";
@@ -691,24 +678,16 @@ namespace YahtzeeGame
         #endregion
         private CPUPlayer _bot;
 
-        /// <summary>
-        /// Prevents the CPU from executing multiple turns at the same time.
-        /// </summary>
+        ///Prevents the CPU from executing multiple turns at the same time.
         private bool _cpuTurnRunning = false;
 
-        /// <summary>
-        /// Controls how long the CPU waits between visible actions.
-        /// </summary>
+        ///Controls how long the CPU waits between visible actions.
         private int _cpuStepDelayMs = 600;
 
-        /// <summary>
         /// Tracks whether the next CPU turn should be queued after the current CPU turn fully releases.
-        /// </summary>
         private bool _queueNextCpuTurn = false;
 
-        /// <summary>
-        /// Determines if the given player is a CPU.
-        /// </summary>
+        ///Determines if the given player is a CPU.
         private bool IsCpuPlayer(Player p)
         {
             if (p == null) return false;
@@ -724,11 +703,7 @@ namespace YahtzeeGame
             return false;
         }
 
-        /// <summary>
-        /// Selects the correct CPU bot based on the player's name.
-        /// </summary>
-        /// <param name="p"></param>
-        /// <returns></returns>
+        ///Selects the correct CPU bot based on the player's name.
         private CPUPlayer GetCpuBot(Player p)
         {
             /// If player is null or has no name, use MediumBot by default.
