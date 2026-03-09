@@ -3,8 +3,9 @@
     "",
     "\\YahtzeeGame",
     "\\YahtzeeGame\\YahtzeeGame",
-    "\\YahtzeeGame\\YahtzeeGame\\bin"
+    "\\YahtzeeGame\\YahtzeeGame\\bin",
+    "\\YahtzeeGame\\YahtzeeGame\\Classes"
   ],
-  "SelectedNode": "\\YahtzeeGame\\YahtzeeGame.sln",
+  "SelectedNode": "\\YahtzeeGame\\YahtzeeGame\\Classes\\MediumBot.cs",
   "PreviewInSolutionExplorer": false
 }
