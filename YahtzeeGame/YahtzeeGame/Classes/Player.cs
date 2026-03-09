@@ -109,12 +109,75 @@ public abstract class CPUPlayer
     public abstract string ChooseCategory(int[] dice, ScoreCard card);
 
     /// <summary>
-    /// Applies the chosen category to the ScoreCard without MessageBox prompts.
+    /// Applies the chosen category to the ScoreCard.
     /// </summary>
     /// <param name="category"></param>
     /// <param name="dice"></param>
     /// <param name="card"></param>
-    public abstract void ApplyScore(string category, int[] dice, ScoreCard card);
+    public virtual void ApplyScore(string category, int[] dice, ScoreCard card)
+    {
+        /// Update the score preview values from the current dice before locking in the score.
+        UpdateScorePreview(dice, card);
+
+        /// Apply the chosen category using the ScoreCard computer path.
+        switch (category)
+        {
+            case "aces":
+                card.AcesSelected(true);
+                break;
+
+            case "twos":
+                card.TwosSelected(true);
+                break;
+
+            case "threes":
+                card.ThreesSelected(true);
+                break;
+
+            case "fours":
+                card.FoursSelected(true);
+                break;
+
+            case "fives":
+                card.FivesSelected(true);
+                break;
+
+            case "sixes":
+                card.SixesSelected(true);
+                break;
+
+            case "threeKind":
+                card.ThreeOfAKindSelected(true);
+                break;
+
+            case "fourKind":
+                card.FourOfAKindSelected(dice, true);
+                break;
+
+            case "fullHouse":
+                card.FullHouseSelected(true);
+                break;
+
+            case "smallStraight":
+                card.SmallStraightSelected(true);
+                break;
+
+            case "largeStraight":
+                card.LargeStraightSelected(true);
+                break;
+
+            case "yahtzee":
+                card.YahtzeeSelected(true);
+                break;
+
+            case "chance":
+                card.ChanceSelected(dice, true);
+                break;
+        }
+
+        /// Show only the locked in scores on the card.
+        card.ShowSelectedScores();
+    }
 
     #endregion
 
@@ -382,6 +445,39 @@ public abstract class CPUPlayer
     #endregion
 
     #region Scoring Preview
+
+    /// <summary>
+    /// Updates the ScoreCard preview values from the current dice.
+    /// </summary>
+    /// <param name="dice"></param>
+    /// <param name="card"></param>
+    public void UpdateScorePreview(int[] dice, ScoreCard card)
+    {
+        /// Reset upper section preview values.
+        card.Aces = SumFace(dice, 1);
+        card.Twos = SumFace(dice, 2);
+        card.Threes = SumFace(dice, 3);
+        card.Fours = SumFace(dice, 4);
+        card.Fives = SumFace(dice, 5);
+        card.Sixes = SumFace(dice, 6);
+
+        /// Count faces for validations.
+        int[] counts = CountFaces(dice);
+
+        /// Sum all dice for total-based categories.
+        int sumAll = SumAll(dice);
+
+        /// Update lower section preview values.
+        card.ThreeOfAKind = counts.Any(c => c >= 3) ? sumAll : 0;
+        card.FourOfAKind = counts.Any(c => c >= 4) ? sumAll : 0;
+        card.FullHouse = IsFullHouse(counts) ? 25 : 0;
+        card.SmallStraight = IsSmallStraight(dice) ? 30 : 0;
+        card.LargeStraight = IsLargeStraight(dice) ? 40 : 0;
+        card.Yahtzee = counts.Any(c => c == 5) ? 50 : 0;
+
+        /// Update bonus preview.
+        card.BonusConditionsMet();
+    }
 
     /// <summary>
     /// Computes what a category would score for the current dice.

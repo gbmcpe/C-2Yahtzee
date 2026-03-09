@@ -52,7 +52,7 @@ namespace YahtzeeGame
 
 
 
-            /// If the first player is CPU, run CPU turn after the window loads. - EasyModeBot
+            /// If the first player is CPU, run CPU turn after the window loads. - MediumBot
             this.Loaded += async (_, __) => await PlayCpuTurnIfNeededAsync();
         }
 
@@ -592,7 +592,7 @@ namespace YahtzeeGame
             else
             {
                 BtnRollDice.IsEnabled = true;
-                /// If the next player is CPU, let the CPU play automatically. - EasyModeBot
+                /// If the next player is CPU, let the CPU play automatically. - MediumBot
                 _ = PlayCpuTurnIfNeededAsync();
             }
 
@@ -652,7 +652,7 @@ namespace YahtzeeGame
         /// <summary>
         /// Holds the easy mode bot logic object used for CPU decisions.
         /// </summary>
-        private readonly EasyModeBot _bot = new EasyModeBot();
+        private readonly MediumBot _bot = new MediumBot();
 
         /// <summary>
         /// Prevents the CPU from executing multiple turns at the same time.

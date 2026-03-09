@@ -318,9 +318,9 @@ namespace YahtzeeGame
             }
             return true;
         }
-        #region EasyModeBot
+        #region MediumBot
         /// <summary>
-        /// Converts the name "Easy Bot" into a CPU player.
+        /// Converts the name "Medium Bot" into a CPU player.
         /// </summary>
         /// <param name="rawName">The original name entered by the user.</param>
         /// <returns>Modified name if CPU, otherwise original name.</returns>
@@ -330,10 +330,10 @@ namespace YahtzeeGame
             if (rawName == null) return rawName;
 
             /// Compare trimmed name to "Easy Bot" ignoring case.
-            if (rawName.Trim().Equals("Hard Bot", StringComparison.OrdinalIgnoreCase))
+            if (rawName.Trim().Equals("Medium Bot", StringComparison.OrdinalIgnoreCase))
             {
                 /// Return the modified CPU-tagged name.
-                return "Hard Bot (CPU)";
+                return "Medium Bot (CPU)";
             }
 
             /// If not Easy Bot, return the original name.
