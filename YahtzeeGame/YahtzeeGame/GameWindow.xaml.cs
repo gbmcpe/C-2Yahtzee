@@ -288,7 +288,6 @@ namespace YahtzeeGame
 
         #region Voids
 
-
         #region Dice Void Methods
 
         private void DiceState(bool state)
@@ -371,10 +370,6 @@ namespace YahtzeeGame
                 CheckState(false);
 
         }
-
-
-        #endregion
-
 
 
         #endregion
@@ -596,10 +591,6 @@ namespace YahtzeeGame
                 _ = PlayCpuTurnIfNeededAsync();
             }
 
-            if (game.IsGameOver())
-            {
-                EndGame();
-            }
         }
 
 
@@ -626,6 +617,8 @@ namespace YahtzeeGame
 
 
         }
+
+        #endregion
 
         #endregion
 
