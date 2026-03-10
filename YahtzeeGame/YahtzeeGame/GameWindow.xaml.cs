@@ -56,25 +56,6 @@ namespace YahtzeeGame
             this.Loaded += async (_, __) => await PlayCpuTurnIfNeededAsync();
         }
 
-<<<<<<< Updated upstream
-        private void Grid_Loaded(object sender, RoutedEventArgs e)
-        {
-            if (currentPlayer.GetType() == typeof(DumbBot))
-            {
-                bot = (DumbBot)currentPlayer;
-                BotTurn();
-            }
-
-            if (!currentPlayer.PlayerName.Contains("(CPU)"))
-            {
-                gbPlayerBlocker.Visibility = Visibility.Hidden;
-            }
-            else { gbPlayerBlocker.Visibility = Visibility.Visible; }
-
-        }
-=======
-        
->>>>>>> Stashed changes
 
         #region Main Form Click Events
 
