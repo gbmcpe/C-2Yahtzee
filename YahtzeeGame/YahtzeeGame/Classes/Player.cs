@@ -57,19 +57,7 @@ namespace YahtzeeGame
 
 
 
-        //void set()
-        //{
-        //    List<int> ScoreList = new List<int>();
-        //    ScoreList.Add(1);
-        //    if (ScoreList.Contains(1)
-        //        {
-
-        //        int Score = ScoreList.
-        //    }
-        //    ;
-        //}
-
-
+        
         private void DisplayScore()
         {
             
