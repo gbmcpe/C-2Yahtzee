@@ -586,10 +586,6 @@ namespace YahtzeeGame
                         //Show only the score selected in the scored card
                         //Save just the score selected 
 
-
-
-
-
                     }
                 }
                 else

@@ -114,21 +114,18 @@
                                     </Label>
                                 </Border>
                                 <Border BorderBrush="#FFEFE6D0" BorderThickness="0,0,0,2" Margin="0,0,0,0" Padding="2">
-                                    <Label Content="{Binding PlayerScores.Twos}" FontFamily="Berlin Sans FB" FontSize="12" Foreground="Chocolate" Height="15" VerticalAlignment="Center" Padding="1">
+                                    <Label Content="{Binding PlayerScores.Twos}" FontFamily="Berlin Sans FB" FontSize="12" Foreground="Chocolate"  Height="15" VerticalAlignment="Center" Padding="1">
                                         <Label.Style>
                                             <Style TargetType="Label">
                                                 <Style.Triggers>
-
-                                                    <DataTrigger Binding="{Binding PlayerScores.TowsScored}" Value="True">
+                                                    <DataTrigger Binding="{Binding PlayerScores.TwosScored}" Value="True">
                                                         <Setter Property="Background" Value="LightGreen"/>
                                                         <Setter Property="Foreground" Value="Black"/>
                                                     </DataTrigger>
-
                                                 </Style.Triggers>
                                             </Style>
                                         </Label.Style>
                                     </Label>
-
                                 </Border>
                                 <Border BorderBrush="#FFEFE6D0" BorderThickness="0,0,0,2" Margin="0,0,0,0" Padding="2">
                                     <Label Content="{Binding PlayerScores.Threes}" FontFamily="Berlin Sans FB" FontSize="12" Foreground="Chocolate"  Height="15" VerticalAlignment="Center" Padding="1">
