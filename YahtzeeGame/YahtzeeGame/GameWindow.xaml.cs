@@ -531,6 +531,12 @@ namespace YahtzeeGame
 
             game.EndTurn();
             currentPlayer = game.currentPlayer;
+            
+            /// Hide the bot blocker grid for non-CPU turns.
+            if (!IsCpuPlayer(currentPlayer))
+            {
+                gbPlayerBlocker.Visibility = Visibility.Hidden;
+            }
 
             if (!currentPlayer.PlayerName.Contains("(CPU)"))
             {
@@ -552,6 +558,7 @@ namespace YahtzeeGame
             /// If the next player is CPU, let the CPU play automatically. - MediumBot
             _ = PlayCpuTurnIfNeededAsync();
 
+            
         }
 
 
@@ -691,9 +698,10 @@ namespace YahtzeeGame
 
                 case BotType.Medium:
                     return new MediumBot();
-
+                
+                /// Hard AI uses HardAIV2 logic in PlayCpuTurnIfNeededASync to impliment when hard ai is being used.
                 case BotType.Hard:
-                    return new MediumBot(); // Hard AI uses HardAIV2 logic elsewhere
+                    return new MediumBot(); 
 
                 default:
                     return new MediumBot();
@@ -705,6 +713,16 @@ namespace YahtzeeGame
         /// </summary>
         public async Task PlayCpuTurnIfNeededAsync()
         {
+            /// Turn blocker off if this is a human player
+            if (!IsCpuPlayer(currentPlayer))
+            {
+                gbPlayerBlocker.Visibility = Visibility.Hidden;
+                return;
+            }
+
+            /// Turn blocker on for CPU players
+            gbPlayerBlocker.Visibility = Visibility.Visible;
+
             /// If current player is not CPU, exit.
             if (!IsCpuPlayer(currentPlayer)) return;
 
@@ -853,6 +871,9 @@ namespace YahtzeeGame
             }
             finally
             {
+
+                gbPlayerBlocker.Visibility = Visibility.Hidden;
+
                 /// Release CPU execution lock.
                 _cpuTurnRunning = false;
 
