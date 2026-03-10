@@ -63,6 +63,13 @@ namespace YahtzeeGame
                 bot = (DumbBot)currentPlayer;
                 BotTurn();
             }
+
+            if (!currentPlayer.PlayerName.Contains("(CPU)"))
+            {
+                gbPlayerBlocker.Visibility = Visibility.Hidden;
+            }
+            else { gbPlayerBlocker.Visibility = Visibility.Visible; }
+
         }
 
         #region Main Form Click Events
@@ -530,6 +537,8 @@ namespace YahtzeeGame
 
         public void NextTurn()
         {
+
+
             diceplayer.Open(new Uri(@"..\..\SFX\NextTurn.mp3", UriKind.Relative));
             diceplayer.Play();
 
@@ -541,11 +550,18 @@ namespace YahtzeeGame
             game.EndTurn();
             currentPlayer = game.currentPlayer;
 
+            if (!currentPlayer.PlayerName.Contains("(CPU)"))
+            {
+                gbPlayerBlocker.Visibility = Visibility.Hidden;
+            }
+            else { gbPlayerBlocker.Visibility = Visibility.Visible; }
+
             FillBoxes();
             ResetDice();
             DiceActivation(false);
             ScoreCardActivated(false);
             lblTimesRolled.Content = 3.ToString();
+            game.Rolls = 3;
             fillScoresOpcion(game.Pool.diceValue);
 
 
