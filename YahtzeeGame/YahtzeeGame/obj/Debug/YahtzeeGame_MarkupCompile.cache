@@ -4,15 +4,26 @@
 winexe
 C#
 .cs
+<<<<<<< Updated upstream
 C:\Users\gbmcp\Documents\GitHub\C-2Yahtzee\YahtzeeGame\YahtzeeGame\obj\Debug\
+=======
+C:\Users\beau\Documents\GitHub\C-2Yahtzee\YahtzeeGame\YahtzeeGame\obj\Debug\
+>>>>>>> Stashed changes
 YahtzeeGame
 none
 false
 DEBUG;TRACE
+<<<<<<< Updated upstream
 C:\Users\gbmcp\Documents\GitHub\C-2Yahtzee\YahtzeeGame\YahtzeeGame\App.xaml
 4-2047271325
 
 18-127580210
+=======
+C:\Users\beau\Documents\GitHub\C-2Yahtzee\YahtzeeGame\YahtzeeGame\App.xaml
+4-2047271325
+
+171779093635
+>>>>>>> Stashed changes
 13-38814620
 GameReview.xaml;GameWindow.xaml;MainWindow.xaml;MultiplayerWindow.xaml;
 

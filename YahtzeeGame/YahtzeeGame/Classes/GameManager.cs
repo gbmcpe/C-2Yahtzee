@@ -44,6 +44,7 @@ namespace YahtzeeGame
 
             }
 
+
       
 
             //If this statement is true, the current round should continue and move to the next player in order.
@@ -51,6 +52,7 @@ namespace YahtzeeGame
             {
                 Turn++;
                 currentPlayer = players[Turn - 1];
+                Rolls = 3;
             
             }
 

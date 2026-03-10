@@ -71,8 +71,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Classes\ActuallyEasyBot.cs" />
+    <Compile Include="Classes\CPUPlayer.cs" />
     <Compile Include="Classes\Dice.cs" />
-    <Compile Include="Classes\DumbBot.cs" />
     <Compile Include="Classes\MediumBot.cs" />
     <Compile Include="Classes\GameManager.cs" />
     <Compile Include="Classes\HardAIV2.cs" />

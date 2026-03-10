@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using static YahtzeeGame.Player;
 
 namespace YahtzeeGame
 {
@@ -22,7 +23,6 @@ namespace YahtzeeGame
 
         public GameManager game;
         public Player currentPlayer;
-        public DumbBot bot;
         public int tester = 0;
         public bool gameEnd = false;
 
@@ -56,6 +56,7 @@ namespace YahtzeeGame
             this.Loaded += async (_, __) => await PlayCpuTurnIfNeededAsync();
         }
 
+<<<<<<< Updated upstream
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             if (currentPlayer.GetType() == typeof(DumbBot))
@@ -71,6 +72,9 @@ namespace YahtzeeGame
             else { gbPlayerBlocker.Visibility = Visibility.Visible; }
 
         }
+=======
+        
+>>>>>>> Stashed changes
 
         #region Main Form Click Events
 
@@ -109,9 +113,6 @@ namespace YahtzeeGame
             fillScoresOpcion(game.Pool.diceValue);
 
         }
-
-
-
 
         private void BtnReset_Click(object sender, RoutedEventArgs e)
         {
@@ -565,18 +566,10 @@ namespace YahtzeeGame
             fillScoresOpcion(game.Pool.diceValue);
 
 
-            if (currentPlayer.GetType() == typeof(DumbBot))
-            {
-                bot = (DumbBot)game.currentPlayer;
-                BotTurn();
+            BtnRollDice.IsEnabled = true;
 
-            }
-            else
-            {
-                BtnRollDice.IsEnabled = true;
-                /// If the next player is CPU, let the CPU play automatically. - MediumBot
-                _ = PlayCpuTurnIfNeededAsync();
-            }
+            /// If the next player is CPU, let the CPU play automatically. - MediumBot
+            _ = PlayCpuTurnIfNeededAsync();
 
         }
 
@@ -703,45 +696,27 @@ namespace YahtzeeGame
         ///Determines if the given player is a CPU.
         private bool IsCpuPlayer(Player p)
         {
-            if (p == null) return false;
-
-            /// If the player was created as a ai treat it as a CPU.
-            if (p.GetType() == typeof(DumbBot))
-                return true;
-
-            /// If the name contains CPU marker.
-            if (p.PlayerName != null && p.PlayerName.Contains("(CPU)"))
-                return true;
-
-            return false;
+            return p != null && p.ComputerPlayer;
         }
 
-        ///Selects the correct CPU bot based on the player's name.
         private CPUPlayer GetCpuBot(Player p)
         {
-            /// If player is null or has no name, use MediumBot by default.
-            if (p == null || p.PlayerName == null) return new MediumBot();
+            if (p == null) return new MediumBot();
 
-            /// Use Hard AI through the shared CPU system.
-            if (p.PlayerName.Contains("Hard AI"))
+            switch (p.botType)
             {
-                return new MediumBot();
-            }
+                case BotType.Easy:
+                    return new ActuallyEasyBot();
 
-            /// Use ActuallyEasyBot if the name contains that bot label.
-            if (p.PlayerName.Contains("Easy Bot"))
-            {
-                return new ActuallyEasyBot();
-            }
+                case BotType.Medium:
+                    return new MediumBot();
 
-            /// Use MediumBot if the name contains that bot label.
-            if (p.PlayerName.Contains("Medium Bot"))
-            {
-                return new MediumBot();
-            }
+                case BotType.Hard:
+                    return new MediumBot(); // Hard AI uses HardAIV2 logic elsewhere
 
-            /// Default CPU bot is MediumBot.
-            return new MediumBot();
+                default:
+                    return new MediumBot();
+            }
         }
 
         /// <summary>

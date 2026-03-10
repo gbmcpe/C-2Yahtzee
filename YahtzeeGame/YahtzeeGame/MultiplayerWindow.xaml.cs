@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static YahtzeeGame.Player;
 
 namespace YahtzeeGame
 {
@@ -38,112 +39,103 @@ namespace YahtzeeGame
             turnOrder = DetermineOrder();
 
             Player player;
-            DumbBot bot;
             if (tbPlayer1 != null && cmbxPlayerType1.SelectedIndex == 0)
             {
-                player = new Player(turnOrder[0], tbPlayer1.Text); 
+                player = new Player(turnOrder[0], tbPlayer1.Text);
+                player.botType = BotType.None;
                 Players.Add(player);
             }
             else if (tbPlayer1 != null && cmbxPlayerType1.SelectedIndex == 1)
             {
-                bot = new DumbBot(turnOrder[0], tbPlayer1.Text, true);
-                Players.Add(bot);
+                player = new Player(turnOrder[0], tbPlayer1.Text, true);
+                player.botType = BotType.Easy;
+                Players.Add(player);
             }
             else if (tbPlayer1 != null && cmbxPlayerType1.SelectedIndex == 2)
             {
-                tbPlayer1.Text = tbPlayer1.Text + " (CPU)";
-
-                player = new Player(turnOrder[0], tbPlayer1.Text);
+                player = new Player(turnOrder[0], tbPlayer1.Text, true);
+                player.botType = BotType.Medium;
                 Players.Add(player);
             }
-
-            /// Add hard bot
             else if (tbPlayer1 != null && cmbxPlayerType1.SelectedIndex == 3)
             {
-                tbPlayer1.Text = "Hard AI (CPU)";
-
-                player = new Player(turnOrder[0], tbPlayer1.Text);
+                player = new Player(turnOrder[0], tbPlayer1.Text, true);
+                player.botType = BotType.Hard;
                 Players.Add(player);
             }
 
             if (tbPlayer2 != null && tbPlayer2.IsEnabled == true && cmbxPlayerType2.SelectedIndex == 0)
             {
                 player = new Player(turnOrder[1], tbPlayer2.Text);
+                player.botType = BotType.None;
                 Players.Add(player);
             }
-            else if (tbPlayer2 != null && cmbxPlayerType2.SelectedIndex == 1)
+            else if (tbPlayer2 != null && tbPlayer2.IsEnabled == true && cmbxPlayerType2.SelectedIndex == 1)
             {
-                bot = new DumbBot(turnOrder[1], tbPlayer2.Text, true);
-                Players.Add(bot);
-            }
-            else if (tbPlayer2 != null && cmbxPlayerType2.SelectedIndex == 2)
-            {
-                tbPlayer2.Text = tbPlayer2.Text + " (CPU)";
-
-                player = new Player(turnOrder[1], tbPlayer2.Text);
+                player = new Player(turnOrder[1], tbPlayer2.Text, true);
+                player.botType = BotType.Easy;
                 Players.Add(player);
             }
-
-            /// Add hard bot
-            else if (tbPlayer2 != null && cmbxPlayerType2.SelectedIndex == 3)
+            else if (tbPlayer2 != null && tbPlayer2.IsEnabled == true && cmbxPlayerType2.SelectedIndex == 2)
             {
-                tbPlayer2.Text = "Hard AI (CPU)";
-
-                player = new Player(turnOrder[1], tbPlayer2.Text);
+                player = new Player(turnOrder[1], tbPlayer2.Text, true);
+                player.botType = BotType.Medium;
+                Players.Add(player);
+            }
+            else if (tbPlayer2 != null && tbPlayer2.IsEnabled == true && cmbxPlayerType2.SelectedIndex == 3)
+            {
+                player = new Player(turnOrder[1], tbPlayer2.Text, true);
+                player.botType = BotType.Hard;
                 Players.Add(player);
             }
 
             if (tbPlayer3 != null && tbPlayer3.IsEnabled == true && cmbxPlayerType3.SelectedIndex == 0)
             {
                 player = new Player(turnOrder[2], tbPlayer3.Text);
+                player.botType = BotType.None;
                 Players.Add(player);
             }
-            else if (tbPlayer3 != null && cmbxPlayerType3.SelectedIndex == 1)
+            else if (tbPlayer3 != null && tbPlayer3.IsEnabled == true && cmbxPlayerType3.SelectedIndex == 1)
             {
-                bot = new DumbBot(turnOrder[2], tbPlayer3.Text, true);
-                Players.Add(bot);
-            }
-            else if (tbPlayer3 != null && cmbxPlayerType3.SelectedIndex == 2)
-            {
-                tbPlayer3.Text = tbPlayer3.Text + " (CPU)";
-
-                player = new Player(turnOrder[2], tbPlayer3.Text);
+                player = new Player(turnOrder[2], tbPlayer3.Text, true);
+                player.botType = BotType.Easy;
                 Players.Add(player);
             }
-
-            /// Add hard bot
-            else if (tbPlayer3 != null && cmbxPlayerType3.SelectedIndex == 3)
+            else if (tbPlayer3 != null && tbPlayer3.IsEnabled == true && cmbxPlayerType3.SelectedIndex == 2)
             {
-                tbPlayer3.Text = "Hard AI (CPU)";
-
-                player = new Player(turnOrder[2], tbPlayer3.Text);
+                player = new Player(turnOrder[2], tbPlayer3.Text, true);
+                player.botType = BotType.Medium;
+                Players.Add(player);
+            }
+            else if (tbPlayer3 != null && tbPlayer3.IsEnabled == true && cmbxPlayerType3.SelectedIndex == 3)
+            {
+                player = new Player(turnOrder[2], tbPlayer3.Text, true);
+                player.botType = BotType.Hard;
                 Players.Add(player);
             }
 
             if (tbPlayer4 != null && tbPlayer4.IsEnabled == true && cmbxPlayerType4.SelectedIndex == 0)
             {
                 player = new Player(turnOrder[3], tbPlayer4.Text);
+                player.botType = BotType.None;
                 Players.Add(player);
             }
-            else if (tbPlayer4 != null && cmbxPlayerType4.SelectedIndex == 1)
+            else if (tbPlayer4 != null && tbPlayer4.IsEnabled == true && cmbxPlayerType4.SelectedIndex == 1)
             {
-                bot = new DumbBot(turnOrder[3], tbPlayer4.Text, true);
-                Players.Add(bot);
-            }
-            else if (tbPlayer4 != null && cmbxPlayerType4.SelectedIndex == 2)
-            {
-                tbPlayer4.Text = tbPlayer4.Text + " (CPU)";
-
-                player = new Player(turnOrder[3], tbPlayer4.Text);
+                player = new Player(turnOrder[3], tbPlayer4.Text, true);
+                player.botType = BotType.Easy;
                 Players.Add(player);
             }
-
-            /// Add hard bot
-            else if (tbPlayer4 != null && cmbxPlayerType4.SelectedIndex == 3)
+            else if (tbPlayer4 != null && tbPlayer4.IsEnabled == true && cmbxPlayerType4.SelectedIndex == 2)
             {
-                tbPlayer4.Text = "Hard AI (CPU)";
-
-                player = new Player(turnOrder[3], tbPlayer4.Text);
+                player = new Player(turnOrder[3], tbPlayer4.Text, true);
+                player.botType = BotType.Medium;
+                Players.Add(player);
+            }
+            else if (tbPlayer4 != null && tbPlayer4.IsEnabled == true && cmbxPlayerType4.SelectedIndex == 3)
+            {
+                player = new Player(turnOrder[3], tbPlayer4.Text, true);
+                player.botType = BotType.Hard;
                 Players.Add(player);
             }
 
@@ -152,7 +144,6 @@ namespace YahtzeeGame
             //PUT PLAYERS LIST IN HERE AND THEN CATCH IT IN ITS CONSTRUCTOR!
             GameWindow gameWindow = new GameWindow(Players);
             gameWindow.Show();
-
 
             this.Close();
         }
@@ -354,6 +345,7 @@ namespace YahtzeeGame
             }
             return true;
         }
+        
         #region MediumBot
         /// <summary>
         /// Converts the name "Medium Bot" into a CPU player.
