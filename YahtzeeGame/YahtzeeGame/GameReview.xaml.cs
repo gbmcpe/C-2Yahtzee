@@ -96,12 +96,17 @@ namespace YahtzeeGame
                 ((TextBox)this.FindName($"tbSixesP{n}")).Text = "";
             }
 
-            /*
-            if (currentPlayer.PlayerScores.bonusScored)
+
+            if (currentPlayer.PlayerScores.BonusScored)
             {
-                tbBonus.Text = currentPlayer.PlayerScores.bonus.ToString();
+                ((TextBox)this.FindName($"tbBonusP{n}")).Text = currentPlayer.PlayerScores.Bonus.ToString();
             }
-            */
+            else
+            {
+                ((TextBox)this.FindName($"tbBonusP{n}")).Text = "";
+            }
+
+
             if (currentPlayer.PlayerScores.ThreeOfAKindScored)
             {
                 ((TextBox)this.FindName($"tbThreeKindP{n}")).Text = currentPlayer.PlayerScores.ThreeOfAKind.ToString();

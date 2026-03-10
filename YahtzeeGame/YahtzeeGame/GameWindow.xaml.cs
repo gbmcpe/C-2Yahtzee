@@ -65,9 +65,6 @@ namespace YahtzeeGame
             }
         }
 
-        #region Click Events
-        #endregion
-
         #region Main Form Click Events
 
         /// <summary>

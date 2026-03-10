@@ -603,6 +603,7 @@ namespace YahtzeeGame
             {
                 ScoreCardFilled();
             }
+            BonusConditionsMet();
         }
 
         public void TwosSelected( bool isComputer = false)
@@ -632,7 +633,8 @@ namespace YahtzeeGame
 
             }
             else { ScoreCardFilled(); }
-}
+            BonusConditionsMet();
+        }
 
         public void ThreesSelected(bool isComputer = false)
         {
@@ -661,6 +663,7 @@ namespace YahtzeeGame
                 }
             }
             else { ScoreCardFilled(); }
+            BonusConditionsMet();
         }
 
         public void FoursSelected(bool isComputer = false)
@@ -690,6 +693,7 @@ namespace YahtzeeGame
                 }
             }
             else { ScoreCardFilled(); }
+            BonusConditionsMet();
         }
 
         public void FivesSelected( bool isComputer = false)
@@ -720,6 +724,7 @@ namespace YahtzeeGame
                 }
             }
             else { ScoreCardFilled(); }
+            BonusConditionsMet();
         }
 
         public void SixesSelected( bool isComputer = false)
@@ -751,16 +756,15 @@ namespace YahtzeeGame
                 }
             }
             else { ScoreCardFilled(); }
+            BonusConditionsMet();
         }
         public void BonusConditionsMet()
         {
-            if (Aces + Twos+ Threes+ Fours + Fives + Sixes >= 63)
+            if ((Aces + Twos+ Threes+ Fours + Fives + Sixes >= 63) & !BonusScored)
             {
                 Bonus = 35;
-            }
-            else
-            {
-                Bonus = 0;
+                BonusScored = true;
+                TotalScore += Bonus;
             }
         }
 
