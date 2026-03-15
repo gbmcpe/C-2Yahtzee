@@ -71,6 +71,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Classes\ActuallyEasyBot.cs" />
+    <Compile Include="Classes\BotResources.cs" />
     <Compile Include="Classes\CPUPlayer.cs" />
     <Compile Include="Classes\Dice.cs" />
     <Compile Include="Classes\MediumBot.cs" />
@@ -82,7 +83,6 @@
     <Compile Include="GameWindow.xaml.cs">
       <DependentUpon>GameWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Classes\HardAI.cs" />
     <Compile Include="MultiplayerWindow.xaml.cs">
       <DependentUpon>MultiplayerWindow.xaml</DependentUpon>
     </Compile>

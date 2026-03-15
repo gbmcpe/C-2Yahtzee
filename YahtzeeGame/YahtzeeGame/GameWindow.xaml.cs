@@ -9,6 +9,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
+using YahtzeeGame.Classes;
 using static YahtzeeGame.Player;
 
 namespace YahtzeeGame
@@ -20,14 +22,14 @@ namespace YahtzeeGame
     {
         public ObservableCollection<Player> Players { get; } = new ObservableCollection<Player>();
 
-
+        
         public GameManager game;
         public Player currentPlayer;
         public int tester = 0;
         public bool gameEnd = false;
 
         private MediaPlayer diceplayer = new MediaPlayer();
-     
+        private BotResources _botResources;
 
         public GameWindow(List<Player> players)
         {
@@ -47,6 +49,27 @@ namespace YahtzeeGame
             ScoreCardActivated(false);
             tester = players.Count;
             DataContext = this;
+
+            _botResources = new BotResources(
+               game,
+               () => currentPlayer,
+               gbPlayerBlocker,
+               lblTimesRolled,
+               tbCurrentPlayer,
+               cbDie1,
+               cbDie2,
+               cbDie3,
+               cbDie4,
+               cbDie5,
+               CheckDice,
+               DisplayDiceSet,
+               DiceActivation,
+               ScoreCardActivated,
+               RefactorBoard,
+               FillBoxes,
+               NextTurn,
+               Dispatcher
+           );
 
 
 
@@ -316,10 +339,10 @@ namespace YahtzeeGame
 
         private void DiceRollSound()
         {
-           
+
             diceplayer.Open(new Uri(@"..\..\SFX\Diceroll.mp3", UriKind.Relative));
             diceplayer.Play();
-           
+
         }
 
         private void DisplayDice(int DicePos, int DiceValue)
@@ -352,8 +375,8 @@ namespace YahtzeeGame
             {
                 cbDie1.Opacity = 0; cbDie2.Opacity = 0; cbDie3.Opacity = 0; cbDie4.Opacity = 0; cbDie5.Opacity = 0;
             }
-      
-                CheckState(false);
+
+            CheckState(false);
 
         }
 
@@ -511,38 +534,33 @@ namespace YahtzeeGame
 
         #region Game Void Methods
 
-        public async void BotTurn()
+        public async Task PlayCpuTurnIfNeededAsync()
         {
-            /// Route old bot turns into the new CPU bot system.
-            await PlayCpuTurnIfNeededAsync();
+            await _botResources.PlayCpuTurnIfNeededAsync();
         }
 
         public void NextTurn()
         {
-
-
             diceplayer.Open(new Uri(@"..\..\SFX\NextTurn.mp3", UriKind.Relative));
             diceplayer.Play();
 
             if (game.IsGameOver())
             {
                 EndGame();
+                return;
             }
 
             game.EndTurn();
             currentPlayer = game.currentPlayer;
-            
-            /// Hide the bot blocker grid for non-CPU turns.
-            if (!IsCpuPlayer(currentPlayer))
-            {
-                gbPlayerBlocker.Visibility = Visibility.Hidden;
-            }
 
-            if (!currentPlayer.PlayerName.Contains("(CPU)"))
+            if (!_botResources.IsCpuPlayer(currentPlayer))
             {
                 gbPlayerBlocker.Visibility = Visibility.Hidden;
             }
-            else { gbPlayerBlocker.Visibility = Visibility.Visible; }
+            else
+            {
+                gbPlayerBlocker.Visibility = Visibility.Visible;
+            }
 
             FillBoxes();
             ResetDice();
@@ -558,7 +576,7 @@ namespace YahtzeeGame
             /// If the next player is CPU, let the CPU play automatically. - MediumBot
             _ = PlayCpuTurnIfNeededAsync();
 
-            
+
         }
 
 
@@ -608,291 +626,11 @@ namespace YahtzeeGame
 
         #endregion
 
-        #region BotResources
-
-        #region HardAI
-        private HardAIV2 _hardAI = new HardAIV2();
-
-        /// Determines if the given player is a Hard AI CPU.
-        private bool IsHardAiPlayer(Player p)
-        {
-            return p != null
-                   && p.PlayerName != null
-                   && p.PlayerName.Contains("Hard AI");
-        }
-
-        /// Converts HardAIV2 hold counts into checkbox hold positions.
-        private bool[] ConvertHardAiHolds(int[] holdCounts, int[] diceValues)
-        {
-            bool[] holds = new bool[5];
-            int[] remaining = new int[6];
-
-            for (int i = 0; i < 6; i++)
-            {
-                remaining[i] = holdCounts[i];
-            }
-
-            for (int i = 0; i < 5; i++)
-            {
-                int face = diceValues[i];
-
-                if (face >= 1 && face <= 6 && remaining[face - 1] > 0)
-                {
-                    holds[i] = true;
-                    remaining[face - 1]--;
-                }
-                else
-                {
-                    holds[i] = false;
-                }
-            }
-
-            return holds;
-        }
-
-        /// Converts HardAIV2 score decisions into category keys.
-        private string ConvertHardAiCategory(int decision)
-        {
-            if (decision == 1) return "aces";
-            if (decision == 2) return "twos";
-            if (decision == 3) return "threes";
-            if (decision == 4) return "fours";
-            if (decision == 5) return "fives";
-            if (decision == 6) return "sixes";
-            if (decision == 7) return "threeKind";
-            if (decision == 8) return "fourKind";
-            if (decision == 9) return "fullHouse";
-            if (decision == 10) return "smallStraight";
-            if (decision == 11) return "largeStraight";
-            if (decision == 12) return "yahtzee";
-            if (decision == 13) return "chance";
-
-            return "chance";
-        }
-        #endregion
-        private CPUPlayer _bot;
-
-        ///Prevents the CPU from executing multiple turns at the same time.
-        private bool _cpuTurnRunning = false;
-
-        ///Controls how long the CPU waits between visible actions.
-        private int _cpuStepDelayMs = 600;
-
-        /// Tracks whether the next CPU turn should be queued after the current CPU turn fully releases.
-        private bool _queueNextCpuTurn = false;
-
-        ///Determines if the given player is a CPU.
-        private bool IsCpuPlayer(Player p)
-        {
-            return p != null && p.ComputerPlayer;
-        }
-
-        private CPUPlayer GetCpuBot(Player p)
-        {
-            if (p == null) return new MediumBot();
-
-            switch (p.botType)
-            {
-                case BotType.Easy:
-                    return new ActuallyEasyBot();
-
-                case BotType.Medium:
-                    return new MediumBot();
-                
-                /// Hard AI uses HardAIV2 logic in PlayCpuTurnIfNeededASync to impliment when hard ai is being used.
-                case BotType.Hard:
-                    return new MediumBot(); 
-
-                default:
-                    return new MediumBot();
-            }
-        }
-
-        /// <summary>
-        /// Executes a full CPU turn visibly so the user can watch.
-        /// </summary>
-        public async Task PlayCpuTurnIfNeededAsync()
-        {
-            /// Turn blocker off if this is a human player
-            if (!IsCpuPlayer(currentPlayer))
-            {
-                gbPlayerBlocker.Visibility = Visibility.Hidden;
-                return;
-            }
-
-            /// Turn blocker on for CPU players
-            gbPlayerBlocker.Visibility = Visibility.Visible;
-
-            /// If current player is not CPU, exit.
-            if (!IsCpuPlayer(currentPlayer)) return;
-
-            /// Prevent duplicate CPU execution.
-            if (_cpuTurnRunning) return;
-
-            /// Select the correct CPU bot for the current player.
-            _bot = GetCpuBot(currentPlayer);
-
-            /// Reset rolls for a new CPU turn.
-            game.Rolls = 3;
-            lblTimesRolled.Content = game.Rolls.ToString();
-
-            /// Lock CPU execution.
-            _cpuTurnRunning = true;
-
-            /// Clear any previous queued state at the start of a CPU turn.
-            _queueNextCpuTurn = false;
-
-            try
-            {
-                /// Show CPU playing inside tbCurrentPlayer textbox.
-                tbCurrentPlayer.Text = currentPlayer.PlayerName;
-
-                /// Enable dice controls for CPU turn.
-                DiceActivation(true);
-
-                /// Clear holds so user can see CPU choose them.
-                cbDie1.IsChecked = false;
-                cbDie2.IsChecked = false;
-                cbDie3.IsChecked = false;
-                cbDie4.IsChecked = false;
-                cbDie5.IsChecked = false;
-
-                /// Short pause so UI updates.
-                await Task.Delay(_cpuStepDelayMs);
-
-                /// Roll once so the CPU makes a decision.
-                if (game.Rolls > 0)
-                {
-                    /// Roll dice.
-                    game.RollUsed(CheckDice());
-
-                    /// Update dice images.
-                    DisplayDiceSet();
-
-                    /// Update score preview values for the current dice.
-                    _bot.UpdateScorePreview(game.Pool.diceValue, currentPlayer.PlayerScores);
-
-                    /// Update rolls remaining label.
-                    lblTimesRolled.Content = game.Rolls.ToString();
-
-                    /// Preserve existing enable/disable behavior.
-                    if (game.Rolls == 0) DiceActivation(false);
-                    if (game.Rolls == 2) DiceActivation(true);
-
-                    /// Enable scoring buttons and disable used ones.
-                    ScoreCardActivated(true);
-                    RefactorBoard();
-
-                    /// Pause so roll results are visible.
-                    await Task.Delay(_cpuStepDelayMs);
-                }
-
-                /// Continue rolling while rolls remain.
-                while (game.Rolls > 0)
-                {
-                    /// Ask bot which dice to keep.
-                    bool[] holds;
-
-                    if (IsHardAiPlayer(currentPlayer))
-                    {
-                        int[] hardDecision = _hardAI.RollingStrategy(currentPlayer.PlayerScores, game.Pool.diceValue);
-                        holds = ConvertHardAiHolds(hardDecision, game.Pool.diceValue);
-                    }
-                    else
-                    {
-                        holds = _bot.ChooseDice(game.Pool.diceValue, game.Rolls);
-                    }
-
-                    /// Apply hold decisions to UI.
-                    cbDie1.IsChecked = holds[0];
-                    cbDie2.IsChecked = holds[1];
-                    cbDie3.IsChecked = holds[2];
-                    cbDie4.IsChecked = holds[3];
-                    cbDie5.IsChecked = holds[4];
-
-                    /// Pause so holds are visible.
-                    await Task.Delay(_cpuStepDelayMs);
-
-                    /// Roll dice.
-                    game.RollUsed(CheckDice());
-
-                    /// Update dice images.
-                    DisplayDiceSet();
-
-                    /// Update score preview values for the current dice.
-                    _bot.UpdateScorePreview(game.Pool.diceValue, currentPlayer.PlayerScores);
-
-                    /// Update rolls remaining label.
-                    lblTimesRolled.Content = game.Rolls.ToString();
-
-                    /// Preserve existing enable/disable behavior.
-                    if (game.Rolls == 0) DiceActivation(false);
-                    if (game.Rolls == 2) DiceActivation(true);
-
-                    /// Enable scoring buttons and disable used ones.
-                    ScoreCardActivated(true);
-                    RefactorBoard();
-
-                    /// Pause so roll results are visible.
-                    await Task.Delay(_cpuStepDelayMs);
-                }
-
-                /// Choose best scoring category.
-                string category;
-
-                if (IsHardAiPlayer(currentPlayer))
-                {
-                    
-                    int hardPick = _hardAI.ScoringStrategy(currentPlayer.PlayerScores, game.Pool.diceValue);
-                    category = ConvertHardAiCategory(hardPick);
-                }
-                else
-                {
-                    category = _bot.ChooseCategory(game.Pool.diceValue, currentPlayer.PlayerScores);
-                }
-
-                /// Apply score silently.
-                _bot.ApplyScore(category, game.Pool.diceValue, currentPlayer.PlayerScores);
-
-                /// Refresh score display.
-                FillBoxes();
-
-                /// Restore textbox to normal player name.
-                tbCurrentPlayer.Text = currentPlayer.PlayerName;
-
-                /// Pause briefly before ending turn.
-                await Task.Delay(_cpuStepDelayMs);
-
-                /// End CPU turn.
-                NextTurn();
-
-                /// If the next player is CPU, queue the next CPU turn after this one fully completes.
-                _queueNextCpuTurn = IsCpuPlayer(currentPlayer) && currentPlayer.PlayerScores.ScoreCardNotFinished();
-            }
-            finally
-            {
-
-                gbPlayerBlocker.Visibility = Visibility.Hidden;
-
-                /// Release CPU execution lock.
-                _cpuTurnRunning = false;
-
-                /// Run the next CPU turn on the dispatcher so it starts after this turn fully completes.
-                if (_queueNextCpuTurn)
-                {
-                    Dispatcher.BeginInvoke(new Action(async () => await PlayCpuTurnIfNeededAsync()));
-                }
-            }
-        }
-
-
-        #endregion
-
         private void cbDie_Checked(object sender, RoutedEventArgs e)
         {
-            
-            ((CheckBox)sender).Opacity = 0.50; 
-           
+
+            ((CheckBox)sender).Opacity = 0.50;
+
         }
 
         private void cbDie_Unchecked(object sender, RoutedEventArgs e)
