@@ -14,42 +14,133 @@ namespace YahtzeeGame.Classes
         #region Fields
 
         #region HardAI
+
+        /// <summary>
+        /// Stores the hard bot strategy helper. This is used only when a player is identified as the hard AI.
+        /// </summary>
         private HardAIV2 _hardAI = new HardAIV2();
+
         #endregion
 
+        /// <summary>
+        /// Holds the currently selected CPU bot for the active turn.
+        /// </summary>
         private CPUPlayer _bot;
 
+        /// <summary>
+        /// Prevents the same CPU turn from running more than once at the same time.
+        /// </summary>
         private bool _cpuTurnRunning = false;
+
+        /// <summary>
+        /// Controls the delay between visible CPU actions.
+        /// </summary>
         private int _cpuStepDelayMs = 600;
+
+        /// <summary>
+        /// Tracks whether another CPU turn should start immediately after the current one ends.
+        /// </summary>
         private bool _queueNextCpuTurn = false;
 
+        /// <summary>
+        /// Stores the game manager so this class can use the current dice pool, roll count, and turn flow.
+        /// </summary>
         private readonly GameManager _game;
+
+        /// <summary>
+        /// Gets the current player from GameWindow when needed.
+        /// </summary>
         private readonly Func<Player> _getCurrentPlayer;
 
+        /// <summary>
+        /// Blocks player interaction while the CPU is taking its turn.
+        /// </summary>
         private readonly GroupBox _gbPlayerBlocker;
+
+        /// <summary>
+        /// Displays the number of rolls remaining in the current turn.
+        /// </summary>
         private readonly Label _lblTimesRolled;
+
+        /// <summary>
+        /// Displays the current player's name on screen.
+        /// </summary>
         private readonly TextBox _tbCurrentPlayer;
 
+        /// <summary>
+        /// Represents the bot die hold checkbox's 1-5.
+        /// </summary>
         private readonly CheckBox _cbDie1;
         private readonly CheckBox _cbDie2;
         private readonly CheckBox _cbDie3;
         private readonly CheckBox _cbDie4;
         private readonly CheckBox _cbDie5;
 
+        /// <summary>
+        /// Gets the current checkbox hold state from the window. 
+        /// </summary>
         private readonly Func<bool[]> _checkDice;
+
+        /// <summary>
+        /// Refreshes the dice images after a roll. 
+        /// </summary>
         private readonly Action _displayDiceSet;
+
+        /// <summary>
+        /// Enables or disables the dice controls in the UI. 
+        /// </summary>
         private readonly Action<bool> _diceActivation;
+
+        /// <summary>
+        /// Enables or disables the scorecard buttons in the UI. 
+        /// </summary>
         private readonly Action<bool> _scoreCardActivated;
+
+        /// <summary>
+        /// Refreshes scorecard button availability based on what has already been scored.
+        /// </summary>
         private readonly Action _refactorBoard;
+
+        /// <summary>
+        /// Refreshes the main player/score display fields in the UI.
+        /// </summary>
         private readonly Action _fillBoxes;
+
+        /// <summary>
+        /// Advances the game to the next turn.
+        /// </summary>
         private readonly Action _nextTurn;
 
+        /// <summary>
+        /// Gives access to the UI dispatcher so queued CPU turns can start.
+        /// </summary>
         private readonly Dispatcher _dispatcher;
 
         #endregion
 
         #region Constructor
 
+        /// <summary>
+        /// Creates a new bot resource manager and stores the UI/game references it needs to run CPU turns.
+        /// </summary>
+        /// <param name="game"></param>
+        /// <param name="getCurrentPlayer"></param>
+        /// <param name="gbPlayerBlocker"></param>
+        /// <param name="lblTimesRolled"></param>
+        /// <param name="tbCurrentPlayer"></param>
+        /// <param name="cbDie1"></param>
+        /// <param name="cbDie2"></param>
+        /// <param name="cbDie3"></param>
+        /// <param name="cbDie4"></param>
+        /// <param name="cbDie5"></param>
+        /// <param name="checkDice"></param>
+        /// <param name="displayDiceSet"></param>
+        /// <param name="diceActivation"></param>
+        /// <param name="scoreCardActivated"></param>
+        /// <param name="refactorBoard"></param>
+        /// <param name="fillBoxes"></param>
+        /// <param name="nextTurn"></param>
+        /// <param name="dispatcher"></param>
         public BotResources(
             GameManager game,
             Func<Player> getCurrentPlayer,
@@ -98,6 +189,11 @@ namespace YahtzeeGame.Classes
 
         #region BotResources
 
+        /// <summary>
+        /// Checks whether the current player should use the hard AI helper to apply Hard Ai strategies.
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
         private bool IsHardAiPlayer(Player p)
         {
             return p != null
@@ -105,6 +201,12 @@ namespace YahtzeeGame.Classes
                    && p.PlayerName.Contains("Hard AI");
         }
 
+        /// <summary>
+        /// Converts HardAIV2 hold counts.
+        /// </summary>
+        /// <param name="holdCounts"></param>
+        /// <param name="diceValues"></param>
+        /// <returns></returns>
         private bool[] ConvertHardAiHolds(int[] holdCounts, int[] diceValues)
         {
             bool[] holds = new bool[5];
@@ -133,6 +235,11 @@ namespace YahtzeeGame.Classes
             return holds;
         }
 
+        /// <summary>
+        /// Converts the hard AI numeric scoring result into the string category key used by CPUPlayer.
+        /// </summary>
+        /// <param name="decision"></param>
+        /// <returns></returns>
         private string ConvertHardAiCategory(int decision)
         {
             if (decision == 1) return "aces";
@@ -152,11 +259,21 @@ namespace YahtzeeGame.Classes
             return "chance";
         }
 
+        /// <summary>
+        /// Checks whether a player is controlled by the computer.
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
         public bool IsCpuPlayer(Player p)
         {
             return p != null && p.ComputerPlayer;
         }
 
+        /// <summary>
+        /// Returns the correct bot for the active player.
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
         private CPUPlayer GetCpuBot(Player p)
         {
             if (p == null) return new MediumBot();
@@ -177,6 +294,10 @@ namespace YahtzeeGame.Classes
             }
         }
 
+        /// <summary>
+        /// Runs a full visible CPU turn from start to finish. This method rolls dice, chooses holds, previews scores and applies score, and goes onto next turn.
+        /// </summary>
+        /// <returns></returns>
         public async Task PlayCpuTurnIfNeededAsync()
         {
             if (_getCurrentPlayer == null)

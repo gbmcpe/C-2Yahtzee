@@ -50,6 +50,7 @@ namespace YahtzeeGame
             tester = players.Count;
             DataContext = this;
 
+            // Constructor to call botresources.
             _botResources = new BotResources(
                game,
                () => currentPlayer,
@@ -534,6 +535,10 @@ namespace YahtzeeGame
 
         #region Game Void Methods
 
+        /// <summary>
+        /// Call method from bot resources so bots are usable in main window.
+        /// </summary>
+        /// <returns></returns>
         public async Task PlayCpuTurnIfNeededAsync()
         {
             await _botResources.PlayCpuTurnIfNeededAsync();
