@@ -19,19 +19,14 @@ namespace YahtzeeGame.Classes
 
         private CPUPlayer _bot;
 
-        /// Prevents the CPU from executing multiple turns at the same time.
         private bool _cpuTurnRunning = false;
-
-        /// Controls how long the CPU waits between visible actions.
         private int _cpuStepDelayMs = 600;
-
-        /// Tracks whether the next CPU turn should be queued after the current CPU turn fully releases.
         private bool _queueNextCpuTurn = false;
 
         private readonly GameManager _game;
         private readonly Func<Player> _getCurrentPlayer;
 
-        private readonly Grid _gbPlayerBlocker;
+        private readonly GroupBox _gbPlayerBlocker;
         private readonly Label _lblTimesRolled;
         private readonly TextBox _tbCurrentPlayer;
 
@@ -56,24 +51,24 @@ namespace YahtzeeGame.Classes
         #region Constructor
 
         public BotResources(
-             GameManager game,
-             Func<Player> getCurrentPlayer,
-             Grid gbPlayerBlocker,
-             Label lblTimesRolled,
-             TextBox tbCurrentPlayer,
-             CheckBox cbDie1,
-             CheckBox cbDie2,
-             CheckBox cbDie3,
-             CheckBox cbDie4,
-             CheckBox cbDie5,
-             Func<bool[]> checkDice,
-             Action displayDiceSet,
-             Action<bool> diceActivation,
-             Action<bool> scoreCardActivated,
-             Action refactorBoard,
-             Action fillBoxes,
-             Action nextTurn,
-             Dispatcher dispatcher)
+            GameManager game,
+            Func<Player> getCurrentPlayer,
+            GroupBox gbPlayerBlocker,
+            Label lblTimesRolled,
+            TextBox tbCurrentPlayer,
+            CheckBox cbDie1,
+            CheckBox cbDie2,
+            CheckBox cbDie3,
+            CheckBox cbDie4,
+            CheckBox cbDie5,
+            Func<bool[]> checkDice,
+            Action displayDiceSet,
+            Action<bool> diceActivation,
+            Action<bool> scoreCardActivated,
+            Action refactorBoard,
+            Action fillBoxes,
+            Action nextTurn,
+            Dispatcher dispatcher)
         {
             _game = game;
             _getCurrentPlayer = getCurrentPlayer;
@@ -99,31 +94,10 @@ namespace YahtzeeGame.Classes
             _dispatcher = dispatcher;
         }
 
-        public BotResources(GameManager game, Func<Player> value, GroupBox gbPlayerBlocker, Label lblTimesRolled, TextBox tbCurrentPlayer, CheckBox cbDie1, CheckBox cbDie2, CheckBox cbDie3, CheckBox cbDie4, CheckBox cbDie5, Func<bool[]> checkDice, Action displayDiceSet, Action<bool> diceActivation, Action<bool> scoreCardActivated, Action refactorBoard, Action fillBoxes, Action nextTurn, Dispatcher dispatcher)
-        {
-            _game = game;
-            _lblTimesRolled = lblTimesRolled;
-            _tbCurrentPlayer = tbCurrentPlayer;
-            _cbDie1 = cbDie1;
-            _cbDie2 = cbDie2;
-            _cbDie3 = cbDie3;
-            _cbDie4 = cbDie4;
-            _cbDie5 = cbDie5;
-            _checkDice = checkDice;
-            _displayDiceSet = displayDiceSet;
-            _diceActivation = diceActivation;
-            _scoreCardActivated = scoreCardActivated;
-            _refactorBoard = refactorBoard;
-            _fillBoxes = fillBoxes;
-            _nextTurn = nextTurn;
-            _dispatcher = dispatcher;
-        }
-
         #endregion
 
         #region BotResources
 
-        /// Determines if the given player is a Hard AI CPU.
         private bool IsHardAiPlayer(Player p)
         {
             return p != null
@@ -131,7 +105,6 @@ namespace YahtzeeGame.Classes
                    && p.PlayerName.Contains("Hard AI");
         }
 
-        /// Converts HardAIV2 hold counts into checkbox hold positions.
         private bool[] ConvertHardAiHolds(int[] holdCounts, int[] diceValues)
         {
             bool[] holds = new bool[5];
@@ -160,7 +133,6 @@ namespace YahtzeeGame.Classes
             return holds;
         }
 
-        /// Converts HardAIV2 score decisions into category keys.
         private string ConvertHardAiCategory(int decision)
         {
             if (decision == 1) return "aces";
@@ -180,7 +152,6 @@ namespace YahtzeeGame.Classes
             return "chance";
         }
 
-        /// Determines if the given player is a CPU.
         public bool IsCpuPlayer(Player p)
         {
             return p != null && p.ComputerPlayer;
@@ -198,7 +169,6 @@ namespace YahtzeeGame.Classes
                 case BotType.Medium:
                     return new MediumBot();
 
-                /// Hard AI uses HardAIV2 logic in PlayCpuTurnIfNeededAsync to implement when hard ai is being used.
                 case BotType.Hard:
                     return new MediumBot();
 
@@ -207,21 +177,15 @@ namespace YahtzeeGame.Classes
             }
         }
 
-        /// <summary>
-        /// Executes a full CPU turn visibly so the user can watch.
-        /// </summary>
         public async Task PlayCpuTurnIfNeededAsync()
         {
-            Player currentPlayer = _getCurrentPlayer();
-
             if (_getCurrentPlayer == null)
             {
                 _gbPlayerBlocker.Visibility = Visibility.Hidden;
                 return;
             }
 
-            Player \\r = _getCurrentPlayer();
-            Player currentPlayer = player;
+            Player currentPlayer = _getCurrentPlayer();
 
             if (currentPlayer == null)
             {
@@ -235,6 +199,13 @@ namespace YahtzeeGame.Classes
                 return;
             }
 
+            if (_cpuTurnRunning)
+            {
+                return;
+            }
+
+            _gbPlayerBlocker.Visibility = Visibility.Visible;
+
             _bot = GetCpuBot(currentPlayer);
 
             _game.Rolls = 3;
@@ -246,7 +217,11 @@ namespace YahtzeeGame.Classes
             try
             {
                 currentPlayer = _getCurrentPlayer();
-                if (currentPlayer == null) return;
+                if (currentPlayer == null)
+                {
+                    _gbPlayerBlocker.Visibility = Visibility.Hidden;
+                    return;
+                }
 
                 _tbCurrentPlayer.Text = currentPlayer.PlayerName;
 
@@ -266,7 +241,11 @@ namespace YahtzeeGame.Classes
                     _displayDiceSet();
 
                     currentPlayer = _getCurrentPlayer();
-                    if (currentPlayer == null) return;
+                    if (currentPlayer == null)
+                    {
+                        _gbPlayerBlocker.Visibility = Visibility.Hidden;
+                        return;
+                    }
 
                     _bot.UpdateScorePreview(_game.Pool.diceValue, currentPlayer.PlayerScores);
 
@@ -284,7 +263,11 @@ namespace YahtzeeGame.Classes
                 while (_game.Rolls > 0)
                 {
                     currentPlayer = _getCurrentPlayer();
-                    if (currentPlayer == null) return;
+                    if (currentPlayer == null)
+                    {
+                        _gbPlayerBlocker.Visibility = Visibility.Hidden;
+                        return;
+                    }
 
                     bool[] holds;
 
@@ -310,7 +293,11 @@ namespace YahtzeeGame.Classes
                     _displayDiceSet();
 
                     currentPlayer = _getCurrentPlayer();
-                    if (currentPlayer == null) return;
+                    if (currentPlayer == null)
+                    {
+                        _gbPlayerBlocker.Visibility = Visibility.Hidden;
+                        return;
+                    }
 
                     _bot.UpdateScorePreview(_game.Pool.diceValue, currentPlayer.PlayerScores);
 
@@ -326,7 +313,11 @@ namespace YahtzeeGame.Classes
                 }
 
                 currentPlayer = _getCurrentPlayer();
-                if (currentPlayer == null) return;
+                if (currentPlayer == null)
+                {
+                    _gbPlayerBlocker.Visibility = Visibility.Hidden;
+                    return;
+                }
 
                 string category;
 
@@ -351,7 +342,11 @@ namespace YahtzeeGame.Classes
                 _nextTurn();
 
                 currentPlayer = _getCurrentPlayer();
-                if (currentPlayer == null) return;
+                if (currentPlayer == null)
+                {
+                    _gbPlayerBlocker.Visibility = Visibility.Hidden;
+                    return;
+                }
 
                 _queueNextCpuTurn = IsCpuPlayer(currentPlayer) && currentPlayer.PlayerScores.ScoreCardNotFinished();
             }
@@ -366,7 +361,7 @@ namespace YahtzeeGame.Classes
                 }
             }
         }
-    }
 
-    #endregion
+        #endregion
+    }
 }
