@@ -39,7 +39,7 @@ namespace YahtzeeGame
         public bool isScoreCardFinished;
 
         //These hold the actual values that will be added to totalScore when locked in. These are all separate values so that they can be called later for
-        //displaying on the game card. If we find a better way of doing it, these can be erased.
+        //displaying on the game card. 
         private int aces;
         private int twos;
         private int threes;
@@ -410,6 +410,7 @@ namespace YahtzeeGame
                 ChanceScored
             };
 
+            //Checks each score flag and increments x by 1
             foreach (bool s in scores)
             {
                 if (s == true)
@@ -418,6 +419,7 @@ namespace YahtzeeGame
                 }
             }
 
+            //if x was incremented 13 times, which means all 13 flags are thrown, the card is marked as finished.
             if (x == 13)
             {
                 result = false;
@@ -431,6 +433,10 @@ namespace YahtzeeGame
             MessageBox.Show("The card has already been filled. Your game is over. You scored " + TotalScore + "points");
         }
 
+        /* DieCounter Note
+         * Generates an array where each position represents how many of each die face is present.
+         * Ex: The dice are currently showing 1, 2, 2, 3, 5. DieCounter will return [1, 2, 1, 0, 1, 0]
+         */
         public int[] DieCounter(int[] dice)
         {
             int[] result = new int[6];
@@ -448,11 +454,13 @@ namespace YahtzeeGame
             return result;
         }
 
+        // These methods check to see if the current dice are a valid combination for the Lower Section Boxes. 
+        
         public bool ThreeKindValidation(int[] dice)
         {
-            //three match
             int[] dieCount = DieCounter(dice);
 
+            //Checks if there are three of any die type in the current hand
             foreach (int count in dieCount)
             {
                 if (count >= 3)
@@ -468,6 +476,7 @@ namespace YahtzeeGame
         {
             int[] dieCount = DieCounter(dice);
 
+            //Does the same thing as ThreeKindValidation
             foreach (int count in dieCount)
             {
                 if (count >= 4)
@@ -486,6 +495,8 @@ namespace YahtzeeGame
             bool threeCheckFlag = false;
             bool twoCheckFlag = false;
             
+            //Checks to see if there is a pair and three of a kind by incrementing Checker when found
+            //The bools are for data integrity, to make sure multiple pairs don't cause an false positive.
             foreach (int count in dieCount)
             {
                 if (count == 3 && !threeCheckFlag) { checker++; threeCheckFlag = true; }
@@ -504,6 +515,7 @@ namespace YahtzeeGame
         {
             int[] count = DieCounter(dice);
 
+            //Checks to see if there is a line of 1s in the array, at that represents a straight
             if (count[0] >= 1 && count[1] >= 1 && count[2] >= 1 && count[3] >= 1 ||
                 count[1] >= 1 && count[2] >= 1 && count[3] >= 1 && count[4] >= 1 ||
                 count[2] >= 1 && count[3] >= 1 && count[4] >= 1 && count[5] >= 1)
@@ -518,6 +530,7 @@ namespace YahtzeeGame
         {
             int[] count = DieCounter(dice);
 
+            //This is the same thing as the Small Straight validator
             if (count[0] == 1 && count[1] == 1 && count[2] == 1 && count[3] == 1 && count[4] == 1 ||
                 count[1] == 1 && count[2] == 1 && count[3] == 1 && count[4] == 1 && count[5] == 1)
             {
@@ -531,6 +544,7 @@ namespace YahtzeeGame
         {
             int[] dieCount = DieCounter(dice);
 
+            //This one checks for if there's a five anywhere in the array
             foreach (int count in dieCount)
             {
                 if (count == 5) { return true; }
@@ -538,6 +552,16 @@ namespace YahtzeeGame
             
             return false; 
             
+        }
+
+        public void BonusConditionsMet()
+        {
+            if ((Aces + Twos + Threes + Fours + Fives + Sixes >= 63) & !BonusScored)
+            {
+                Bonus = 35;
+                BonusScored = true;
+                TotalScore += Bonus;
+            }
         }
         #endregion
 
@@ -555,8 +579,8 @@ namespace YahtzeeGame
          * Note that when you call any method besides the ones for Full House, Small Straight, Large Straight, or Yahtzee, 
          * you'll need to feed it an array with all five dice. It won't throw an error, but the logic won't work right.
          *
-         * Update 2: Each Scoring Method now checks if the Score Card has been filled. If not, it fires off ScoreCardFilled()
-         *Update 3: Each scoring was previusly calculated, but now the player is prompted to confirm that they want to score 
+         *Update 2: Each Scoring Method now checks if the ScoreCard has been filled. If not, it fires off ScoreCardFilled()
+         *Update 3: Each scoring was previously calculated, but now the player is prompted to confirm that they want to score 
          *that box for the points it contains. This way, if they accidentally click the wrong box, they can back out without losing points. 
          *The computer player will automatically select yes for all prompts.
          */
@@ -565,27 +589,32 @@ namespace YahtzeeGame
         //because the scores are updated in real time as the dice are rolled,
         //so the current score options are always available in the ScoreCard object.
         #region Scoring Methods
+
+        //The Upper and Lower Section methods are similar, so the first method in each region is annotated as the example for the others
+
+        #region Upper Section
+
         public void AcesSelected( bool isComputer = false)
         {
+            //Checks to see if the card has been completed first. If it is, then a text box gets shown as a catchall and nothing changes on the card
             if (ScoreCardNotFinished())
             {
+                //Another check statement, to make sure this box as already not been scored.
                 if (AcesScored == false)
                 { 
                     MessageBoxResult choice = MessageBoxResult.No;
 
+                    //As long as the player is a human, it will ask for an input via message box
                     if (!isComputer)
                     {
                         choice = MessageBox.Show("Do you want to score Aces? You will gain " + Aces + " points.", "Confirmation", MessageBoxButton.YesNo);
                     }
 
+                    //If the player selects yes, the box gets scored, the flag is flipped, and TotalScore updates.
                     if (choice == MessageBoxResult.Yes || isComputer)
                     {
                         AcesScored = true;
                         TotalScore += Aces;
-
-                        //Show only the score selected in the scored card
-                        //Save just the score selected 
-
                     }
                 }
                 else
@@ -599,6 +628,8 @@ namespace YahtzeeGame
             {
                 ScoreCardFilled();
             }
+
+            //Finally, the program checks if the bonus is scored.
             BonusConditionsMet();
         }
 
@@ -754,33 +785,33 @@ namespace YahtzeeGame
             else { ScoreCardFilled(); }
             BonusConditionsMet();
         }
-        public void BonusConditionsMet()
-        {
-            if ((Aces + Twos+ Threes+ Fours + Fives + Sixes >= 63) & !BonusScored)
-            {
-                Bonus = 35;
-                BonusScored = true;
-                TotalScore += Bonus;
-            }
-        }
+
+        #endregion
+
+        #region Lower Section
 
         public void ThreeOfAKindSelected( bool isComputer = false)
         {
-
+            //Checks to see if the card has been completed first. If it is, then a text box gets shown as a catchall and nothing changes on the card
             if (ScoreCardNotFinished())
             {
+                //Another check statement, to make sure this box as already not been scored.
                 if (ThreeOfAKindScored == false)
                 {
+                    //As Lower Section Boxes have more particular scoring solutions, first it checks to see if the box will actually score points
+                    //If it doesn't, the player may still score, but the card will inform them that they will receive 0 points and configure it properly
                     if (threeOfAKind>0)
                     {
                         MessageBoxResult choice = MessageBoxResult.No;
 
+                        //As long as the player is a human, it will ask for an input via message box
                         if (!isComputer)
                         {
                             choice = MessageBox.Show("Do you want to score Three of a Kind? You will gain "
                                             + ThreeOfAKind + " points.", "Confirmation", MessageBoxButton.YesNo);
                         }
 
+                        //If the player selects yes, the box gets scored, the flag is flipped, and TotalScore updates.
                         if (choice == MessageBoxResult.Yes || isComputer)
                         {
                             ThreeOfAKindScored = true;
@@ -1083,6 +1114,8 @@ namespace YahtzeeGame
             }
             else { ScoreCardFilled(); }
         }
+
+        #endregion
 
         //method to show just the score selected in the scored card
         //and set the rest to 0 
