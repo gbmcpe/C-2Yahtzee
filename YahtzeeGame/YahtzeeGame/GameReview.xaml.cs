@@ -31,6 +31,8 @@ namespace YahtzeeGame
 
             ApplyEndState(Players);
 
+            
+
         }
 
        private ObservableCollection<Player> StoredPlayers;
@@ -189,6 +191,7 @@ namespace YahtzeeGame
             foreach (Player p in players)
             {
                
+               
 
                 FillBoxes(p, n);
                 if (winner == null) { winner = p; }
@@ -203,7 +206,13 @@ namespace YahtzeeGame
                     tier = p;
                     tie = true;
                 }
-                n++;
+                if (p.ComputerPlayer)
+                {
+                    ((Button)this.FindName($"btnSaveScoreP{n}")).Content = "CPU Player";
+                    ((Button)this.FindName($"btnSaveScoreP{n}")).IsEnabled = false;
+                }
+                else { ((Button)this.FindName($"btnSaveScoreP{n}")).IsEnabled = true; }
+                    n++;
             }
 
             if (GameOver == true)

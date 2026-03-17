@@ -66,19 +66,11 @@ namespace YahtzeeGame
 
 
         
-        private void DisplayScore()
-        {
-            
-        }
 
-
-        private void UpdateScoreColumn()
-        {
-            
         }
 
 
 
     }
-}
+
 

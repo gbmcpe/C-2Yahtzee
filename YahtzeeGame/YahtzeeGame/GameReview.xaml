@@ -98,10 +98,10 @@
         <TextBox x:Name="tbTotalP4" HorizontalAlignment="Left" Margin="346,418,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Grid.Column="1" Grid.ColumnSpan="2"/>
         <Button x:Name="btnReturnToGame" Grid.Column="2" Content="Play Again!" HorizontalAlignment="Left" Margin="114,122,0,0" VerticalAlignment="Top" Width="114" Click="btnReturnToGame_Click" Grid.ColumnSpan="2"/>
         <Button x:Name="btnMainMenu" Grid.Column="2" Content="Back to Main Menu" HorizontalAlignment="Left" Margin="114,154,0,0" VerticalAlignment="Top" Width="114" Grid.ColumnSpan="2" Click="btnMainMenu_Click"/>
-        <Button x:Name="btnSaveScoreP1" Content="Save Score" HorizontalAlignment="Left" Margin="115,454,0,0" VerticalAlignment="Top" Width="69" Grid.ColumnSpan="2" Click="btnSaveScoreP1_Click"/>
-        <Button x:Name="btnSaveScoreP2" Content="Save Score" HorizontalAlignment="Left" Margin="113,454,0,0" VerticalAlignment="Top" Width="69" Grid.Column="1" Click="btnSaveScoreP2_Click"/>
-        <Button x:Name="btnSaveScoreP3" Content="Save Score" HorizontalAlignment="Left" Margin="247,454,0,0" VerticalAlignment="Top" Width="69" Grid.Column="1" Click="btnSaveScoreP3_Click"/>
-        <Button x:Name="btnSaveScoreP4" Content="Save Score" HorizontalAlignment="Left" Margin="372,454,0,0" VerticalAlignment="Top" Width="69" Grid.Column="1" Grid.ColumnSpan="2" Click="btnSaveScoreP4_Click"/>
+        <Button x:Name="btnSaveScoreP1" Content="Save Score" HorizontalAlignment="Left" Margin="115,454,0,0" VerticalAlignment="Top" Width="69" Grid.ColumnSpan="2" Click="btnSaveScoreP1_Click" IsEnabled="False"/>
+        <Button x:Name="btnSaveScoreP2" Content="Save Score" HorizontalAlignment="Left" Margin="113,454,0,0" VerticalAlignment="Top" Width="69" Grid.Column="1" Click="btnSaveScoreP2_Click" IsEnabled="False"/>
+        <Button x:Name="btnSaveScoreP3" Content="Save Score" HorizontalAlignment="Left" Margin="247,454,0,0" VerticalAlignment="Top" Width="69" Grid.Column="1" Click="btnSaveScoreP3_Click" IsEnabled="False"/>
+        <Button x:Name="btnSaveScoreP4" Content="Save Score" HorizontalAlignment="Left" Margin="372,454,0,0" VerticalAlignment="Top" Width="69" Grid.Column="1" Grid.ColumnSpan="2" Click="btnSaveScoreP4_Click" IsEnabled="False"/>
 
     </Grid>
 </Window>
