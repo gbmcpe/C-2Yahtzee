@@ -141,6 +141,18 @@ namespace YahtzeeGame
             pausereview.ShowDialog();
         }
 
+        private void cbDie_Checked(object sender, RoutedEventArgs e)
+        {
+
+            ((CheckBox)sender).Opacity = 0.50;
+
+        }
+
+        private void cbDie_Unchecked(object sender, RoutedEventArgs e)
+        {
+            ((CheckBox)sender).Opacity = 0;
+        }
+
 
 
         #endregion
@@ -573,7 +585,7 @@ namespace YahtzeeGame
             ScoreCardActivated(false);
             lblTimesRolled.Content = 3.ToString();
             game.Rolls = 3;
-            fillScoresOpcion(game.Pool.diceValue);
+            
 
 
             BtnRollDice.IsEnabled = true;
@@ -631,17 +643,7 @@ namespace YahtzeeGame
 
         #endregion
 
-        private void cbDie_Checked(object sender, RoutedEventArgs e)
-        {
 
-            ((CheckBox)sender).Opacity = 0.50;
-
-        }
-
-        private void cbDie_Unchecked(object sender, RoutedEventArgs e)
-        {
-            ((CheckBox)sender).Opacity = 0;
-        }
 
     }
 }
